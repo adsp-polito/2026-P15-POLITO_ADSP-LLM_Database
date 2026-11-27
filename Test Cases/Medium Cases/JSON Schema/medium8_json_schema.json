@@ -1,0 +1,469 @@
+{
+  "patients": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "mrn",
+        "first_name",
+        "last_name",
+        "birth_date",
+        "sex",
+        "phone",
+        "address",
+        "recent_exams",
+        "registered_at"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "mrn": {
+          "bsonType": "string"
+        },
+        "first_name": {
+          "bsonType": "string"
+        },
+        "last_name": {
+          "bsonType": "string"
+        },
+        "birth_date": {
+          "bsonType": "date"
+        },
+        "sex": {
+          "bsonType": "string",
+          "enum": [
+            "F",
+            "M",
+            "X"
+          ]
+        },
+        "phone": {
+          "bsonType": "string"
+        },
+        "email": {
+          "bsonType": "string"
+        },
+        "address": {
+          "bsonType": "object",
+          "required": [
+            "line1",
+            "city",
+            "state",
+            "postal_code"
+          ],
+          "properties": {
+            "line1": {
+              "bsonType": "string"
+            },
+            "line2": {
+              "bsonType": "string"
+            },
+            "city": {
+              "bsonType": "string"
+            },
+            "state": {
+              "bsonType": "string"
+            },
+            "postal_code": {
+              "bsonType": "string"
+            }
+          }
+        },
+        "recent_exams": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "_id",
+              "accession_number",
+              "patient_id",
+              "scanner_id",
+              "modality",
+              "procedure_code",
+              "procedure_name",
+              "body_part",
+              "priority",
+              "status",
+              "performed_at",
+              "contrast_used"
+            ],
+            "properties": {
+              "_id": {
+                "bsonType": "objectId"
+              },
+              "accession_number": {
+                "bsonType": "string"
+              },
+              "patient_id": {
+                "bsonType": "objectId"
+              },
+              "scanner_id": {
+                "bsonType": "objectId"
+              },
+              "protocoled_by": {
+                "bsonType": "objectId"
+              },
+              "modality": {
+                "bsonType": "string",
+                "enum": [
+                  "CT",
+                  "MR",
+                  "DX",
+                  "US",
+                  "MG"
+                ]
+              },
+              "procedure_code": {
+                "bsonType": "string"
+              },
+              "procedure_name": {
+                "bsonType": "string"
+              },
+              "body_part": {
+                "bsonType": "string"
+              },
+              "laterality": {
+                "bsonType": "string",
+                "enum": [
+                  "L",
+                  "R"
+                ]
+              },
+              "priority": {
+                "bsonType": "string",
+                "enum": [
+                  "routine",
+                  "urgent",
+                  "stat"
+                ]
+              },
+              "status": {
+                "bsonType": "string",
+                "enum": [
+                  "scheduled",
+                  "in_progress",
+                  "completed",
+                  "finalized",
+                  "cancelled"
+                ]
+              },
+              "performed_at": {
+                "bsonType": "date"
+              },
+              "contrast_used": {
+                "bsonType": "bool"
+              },
+              "radiation_dose_mgy": {
+                "bsonType": "double"
+              }
+            }
+          }
+        },
+        "registered_at": {
+          "bsonType": "date"
+        }
+      }
+    }
+  },
+  "exams": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "accession_number",
+        "patient_id",
+        "scanner_id",
+        "modality",
+        "procedure_code",
+        "procedure_name",
+        "body_part",
+        "priority",
+        "status",
+        "performed_at",
+        "contrast_used"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "accession_number": {
+          "bsonType": "string"
+        },
+        "patient_id": {
+          "bsonType": "objectId"
+        },
+        "scanner_id": {
+          "bsonType": "objectId"
+        },
+        "protocoled_by": {
+          "bsonType": "objectId"
+        },
+        "modality": {
+          "bsonType": "string",
+          "enum": [
+            "CT",
+            "MR",
+            "DX",
+            "US",
+            "MG"
+          ]
+        },
+        "procedure_code": {
+          "bsonType": "string"
+        },
+        "procedure_name": {
+          "bsonType": "string"
+        },
+        "body_part": {
+          "bsonType": "string"
+        },
+        "laterality": {
+          "bsonType": "string",
+          "enum": [
+            "L",
+            "R"
+          ]
+        },
+        "priority": {
+          "bsonType": "string",
+          "enum": [
+            "routine",
+            "urgent",
+            "stat"
+          ]
+        },
+        "status": {
+          "bsonType": "string",
+          "enum": [
+            "scheduled",
+            "in_progress",
+            "completed",
+            "finalized",
+            "cancelled"
+          ]
+        },
+        "performed_at": {
+          "bsonType": "date"
+        },
+        "contrast_used": {
+          "bsonType": "bool"
+        },
+        "radiation_dose_mgy": {
+          "bsonType": "double"
+        }
+      }
+    }
+  },
+  "scanners": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "station_aet",
+        "modality",
+        "manufacturer",
+        "model",
+        "serial_number",
+        "installed_on",
+        "location",
+        "active"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "station_aet": {
+          "bsonType": "string"
+        },
+        "modality": {
+          "bsonType": "string",
+          "enum": [
+            "CT",
+            "MR",
+            "DX",
+            "US",
+            "MG"
+          ]
+        },
+        "manufacturer": {
+          "bsonType": "string"
+        },
+        "model": {
+          "bsonType": "string"
+        },
+        "serial_number": {
+          "bsonType": "string"
+        },
+        "installed_on": {
+          "bsonType": "date"
+        },
+        "slice_count": {
+          "bsonType": "int"
+        },
+        "field_strength_t": {
+          "bsonType": "double"
+        },
+        "last_service_date": {
+          "bsonType": "date"
+        },
+        "location": {
+          "bsonType": "object",
+          "required": [
+            "site_name",
+            "building",
+            "floor",
+            "room"
+          ],
+          "properties": {
+            "site_name": {
+              "bsonType": "string"
+            },
+            "building": {
+              "bsonType": "string"
+            },
+            "floor": {
+              "bsonType": "int"
+            },
+            "room": {
+              "bsonType": "string"
+            }
+          }
+        },
+        "active": {
+          "bsonType": "bool"
+        }
+      }
+    }
+  },
+  "radiologists": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "npi",
+        "first_name",
+        "last_name",
+        "credentials",
+        "subspecialty",
+        "email",
+        "hire_date",
+        "active"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "npi": {
+          "bsonType": "string"
+        },
+        "first_name": {
+          "bsonType": "string"
+        },
+        "last_name": {
+          "bsonType": "string"
+        },
+        "credentials": {
+          "bsonType": "string"
+        },
+        "subspecialty": {
+          "bsonType": "string"
+        },
+        "email": {
+          "bsonType": "string"
+        },
+        "phone": {
+          "bsonType": "string"
+        },
+        "hire_date": {
+          "bsonType": "date"
+        },
+        "active": {
+          "bsonType": "bool"
+        }
+      }
+    }
+  },
+  "reports": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "exam_ids",
+        "signed_by",
+        "report_status",
+        "signed_at",
+        "turnaround_minutes",
+        "impression",
+        "critical_result",
+        "findings"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "exam_ids": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "objectId"
+          }
+        },
+        "signed_by": {
+          "bsonType": "objectId"
+        },
+        "report_status": {
+          "bsonType": "string",
+          "enum": [
+            "preliminary",
+            "final",
+            "amended"
+          ]
+        },
+        "signed_at": {
+          "bsonType": "date"
+        },
+        "amended_at": {
+          "bsonType": "date"
+        },
+        "turnaround_minutes": {
+          "bsonType": "int"
+        },
+        "impression": {
+          "bsonType": "string"
+        },
+        "critical_result": {
+          "bsonType": "bool"
+        },
+        "findings": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "anatomic_site",
+              "observation"
+            ],
+            "properties": {
+              "anatomic_site": {
+                "bsonType": "string"
+              },
+              "observation": {
+                "bsonType": "string"
+              },
+              "laterality": {
+                "bsonType": "string",
+                "enum": [
+                  "L",
+                  "R",
+                  "B"
+                ]
+              },
+              "size_mm": {
+                "bsonType": "double"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

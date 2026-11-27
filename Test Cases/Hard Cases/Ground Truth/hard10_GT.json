@@ -1,0 +1,219 @@
+{
+  "database": "db_10",
+  "collections": [
+    "datacenters",
+    "clusters",
+    "nodes",
+    "engineers",
+    "incidents",
+    "node_metrics"
+  ],
+  "fields": {
+    "datacenters": [
+      "_id",
+      "name",
+      "provider",
+      "region_code",
+      "address",
+      "address.street",
+      "address.city",
+      "address.postal_code",
+      "address.country",
+      "power_capacity_kw",
+      "tier",
+      "certifications[]",
+      "commissioned_at"
+    ],
+    "clusters": [
+      "_id",
+      "name",
+      "environment",
+      "kubernetes_version",
+      "datacenter",
+      "datacenter.datacenter_id",
+      "datacenter.name",
+      "datacenter.region_code",
+      "api_endpoint",
+      "node_pools[]",
+      "node_pools[].pool_name",
+      "node_pools[].instance_type",
+      "node_pools[].min_nodes",
+      "node_pools[].max_nodes",
+      "node_pools[].zones[]",
+      "admins[]",
+      "enabled_addons[]",
+      "recent_incidents[]",
+      "recent_incidents[]._id",
+      "recent_incidents[].affected_cluster",
+      "recent_incidents[].severity",
+      "recent_incidents[].status",
+      "recent_incidents[].summary",
+      "recent_incidents[].opened_at",
+      "recent_incidents[].resolved_at",
+      "recent_incidents[].assignee",
+      "recent_incidents[].minutes_to_mitigate",
+      "created_at"
+    ],
+    "nodes": [
+      "_id",
+      "hostname",
+      "assigned_cluster",
+      "pool_name",
+      "ip_address",
+      "os_image",
+      "kernel_version",
+      "cpu_cores",
+      "memory_gib",
+      "status",
+      "hardware",
+      "hardware.vendor",
+      "hardware.model",
+      "hardware.serial_number",
+      "hardware.rack_unit",
+      "roles[]",
+      "taints[]",
+      "last_heartbeat_at"
+    ],
+    "engineers": [
+      "_id",
+      "full_name",
+      "email",
+      "team",
+      "timezone",
+      "on_call_eligible",
+      "joined_at"
+    ],
+    "incidents": [
+      "_id",
+      "affected_cluster",
+      "severity",
+      "status",
+      "summary",
+      "opened_at",
+      "resolved_at",
+      "assignee",
+      "minutes_to_mitigate"
+    ],
+    "node_metrics": [
+      "_id",
+      "host",
+      "window_start",
+      "window_end",
+      "sample_count",
+      "samples[]",
+      "samples[].sampled_at",
+      "samples[].cpu_pct",
+      "samples[].mem_pct",
+      "samples[].load_1m",
+      "samples[].disk_iops"
+    ]
+  },
+  "relationships": [
+    {
+      "from_field": "clusters.datacenter.datacenter_id",
+      "to_collection": "datacenters"
+    },
+    {
+      "from_field": "clusters.admins[]",
+      "to_collection": "engineers"
+    },
+    {
+      "from_field": "nodes.assigned_cluster",
+      "to_collection": "clusters"
+    },
+    {
+      "from_field": "incidents.affected_cluster",
+      "to_collection": "clusters"
+    },
+    {
+      "from_field": "incidents.assignee",
+      "to_collection": "engineers"
+    },
+    {
+      "from_field": "node_metrics.host",
+      "to_collection": "nodes"
+    }
+  ],
+  "patterns": [
+    {
+      "path": "datacenters.address",
+      "pattern": "Embedding",
+      "evidence": "The facility's postal address (street, city, postal_code, country) is a nested object that exists only inside the datacenter document."
+    },
+    {
+      "path": "datacenters.certifications[]",
+      "pattern": "Array",
+      "evidence": "A short list of plain compliance labels such as \"ISO27001\", a multi-valued attribute whose length varies per facility."
+    },
+    {
+      "path": "clusters.datacenter",
+      "pattern": "ExtendedReference",
+      "evidence": "Holds datacenter_id of a datacenters document together with copies of its name and region_code, so cluster listings show the location without a lookup."
+    },
+    {
+      "path": "clusters.node_pools[]",
+      "pattern": "Embedding",
+      "evidence": "Node pool definitions (pool_name, instance_type, min_nodes, max_nodes) are stored only inside the cluster; no collection holds pools as documents."
+    },
+    {
+      "path": "clusters.node_pools[].zones[]",
+      "pattern": "Array",
+      "evidence": "Inside each embedded node pool, a list of plain availability zone names such as \"fra-a\" with varying length."
+    },
+    {
+      "path": "clusters.admins[]",
+      "pattern": "Referencing",
+      "evidence": "A list of ObjectIds, each equal to an engineers _id, naming the cluster administrators with no copied engineer data."
+    },
+    {
+      "path": "clusters.enabled_addons[]",
+      "pattern": "Array",
+      "evidence": "Plain names of installed add-ons such as \"cert-manager\", an ordinary multi-valued attribute of the cluster."
+    },
+    {
+      "path": "clusters.recent_incidents[]",
+      "pattern": "Subset",
+      "evidence": "Keeps at most the three most recently opened incidents (by opened_at), identical to documents of the incidents collection, which holds the full set; one cluster has an older fourth incident kept only there."
+    },
+    {
+      "path": "nodes.assigned_cluster",
+      "pattern": "Referencing",
+      "evidence": "Holds only a prefixed cluster id such as \"CL-0412\" equal to a clusters _id, without copied cluster fields."
+    },
+    {
+      "path": "nodes.hardware",
+      "pattern": "Embedding",
+      "evidence": "Physical server details (vendor, model, serial_number, rack_unit) nested in the node document and stored nowhere else."
+    },
+    {
+      "path": "nodes.roles[]",
+      "pattern": "Array",
+      "evidence": "Plain role labels of the machine such as \"ingress\", a bounded multi-valued attribute with different lengths."
+    },
+    {
+      "path": "nodes.taints[]",
+      "pattern": "Array",
+      "evidence": "Kubernetes taint strings such as \"pci=true:NoSchedule\" listed as plain values describing scheduling restrictions of the node."
+    },
+    {
+      "path": "incidents.affected_cluster",
+      "pattern": "Referencing",
+      "evidence": "Holds only the prefixed id of the cluster where the incident happened, matching a clusters _id."
+    },
+    {
+      "path": "incidents.assignee",
+      "pattern": "Referencing",
+      "evidence": "ObjectId of the engineer handling the incident; no engineer attributes are copied."
+    },
+    {
+      "path": "node_metrics.host",
+      "pattern": "Referencing",
+      "evidence": "ObjectId of the node whose metrics are recorded, equal to a nodes _id, with nothing else copied."
+    },
+    {
+      "path": "node_metrics.samples[]",
+      "pattern": "Bucket",
+      "evidence": "Groups time-ordered host samples (sampled_at, cpu_pct, mem_pct) inside one hour bounded by window_start and window_end, with sample_count equal to the number of items."
+    }
+  ]
+}

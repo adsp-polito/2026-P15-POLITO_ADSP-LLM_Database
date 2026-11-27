@@ -1,0 +1,56 @@
+db_01 - Library loans (Difficulty: Easy)
+
+DOMAIN
+The circulation database of a small public library system with three branches
+(Central, Eastgate, Riverside). It records who holds a library card, which
+titles the catalogue holds, and every checkout of a book by a member.
+
+COLLECTIONS
+- members (5 documents): library card holders. Card number, name, email, an
+  optional phone, membership type (adult, student, senior), registration and
+  card expiry dates, account status, and the channels the member wants to be
+  notified through (notification_channels).
+- books (5 documents): catalogue records, one per title. ISBN, book_title,
+  author, publisher, publication year, language, format, an optional page
+  count, shelf location, total and available copies, the date added to the
+  catalogue, and a list of subject headings (subjects).
+- loans (5 documents): one checkout of one book by one member. It stores the
+  member and book identifiers, branch, checkout/due/return dates, renewal
+  count, status (active, returned, overdue, lost) and an optional late fee.
+
+HOW THE DATA AND PATTERNS FIT TOGETHER
+- Referencing: loans.member_id points to members._id and loans.book_id points
+  to books._id. Both are plain ObjectIds with nothing copied next to them;
+  to show a borrower's name or a book's title the application has to look
+  up members or books. Every identifier matches an existing document: member
+  101 has two loans, members 102-104 one each, member 105 none; book c3e1 was
+  borrowed twice, c3e3 never.
+- Array: books.subjects[] is a list of 2-3 subject strings per book, and
+  members.notification_channels[] is a list of 1-3 values from the fixed set
+  email / sms / app / phone (4 of 5 members have at least 2). Both are
+  multi-valued attributes made of plain scalar strings.
+- No other pattern is present: there are no nested objects or arrays of
+  objects anywhere, so nothing is Embedding, and no attribute of a referenced
+  document is copied, so there is no ExtendedReference or Subset.
+
+DATA CONSISTENCY
+- Loans use a 21-day period; the renewed loan (renewal_count 1) has its due
+  date pushed 21 more days. returned_at and late_fee appear only where they
+  apply (returned loans; late returns and the overdue loan at 0.25 per day).
+- copies_available equals copies_total minus the active or overdue loans on
+  that book in the sample.
+- Optional fields missing in some documents: members.phone (2 of 5),
+  books.page_count (1 of 5), loans.returned_at (3 of 5), loans.late_fee
+  (3 of 5).
+
+DIFFICULTY REQUIREMENTS APPLIED
+- Identifier fields are named <entity>_id and hold ObjectIds:
+  loans.member_id, loans.book_id.
+- One form per pattern: both references are single identifiers (no lists of
+  ids); the Array pattern is always a flat list of strings; no Embedding is
+  used.
+- At most one pattern besides Referencing per collection: members has only
+  Array (notification_channels[]), books has only Array (subjects[]), loans
+  has only Referencing (member_id, book_id).
+- No pattern is nested inside another; all documents are flat apart from the
+  two scalar arrays.

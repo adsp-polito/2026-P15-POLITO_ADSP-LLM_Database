@@ -1,0 +1,67 @@
+db_07 - Free-floating e-scooter sharing (difficulty: Medium)
+
+DOMAIN
+Back-end database of an Italian e-scooter sharing operator running dockless
+fleets in Milano, Torino and Bologna. Riders unlock scooters from the app,
+ride, and park inside an operating zone. Scooters stream device telemetry.
+
+COLLECTIONS (5)
+- service_zones (5 docs): operating areas (name, city, speed limit, parking
+  mode, area, launch date, optional surge_multiplier). Pure master data, no
+  patterns.
+- riders (5 docs): app accounts (contact data, tier, wallet balance,
+  verification state). notification_zones holds the ObjectIds of the zones a
+  rider follows for availability and promo alerts.
+- scooters (5 docs): fleet vehicles (serial number, model, firmware, status,
+  battery, last position, odometer). home_zone is the zone the vehicle is
+  assigned to; accessories lists the equipment fitted to it.
+- trips (5 docs): completed rides with timing, positions, distance and fare
+  (fare_eur = unlock_fee_eur + duration_min * per_minute_rate_eur -
+  discount_eur). The rider sub-object keeps the rider's name and email for
+  receipts; scooter_id points to the vehicle used.
+- scooter_telemetry (5 docs): one document per scooter per 30-minute window,
+  grouping the device readings taken in that window. The vehicle sub-object
+  keeps the scooter's serial number and model. Readings line up with the
+  trips (e.g. the two Milano windows of 2026-11-16 cover trip 1 of
+  Giulia Ferrandi on VLT-S3-0418827).
+
+PATTERNS (7 labelled paths)
+- Referencing: riders.notification_zones[] (list of ids -> service_zones),
+  scooters.home_zone (single id -> service_zones),
+  trips.scooter_id (single id -> scooters).
+- ExtendedReference: trips.rider {rider_id, full_name, email} -> riders;
+  scooter_telemetry.vehicle {scooter_id, serial_number, model} -> scooters.
+  Copied values equal those of the referenced document and appear nowhere
+  else in the child document.
+- Array: scooters.accessories[] (plain strings, 1 to 4 values).
+- Bucket: scooter_telemetry.samples[] with window_start / window_end /
+  sample_count; 2 to 6 readings per document, sorted by recorded_at, all
+  inside the window, sample_count equal to the number of readings.
+No Embedding or Subset is present: there are no nested objects other than the
+two ExtendedReference sub-objects and the Bucket items; positions are plain
+lat/lng fields.
+
+RELATIONSHIPS (5)
+riders.notification_zones[] -> service_zones
+scooters.home_zone -> service_zones
+trips.rider.rider_id -> riders
+trips.scooter_id -> scooters
+scooter_telemetry.vehicle.scooter_id -> scooters
+
+MEDIUM DIFFICULTY REQUIREMENTS APPLIED
+- Role-named identifiers: scooters.home_zone and riders.notification_zones[]
+  (not zone_id); trips.rider is also named by role. All ids are ObjectIds.
+- Mixed forms: single ids (scooters.home_zone, trips.scooter_id) and a list
+  of ids (riders.notification_zones[]).
+- Collection with 2 patterns besides Referencing: scooter_telemetry
+  (ExtendedReference on vehicle + Bucket on samples[]).
+- No pattern nested inside another.
+- Varying array lengths: notification_zones 1-4, accessories 1-4,
+  samples 2-6.
+
+REALISM NOTES
+Optional fields missing in some documents: riders.phone, riders.date_of_birth,
+scooters.last_serviced_at, service_zones.surge_multiplier, trips.rating,
+trips.promo_code / trips.discount_eur, scooter_telemetry.network.
+All people are invented and all emails use example.com. Scooter models
+(Voltra, Kestrel) are invented brands.

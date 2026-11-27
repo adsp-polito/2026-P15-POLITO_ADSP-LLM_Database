@@ -1,0 +1,261 @@
+{
+  "collections": [
+    "datacenters",
+    "clusters",
+    "nodes",
+    "engineers",
+    "incidents",
+    "node_metrics"
+  ],
+  "fields": [
+    {
+      "collection": "datacenters",
+      "fields": [
+        "_id",
+        "name",
+        "provider",
+        "region_code",
+        "address.street",
+        "address.city",
+        "address.postal_code",
+        "address.country",
+        "power_capacity_kw",
+        "tier",
+        "certifications[]",
+        "commissioned_at"
+      ]
+    },
+    {
+      "collection": "clusters",
+      "fields": [
+        "_id",
+        "name",
+        "environment",
+        "kubernetes_version",
+        "datacenter.datacenter_id",
+        "datacenter.name",
+        "datacenter.region_code",
+        "api_endpoint",
+        "node_pools[]",
+        "node_pools[].pool_name",
+        "node_pools[].instance_type",
+        "node_pools[].min_nodes",
+        "node_pools[].max_nodes",
+        "node_pools[].zones[]",
+        "admins[]",
+        "enabled_addons[]",
+        "recent_incidents[]",
+        "recent_incidents[].affected_cluster",
+        "recent_incidents[].severity",
+        "recent_incidents[].status",
+        "recent_incidents[].summary",
+        "recent_incidents[].opened_at",
+        "recent_incidents[].resolved_at",
+        "recent_incidents[].assignee",
+        "recent_incidents[].minutes_to_mitigate",
+        "created_at"
+      ]
+    },
+    {
+      "collection": "nodes",
+      "fields": [
+        "_id",
+        "hostname",
+        "assigned_cluster",
+        "pool_name",
+        "ip_address",
+        "os_image",
+        "kernel_version",
+        "cpu_cores",
+        "memory_gib",
+        "status",
+        "hardware.vendor",
+        "hardware.model",
+        "hardware.serial_number",
+        "hardware.rack_unit",
+        "roles[]",
+        "taints[]",
+        "last_heartbeat_at"
+      ]
+    },
+    {
+      "collection": "engineers",
+      "fields": [
+        "_id",
+        "full_name",
+        "email",
+        "team",
+        "timezone",
+        "on_call_eligible",
+        "joined_at"
+      ]
+    },
+    {
+      "collection": "incidents",
+      "fields": [
+        "_id",
+        "affected_cluster",
+        "severity",
+        "status",
+        "summary",
+        "opened_at",
+        "resolved_at",
+        "assignee",
+        "minutes_to_mitigate"
+      ]
+    },
+    {
+      "collection": "node_metrics",
+      "fields": [
+        "_id",
+        "host",
+        "window_start",
+        "window_end",
+        "sample_count",
+        "samples[]",
+        "samples[].sampled_at",
+        "samples[].cpu_pct",
+        "samples[].mem_pct",
+        "samples[].load_1m",
+        "samples[].disk_iops"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from_field": "clusters.datacenter.datacenter_id",
+      "to_collection": "datacenters"
+    },
+    {
+      "from_field": "clusters.admins[]",
+      "to_collection": "engineers"
+    },
+    {
+      "from_field": "clusters.recent_incidents[].assignee",
+      "to_collection": "engineers"
+    },
+    {
+      "from_field": "nodes.assigned_cluster",
+      "to_collection": "clusters"
+    },
+    {
+      "from_field": "incidents.assignee",
+      "to_collection": "engineers"
+    },
+    {
+      "from_field": "node_metrics.host",
+      "to_collection": "nodes"
+    }
+  ],
+  "patterns": [
+    {
+      "field": "datacenters.address",
+      "evidence": "Contains nested fields (street, city, postal_code, country) describing a single entity.",
+      "scores": {
+        "Embedding": 0.95,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.05
+      }
+    },
+    {
+      "field": "clusters.datacenter",
+      "evidence": "Contains nested fields (datacenter_id, name, region_code) describing a single entity.",
+      "scores": {
+        "Embedding": 0.95,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.05
+      }
+    },
+    {
+      "field": "clusters.node_pools[]",
+      "evidence": "Array of objects describing configuration details for a single logical group.",
+      "scores": {
+        "Embedding": 0.9,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.1,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "clusters.recent_incidents[]",
+      "evidence": "Array of objects describing historical events related to the cluster.",
+      "scores": {
+        "Embedding": 0.85,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.15,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "nodes.hardware",
+      "evidence": "Contains nested fields (vendor, model, serial_number, rack_unit) describing a single physical entity.",
+      "scores": {
+        "Embedding": 0.95,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.05
+      }
+    },
+    {
+      "field": "nodes.roles[]",
+      "evidence": "Array of plain strings representing tags.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.95,
+        "Bucket": 0.05
+      }
+    },
+    {
+      "field": "nodes.taints[]",
+      "evidence": "Array of plain strings representing tags.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.95,
+        "Bucket": 0.05
+      }
+    },
+    {
+      "field": "incidents.recent_incidents[]",
+      "evidence": "Array of objects describing historical events related to the cluster.",
+      "scores": {
+        "Embedding": 0.85,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.15,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "node_metrics.samples[]",
+      "evidence": "Array of objects describing individual data points within a time window.",
+      "scores": {
+        "Embedding": 0.9,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.1,
+        "Bucket": 0.0
+      }
+    }
+  ],
+  "truncated": false
+}

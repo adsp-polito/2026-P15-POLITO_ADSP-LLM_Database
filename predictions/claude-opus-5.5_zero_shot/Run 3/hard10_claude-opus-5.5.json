@@ -1,0 +1,349 @@
+{
+  "collections": [
+    "datacenters",
+    "clusters",
+    "nodes",
+    "engineers",
+    "incidents",
+    "node_metrics"
+  ],
+  "fields": [
+    {
+      "collection": "datacenters",
+      "fields": [
+        "_id",
+        "name",
+        "provider",
+        "region_code",
+        "address",
+        "address.street",
+        "address.city",
+        "address.postal_code",
+        "address.country",
+        "power_capacity_kw",
+        "tier",
+        "certifications[]",
+        "commissioned_at"
+      ]
+    },
+    {
+      "collection": "clusters",
+      "fields": [
+        "_id",
+        "name",
+        "environment",
+        "kubernetes_version",
+        "datacenter",
+        "datacenter.datacenter_id",
+        "datacenter.name",
+        "datacenter.region_code",
+        "api_endpoint",
+        "node_pools[]",
+        "node_pools[].pool_name",
+        "node_pools[].instance_type",
+        "node_pools[].min_nodes",
+        "node_pools[].max_nodes",
+        "node_pools[].zones[]",
+        "admins[]",
+        "enabled_addons[]",
+        "recent_incidents[]",
+        "recent_incidents[]._id",
+        "recent_incidents[].affected_cluster",
+        "recent_incidents[].severity",
+        "recent_incidents[].status",
+        "recent_incidents[].summary",
+        "recent_incidents[].opened_at",
+        "recent_incidents[].resolved_at",
+        "recent_incidents[].assignee",
+        "recent_incidents[].minutes_to_mitigate",
+        "created_at"
+      ]
+    },
+    {
+      "collection": "nodes",
+      "fields": [
+        "_id",
+        "hostname",
+        "assigned_cluster",
+        "pool_name",
+        "ip_address",
+        "os_image",
+        "kernel_version",
+        "cpu_cores",
+        "memory_gib",
+        "status",
+        "hardware",
+        "hardware.vendor",
+        "hardware.model",
+        "hardware.serial_number",
+        "hardware.rack_unit",
+        "roles[]",
+        "taints[]",
+        "last_heartbeat_at"
+      ]
+    },
+    {
+      "collection": "engineers",
+      "fields": [
+        "_id",
+        "full_name",
+        "email",
+        "team",
+        "timezone",
+        "on_call_eligible",
+        "joined_at"
+      ]
+    },
+    {
+      "collection": "incidents",
+      "fields": [
+        "_id",
+        "affected_cluster",
+        "severity",
+        "status",
+        "summary",
+        "opened_at",
+        "resolved_at",
+        "assignee",
+        "minutes_to_mitigate"
+      ]
+    },
+    {
+      "collection": "node_metrics",
+      "fields": [
+        "_id",
+        "host",
+        "window_start",
+        "window_end",
+        "sample_count",
+        "samples[]",
+        "samples[].sampled_at",
+        "samples[].cpu_pct",
+        "samples[].mem_pct",
+        "samples[].load_1m",
+        "samples[].disk_iops"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from_field": "clusters.datacenter.datacenter_id",
+      "to_collection": "datacenters"
+    },
+    {
+      "from_field": "clusters.admins[]",
+      "to_collection": "engineers"
+    },
+    {
+      "from_field": "clusters.recent_incidents[]._id",
+      "to_collection": "incidents"
+    },
+    {
+      "from_field": "clusters.recent_incidents[].assignee",
+      "to_collection": "engineers"
+    },
+    {
+      "from_field": "clusters.recent_incidents[].affected_cluster",
+      "to_collection": "clusters"
+    },
+    {
+      "from_field": "nodes.assigned_cluster",
+      "to_collection": "clusters"
+    },
+    {
+      "from_field": "incidents.affected_cluster",
+      "to_collection": "clusters"
+    },
+    {
+      "from_field": "incidents.assignee",
+      "to_collection": "engineers"
+    },
+    {
+      "from_field": "node_metrics.host",
+      "to_collection": "nodes"
+    }
+  ],
+  "patterns": [
+    {
+      "field": "datacenters.address",
+      "evidence": "Address sub-object embedded in datacenter document.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "datacenters.certifications[]",
+      "evidence": "List of certification strings stored as array.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "clusters.datacenter",
+      "evidence": "Holds datacenter_id plus copied name and region_code from datacenters.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 1.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "clusters.node_pools[]",
+      "evidence": "Pool configurations embedded as array of objects owned by cluster.",
+      "scores": {
+        "Embedding": 0.8,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.2,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "clusters.admins[]",
+      "evidence": "Array of engineer ObjectIds.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "clusters.enabled_addons[]",
+      "evidence": "Array of addon names.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "clusters.recent_incidents[]",
+      "evidence": "Copies of the most recent incidents from incidents collection; full history kept there.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 1.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "nodes.assigned_cluster",
+      "evidence": "Stores cluster _id string.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "nodes.hardware",
+      "evidence": "Hardware details embedded object.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "nodes.roles[]",
+      "evidence": "Array of role strings.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "nodes.taints[]",
+      "evidence": "Array of taint strings.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "incidents.affected_cluster",
+      "evidence": "Cluster id reference.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "incidents.assignee",
+      "evidence": "Engineer ObjectId reference.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "node_metrics.host",
+      "evidence": "Node ObjectId reference.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "node_metrics.samples[]",
+      "evidence": "Time-series samples grouped per hourly window with window_start/end and sample_count.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 1.0
+      }
+    }
+  ],
+  "truncated": false
+}

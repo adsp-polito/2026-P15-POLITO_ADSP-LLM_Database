@@ -1,0 +1,133 @@
+{
+  "collections": [
+    "artworks",
+    "conservators",
+    "restoration_projects"
+  ],
+  "fields": [
+    {
+      "collection": "artworks",
+      "fields": [
+        "_id",
+        "accession_number",
+        "name",
+        "artist",
+        "year_created",
+        "medium",
+        "materials[]",
+        "height_cm",
+        "width_cm",
+        "depth_cm",
+        "gallery",
+        "acquired_on",
+        "on_display"
+      ]
+    },
+    {
+      "collection": "conservators",
+      "fields": [
+        "_id",
+        "full_name",
+        "email",
+        "phone",
+        "studio",
+        "specialties[]",
+        "hired_on",
+        "is_active"
+      ]
+    },
+    {
+      "collection": "restoration_projects",
+      "fields": [
+        "_id",
+        "project_code",
+        "artwork_id",
+        "conservator_id",
+        "status",
+        "start_date",
+        "completion_date",
+        "estimated_hours",
+        "budget_eur",
+        "condition_issues[]",
+        "condition_issues[].location",
+        "condition_issues[].issue_type",
+        "condition_issues[].severity",
+        "condition_issues[].treatment",
+        "condition_issues[].notes"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from_field": "restoration_projects.artwork_id",
+      "to_collection": "artworks"
+    },
+    {
+      "from_field": "restoration_projects.conservator_id",
+      "to_collection": "conservators"
+    }
+  ],
+  "patterns": [
+    {
+      "field": "restoration_projects.artwork_id",
+      "evidence": "Holds only the ObjectId of an artwork document, with no copied fields.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "restoration_projects.conservator_id",
+      "evidence": "Holds only the ObjectId of a conservator document, with no copied fields.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "restoration_projects.condition_issues[]",
+      "evidence": "An array of issue objects (location, type, severity, treatment) that belong only to this project and are stored inside it.",
+      "scores": {
+        "Embedding": 0.85,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.15,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "artworks.materials[]",
+      "evidence": "A list of plain material names stored directly in the artwork document.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "conservators.specialties[]",
+      "evidence": "A list of plain specialty names stored directly in the conservator document.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    }
+  ],
+  "truncated": false
+}

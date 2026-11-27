@@ -1,0 +1,276 @@
+{
+  "collections": [
+    "journalists",
+    "sections",
+    "articles",
+    "comments",
+    "readers"
+  ],
+  "fields": [
+    {
+      "collection": "journalists",
+      "fields": [
+        "_id",
+        "full_name",
+        "email",
+        "desk",
+        "hired_at",
+        "contact",
+        "contact.phone",
+        "contact.x_handle",
+        "contact.office",
+        "beats[]"
+      ]
+    },
+    {
+      "collection": "sections",
+      "fields": [
+        "_id",
+        "name",
+        "slug",
+        "editor",
+        "display_order",
+        "is_paywalled",
+        "sponsor_label"
+      ]
+    },
+    {
+      "collection": "articles",
+      "fields": [
+        "_id",
+        "headline",
+        "slug",
+        "section",
+        "contributors[]",
+        "status",
+        "published_at",
+        "updated_at",
+        "word_count",
+        "is_premium",
+        "keywords[]",
+        "media[]",
+        "media[].kind",
+        "media[].url",
+        "media[].caption",
+        "media[].credit",
+        "recent_comments[]",
+        "recent_comments[]._id",
+        "recent_comments[].article",
+        "recent_comments[].commenter",
+        "recent_comments[].body",
+        "recent_comments[].posted_at",
+        "recent_comments[].upvotes",
+        "recent_comments[].flagged"
+      ]
+    },
+    {
+      "collection": "comments",
+      "fields": [
+        "_id",
+        "article",
+        "commenter",
+        "body",
+        "posted_at",
+        "upvotes",
+        "flagged"
+      ]
+    },
+    {
+      "collection": "readers",
+      "fields": [
+        "_id",
+        "username",
+        "email",
+        "subscription_tier",
+        "registered_at",
+        "followed_sections[]",
+        "newsletter_topics[]"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from_field": "sections.editor",
+      "to_collection": "journalists"
+    },
+    {
+      "from_field": "articles.section",
+      "to_collection": "sections"
+    },
+    {
+      "from_field": "articles.contributors[]",
+      "to_collection": "journalists"
+    },
+    {
+      "from_field": "articles.recent_comments[]._id",
+      "to_collection": "comments"
+    },
+    {
+      "from_field": "articles.recent_comments[].article",
+      "to_collection": "articles"
+    },
+    {
+      "from_field": "articles.recent_comments[].commenter",
+      "to_collection": "readers"
+    },
+    {
+      "from_field": "comments.article",
+      "to_collection": "articles"
+    },
+    {
+      "from_field": "comments.commenter",
+      "to_collection": "readers"
+    },
+    {
+      "from_field": "readers.followed_sections[]",
+      "to_collection": "sections"
+    }
+  ],
+  "patterns": [
+    {
+      "field": "journalists.contact",
+      "evidence": "Contact details embedded as a sub-object in the journalist.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "journalists.beats[]",
+      "evidence": "List of beat topic strings stored as an array.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "sections.editor",
+      "evidence": "ObjectId of a journalist referenced as editor.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "articles.section",
+      "evidence": "ObjectId referencing the section.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "articles.contributors[]",
+      "evidence": "Array of journalist ObjectIds.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "articles.keywords[]",
+      "evidence": "Keyword strings stored as array.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "articles.media[]",
+      "evidence": "Media items fully embedded in the article, no separate collection.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "articles.recent_comments[]",
+      "evidence": "A few most recent comments copied from the comments collection (same ids and content), while full set lives in comments.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 1.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "comments.article",
+      "evidence": "ObjectId referencing the article.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "comments.commenter",
+      "evidence": "ObjectId referencing the reader.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "readers.followed_sections[]",
+      "evidence": "Array of section ObjectIds.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "readers.newsletter_topics[]",
+      "evidence": "Topic strings stored as array.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    }
+  ],
+  "truncated": false
+}

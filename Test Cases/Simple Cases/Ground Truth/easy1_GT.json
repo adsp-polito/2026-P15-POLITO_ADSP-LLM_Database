@@ -1,0 +1,83 @@
+{
+  "database": "db_01",
+  "collections": [
+    "members",
+    "books",
+    "loans"
+  ],
+  "fields": {
+    "members": [
+      "_id",
+      "card_number",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "membership_type",
+      "registered_at",
+      "card_expires_on",
+      "notification_channels[]",
+      "account_status"
+    ],
+    "books": [
+      "_id",
+      "isbn",
+      "book_title",
+      "author",
+      "publisher",
+      "publication_year",
+      "language",
+      "format",
+      "subjects[]",
+      "page_count",
+      "shelf_location",
+      "copies_total",
+      "copies_available",
+      "added_on"
+    ],
+    "loans": [
+      "_id",
+      "member_id",
+      "book_id",
+      "branch",
+      "checked_out_at",
+      "due_at",
+      "returned_at",
+      "renewal_count",
+      "status",
+      "late_fee"
+    ]
+  },
+  "relationships": [
+    {
+      "from_field": "loans.member_id",
+      "to_collection": "members"
+    },
+    {
+      "from_field": "loans.book_id",
+      "to_collection": "books"
+    }
+  ],
+  "patterns": [
+    {
+      "path": "loans.member_id",
+      "pattern": "Referencing",
+      "evidence": "member_id holds only the ObjectId of a member document; no member details such as name or email are copied into the loan, so they must be looked up in members."
+    },
+    {
+      "path": "loans.book_id",
+      "pattern": "Referencing",
+      "evidence": "book_id holds only the ObjectId of a book document; the loan carries no copy of the book's title, author or ISBN, which live only in books."
+    },
+    {
+      "path": "books.subjects[]",
+      "pattern": "Array",
+      "evidence": "subjects is a short list of plain strings describing the book's topics (for example \"Gardening\"), a multi-valued attribute of the book rather than identifiers or sub-documents."
+    },
+    {
+      "path": "members.notification_channels[]",
+      "pattern": "Array",
+      "evidence": "notification_channels is a small list of plain string values from a fixed set such as \"email\" or \"sms\", recording the member's contact preferences as a multi-valued attribute."
+    }
+  ]
+}

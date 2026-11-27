@@ -1,0 +1,58 @@
+db_03 - Museum artwork restoration (Difficulty: Easy)
+
+DOMAIN
+The database belongs to the conservation department of a fictional art museum.
+It records which artworks are in the collection, which conservators work in the
+department's studios, and the restoration projects that assign one conservator
+to treat one artwork.
+
+COLLECTIONS
+- artworks (5 documents): one document per catalogued object (paintings, a
+  drawing, a bronze sculpture) with accession number, name, artist, year,
+  medium, size in cm, gallery location and whether it is on display. The
+  "materials" field lists what the work is made of.
+- conservators (4 documents): one document per staff conservator with contact
+  details, studio, hire date and a list of "specialties".
+- restoration_projects (5 documents): one document per treatment campaign.
+  It points to the artwork being treated and to the lead conservator, holds the
+  project status, dates, hours and budget, and contains the list of condition
+  issues found on the artwork, each with location, issue type, severity, the
+  planned or applied treatment and optional notes.
+
+HOW THE DATA AND PATTERNS WORK TOGETHER
+- Referencing: restoration_projects.artwork_id -> artworks and
+  restoration_projects.conservator_id -> conservators. Each holds only an
+  ObjectId; no field of the artwork or conservator is copied. Every value
+  matches an existing _id. The conservator Elena Marchetti Varga leads two
+  projects (one completed, one in progress); every artwork has exactly one
+  project.
+- Embedding: restoration_projects.condition_issues[] is an array of
+  sub-documents (2 or 3 per project). The issues exist only inside their
+  project; no collection stores them on their own. Nested paths
+  (location, issue_type, severity, treatment, notes) are plain fields.
+- Array: artworks.materials[] and conservators.specialties[] are short lists of
+  plain strings (2 to 4 values each) describing a multi-valued attribute.
+No other pattern (ExtendedReference, Subset, Bucket) is present.
+
+REALISM / OPTIONAL FIELDS
+- conservators.phone is missing for one conservator.
+- artworks.depth_cm is present only for the panel painting and the sculpture;
+  artworks.gallery is missing for the drawing kept in storage.
+- restoration_projects.completion_date is present only on the two completed
+  projects; budget_eur is missing on the planned project;
+  condition_issues[].notes appears on only some issues.
+- Status values are consistent with dates (completed projects have a
+  completion_date; the planned project starts in 2027) and with on_display
+  (artworks under active treatment are not on display).
+
+DIFFICULTY REQUIREMENTS APPLIED
+- Identifier fields are named <entity>_id and hold ObjectIds:
+  restoration_projects.artwork_id, restoration_projects.conservator_id.
+- One form per pattern: references are single identifiers (no lists of ids);
+  Embedding uses only the array-of-objects form
+  (restoration_projects.condition_issues[]); Array is always a list of strings.
+- At most one non-Referencing pattern per collection: artworks -> Array
+  (materials[]), conservators -> Array (specialties[]), restoration_projects ->
+  Embedding (condition_issues[]) plus its two Referencing fields.
+- No pattern is nested inside another; embedded objects contain only scalar
+  fields and nesting is one level deep.

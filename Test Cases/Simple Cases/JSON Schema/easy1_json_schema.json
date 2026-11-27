@@ -1,0 +1,203 @@
+{
+  "members": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "card_number",
+        "first_name",
+        "last_name",
+        "email",
+        "membership_type",
+        "registered_at",
+        "card_expires_on",
+        "notification_channels",
+        "account_status"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "card_number": {
+          "bsonType": "string"
+        },
+        "first_name": {
+          "bsonType": "string"
+        },
+        "last_name": {
+          "bsonType": "string"
+        },
+        "email": {
+          "bsonType": "string"
+        },
+        "phone": {
+          "bsonType": "string"
+        },
+        "membership_type": {
+          "bsonType": "string",
+          "enum": [
+            "adult",
+            "student",
+            "senior"
+          ]
+        },
+        "registered_at": {
+          "bsonType": "date"
+        },
+        "card_expires_on": {
+          "bsonType": "date"
+        },
+        "notification_channels": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "string",
+            "enum": [
+              "email",
+              "sms",
+              "app",
+              "phone"
+            ]
+          }
+        },
+        "account_status": {
+          "bsonType": "string",
+          "enum": [
+            "active",
+            "suspended",
+            "closed"
+          ]
+        }
+      }
+    }
+  },
+  "books": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "isbn",
+        "book_title",
+        "author",
+        "publisher",
+        "publication_year",
+        "language",
+        "format",
+        "subjects",
+        "shelf_location",
+        "copies_total",
+        "copies_available",
+        "added_on"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "isbn": {
+          "bsonType": "string"
+        },
+        "book_title": {
+          "bsonType": "string"
+        },
+        "author": {
+          "bsonType": "string"
+        },
+        "publisher": {
+          "bsonType": "string"
+        },
+        "publication_year": {
+          "bsonType": "int"
+        },
+        "language": {
+          "bsonType": "string"
+        },
+        "format": {
+          "bsonType": "string",
+          "enum": [
+            "hardcover",
+            "paperback",
+            "large_print"
+          ]
+        },
+        "subjects": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "string"
+          }
+        },
+        "page_count": {
+          "bsonType": "int"
+        },
+        "shelf_location": {
+          "bsonType": "string"
+        },
+        "copies_total": {
+          "bsonType": "int"
+        },
+        "copies_available": {
+          "bsonType": "int"
+        },
+        "added_on": {
+          "bsonType": "date"
+        }
+      }
+    }
+  },
+  "loans": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "member_id",
+        "book_id",
+        "branch",
+        "checked_out_at",
+        "due_at",
+        "renewal_count",
+        "status"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "member_id": {
+          "bsonType": "objectId"
+        },
+        "book_id": {
+          "bsonType": "objectId"
+        },
+        "branch": {
+          "bsonType": "string",
+          "enum": [
+            "Central",
+            "Eastgate",
+            "Riverside"
+          ]
+        },
+        "checked_out_at": {
+          "bsonType": "date"
+        },
+        "due_at": {
+          "bsonType": "date"
+        },
+        "returned_at": {
+          "bsonType": "date"
+        },
+        "renewal_count": {
+          "bsonType": "int"
+        },
+        "status": {
+          "bsonType": "string",
+          "enum": [
+            "active",
+            "returned",
+            "overdue",
+            "lost"
+          ]
+        },
+        "late_fee": {
+          "bsonType": "double"
+        }
+      }
+    }
+  }
+}

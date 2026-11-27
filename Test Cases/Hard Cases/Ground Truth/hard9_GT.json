@@ -1,0 +1,232 @@
+{
+  "database": "db_09",
+  "collections": [
+    "studios",
+    "titles",
+    "reviews",
+    "subscribers",
+    "plans",
+    "playback_telemetry"
+  ],
+  "fields": {
+    "studios": [
+      "_id",
+      "name",
+      "country",
+      "founded_year",
+      "headquarters",
+      "headquarters.street",
+      "headquarters.city",
+      "headquarters.postal_code",
+      "contact_email",
+      "website"
+    ],
+    "titles": [
+      "_id",
+      "display_name",
+      "kind",
+      "release_year",
+      "season_count",
+      "runtime_minutes",
+      "maturity_rating",
+      "genres[]",
+      "audio_languages[]",
+      "available_from",
+      "studio",
+      "studio.studio_id",
+      "studio.name",
+      "studio.country",
+      "cast[]",
+      "cast[].performer",
+      "cast[].character",
+      "cast[].billing_order",
+      "recent_reviews[]",
+      "recent_reviews[]._id",
+      "recent_reviews[].rated_title",
+      "recent_reviews[].author",
+      "recent_reviews[].rating",
+      "recent_reviews[].headline",
+      "recent_reviews[].body",
+      "recent_reviews[].posted_at",
+      "recent_reviews[].helpful_votes",
+      "recent_reviews[].contains_spoilers"
+    ],
+    "reviews": [
+      "_id",
+      "rated_title",
+      "author",
+      "rating",
+      "headline",
+      "body",
+      "posted_at",
+      "helpful_votes",
+      "contains_spoilers"
+    ],
+    "subscribers": [
+      "_id",
+      "email",
+      "account_holder",
+      "signup_date",
+      "status",
+      "billing_address",
+      "billing_address.street",
+      "billing_address.city",
+      "billing_address.postal_code",
+      "billing_address.country",
+      "plan",
+      "plan.plan_id",
+      "plan.name",
+      "plan.monthly_price",
+      "profiles[]",
+      "profiles[].profile_name",
+      "profiles[].is_kids",
+      "profiles[].maturity_limit",
+      "profiles[].preferred_languages[]",
+      "watchlist[]",
+      "marketing_opt_in"
+    ],
+    "plans": [
+      "_id",
+      "name",
+      "monthly_price",
+      "currency",
+      "max_streams",
+      "max_resolution",
+      "ad_supported",
+      "features[]",
+      "available_since"
+    ],
+    "playback_telemetry": [
+      "_id",
+      "account",
+      "content",
+      "device_type",
+      "window_start",
+      "window_end",
+      "event_count",
+      "heartbeats[]",
+      "heartbeats[].recorded_at",
+      "heartbeats[].position_sec",
+      "heartbeats[].bitrate_kbps",
+      "heartbeats[].buffer_ms",
+      "cdn_region"
+    ]
+  },
+  "relationships": [
+    {
+      "from_field": "titles.studio.studio_id",
+      "to_collection": "studios"
+    },
+    {
+      "from_field": "reviews.rated_title",
+      "to_collection": "titles"
+    },
+    {
+      "from_field": "reviews.author",
+      "to_collection": "subscribers"
+    },
+    {
+      "from_field": "subscribers.plan.plan_id",
+      "to_collection": "plans"
+    },
+    {
+      "from_field": "subscribers.watchlist[]",
+      "to_collection": "titles"
+    },
+    {
+      "from_field": "playback_telemetry.account",
+      "to_collection": "subscribers"
+    },
+    {
+      "from_field": "playback_telemetry.content",
+      "to_collection": "titles"
+    }
+  ],
+  "patterns": [
+    {
+      "path": "studios.headquarters",
+      "pattern": "Embedding",
+      "evidence": "The studio's office address (street, city, postal_code) is a nested object that exists only inside the studio document."
+    },
+    {
+      "path": "titles.genres[]",
+      "pattern": "Array",
+      "evidence": "A short list of plain genre strings such as \"thriller\", a multi-valued attribute of the title whose length varies."
+    },
+    {
+      "path": "titles.audio_languages[]",
+      "pattern": "Array",
+      "evidence": "A bounded list of plain language codes such as \"fr\" describing the available audio tracks of the title."
+    },
+    {
+      "path": "titles.studio",
+      "pattern": "ExtendedReference",
+      "evidence": "Holds studio_id pointing to a studios document plus copies of that studio's name and country, so the catalog page shows the producer without a lookup."
+    },
+    {
+      "path": "titles.cast[]",
+      "pattern": "Embedding",
+      "evidence": "Array of cast entries (performer, character, billing_order) stored only inside the title; there is no people collection."
+    },
+    {
+      "path": "titles.recent_reviews[]",
+      "pattern": "Subset",
+      "evidence": "Keeps at most the three newest reviews by posted_at, identical to documents in the reviews collection, which holds the full and larger set (one title has an older fourth review not kept here)."
+    },
+    {
+      "path": "reviews.rated_title",
+      "pattern": "Referencing",
+      "evidence": "Holds only a prefixed title id such as \"TT-20481\" that equals the _id of a titles document, with no copied title data."
+    },
+    {
+      "path": "reviews.author",
+      "pattern": "Referencing",
+      "evidence": "Holds only the ObjectId of the subscriber who wrote the review; no subscriber attributes are copied."
+    },
+    {
+      "path": "subscribers.billing_address",
+      "pattern": "Embedding",
+      "evidence": "Billing address with street, city, postal_code and country nested in the subscriber and stored nowhere else."
+    },
+    {
+      "path": "subscribers.plan",
+      "pattern": "ExtendedReference",
+      "evidence": "Contains plan_id of a plans document together with that plan's name and monthly_price, copied to show the subscription without joining plans."
+    },
+    {
+      "path": "subscribers.profiles[]",
+      "pattern": "Embedding",
+      "evidence": "Viewer profiles of the household (profile_name, is_kids, maturity_limit) live only inside the subscriber document."
+    },
+    {
+      "path": "subscribers.profiles[].preferred_languages[]",
+      "pattern": "Array",
+      "evidence": "Inside each embedded profile, a list of plain language codes such as \"it\" with varying length, an ordinary multi-valued attribute."
+    },
+    {
+      "path": "subscribers.watchlist[]",
+      "pattern": "Referencing",
+      "evidence": "A list of title ids such as \"TT-20590\", each equal to a titles _id, with nothing else copied."
+    },
+    {
+      "path": "plans.features[]",
+      "pattern": "Array",
+      "evidence": "Plain feature flags of the plan such as \"offline_downloads\"; the list grows with the plan tier."
+    },
+    {
+      "path": "playback_telemetry.account",
+      "pattern": "Referencing",
+      "evidence": "ObjectId of the subscriber account whose playback is recorded, without any copied account fields."
+    },
+    {
+      "path": "playback_telemetry.content",
+      "pattern": "Referencing",
+      "evidence": "Holds only the prefixed id of the title being played, matching a titles _id."
+    },
+    {
+      "path": "playback_telemetry.heartbeats[]",
+      "pattern": "Bucket",
+      "evidence": "Groups time-ordered player heartbeats (recorded_at, position_sec, bitrate) inside a one-hour window bounded by window_start and window_end, with event_count equal to the number of items."
+    }
+  ]
+}

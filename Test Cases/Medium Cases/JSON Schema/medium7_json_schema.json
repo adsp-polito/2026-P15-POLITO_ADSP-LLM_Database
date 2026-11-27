@@ -1,0 +1,397 @@
+{
+  "riders": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "email",
+        "full_name",
+        "country",
+        "signup_at",
+        "account_status",
+        "license_verified",
+        "rider_tier",
+        "wallet_balance_eur",
+        "notification_zones"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "email": {
+          "bsonType": "string"
+        },
+        "full_name": {
+          "bsonType": "string"
+        },
+        "phone": {
+          "bsonType": "string"
+        },
+        "country": {
+          "bsonType": "string"
+        },
+        "date_of_birth": {
+          "bsonType": "date"
+        },
+        "signup_at": {
+          "bsonType": "date"
+        },
+        "account_status": {
+          "bsonType": "string",
+          "enum": [
+            "active",
+            "suspended",
+            "pending_verification"
+          ]
+        },
+        "license_verified": {
+          "bsonType": "bool"
+        },
+        "rider_tier": {
+          "bsonType": "string",
+          "enum": [
+            "standard",
+            "plus",
+            "pass_monthly"
+          ]
+        },
+        "wallet_balance_eur": {
+          "bsonType": "double"
+        },
+        "notification_zones": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "objectId"
+          }
+        }
+      }
+    }
+  },
+  "service_zones": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "name",
+        "city",
+        "country",
+        "max_speed_kmh",
+        "parking_mode",
+        "area_km2",
+        "launched_at",
+        "active"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "name": {
+          "bsonType": "string"
+        },
+        "city": {
+          "bsonType": "string"
+        },
+        "country": {
+          "bsonType": "string"
+        },
+        "max_speed_kmh": {
+          "bsonType": "int"
+        },
+        "parking_mode": {
+          "bsonType": "string",
+          "enum": [
+            "free_floating",
+            "designated_spots",
+            "mixed"
+          ]
+        },
+        "area_km2": {
+          "bsonType": "double"
+        },
+        "launched_at": {
+          "bsonType": "date"
+        },
+        "active": {
+          "bsonType": "bool"
+        },
+        "surge_multiplier": {
+          "bsonType": "double"
+        }
+      }
+    }
+  },
+  "scooters": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "serial_number",
+        "model",
+        "firmware_version",
+        "status",
+        "battery_pct",
+        "last_lat",
+        "last_lng",
+        "odometer_km",
+        "commissioned_at",
+        "home_zone",
+        "accessories"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "serial_number": {
+          "bsonType": "string"
+        },
+        "model": {
+          "bsonType": "string",
+          "enum": [
+            "Voltra S2",
+            "Voltra S3 Pro",
+            "Kestrel K1"
+          ]
+        },
+        "firmware_version": {
+          "bsonType": "string"
+        },
+        "status": {
+          "bsonType": "string",
+          "enum": [
+            "available",
+            "in_ride",
+            "charging",
+            "maintenance",
+            "offline"
+          ]
+        },
+        "battery_pct": {
+          "bsonType": "int"
+        },
+        "last_lat": {
+          "bsonType": "double"
+        },
+        "last_lng": {
+          "bsonType": "double"
+        },
+        "odometer_km": {
+          "bsonType": "double"
+        },
+        "commissioned_at": {
+          "bsonType": "date"
+        },
+        "last_serviced_at": {
+          "bsonType": "date"
+        },
+        "home_zone": {
+          "bsonType": "objectId"
+        },
+        "accessories": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "string",
+            "enum": [
+              "phone_holder",
+              "basket",
+              "bell",
+              "helmet_lock",
+              "turn_signals"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "trips": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "rider",
+        "scooter_id",
+        "started_at",
+        "ended_at",
+        "start_lat",
+        "start_lng",
+        "end_lat",
+        "end_lng",
+        "distance_km",
+        "duration_min",
+        "unlock_fee_eur",
+        "per_minute_rate_eur",
+        "fare_eur",
+        "payment_method",
+        "payment_status"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "rider": {
+          "bsonType": "object",
+          "required": [
+            "rider_id",
+            "full_name",
+            "email"
+          ],
+          "properties": {
+            "rider_id": {
+              "bsonType": "objectId"
+            },
+            "full_name": {
+              "bsonType": "string"
+            },
+            "email": {
+              "bsonType": "string"
+            }
+          }
+        },
+        "scooter_id": {
+          "bsonType": "objectId"
+        },
+        "started_at": {
+          "bsonType": "date"
+        },
+        "ended_at": {
+          "bsonType": "date"
+        },
+        "start_lat": {
+          "bsonType": "double"
+        },
+        "start_lng": {
+          "bsonType": "double"
+        },
+        "end_lat": {
+          "bsonType": "double"
+        },
+        "end_lng": {
+          "bsonType": "double"
+        },
+        "distance_km": {
+          "bsonType": "double"
+        },
+        "duration_min": {
+          "bsonType": "int"
+        },
+        "unlock_fee_eur": {
+          "bsonType": "double"
+        },
+        "per_minute_rate_eur": {
+          "bsonType": "double"
+        },
+        "promo_code": {
+          "bsonType": "string"
+        },
+        "discount_eur": {
+          "bsonType": "double"
+        },
+        "fare_eur": {
+          "bsonType": "double"
+        },
+        "payment_method": {
+          "bsonType": "string",
+          "enum": [
+            "card",
+            "wallet",
+            "apple_pay",
+            "google_pay"
+          ]
+        },
+        "payment_status": {
+          "bsonType": "string",
+          "enum": [
+            "captured",
+            "pending",
+            "failed"
+          ]
+        },
+        "rating": {
+          "bsonType": "int"
+        }
+      }
+    }
+  },
+  "scooter_telemetry": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "vehicle",
+        "window_start",
+        "window_end",
+        "sample_count",
+        "samples"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "vehicle": {
+          "bsonType": "object",
+          "required": [
+            "scooter_id",
+            "serial_number",
+            "model"
+          ],
+          "properties": {
+            "scooter_id": {
+              "bsonType": "objectId"
+            },
+            "serial_number": {
+              "bsonType": "string"
+            },
+            "model": {
+              "bsonType": "string"
+            }
+          }
+        },
+        "window_start": {
+          "bsonType": "date"
+        },
+        "window_end": {
+          "bsonType": "date"
+        },
+        "sample_count": {
+          "bsonType": "int"
+        },
+        "samples": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "recorded_at",
+              "battery_pct",
+              "speed_kmh",
+              "lat",
+              "lng"
+            ],
+            "properties": {
+              "recorded_at": {
+                "bsonType": "date"
+              },
+              "battery_pct": {
+                "bsonType": "int"
+              },
+              "speed_kmh": {
+                "bsonType": "double"
+              },
+              "lat": {
+                "bsonType": "double"
+              },
+              "lng": {
+                "bsonType": "double"
+              }
+            }
+          }
+        },
+        "network": {
+          "bsonType": "string",
+          "enum": [
+            "lte",
+            "nb_iot"
+          ]
+        }
+      }
+    }
+  }
+}

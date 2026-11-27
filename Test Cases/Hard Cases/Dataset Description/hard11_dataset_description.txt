@@ -1,0 +1,71 @@
+db_11 - Airline operations (Difficulty: Hard)
+=============================================
+
+Domain
+------
+The operations database of a fictional short/medium-haul carrier (flight prefix ZQ) based at
+Rome Fiumicino (FCO), Milan Malpensa (MXP) and Naples (NAP). It links the fleet, its
+maintenance history, the flight crew, the operated flight legs and the engine trend data
+recorded in flight. All dates are UTC, in November 2026 for operations and during 2026 for
+maintenance.
+
+Collections
+-----------
+1. aircraft (4 docs) - fleet register. _id is a prefixed string ("AC-4101" ... "AC-4104").
+   Holds registration, type, MSN, engines, MTOW, hours/cycles, optional lessor, the cabin
+   seat layout, the cabin equipment list and the latest work orders of each airframe.
+2. work_orders (10 docs) - the full maintenance history (checks, defect rectifications,
+   component changes). Flat documents. Points to its aircraft and, for crew-reported defects,
+   to the pilot who wrote the tech log entry.
+3. crew_members (5 docs) - pilots (captains and first officers) with home address,
+   spoken languages and licences/medical certificates.
+4. flights (5 docs) - operated legs FCO-LHR-FCO, MXP-MAD-MXP and FCO-ATH, with the aircraft
+   used, the operating pilots, the dispatch release, actual block times and passenger loads.
+5. engine_trend_logs (5 docs) - engine condition monitoring: per engine and per flight, a
+   group of time-ordered samples (N1, EGT, fuel flow, altitude, phase).
+
+Patterns and how they work together
+-----------------------------------
+- Subset: aircraft.recent_work_orders[] keeps at most the 3 most recent work orders (by
+  performed_at, newest first) copied unchanged from work_orders. AC-4101 has 4 work orders in
+  the full collection and embeds only the latest 3 (the May 2026 A-check, WO-26-00412, is left
+  out); the other aircraft have 2 work orders each and embed both.
+- Referencing: work_orders.airframe -> aircraft (string _id "AC-410x");
+  work_orders.reported_by -> crew_members (present in 6 of 10 work orders, absent for
+  scheduled checks/hard-time changes); flights.pilots[] -> crew_members (list of 2 or 3
+  ObjectIds, 3 on the MXP line-training rotation); flights.dispatch_release.accepted_by ->
+  crew_members (the commander); engine_trend_logs.flight_id -> flights.
+- ExtendedReference: flights.aircraft = {aircraft_id, registration, type_code}, copied from
+  the aircraft document (many flights to one aircraft; AC-4101 and AC-4102 each fly two legs).
+- Embedding: aircraft.seat_config (object), crew_members.home_address (object),
+  crew_members.licences[] (array of objects), flights.dispatch_release (object),
+  flights.block_times (object), flights.load_figures[] (array of objects, one per cabin).
+- Array: aircraft.cabin_features[] (2-5 strings), crew_members.languages[] (2-3 codes).
+- Bucket: engine_trend_logs.samples[] with window_start, window_end and sample_count; 2 to 6
+  samples per document, sorted by recorded_at, all within the window and within the takeoff
+  and landing times of the referenced flight.
+
+Consistency notes: flight loads never exceed the seat_config of the aircraft flown; the same
+engine serial (598871) appears on both legs flown by AC-4102 engine 1; reporters of work orders
+are A320-family pilots only (the Embraer AC-4104 has no crew-reported work orders).
+
+Difficulty requirements applied
+-------------------------------
+- Role-named identifiers: 4 of 6 identifier fields (airframe, reported_by, pilots,
+  accepted_by); the other two are aircraft_id and flight_id.
+- Mixed forms: single identifiers (work_orders.airframe, work_orders.reported_by,
+  flights.dispatch_release.accepted_by, engine_trend_logs.flight_id) and a list of identifiers
+  (flights.pilots[]); single embedded objects (aircraft.seat_config, crew_members.home_address,
+  flights.dispatch_release, flights.block_times) and arrays of objects
+  (crew_members.licences[], flights.load_figures[]).
+- Prefixed string _id: aircraft ("AC-4101"), used with the same values in
+  work_orders.airframe and flights.aircraft.aircraft_id.
+- Collections with 2+ patterns other than Referencing: aircraft (Embedding, Array, Subset),
+  crew_members (Embedding x2, Array), flights (ExtendedReference, Embedding x3).
+- Pattern nested inside an Embedding: flights.dispatch_release.accepted_by (Referencing).
+- Variable array lengths: cabin_features 2-5, recent_work_orders 2-3, languages 2-3,
+  licences 2-3, pilots 2-3, load_figures 2-3, samples 2-6.
+- Optional fields missing in some documents: aircraft.lessor, seat_config.business /
+  premium_economy, crew_members.phone / training_role, licences[].expires_on,
+  work_orders.ata_chapter / reported_by / mel_item, flights.gate / delay_minutes / delay_code,
+  engine_trend_logs.data_source.

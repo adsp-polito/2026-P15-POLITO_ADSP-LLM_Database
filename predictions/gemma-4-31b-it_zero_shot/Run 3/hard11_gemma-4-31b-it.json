@@ -1,0 +1,280 @@
+{
+  "collections": [
+    "aircraft",
+    "work_orders",
+    "crew_members",
+    "flights",
+    "engine_trend_logs"
+  ],
+  "fields": [
+    {
+      "collection": "aircraft",
+      "fields": [
+        "_id",
+        "registration",
+        "type_code",
+        "manufacturer",
+        "msn",
+        "engine_type",
+        "delivery_date",
+        "home_base",
+        "status",
+        "mtow_kg",
+        "flight_hours",
+        "cycles",
+        "lessor",
+        "seat_config",
+        "seat_config.business",
+        "seat_config.premium_economy",
+        "seat_config.economy",
+        "cabin_features[]",
+        "recent_work_orders[]",
+        "recent_work_orders[]._id",
+        "recent_work_orders[].wo_number",
+        "recent_work_orders[].airframe",
+        "recent_work_orders[].check_type",
+        "recent_work_orders[].ata_chapter",
+        "recent_work_orders[].station",
+        "recent_work_orders[].performed_at",
+        "recent_work_orders[].labor_hours",
+        "recent_work_orders[].work_performed",
+        "recent_work_orders[].certifying_licence",
+        "recent_work_orders[].reported_by",
+        "recent_work_orders[].mel_item",
+        "recent_work_orders[].status"
+      ]
+    },
+    {
+      "collection": "work_orders",
+      "fields": [
+        "_id",
+        "wo_number",
+        "airframe",
+        "check_type",
+        "ata_chapter",
+        "station",
+        "performed_at",
+        "labor_hours",
+        "work_performed",
+        "certifying_licence",
+        "reported_by",
+        "mel_item",
+        "status"
+      ]
+    },
+    {
+      "collection": "crew_members",
+      "fields": [
+        "_id",
+        "staff_no",
+        "first_name",
+        "last_name",
+        "rank",
+        "base",
+        "seniority_no",
+        "hire_date",
+        "email",
+        "phone",
+        "type_rating",
+        "training_role",
+        "flight_hours_total",
+        "home_address",
+        "home_address.street",
+        "home_address.city",
+        "home_address.postal_code",
+        "home_address.country",
+        "languages[]",
+        "licences[]",
+        "licences[].kind",
+        "licences[].number",
+        "licences[].authority",
+        "licences[].issued_on",
+        "licences[].expires_on"
+      ]
+    },
+    {
+      "collection": "flights",
+      "fields": [
+        "_id",
+        "flight_number",
+        "flight_date",
+        "origin",
+        "destination",
+        "gate",
+        "scheduled_departure",
+        "scheduled_arrival",
+        "aircraft",
+        "aircraft.aircraft_id",
+        "aircraft.registration",
+        "aircraft.type_code",
+        "pilots[]",
+        "dispatch_release",
+        "dispatch_release.released_at",
+        "dispatch_release.block_fuel_kg",
+        "dispatch_release.trip_fuel_kg",
+        "dispatch_release.accepted_by",
+        "block_times",
+        "block_times.off_block",
+        "block_times.takeoff",
+        "block_times.landing",
+        "block_times.on_block",
+        "load_figures[]",
+        "load_figures[].cabin",
+        "load_figures[].booked",
+        "load_figures[].boarded",
+        "delay_minutes",
+        "delay_code",
+        "status"
+      ]
+    },
+    {
+      "collection": "engine_trend_logs",
+      "fields": [
+        "_id",
+        "flight_id",
+        "engine_position",
+        "engine_serial",
+        "window_start",
+        "window_end",
+        "sample_count",
+        "samples[]",
+        "samples[].recorded_at",
+        "samples[].flight_phase",
+        "samples[].altitude_ft",
+        "samples[].n1_pct",
+        "samples[].egt_c",
+        "samples[].fuel_flow_kgh",
+        "data_source"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from_field": "aircraft.recent_work_orders[]._id",
+      "to_collection": "work_orders"
+    },
+    {
+      "from_field": "aircraft.recent_work_orders[].reported_by",
+      "to_collection": "crew_members"
+    },
+    {
+      "from_field": "work_orders.reported_by",
+      "to_collection": "crew_members"
+    },
+    {
+      "from_field": "flights.aircraft.aircraft_id",
+      "to_collection": "aircraft"
+    },
+    {
+      "from_field": "flights.pilots[]",
+      "to_collection": "crew_members"
+    },
+    {
+      "from_field": "flights.dispatch_release.accepted_by",
+      "to_collection": "crew_members"
+    },
+    {
+      "from_field": "engine_trend_logs.flight_id",
+      "to_collection": "flights"
+    }
+  ],
+  "patterns": [
+    {
+      "field": "aircraft.recent_work_orders[]",
+      "evidence": "Contains a subset of work order data (recent ones) embedded within the aircraft document for fast access.",
+      "scores": {
+        "Embedding": 0.2,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.7,
+        "Subset": 0.1,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "aircraft.cabin_features[]",
+      "evidence": "Simple list of strings describing features.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "crew_members.languages[]",
+      "evidence": "Simple list of strings.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "crew_members.licences[]",
+      "evidence": "List of objects containing license details embedded in the crew member document.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "flights.aircraft",
+      "evidence": "Contains the ID and a few redundant fields (registration, type_code) from the aircraft collection.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 1.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "flights.pilots[]",
+      "evidence": "Array of ObjectIds referencing the crew_members collection.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "flights.load_figures[]",
+      "evidence": "List of objects containing passenger counts per cabin.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "engine_trend_logs.samples[]",
+      "evidence": "High-frequency time-series data points grouped into a single document per flight/engine.",
+      "scores": {
+        "Embedding": 0.1,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.2,
+        "Bucket": 0.7
+      }
+    }
+  ],
+  "truncated": false
+}

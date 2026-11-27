@@ -1,0 +1,120 @@
+{
+  "collections": [
+    "members",
+    "books",
+    "loans"
+  ],
+  "fields": [
+    {
+      "collection": "members",
+      "fields": [
+        "_id",
+        "card_number",
+        "first_name",
+        "last_name",
+        "email",
+        "phone",
+        "membership_type",
+        "registered_at",
+        "card_expires_on",
+        "notification_channels[]",
+        "account_status"
+      ]
+    },
+    {
+      "collection": "books",
+      "fields": [
+        "_id",
+        "isbn",
+        "book_title",
+        "author",
+        "publisher",
+        "publication_year",
+        "language",
+        "format",
+        "subjects[]",
+        "page_count",
+        "shelf_location",
+        "copies_total",
+        "copies_available",
+        "added_on"
+      ]
+    },
+    {
+      "collection": "loans",
+      "fields": [
+        "_id",
+        "member_id",
+        "book_id",
+        "branch",
+        "checked_out_at",
+        "due_at",
+        "returned_at",
+        "renewal_count",
+        "status",
+        "late_fee"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from_field": "loans.member_id",
+      "to_collection": "members"
+    },
+    {
+      "from_field": "loans.book_id",
+      "to_collection": "books"
+    }
+  ],
+  "patterns": [
+    {
+      "field": "loans.member_id",
+      "evidence": "Loan stores only the ObjectId of the member, matching members._id, with no copied data.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "loans.book_id",
+      "evidence": "Loan stores only the ObjectId of the book, matching books._id.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "members.notification_channels[]",
+      "evidence": "Array of channel strings kept inside the member document instead of a separate collection.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "books.subjects[]",
+      "evidence": "Array of subject strings stored directly in each book.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    }
+  ],
+  "truncated": false
+}

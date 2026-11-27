@@ -1,0 +1,423 @@
+{
+  "teams": [
+    {
+      "_id": {
+        "$oid": "65f1c0a2b7e94d1a3c8e2a10"
+      },
+      "name": "Platform Infrastructure",
+      "oncall_email": "platform-oncall@example.com",
+      "slack_channel": "#platform-alerts",
+      "timezone": "Europe/Berlin",
+      "created_at": {
+        "$date": "2023-03-14T09:12:00Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "65f1c0a2b7e94d1a3c8e2a11"
+      },
+      "name": "Payments Backend",
+      "oncall_email": "payments-oncall@example.com",
+      "slack_channel": "#payments-ops",
+      "timezone": "Europe/Amsterdam",
+      "created_at": {
+        "$date": "2023-06-02T13:40:00Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "65f1c0a2b7e94d1a3c8e2a12"
+      },
+      "name": "Data Pipeline",
+      "oncall_email": "data-eng@example.com",
+      "timezone": "Europe/Dublin",
+      "created_at": {
+        "$date": "2024-01-22T10:05:00Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "65f1c0a2b7e94d1a3c8e2a13"
+      },
+      "name": "Edge Networking",
+      "oncall_email": "edge-noc@example.com",
+      "slack_channel": "#edge-noc",
+      "timezone": "Europe/Berlin",
+      "created_at": {
+        "$date": "2023-09-11T08:30:00Z"
+      }
+    }
+  ],
+  "hosts": [
+    {
+      "_id": {
+        "$oid": "6603e4b19d2c7f5a81b49c31"
+      },
+      "hostname": "web-01.fra1.korvanet.io",
+      "ip_address": "10.20.1.11",
+      "datacenter": "fra1",
+      "environment": "production",
+      "os": "Ubuntu 22.04.4 LTS",
+      "cpu_cores": 8,
+      "memory_gb": 32,
+      "agent_version": "4.12.3",
+      "status": "active",
+      "team_id": {
+        "$oid": "65f1c0a2b7e94d1a3c8e2a13"
+      },
+      "registered_at": {
+        "$date": "2024-05-06T11:24:00Z"
+      },
+      "last_seen_at": {
+        "$date": "2026-11-20T07:44:52Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6603e4b19d2c7f5a81b49c32"
+      },
+      "hostname": "db-01.ams2.korvanet.io",
+      "ip_address": "10.30.4.21",
+      "datacenter": "ams2",
+      "environment": "production",
+      "os": "Debian 12.7",
+      "cpu_cores": 32,
+      "memory_gb": 256,
+      "agent_version": "4.12.3",
+      "status": "active",
+      "team_id": {
+        "$oid": "65f1c0a2b7e94d1a3c8e2a11"
+      },
+      "registered_at": {
+        "$date": "2024-02-19T15:02:00Z"
+      },
+      "last_seen_at": {
+        "$date": "2026-11-20T07:44:58Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6603e4b19d2c7f5a81b49c33"
+      },
+      "hostname": "cache-02.fra1.korvanet.io",
+      "ip_address": "10.20.2.32",
+      "datacenter": "fra1",
+      "environment": "production",
+      "os": "Ubuntu 22.04.4 LTS",
+      "cpu_cores": 4,
+      "memory_gb": 64,
+      "agent_version": "4.11.0",
+      "status": "offline",
+      "team_id": {
+        "$oid": "65f1c0a2b7e94d1a3c8e2a10"
+      },
+      "registered_at": {
+        "$date": "2025-01-08T09:47:00Z"
+      },
+      "last_seen_at": {
+        "$date": "2026-11-19T09:21:07Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6603e4b19d2c7f5a81b49c34"
+      },
+      "hostname": "worker-03.dub1.korvanet.io",
+      "ip_address": "10.40.7.13",
+      "datacenter": "dub1",
+      "environment": "production",
+      "os": "Rocky Linux 9.4",
+      "cpu_cores": 16,
+      "memory_gb": 64,
+      "agent_version": "4.12.1",
+      "status": "active",
+      "team_id": {
+        "$oid": "65f1c0a2b7e94d1a3c8e2a12"
+      },
+      "registered_at": {
+        "$date": "2025-07-15T14:18:00Z"
+      },
+      "last_seen_at": {
+        "$date": "2026-11-20T07:44:41Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6603e4b19d2c7f5a81b49c35"
+      },
+      "hostname": "web-04.stg.fra1.korvanet.io",
+      "ip_address": "10.21.1.14",
+      "datacenter": "fra1",
+      "environment": "staging",
+      "os": "Ubuntu 24.04.1 LTS",
+      "cpu_cores": 4,
+      "memory_gb": 16,
+      "agent_version": "4.12.3",
+      "status": "provisioning",
+      "team_id": {
+        "$oid": "65f1c0a2b7e94d1a3c8e2a13"
+      },
+      "registered_at": {
+        "$date": "2026-11-19T16:55:00Z"
+      }
+    }
+  ],
+  "host_metrics": [
+    {
+      "_id": {
+        "$oid": "6740b8f3a1d65e2c9f073e51"
+      },
+      "host_id": {
+        "$oid": "6603e4b19d2c7f5a81b49c31"
+      },
+      "metric": "cpu.utilization",
+      "unit": "percent",
+      "interval_sec": 600,
+      "start": {
+        "$date": "2026-11-19T14:00:00Z"
+      },
+      "end": {
+        "$date": "2026-11-19T14:59:59Z"
+      },
+      "count": 6,
+      "samples": [
+        {
+          "ts": {
+            "$date": "2026-11-19T14:00:00Z"
+          },
+          "value": 34.2
+        },
+        {
+          "ts": {
+            "$date": "2026-11-19T14:10:00Z"
+          },
+          "value": 41.8
+        },
+        {
+          "ts": {
+            "$date": "2026-11-19T14:20:00Z"
+          },
+          "value": 38.5
+        },
+        {
+          "ts": {
+            "$date": "2026-11-19T14:30:00Z"
+          },
+          "value": 52.7
+        },
+        {
+          "ts": {
+            "$date": "2026-11-19T14:40:00Z"
+          },
+          "value": 47.3
+        },
+        {
+          "ts": {
+            "$date": "2026-11-19T14:50:00Z"
+          },
+          "value": 39.9
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "6740b8f3a1d65e2c9f073e52"
+      },
+      "host_id": {
+        "$oid": "6603e4b19d2c7f5a81b49c31"
+      },
+      "metric": "memory.used_pct",
+      "unit": "percent",
+      "interval_sec": 600,
+      "start": {
+        "$date": "2026-11-19T14:00:00Z"
+      },
+      "end": {
+        "$date": "2026-11-19T14:59:59Z"
+      },
+      "count": 6,
+      "samples": [
+        {
+          "ts": {
+            "$date": "2026-11-19T14:00:00Z"
+          },
+          "value": 61.4
+        },
+        {
+          "ts": {
+            "$date": "2026-11-19T14:10:00Z"
+          },
+          "value": 61.9
+        },
+        {
+          "ts": {
+            "$date": "2026-11-19T14:20:00Z"
+          },
+          "value": 62.3
+        },
+        {
+          "ts": {
+            "$date": "2026-11-19T14:30:00Z"
+          },
+          "value": 62.8
+        },
+        {
+          "ts": {
+            "$date": "2026-11-19T14:40:00Z"
+          },
+          "value": 63.1
+        },
+        {
+          "ts": {
+            "$date": "2026-11-19T14:50:00Z"
+          },
+          "value": 62.6
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "6740b8f3a1d65e2c9f073e53"
+      },
+      "host_id": {
+        "$oid": "6603e4b19d2c7f5a81b49c32"
+      },
+      "metric": "cpu.utilization",
+      "unit": "percent",
+      "interval_sec": 600,
+      "start": {
+        "$date": "2026-11-19T14:00:00Z"
+      },
+      "end": {
+        "$date": "2026-11-19T14:59:59Z"
+      },
+      "count": 6,
+      "samples": [
+        {
+          "ts": {
+            "$date": "2026-11-19T14:00:02Z"
+          },
+          "value": 22.5
+        },
+        {
+          "ts": {
+            "$date": "2026-11-19T14:10:02Z"
+          },
+          "value": 24.1
+        },
+        {
+          "ts": {
+            "$date": "2026-11-19T14:20:03Z"
+          },
+          "value": 71.6
+        },
+        {
+          "ts": {
+            "$date": "2026-11-19T14:30:02Z"
+          },
+          "value": 68.9
+        },
+        {
+          "ts": {
+            "$date": "2026-11-19T14:40:02Z"
+          },
+          "value": 25.3
+        },
+        {
+          "ts": {
+            "$date": "2026-11-19T14:50:02Z"
+          },
+          "value": 23.8
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "6740b8f3a1d65e2c9f073e54"
+      },
+      "host_id": {
+        "$oid": "6603e4b19d2c7f5a81b49c33"
+      },
+      "metric": "cpu.utilization",
+      "unit": "percent",
+      "interval_sec": 600,
+      "start": {
+        "$date": "2026-11-19T09:00:00Z"
+      },
+      "end": {
+        "$date": "2026-11-19T09:59:59Z"
+      },
+      "count": 3,
+      "samples": [
+        {
+          "ts": {
+            "$date": "2026-11-19T09:00:04Z"
+          },
+          "value": 18.4
+        },
+        {
+          "ts": {
+            "$date": "2026-11-19T09:10:04Z"
+          },
+          "value": 19.7
+        },
+        {
+          "ts": {
+            "$date": "2026-11-19T09:20:05Z"
+          },
+          "value": 96.3
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "6740b8f3a1d65e2c9f073e55"
+      },
+      "host_id": {
+        "$oid": "6603e4b19d2c7f5a81b49c34"
+      },
+      "metric": "load.avg_1m",
+      "unit": "load",
+      "interval_sec": 600,
+      "start": {
+        "$date": "2026-11-20T07:00:00Z"
+      },
+      "end": {
+        "$date": "2026-11-20T07:59:59Z"
+      },
+      "count": 5,
+      "samples": [
+        {
+          "ts": {
+            "$date": "2026-11-20T07:00:01Z"
+          },
+          "value": 3.42
+        },
+        {
+          "ts": {
+            "$date": "2026-11-20T07:10:01Z"
+          },
+          "value": 4.18
+        },
+        {
+          "ts": {
+            "$date": "2026-11-20T07:20:01Z"
+          },
+          "value": 5.07
+        },
+        {
+          "ts": {
+            "$date": "2026-11-20T07:30:01Z"
+          },
+          "value": 4.66
+        },
+        {
+          "ts": {
+            "$date": "2026-11-20T07:40:01Z"
+          },
+          "value": 3.95
+        }
+      ]
+    }
+  ]
+}

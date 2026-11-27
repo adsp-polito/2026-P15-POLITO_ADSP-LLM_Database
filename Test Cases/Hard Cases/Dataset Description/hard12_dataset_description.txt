@@ -1,0 +1,63 @@
+db_12 - Territorial patrol and control by police officers (difficulty: Hard)
+
+DOMAIN
+The database backs a city police command that splits its territory into patrol
+sectors, plans patrol shifts with crews and vehicles, logs the incidents
+reported in each sector and records the GPS track of every patrol car.
+
+COLLECTIONS
+- officers (5 docs): sworn personnel. Holds the sector the officer is posted to
+  (assigned_sector -> sectors), the languages spoken (languages[], Array) and an
+  optional emergency contact (emergency_contact, Embedding).
+- sectors (5 docs, prefixed string _id such as "SEC-101"): patrol areas with
+  size, population and risk level. commander -> officers (Referencing);
+  command_post is an embedded object (Embedding) that itself carries a list of
+  plain service names (command_post.services[], Array). latest_incidents[] keeps
+  up to the 3 most recent incidents of the sector (Subset); the field is absent
+  for the one sector with no incidents.
+- incidents (10 docs): full set of reported incidents, flat documents with
+  sector_id -> sectors. SEC-101 has four incidents; only its three newest are in
+  sectors.latest_incidents[], the September 28 break-in is only here.
+- patrol_shifts (5 docs): planned or completed patrols. sector holds sector_id
+  plus the copied name and district (ExtendedReference); crew[] is a list of
+  officer ids and assigned_vehicle a single vehicle id (Referencing);
+  objectives[] is a list of plain strings (Array); equipment_issued[] is an
+  array of objects (Embedding); debrief is an embedded object (Embedding) with a
+  nested reviewer id debrief.reviewed_by -> officers (Referencing). The
+  scheduled future shift has no equipment_issued and no debrief.
+- vehicles (4 docs): fleet cars with fitted equipment[] (Array) and an optional
+  last_service object (Embedding).
+- vehicle_tracks (5 docs): hourly GPS groups. vehicle_id -> vehicles and
+  shift_id -> patrol_shifts (Referencing); points[] holds 2 to 6 time-ordered
+  fixes with period_start, period_end and point_count (Bucket). Each track's
+  vehicle is the assigned_vehicle of its shift and its hour lies inside the
+  shift's scheduled window.
+
+HOW THE PATTERNS FIT
+Subset: sectors.latest_incidents[] copies incident documents exactly (same _id
+and values) ordered by reported_at descending; the full history is in incidents
+and is linked back by incidents.sector_id.
+ExtendedReference: patrol_shifts.sector lets a shift roster show the area name
+and district without a lookup; values equal the sectors document.
+Bucket: vehicle_tracks.points[] groups one vehicle-hour of positions.
+
+DIFFICULTY REQUIREMENTS APPLIED
+- Role-named identifiers (5 of 9 identifier fields): officers.assigned_sector,
+  sectors.commander, patrol_shifts.crew[], patrol_shifts.assigned_vehicle,
+  patrol_shifts.debrief.reviewed_by. The others are incidents.sector_id,
+  patrol_shifts.sector.sector_id, vehicle_tracks.vehicle_id,
+  vehicle_tracks.shift_id.
+- Mixed forms: single identifier (sectors.commander) and list of identifiers
+  (patrol_shifts.crew[]); single embedded objects (sectors.command_post,
+  patrol_shifts.debrief, officers.emergency_contact, vehicles.last_service) and
+  an array of objects (patrol_shifts.equipment_issued[]).
+- Prefixed string _id: sectors ("SEC-101" ...), referenced with the same
+  strings by officers.assigned_sector, incidents.sector_id and
+  patrol_shifts.sector.sector_id.
+- Collections with 2+ non-Referencing patterns: officers (Array, Embedding),
+  sectors (Embedding, Array, Subset), patrol_shifts (ExtendedReference, Array,
+  Embedding), vehicles (Array, Embedding).
+- Patterns nested inside an Embedding: sectors.command_post.services[] (Array)
+  and patrol_shifts.debrief.reviewed_by (Referencing).
+- Array lengths vary across documents (languages 2-4, services 2-4,
+  objectives 2-4, equipment 2-5, crew 2-3, points 2-6).

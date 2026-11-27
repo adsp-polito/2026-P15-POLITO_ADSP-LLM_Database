@@ -1,0 +1,414 @@
+{
+  "collections": [
+    "officers",
+    "sectors",
+    "incidents",
+    "patrol_shifts",
+    "vehicles",
+    "vehicle_tracks"
+  ],
+  "fields": [
+    {
+      "collection": "officers",
+      "fields": [
+        "_id",
+        "badge_number",
+        "first_name",
+        "last_name",
+        "rank",
+        "email",
+        "phone",
+        "hire_date",
+        "status",
+        "assigned_sector",
+        "languages[]",
+        "emergency_contact",
+        "emergency_contact.full_name",
+        "emergency_contact.relationship",
+        "emergency_contact.phone"
+      ]
+    },
+    {
+      "collection": "sectors",
+      "fields": [
+        "_id",
+        "name",
+        "district",
+        "area_km2",
+        "resident_population",
+        "risk_level",
+        "commander",
+        "command_post",
+        "command_post.address",
+        "command_post.postal_code",
+        "command_post.phone",
+        "command_post.open_24h",
+        "command_post.services[]",
+        "latest_incidents[]",
+        "latest_incidents[]._id",
+        "latest_incidents[].sector_id",
+        "latest_incidents[].reported_at",
+        "latest_incidents[].category",
+        "latest_incidents[].priority",
+        "latest_incidents[].street_address",
+        "latest_incidents[].status",
+        "latest_incidents[].units_sent",
+        "latest_incidents[].closed_at"
+      ]
+    },
+    {
+      "collection": "incidents",
+      "fields": [
+        "_id",
+        "sector_id",
+        "reported_at",
+        "category",
+        "priority",
+        "street_address",
+        "status",
+        "units_sent",
+        "closed_at"
+      ]
+    },
+    {
+      "collection": "patrol_shifts",
+      "fields": [
+        "_id",
+        "sector",
+        "sector.sector_id",
+        "sector.name",
+        "sector.district",
+        "crew[]",
+        "assigned_vehicle",
+        "shift_type",
+        "scheduled_start",
+        "scheduled_end",
+        "status",
+        "objectives[]",
+        "equipment_issued[]",
+        "equipment_issued[].item",
+        "equipment_issued[].serial_number",
+        "equipment_issued[].quantity",
+        "debrief",
+        "debrief.kilometers_driven",
+        "debrief.fuel_used_l",
+        "debrief.persons_checked",
+        "debrief.vehicles_stopped",
+        "debrief.notes",
+        "debrief.reviewed_by"
+      ]
+    },
+    {
+      "collection": "vehicles",
+      "fields": [
+        "_id",
+        "call_sign",
+        "plate_number",
+        "make",
+        "model",
+        "model_year",
+        "vehicle_type",
+        "odometer_km",
+        "status",
+        "equipment[]",
+        "last_service",
+        "last_service.service_date",
+        "last_service.odometer_km",
+        "last_service.workshop"
+      ]
+    },
+    {
+      "collection": "vehicle_tracks",
+      "fields": [
+        "_id",
+        "vehicle_id",
+        "shift_id",
+        "period_start",
+        "period_end",
+        "point_count",
+        "points[]",
+        "points[].recorded_at",
+        "points[].lat",
+        "points[].lon",
+        "points[].speed_kmh"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from_field": "officers.assigned_sector",
+      "to_collection": "sectors"
+    },
+    {
+      "from_field": "sectors.commander",
+      "to_collection": "officers"
+    },
+    {
+      "from_field": "sectors.latest_incidents[]._id",
+      "to_collection": "incidents"
+    },
+    {
+      "from_field": "sectors.latest_incidents[].sector_id",
+      "to_collection": "sectors"
+    },
+    {
+      "from_field": "incidents.sector_id",
+      "to_collection": "sectors"
+    },
+    {
+      "from_field": "patrol_shifts.sector.sector_id",
+      "to_collection": "sectors"
+    },
+    {
+      "from_field": "patrol_shifts.crew[]",
+      "to_collection": "officers"
+    },
+    {
+      "from_field": "patrol_shifts.assigned_vehicle",
+      "to_collection": "vehicles"
+    },
+    {
+      "from_field": "patrol_shifts.debrief.reviewed_by",
+      "to_collection": "officers"
+    },
+    {
+      "from_field": "vehicle_tracks.vehicle_id",
+      "to_collection": "vehicles"
+    },
+    {
+      "from_field": "vehicle_tracks.shift_id",
+      "to_collection": "patrol_shifts"
+    }
+  ],
+  "patterns": [
+    {
+      "field": "officers.emergency_contact",
+      "evidence": "Contact details object stored inside officer document.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "officers.languages[]",
+      "evidence": "List of spoken languages as array of strings.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "officers.assigned_sector",
+      "evidence": "Holds sector _id string.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "sectors.commander",
+      "evidence": "ObjectId of an officer.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "sectors.command_post",
+      "evidence": "Command post details embedded as sub-object.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "sectors.latest_incidents[]",
+      "evidence": "Copies of most recent incidents duplicated from incidents collection, limited to a few.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 1.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "incidents.sector_id",
+      "evidence": "References sector _id.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "patrol_shifts.sector",
+      "evidence": "Sector id plus copied name and district.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 1.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "patrol_shifts.crew[]",
+      "evidence": "Array of officer ObjectIds.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "patrol_shifts.assigned_vehicle",
+      "evidence": "ObjectId of vehicle.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "patrol_shifts.objectives[]",
+      "evidence": "Array of objective strings.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "patrol_shifts.equipment_issued[]",
+      "evidence": "Embedded array of issued equipment items.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "patrol_shifts.debrief",
+      "evidence": "Debrief summary embedded in shift.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "patrol_shifts.debrief.reviewed_by",
+      "evidence": "ObjectId of reviewing officer.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "vehicles.equipment[]",
+      "evidence": "Array of equipment strings.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "vehicles.last_service",
+      "evidence": "Service info embedded object.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "vehicle_tracks.vehicle_id",
+      "evidence": "ObjectId of vehicle.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "vehicle_tracks.shift_id",
+      "evidence": "ObjectId of patrol shift.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "vehicle_tracks.points[]",
+      "evidence": "GPS points grouped per one-hour period with point_count, period_start/end.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 1.0
+      }
+    }
+  ],
+  "truncated": false
+}

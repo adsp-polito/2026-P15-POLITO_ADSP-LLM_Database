@@ -1,0 +1,477 @@
+{
+  "datacenters": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "name",
+        "provider",
+        "region_code",
+        "address",
+        "power_capacity_kw"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "name": {
+          "bsonType": "string"
+        },
+        "provider": {
+          "bsonType": "string"
+        },
+        "region_code": {
+          "bsonType": "string",
+          "enum": [
+            "eu-central",
+            "eu-west",
+            "eu-south",
+            "us-east"
+          ]
+        },
+        "address": {
+          "bsonType": "object",
+          "required": [
+            "street",
+            "city",
+            "postal_code",
+            "country"
+          ],
+          "properties": {
+            "street": {
+              "bsonType": "string"
+            },
+            "city": {
+              "bsonType": "string"
+            },
+            "postal_code": {
+              "bsonType": "string"
+            },
+            "country": {
+              "bsonType": "string"
+            }
+          }
+        },
+        "power_capacity_kw": {
+          "bsonType": "int"
+        },
+        "tier": {
+          "bsonType": "string",
+          "enum": [
+            "II",
+            "III",
+            "IV"
+          ]
+        },
+        "certifications": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "string"
+          }
+        },
+        "commissioned_at": {
+          "bsonType": "date"
+        }
+      }
+    }
+  },
+  "clusters": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "name",
+        "environment",
+        "kubernetes_version",
+        "datacenter",
+        "node_pools",
+        "admins",
+        "created_at"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "string"
+        },
+        "name": {
+          "bsonType": "string"
+        },
+        "environment": {
+          "bsonType": "string",
+          "enum": [
+            "production",
+            "staging",
+            "development"
+          ]
+        },
+        "kubernetes_version": {
+          "bsonType": "string"
+        },
+        "datacenter": {
+          "bsonType": "object",
+          "required": [
+            "datacenter_id",
+            "name",
+            "region_code"
+          ],
+          "properties": {
+            "datacenter_id": {
+              "bsonType": "objectId"
+            },
+            "name": {
+              "bsonType": "string"
+            },
+            "region_code": {
+              "bsonType": "string"
+            }
+          }
+        },
+        "api_endpoint": {
+          "bsonType": "string"
+        },
+        "node_pools": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "pool_name",
+              "instance_type",
+              "min_nodes",
+              "max_nodes",
+              "zones"
+            ],
+            "properties": {
+              "pool_name": {
+                "bsonType": "string"
+              },
+              "instance_type": {
+                "bsonType": "string"
+              },
+              "min_nodes": {
+                "bsonType": "int"
+              },
+              "max_nodes": {
+                "bsonType": "int"
+              },
+              "zones": {
+                "bsonType": "array",
+                "items": {
+                  "bsonType": "string"
+                }
+              }
+            }
+          }
+        },
+        "admins": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "objectId"
+          }
+        },
+        "enabled_addons": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "string"
+          }
+        },
+        "recent_incidents": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "_id",
+              "affected_cluster",
+              "severity",
+              "status",
+              "summary",
+              "opened_at",
+              "assignee"
+            ],
+            "properties": {
+              "_id": {
+                "bsonType": "objectId"
+              },
+              "affected_cluster": {
+                "bsonType": "string"
+              },
+              "severity": {
+                "bsonType": "string",
+                "enum": [
+                  "SEV1",
+                  "SEV2",
+                  "SEV3",
+                  "SEV4"
+                ]
+              },
+              "status": {
+                "bsonType": "string",
+                "enum": [
+                  "investigating",
+                  "mitigated",
+                  "resolved"
+                ]
+              },
+              "summary": {
+                "bsonType": "string"
+              },
+              "opened_at": {
+                "bsonType": "date"
+              },
+              "resolved_at": {
+                "bsonType": "date"
+              },
+              "assignee": {
+                "bsonType": "objectId"
+              },
+              "minutes_to_mitigate": {
+                "bsonType": "int"
+              }
+            }
+          }
+        },
+        "created_at": {
+          "bsonType": "date"
+        }
+      }
+    }
+  },
+  "nodes": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "hostname",
+        "assigned_cluster",
+        "pool_name",
+        "ip_address",
+        "cpu_cores",
+        "memory_gib",
+        "status",
+        "hardware"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "hostname": {
+          "bsonType": "string"
+        },
+        "assigned_cluster": {
+          "bsonType": "string"
+        },
+        "pool_name": {
+          "bsonType": "string"
+        },
+        "ip_address": {
+          "bsonType": "string"
+        },
+        "os_image": {
+          "bsonType": "string"
+        },
+        "kernel_version": {
+          "bsonType": "string"
+        },
+        "cpu_cores": {
+          "bsonType": "int"
+        },
+        "memory_gib": {
+          "bsonType": "int"
+        },
+        "status": {
+          "bsonType": "string",
+          "enum": [
+            "Ready",
+            "NotReady",
+            "SchedulingDisabled"
+          ]
+        },
+        "hardware": {
+          "bsonType": "object",
+          "required": [
+            "vendor",
+            "model",
+            "serial_number",
+            "rack_unit"
+          ],
+          "properties": {
+            "vendor": {
+              "bsonType": "string"
+            },
+            "model": {
+              "bsonType": "string"
+            },
+            "serial_number": {
+              "bsonType": "string"
+            },
+            "rack_unit": {
+              "bsonType": "string"
+            }
+          }
+        },
+        "roles": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "string"
+          }
+        },
+        "taints": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "string"
+          }
+        },
+        "last_heartbeat_at": {
+          "bsonType": "date"
+        }
+      }
+    }
+  },
+  "engineers": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "full_name",
+        "email",
+        "team",
+        "timezone"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "full_name": {
+          "bsonType": "string"
+        },
+        "email": {
+          "bsonType": "string"
+        },
+        "team": {
+          "bsonType": "string"
+        },
+        "timezone": {
+          "bsonType": "string"
+        },
+        "on_call_eligible": {
+          "bsonType": "bool"
+        },
+        "joined_at": {
+          "bsonType": "date"
+        }
+      }
+    }
+  },
+  "incidents": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "affected_cluster",
+        "severity",
+        "status",
+        "summary",
+        "opened_at",
+        "assignee"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "affected_cluster": {
+          "bsonType": "string"
+        },
+        "severity": {
+          "bsonType": "string",
+          "enum": [
+            "SEV1",
+            "SEV2",
+            "SEV3",
+            "SEV4"
+          ]
+        },
+        "status": {
+          "bsonType": "string",
+          "enum": [
+            "investigating",
+            "mitigated",
+            "resolved"
+          ]
+        },
+        "summary": {
+          "bsonType": "string"
+        },
+        "opened_at": {
+          "bsonType": "date"
+        },
+        "resolved_at": {
+          "bsonType": "date"
+        },
+        "assignee": {
+          "bsonType": "objectId"
+        },
+        "minutes_to_mitigate": {
+          "bsonType": "int"
+        }
+      }
+    }
+  },
+  "node_metrics": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "host",
+        "window_start",
+        "window_end",
+        "sample_count",
+        "samples"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "host": {
+          "bsonType": "objectId"
+        },
+        "window_start": {
+          "bsonType": "date"
+        },
+        "window_end": {
+          "bsonType": "date"
+        },
+        "sample_count": {
+          "bsonType": "int"
+        },
+        "samples": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "sampled_at",
+              "cpu_pct",
+              "mem_pct",
+              "load_1m",
+              "disk_iops"
+            ],
+            "properties": {
+              "sampled_at": {
+                "bsonType": "date"
+              },
+              "cpu_pct": {
+                "bsonType": "double"
+              },
+              "mem_pct": {
+                "bsonType": "double"
+              },
+              "load_1m": {
+                "bsonType": "double"
+              },
+              "disk_iops": {
+                "bsonType": "int"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+db_08 - Radiology examinations (difficulty: Medium)
+
+DOMAIN
+The operational database of an outpatient/hospital radiology department running two sites
+(Riverside Imaging Center and Northgate Breast Center). It tracks patients, the imaging
+exams they undergo, the scanners that acquire them, the radiologists who protocol and read
+them, and the signed radiology reports.
+
+COLLECTIONS
+- patients (5 docs): demographics (mrn, name, birth date, sex, contact), a postal address,
+  and a short list of the patient's latest exams for quick display on the patient banner.
+- exams (10 docs): the full exam history. One document per accession: modality, CPT
+  procedure code, body part, priority, status, acquisition time, contrast and dose. Links to
+  the patient, the scanner and (for CT/MR/MG) the radiologist who protocoled it. Flat
+  documents with no nested data.
+- scanners (5 docs): imaging equipment (CT, 3T MR, DR X-ray room, breast ultrasound,
+  tomosynthesis mammography unit) with its DICOM station AE name, vendor details and location.
+- radiologists (5 docs): reading physicians with NPI, subspecialty and employment data. One
+  (pediatric radiology, inactive) is not referenced by any exam or report.
+- reports (5 docs): signed reports. One report may cover several linked accessions read
+  together (CT chest + CT abdomen/pelvis, CT head + CT cervical spine, diagnostic mammogram +
+  breast ultrasound). Each report lists its structured findings.
+
+PATTERNS AND HOW THEY WORK TOGETHER
+- Subset: patients.recent_exams[] holds copies of at most the 3 latest exams of the patient
+  (by performed_at, newest first). The copies are identical to documents in the exams
+  collection, which holds the full history and points back with exams.patient_id. Patient
+  MRN-0048213 has 4 exams; her oldest one (XR chest, 2025-03-11, accession RIV25-031104) is
+  only in the exams collection. Other patients have 2, 2, 1 and 1 exams, all copied.
+- Referencing: exams.patient_id -> patients, exams.scanner_id -> scanners,
+  exams.protocoled_by -> radiologists, reports.exam_ids[] -> exams (list),
+  reports.signed_by -> radiologists. No attributes of the target are copied.
+- Embedding: patients.address (single object), scanners.location (single object),
+  reports.findings[] (array of finding objects: anatomic_site, observation, optional
+  laterality and size_mm).
+No Array, ExtendedReference or Bucket pattern is present: there are no lists of plain
+scalar values, no copied parent fields next to identifiers, and no grouped time series.
+
+DIFFICULTY REQUIREMENTS APPLIED (Medium)
+- Role-named identifiers: reports.signed_by and exams.protocoled_by (both -> radiologists).
+  All identifiers are ObjectIds.
+- Mixed forms: single identifiers (exams.patient_id, exams.scanner_id, exams.protocoled_by,
+  reports.signed_by) and a list of identifiers (reports.exam_ids[]); single embedded objects
+  (patients.address, scanners.location) and an array of objects (reports.findings[]).
+- A collection with 2 patterns other than Referencing: patients (Embedding on address,
+  Subset on recent_exams[]).
+- No pattern nested inside another: embedded objects and findings hold only plain fields.
+  The exam copies inside recent_exams[] carry the exam's own identifier fields, but these
+  belong to the Subset and are not labelled or listed as relationships.
+- Different array lengths: recent_exams[] has 3/2/2/1/1 items, exam_ids[] has 2/1/2/2/1,
+  findings[] has 3/2/2/2/3.
+- Optional fields missing in some documents: patients.email, address.line2,
+  exams.protocoled_by, exams.laterality, exams.radiation_dose_mgy (absent for MR/US),
+  scanners.slice_count / field_strength_t / last_service_date, radiologists.phone,
+  reports.amended_at, findings[].laterality / size_mm.

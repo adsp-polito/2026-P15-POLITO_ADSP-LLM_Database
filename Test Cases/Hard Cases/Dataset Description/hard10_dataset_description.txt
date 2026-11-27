@@ -1,0 +1,28 @@
+db_10 - Server cluster management (difficulty: Hard)
+
+DOMAIN
+Internal platform database of a company running several Kubernetes clusters in colocation datacenters: facilities, clusters with their node pools, physical nodes, the engineers who operate them, operational incidents and host metrics.
+
+COLLECTIONS
+- datacenters (5 docs): colocation facilities with an embedded postal address and a list of compliance certifications.
+- clusters (5 docs): uses prefixed string _id values ("CL-0412" ... "CL-0478"); every reference to a cluster uses the same strings. Holds copied datacenter data, embedded node pools, admin engineer ids, installed add-ons and the latest incidents.
+- nodes (5 docs): physical machines registered in a cluster, with embedded hardware details, role labels and optional taints.
+- engineers (5 docs): platform and SRE staff. Flat documents.
+- incidents (10 docs): full incident log. Each points to the cluster it hit (affected_cluster) and the engineer handling it (assignee). Flat documents.
+- node_metrics (5 docs): one-hour windows of host samples for one node.
+
+PATTERNS AND HOW THEY FIT TOGETHER
+- Referencing: clusters.admins[] (list of engineer ids), nodes.assigned_cluster, incidents.affected_cluster, incidents.assignee, node_metrics.host.
+- ExtendedReference: clusters.datacenter {datacenter_id, name, region_code} copied from datacenters.
+- Embedding: datacenters.address, nodes.hardware (single objects); clusters.node_pools[] (array of objects).
+- Array: datacenters.certifications[], clusters.enabled_addons[], clusters.node_pools[].zones[], nodes.roles[], nodes.taints[].
+- Subset: clusters.recent_incidents[] keeps the 3 most recently opened incidents by opened_at (copies identical to incidents documents). CL-0412 has 4 incidents, so its oldest (2025-12-04) stays only in incidents. CL-0437, CL-0455 and CL-0461 have 2 each, all kept. CL-0478 was created on 2026-10-26 and has no incidents, so the field is absent.
+- Bucket: node_metrics.samples[], bounded by window_start / window_end with sample_count; 2 to 6 samples per hour, sorted by sampled_at.
+
+HARD REQUIREMENTS APPLIED
+- Role-named identifiers: admins, assigned_cluster, affected_cluster, assignee, host (5 of 6 identifier fields); datacenter_id is entity-named.
+- Mixed forms: single ids (incidents.assignee, node_metrics.host) and an id list (clusters.admins[]); single embedded objects (datacenters.address, nodes.hardware) and an array of objects (clusters.node_pools[]); prefixed string _id in clusters.
+- Collections with 2+ non-Referencing patterns: clusters (ExtendedReference, Embedding, Array x2, Subset), datacenters (Embedding, Array), nodes (Embedding, Array x2).
+- Pattern nested inside an Embedding: clusters.node_pools[].zones[] (Array).
+- Variable array lengths: certifications 1 to 4, enabled_addons 2 to 5, node_pools 2 to 3, zones 1 to 4, admins 2 to 4, roles 2 to 3, taints 1 to 2 (absent on 2 nodes), samples 2 to 6.
+- Optional fields missing in some documents: datacenters.commissioned_at, clusters.api_endpoint, clusters.recent_incidents, nodes.taints, engineers.joined_at, incidents.resolved_at, incidents.minutes_to_mitigate.

@@ -1,0 +1,89 @@
+{
+  "boats": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": ["_id", "name", "boat_type", "manufacturer", "model", "year_built", "length_m", "max_passengers", "daily_rate_eur", "license_required", "status"],
+      "properties": {
+        "_id": { "bsonType": "objectId" },
+        "name": { "bsonType": "string" },
+        "boat_type": { "bsonType": "string", "enum": ["sailboat", "motorboat", "rib", "catamaran"] },
+        "manufacturer": { "bsonType": "string" },
+        "model": { "bsonType": "string" },
+        "year_built": { "bsonType": "int" },
+        "length_m": { "bsonType": "double" },
+        "max_passengers": { "bsonType": "int" },
+        "cabins": { "bsonType": "int" },
+        "engine_hp": { "bsonType": "int" },
+        "daily_rate_eur": { "bsonType": "int" },
+        "license_required": { "bsonType": "bool" },
+        "status": { "bsonType": "string", "enum": ["available", "maintenance", "retired"] },
+        "home_berth": {
+          "bsonType": "object",
+          "required": ["marina_name", "pontoon", "berth_number", "city"],
+          "properties": {
+            "marina_name": { "bsonType": "string" },
+            "pontoon": { "bsonType": "string" },
+            "berth_number": { "bsonType": "int" },
+            "city": { "bsonType": "string" }
+          }
+        }
+      }
+    }
+  },
+  "customers": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": ["_id", "first_name", "last_name", "email", "phone", "registered_at"],
+      "properties": {
+        "_id": { "bsonType": "objectId" },
+        "first_name": { "bsonType": "string" },
+        "last_name": { "bsonType": "string" },
+        "email": { "bsonType": "string" },
+        "phone": { "bsonType": "string" },
+        "nationality": { "bsonType": "string" },
+        "date_of_birth": { "bsonType": "date" },
+        "registered_at": { "bsonType": "date" },
+        "boating_license": {
+          "bsonType": "object",
+          "required": ["license_number", "license_type", "issuing_country", "expiry_date"],
+          "properties": {
+            "license_number": { "bsonType": "string" },
+            "license_type": { "bsonType": "string", "enum": ["coastal_12nm", "unlimited", "icc"] },
+            "issuing_country": { "bsonType": "string" },
+            "expiry_date": { "bsonType": "date" }
+          }
+        }
+      }
+    }
+  },
+  "rentals": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": ["_id", "boat_id", "customer_id", "pickup_at", "return_at", "status", "passengers", "total_amount_eur", "security_deposit_eur"],
+      "properties": {
+        "_id": { "bsonType": "objectId" },
+        "boat_id": { "bsonType": "objectId" },
+        "customer_id": { "bsonType": "objectId" },
+        "pickup_at": { "bsonType": "date" },
+        "return_at": { "bsonType": "date" },
+        "status": { "bsonType": "string", "enum": ["pending", "confirmed", "completed", "cancelled"] },
+        "passengers": { "bsonType": "int" },
+        "skipper_included": { "bsonType": "bool" },
+        "skipper_fee_eur": { "bsonType": "int" },
+        "total_amount_eur": { "bsonType": "int" },
+        "security_deposit_eur": { "bsonType": "int" },
+        "notes": { "bsonType": "string" },
+        "payment": {
+          "bsonType": "object",
+          "required": ["method", "amount_paid_eur", "paid_at"],
+          "properties": {
+            "method": { "bsonType": "string", "enum": ["card", "bank_transfer", "cash"] },
+            "amount_paid_eur": { "bsonType": "int" },
+            "paid_at": { "bsonType": "date" },
+            "card_last4": { "bsonType": "string" }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,342 @@
+{
+  "members": [
+    {
+      "_id": {
+        "$oid": "6532a1f47c9e2b0d18f3a101"
+      },
+      "card_number": "LC-2048-117",
+      "first_name": "Adaeze",
+      "last_name": "Morrow",
+      "email": "adaeze.morrow@example.com",
+      "phone": "+1 555 0142",
+      "membership_type": "adult",
+      "registered_at": {
+        "$date": "2021-03-14T10:22:00Z"
+      },
+      "card_expires_on": {
+        "$date": "2027-03-14T00:00:00Z"
+      },
+      "notification_channels": [
+        "email",
+        "sms"
+      ],
+      "account_status": "active"
+    },
+    {
+      "_id": {
+        "$oid": "6532a1f47c9e2b0d18f3a102"
+      },
+      "card_number": "LC-2051-904",
+      "first_name": "Pieter",
+      "last_name": "Lindqvist",
+      "email": "p.lindqvist@example.com",
+      "membership_type": "student",
+      "registered_at": {
+        "$date": "2024-09-02T15:47:00Z"
+      },
+      "card_expires_on": {
+        "$date": "2027-09-02T00:00:00Z"
+      },
+      "notification_channels": [
+        "email",
+        "app"
+      ],
+      "account_status": "active"
+    },
+    {
+      "_id": {
+        "$oid": "6532a1f47c9e2b0d18f3a103"
+      },
+      "card_number": "LC-1987-336",
+      "first_name": "Rosalind",
+      "last_name": "Achebe-Hart",
+      "email": "rosalind.ah@example.com",
+      "phone": "+1 555 0178",
+      "membership_type": "senior",
+      "registered_at": {
+        "$date": "2016-05-21T09:05:00Z"
+      },
+      "card_expires_on": {
+        "$date": "2028-05-21T00:00:00Z"
+      },
+      "notification_channels": [
+        "email",
+        "sms",
+        "phone"
+      ],
+      "account_status": "active"
+    },
+    {
+      "_id": {
+        "$oid": "6532a1f47c9e2b0d18f3a104"
+      },
+      "card_number": "LC-2033-561",
+      "first_name": "Tomasz",
+      "last_name": "Wierzbicki",
+      "email": "tomasz.w@example.com",
+      "phone": "+1 555 0119",
+      "membership_type": "adult",
+      "registered_at": {
+        "$date": "2019-11-08T17:30:00Z"
+      },
+      "card_expires_on": {
+        "$date": "2027-11-08T00:00:00Z"
+      },
+      "notification_channels": [
+        "sms"
+      ],
+      "account_status": "active"
+    },
+    {
+      "_id": {
+        "$oid": "6532a1f47c9e2b0d18f3a105"
+      },
+      "card_number": "LC-2062-048",
+      "first_name": "Hana",
+      "last_name": "Kosugi",
+      "email": "hana.kosugi@example.com",
+      "membership_type": "student",
+      "registered_at": {
+        "$date": "2025-01-27T12:11:00Z"
+      },
+      "card_expires_on": {
+        "$date": "2027-01-27T00:00:00Z"
+      },
+      "notification_channels": [
+        "app",
+        "email"
+      ],
+      "account_status": "suspended"
+    }
+  ],
+  "books": [
+    {
+      "_id": {
+        "$oid": "6532a0e19d4c7f2a5b81c3e1"
+      },
+      "isbn": "9781804417263",
+      "book_title": "The Salt Road Ledger",
+      "author": "Marta Okonkwo-Lind",
+      "publisher": "Halvard & Price",
+      "publication_year": 2019,
+      "language": "en",
+      "format": "hardcover",
+      "subjects": [
+        "Historical fiction",
+        "Maritime trade",
+        "Family sagas"
+      ],
+      "page_count": 412,
+      "shelf_location": "FIC OKO",
+      "copies_total": 3,
+      "copies_available": 3,
+      "added_on": {
+        "$date": "2019-08-12T08:30:00Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6532a0e19d4c7f2a5b81c3e2"
+      },
+      "isbn": "9780993852140",
+      "book_title": "Practical Soil Biology",
+      "author": "Teodor Varga",
+      "publisher": "Greenfield Academic",
+      "publication_year": 2021,
+      "language": "en",
+      "format": "paperback",
+      "subjects": [
+        "Soil science",
+        "Gardening",
+        "Ecology"
+      ],
+      "page_count": 288,
+      "shelf_location": "631.4 VAR",
+      "copies_total": 2,
+      "copies_available": 1,
+      "added_on": {
+        "$date": "2021-06-03T09:15:00Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6532a0e19d4c7f2a5b81c3e3"
+      },
+      "isbn": "9781916023758",
+      "book_title": "Night Trains to Krakow",
+      "author": "Ines Halloran",
+      "publisher": "Northbank Books",
+      "publication_year": 2017,
+      "language": "en",
+      "format": "paperback",
+      "subjects": [
+        "Travel writing",
+        "Rail travel",
+        "Poland"
+      ],
+      "shelf_location": "914.38 HAL",
+      "copies_total": 1,
+      "copies_available": 1,
+      "added_on": {
+        "$date": "2018-02-19T11:40:00Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6532a0e19d4c7f2a5b81c3e4"
+      },
+      "isbn": "9781739205516",
+      "book_title": "Introduction to Data Journalism",
+      "author": "Samuel Achterberg",
+      "publisher": "Ridgeline Press",
+      "publication_year": 2022,
+      "language": "en",
+      "format": "paperback",
+      "subjects": [
+        "Journalism",
+        "Data analysis",
+        "Statistics"
+      ],
+      "page_count": 336,
+      "shelf_location": "070.4 ACH",
+      "copies_total": 2,
+      "copies_available": 1,
+      "added_on": {
+        "$date": "2022-10-07T14:05:00Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6532a0e19d4c7f2a5b81c3e5"
+      },
+      "isbn": "9788832947105",
+      "book_title": "Il giardino d'inverno",
+      "author": "Giulia Martinetti",
+      "publisher": "Edizioni Corvara",
+      "publication_year": 2020,
+      "language": "it",
+      "format": "hardcover",
+      "subjects": [
+        "Narrativa italiana",
+        "Romanzo familiare"
+      ],
+      "page_count": 254,
+      "shelf_location": "FIC-IT MAR",
+      "copies_total": 4,
+      "copies_available": 3,
+      "added_on": {
+        "$date": "2021-01-15T10:00:00Z"
+      }
+    }
+  ],
+  "loans": [
+    {
+      "_id": {
+        "$oid": "65f0b3d28a17e4c9061d7a51"
+      },
+      "member_id": {
+        "$oid": "6532a1f47c9e2b0d18f3a101"
+      },
+      "book_id": {
+        "$oid": "6532a0e19d4c7f2a5b81c3e1"
+      },
+      "branch": "Central",
+      "checked_out_at": {
+        "$date": "2026-10-02T10:14:00Z"
+      },
+      "due_at": {
+        "$date": "2026-10-23T23:59:00Z"
+      },
+      "returned_at": {
+        "$date": "2026-10-21T16:40:00Z"
+      },
+      "renewal_count": 0,
+      "status": "returned"
+    },
+    {
+      "_id": {
+        "$oid": "65f0b3d28a17e4c9061d7a52"
+      },
+      "member_id": {
+        "$oid": "6532a1f47c9e2b0d18f3a102"
+      },
+      "book_id": {
+        "$oid": "6532a0e19d4c7f2a5b81c3e2"
+      },
+      "branch": "Eastgate",
+      "checked_out_at": {
+        "$date": "2026-10-28T14:05:00Z"
+      },
+      "due_at": {
+        "$date": "2026-12-09T23:59:00Z"
+      },
+      "renewal_count": 1,
+      "status": "active"
+    },
+    {
+      "_id": {
+        "$oid": "65f0b3d28a17e4c9061d7a53"
+      },
+      "member_id": {
+        "$oid": "6532a1f47c9e2b0d18f3a103"
+      },
+      "book_id": {
+        "$oid": "6532a0e19d4c7f2a5b81c3e4"
+      },
+      "branch": "Central",
+      "checked_out_at": {
+        "$date": "2026-10-15T09:30:00Z"
+      },
+      "due_at": {
+        "$date": "2026-11-05T23:59:00Z"
+      },
+      "renewal_count": 0,
+      "status": "overdue",
+      "late_fee": 3.5
+    },
+    {
+      "_id": {
+        "$oid": "65f0b3d28a17e4c9061d7a54"
+      },
+      "member_id": {
+        "$oid": "6532a1f47c9e2b0d18f3a101"
+      },
+      "book_id": {
+        "$oid": "6532a0e19d4c7f2a5b81c3e5"
+      },
+      "branch": "Central",
+      "checked_out_at": {
+        "$date": "2026-11-10T17:22:00Z"
+      },
+      "due_at": {
+        "$date": "2026-12-01T23:59:00Z"
+      },
+      "renewal_count": 0,
+      "status": "active"
+    },
+    {
+      "_id": {
+        "$oid": "65f0b3d28a17e4c9061d7a55"
+      },
+      "member_id": {
+        "$oid": "6532a1f47c9e2b0d18f3a104"
+      },
+      "book_id": {
+        "$oid": "6532a0e19d4c7f2a5b81c3e1"
+      },
+      "branch": "Eastgate",
+      "checked_out_at": {
+        "$date": "2026-09-05T11:00:00Z"
+      },
+      "due_at": {
+        "$date": "2026-09-26T23:59:00Z"
+      },
+      "returned_at": {
+        "$date": "2026-10-01T15:12:00Z"
+      },
+      "renewal_count": 0,
+      "status": "returned",
+      "late_fee": 1.25
+    }
+  ]
+}

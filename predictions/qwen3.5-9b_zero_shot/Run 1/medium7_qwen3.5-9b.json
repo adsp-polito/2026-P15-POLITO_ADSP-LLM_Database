@@ -1,0 +1,194 @@
+{
+  "collections": [
+    "riders",
+    "service_zones",
+    "scooters",
+    "trips",
+    "scooter_telemetry"
+  ],
+  "fields": [
+    {
+      "collection": "riders",
+      "fields": [
+        "_id",
+        "email",
+        "full_name",
+        "phone",
+        "country",
+        "date_of_birth",
+        "signup_at",
+        "account_status",
+        "license_verified",
+        "rider_tier",
+        "wallet_balance_eur",
+        "notification_zones[]"
+      ]
+    },
+    {
+      "collection": "service_zones",
+      "fields": [
+        "_id",
+        "name",
+        "city",
+        "country",
+        "max_speed_kmh",
+        "parking_mode",
+        "area_km2",
+        "launched_at",
+        "active",
+        "surge_multiplier"
+      ]
+    },
+    {
+      "collection": "scooters",
+      "fields": [
+        "_id",
+        "serial_number",
+        "model",
+        "firmware_version",
+        "status",
+        "battery_pct",
+        "last_lat",
+        "last_lng",
+        "odometer_km",
+        "commissioned_at",
+        "last_serviced_at",
+        "home_zone",
+        "accessories[]"
+      ]
+    },
+    {
+      "collection": "trips",
+      "fields": [
+        "_id",
+        "rider",
+        "scooter_id",
+        "started_at",
+        "ended_at",
+        "start_lat",
+        "start_lng",
+        "end_lat",
+        "end_lng",
+        "distance_km",
+        "duration_min",
+        "unlock_fee_eur",
+        "per_minute_rate_eur",
+        "promo_code",
+        "discount_eur",
+        "fare_eur",
+        "payment_method",
+        "payment_status",
+        "rating"
+      ]
+    },
+    {
+      "collection": "scooter_telemetry",
+      "fields": [
+        "_id",
+        "vehicle",
+        "window_start",
+        "window_end",
+        "sample_count",
+        "samples[]",
+        "network"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from_field": "riders.notification_zones[]",
+      "to_collection": "service_zones"
+    },
+    {
+      "from_field": "scooters.home_zone",
+      "to_collection": "service_zones"
+    },
+    {
+      "from_field": "trips.rider",
+      "to_collection": "riders"
+    },
+    {
+      "from_field": "trips.scooter_id",
+      "to_collection": "scooters"
+    },
+    {
+      "from_field": "scooter_telemetry.vehicle",
+      "to_collection": "scooters"
+    }
+  ],
+  "patterns": [
+    {
+      "field": "riders.notification_zones[]",
+      "evidence": "Array of ObjectIds referencing service_zones documents",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.95,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.05,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "scooters.home_zone",
+      "evidence": "ObjectId referencing a service_zone document",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.98,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "trips.rider",
+      "evidence": "Embedded object containing rider_id (ObjectId), full_name, and email. While it contains a reference, the data is embedded within the trip document rather than stored in a separate 'riders_in_trips' collection, making it an embedding of a reference.",
+      "scores": {
+        "Embedding": 0.6,
+        "Referencing": 0.4,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "trips.scooter_id",
+      "evidence": "ObjectId referencing a scooter document",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.98,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "scooter_telemetry.vehicle",
+      "evidence": "Embedded object containing scooter_id (ObjectId), serial_number, and model. Similar to trips.rider, this embeds reference data directly into the telemetry document.",
+      "scores": {
+        "Embedding": 0.6,
+        "Referencing": 0.4,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "scooter_telemetry.samples[]",
+      "evidence": "Array of objects containing telemetry data points (recorded_at, battery_pct, etc.)",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.9,
+        "Bucket": 0.1
+      }
+    }
+  ],
+  "truncated": false
+}

@@ -1,0 +1,368 @@
+{
+  "artworks": [
+    {
+      "_id": {
+        "$oid": "6553a2d1f7c3e5b8a0d20201"
+      },
+      "accession_number": "1961.044",
+      "name": "Harbor at Dusk, Livorno",
+      "artist": "Giacomo Rinaldesi",
+      "year_created": 1874,
+      "medium": "Oil on canvas",
+      "materials": [
+        "linen canvas",
+        "lead white",
+        "natural resin varnish"
+      ],
+      "height_cm": 92.5,
+      "width_cm": 121.0,
+      "gallery": "Gallery 12",
+      "acquired_on": {
+        "$date": "1961-05-22T00:00:00Z"
+      },
+      "on_display": false
+    },
+    {
+      "_id": {
+        "$oid": "6553a2d1f7c3e5b8a0d20202"
+      },
+      "accession_number": "1938.112",
+      "name": "Saint Agnes with Donor",
+      "artist": "Master of the Orcia Altarpiece",
+      "year_created": 1465,
+      "medium": "Tempera and gold leaf on poplar panel",
+      "materials": [
+        "poplar panel",
+        "egg tempera",
+        "gold leaf",
+        "gesso"
+      ],
+      "height_cm": 148.0,
+      "width_cm": 86.0,
+      "depth_cm": 4.5,
+      "gallery": "Gallery 3",
+      "acquired_on": {
+        "$date": "1938-11-02T00:00:00Z"
+      },
+      "on_display": true
+    },
+    {
+      "_id": {
+        "$oid": "6553a2d1f7c3e5b8a0d20203"
+      },
+      "accession_number": "1977.019.3",
+      "name": "Study of Willows near Delft",
+      "artist": "Annelie Voskuijl",
+      "year_created": 1652,
+      "medium": "Pen and brown ink on laid paper",
+      "materials": [
+        "laid paper",
+        "iron gall ink"
+      ],
+      "height_cm": 21.3,
+      "width_cm": 30.8,
+      "acquired_on": {
+        "$date": "1977-03-15T00:00:00Z"
+      },
+      "on_display": false
+    },
+    {
+      "_id": {
+        "$oid": "6553a2d1f7c3e5b8a0d20204"
+      },
+      "accession_number": "2002.007",
+      "name": "The Ferryman",
+      "artist": "Auguste Delorme-Brac",
+      "year_created": 1898,
+      "medium": "Cast bronze on granite base",
+      "materials": [
+        "bronze",
+        "granite"
+      ],
+      "height_cm": 182.0,
+      "width_cm": 74.0,
+      "depth_cm": 61.0,
+      "gallery": "Sculpture Court",
+      "acquired_on": {
+        "$date": "2002-04-09T00:00:00Z"
+      },
+      "on_display": true
+    },
+    {
+      "_id": {
+        "$oid": "6553a2d1f7c3e5b8a0d20205"
+      },
+      "accession_number": "1989.230",
+      "name": "Portrait of Clara Weinmann",
+      "artist": "Friedrich Aldenhoven",
+      "year_created": 1911,
+      "medium": "Oil on canvas",
+      "materials": [
+        "cotton canvas",
+        "oil paint",
+        "synthetic varnish"
+      ],
+      "height_cm": 110.0,
+      "width_cm": 84.5,
+      "gallery": "Gallery 18",
+      "acquired_on": {
+        "$date": "1989-10-04T00:00:00Z"
+      },
+      "on_display": true
+    }
+  ],
+  "conservators": [
+    {
+      "_id": {
+        "$oid": "6553a1c0e8f4b2a7d9c10101"
+      },
+      "full_name": "Elena Marchetti Varga",
+      "email": "e.marchettivarga@example.com",
+      "phone": "+39 055 4120 371",
+      "studio": "Paintings Conservation",
+      "specialties": [
+        "easel paintings",
+        "varnish removal",
+        "inpainting"
+      ],
+      "hired_on": {
+        "$date": "2014-03-03T09:00:00Z"
+      },
+      "is_active": true
+    },
+    {
+      "_id": {
+        "$oid": "6553a1c0e8f4b2a7d9c10102"
+      },
+      "full_name": "Tobias Lindqvist-Hale",
+      "email": "t.lindqvisthale@example.com",
+      "studio": "Paintings Conservation",
+      "specialties": [
+        "panel paintings",
+        "wood consolidation",
+        "gilding"
+      ],
+      "hired_on": {
+        "$date": "2018-09-17T09:00:00Z"
+      },
+      "is_active": true
+    },
+    {
+      "_id": {
+        "$oid": "6553a1c0e8f4b2a7d9c10103"
+      },
+      "full_name": "Ines Okonkwo-Duarte",
+      "email": "i.okonkwoduarte@example.com",
+      "phone": "+39 055 4120 388",
+      "studio": "Paper Conservation",
+      "specialties": [
+        "works on paper",
+        "humidification and flattening"
+      ],
+      "hired_on": {
+        "$date": "2011-01-10T09:00:00Z"
+      },
+      "is_active": true
+    },
+    {
+      "_id": {
+        "$oid": "6553a1c0e8f4b2a7d9c10104"
+      },
+      "full_name": "Mathis Kerbrat",
+      "email": "m.kerbrat@example.com",
+      "phone": "+39 055 4120 402",
+      "studio": "Objects Conservation",
+      "specialties": [
+        "bronze",
+        "outdoor sculpture",
+        "corrosion inhibition"
+      ],
+      "hired_on": {
+        "$date": "2020-06-01T09:00:00Z"
+      },
+      "is_active": true
+    }
+  ],
+  "restoration_projects": [
+    {
+      "_id": {
+        "$oid": "6553a3e2a6d4f6c9b1e30301"
+      },
+      "project_code": "CONS-2024-017",
+      "artwork_id": {
+        "$oid": "6553a2d1f7c3e5b8a0d20205"
+      },
+      "conservator_id": {
+        "$oid": "6553a1c0e8f4b2a7d9c10101"
+      },
+      "status": "completed",
+      "start_date": {
+        "$date": "2024-02-12T08:30:00Z"
+      },
+      "completion_date": {
+        "$date": "2024-06-28T16:00:00Z"
+      },
+      "estimated_hours": 240,
+      "budget_eur": 14800.0,
+      "condition_issues": [
+        {
+          "location": "background, upper half",
+          "issue_type": "discoloured varnish",
+          "severity": "moderate",
+          "treatment": "solvent gel cleaning and new synthetic varnish layer"
+        },
+        {
+          "location": "sitter's left sleeve",
+          "issue_type": "blanching",
+          "severity": "minor",
+          "treatment": "regeneration with solvent vapour",
+          "notes": "Blanching limited to the dark glazes."
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "6553a3e2a6d4f6c9b1e30302"
+      },
+      "project_code": "CONS-2023-042",
+      "artwork_id": {
+        "$oid": "6553a2d1f7c3e5b8a0d20202"
+      },
+      "conservator_id": {
+        "$oid": "6553a1c0e8f4b2a7d9c10102"
+      },
+      "status": "completed",
+      "start_date": {
+        "$date": "2023-09-04T08:30:00Z"
+      },
+      "completion_date": {
+        "$date": "2024-05-17T15:30:00Z"
+      },
+      "estimated_hours": 610,
+      "budget_eur": 38500.0,
+      "condition_issues": [
+        {
+          "location": "central vertical panel join",
+          "issue_type": "split along join",
+          "severity": "severe",
+          "treatment": "realignment and gluing with sturgeon glue",
+          "notes": "Join opened during a 1950s transport."
+        },
+        {
+          "location": "gold ground around halo",
+          "issue_type": "flaking gilding",
+          "severity": "moderate",
+          "treatment": "consolidation with dilute animal glue"
+        },
+        {
+          "location": "donor figure",
+          "issue_type": "old overpaint",
+          "severity": "moderate",
+          "treatment": "mechanical removal under magnification"
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "6553a3e2a6d4f6c9b1e30303"
+      },
+      "project_code": "CONS-2025-031",
+      "artwork_id": {
+        "$oid": "6553a2d1f7c3e5b8a0d20203"
+      },
+      "conservator_id": {
+        "$oid": "6553a1c0e8f4b2a7d9c10103"
+      },
+      "status": "in_progress",
+      "start_date": {
+        "$date": "2025-09-08T08:30:00Z"
+      },
+      "estimated_hours": 95,
+      "budget_eur": 4200.0,
+      "condition_issues": [
+        {
+          "location": "full sheet",
+          "issue_type": "acidic backing board",
+          "severity": "moderate",
+          "treatment": "removal of backing board and humidification"
+        },
+        {
+          "location": "upper right corner",
+          "issue_type": "foxing",
+          "severity": "minor",
+          "treatment": "local washing on suction table"
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "6553a3e2a6d4f6c9b1e30304"
+      },
+      "project_code": "CONS-2026-008",
+      "artwork_id": {
+        "$oid": "6553a2d1f7c3e5b8a0d20201"
+      },
+      "conservator_id": {
+        "$oid": "6553a1c0e8f4b2a7d9c10101"
+      },
+      "status": "in_progress",
+      "start_date": {
+        "$date": "2026-03-02T08:30:00Z"
+      },
+      "estimated_hours": 380,
+      "budget_eur": 21600.0,
+      "condition_issues": [
+        {
+          "location": "tacking margins, all sides",
+          "issue_type": "torn tacking edges",
+          "severity": "severe",
+          "treatment": "strip lining with polyester fabric",
+          "notes": "Painting removed from its stretcher for treatment."
+        },
+        {
+          "location": "sky, upper left",
+          "issue_type": "discoloured varnish",
+          "severity": "moderate",
+          "treatment": "solvent gel cleaning"
+        },
+        {
+          "location": "lower edge",
+          "issue_type": "paint loss",
+          "severity": "minor",
+          "treatment": "chalk and glue fill with retouching"
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "6553a3e2a6d4f6c9b1e30305"
+      },
+      "project_code": "CONS-2027-002",
+      "artwork_id": {
+        "$oid": "6553a2d1f7c3e5b8a0d20204"
+      },
+      "conservator_id": {
+        "$oid": "6553a1c0e8f4b2a7d9c10104"
+      },
+      "status": "planned",
+      "start_date": {
+        "$date": "2027-04-12T08:30:00Z"
+      },
+      "estimated_hours": 160,
+      "condition_issues": [
+        {
+          "location": "lower drapery and base",
+          "issue_type": "active bronze disease",
+          "severity": "severe",
+          "treatment": "mechanical removal and benzotriazole application"
+        },
+        {
+          "location": "whole surface",
+          "issue_type": "black crust and guano",
+          "severity": "moderate",
+          "treatment": "low-pressure washing and microcrystalline wax coating"
+        }
+      ]
+    }
+  ]
+}

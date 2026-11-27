@@ -1,0 +1,569 @@
+{
+  "officers": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "badge_number",
+        "first_name",
+        "last_name",
+        "rank",
+        "email",
+        "hire_date",
+        "status",
+        "assigned_sector",
+        "languages"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "badge_number": {
+          "bsonType": "string"
+        },
+        "first_name": {
+          "bsonType": "string"
+        },
+        "last_name": {
+          "bsonType": "string"
+        },
+        "rank": {
+          "bsonType": "string",
+          "enum": [
+            "officer",
+            "senior_officer",
+            "sergeant",
+            "inspector",
+            "chief_inspector"
+          ]
+        },
+        "email": {
+          "bsonType": "string"
+        },
+        "phone": {
+          "bsonType": "string"
+        },
+        "hire_date": {
+          "bsonType": "date"
+        },
+        "status": {
+          "bsonType": "string",
+          "enum": [
+            "active",
+            "on_leave",
+            "suspended",
+            "retired"
+          ]
+        },
+        "assigned_sector": {
+          "bsonType": "string"
+        },
+        "languages": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "string"
+          }
+        },
+        "emergency_contact": {
+          "bsonType": "object",
+          "required": [
+            "full_name",
+            "relationship",
+            "phone"
+          ],
+          "properties": {
+            "full_name": {
+              "bsonType": "string"
+            },
+            "relationship": {
+              "bsonType": "string"
+            },
+            "phone": {
+              "bsonType": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "sectors": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "name",
+        "district",
+        "area_km2",
+        "resident_population",
+        "risk_level",
+        "commander",
+        "command_post"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "string"
+        },
+        "name": {
+          "bsonType": "string"
+        },
+        "district": {
+          "bsonType": "string"
+        },
+        "area_km2": {
+          "bsonType": "double"
+        },
+        "resident_population": {
+          "bsonType": "int"
+        },
+        "risk_level": {
+          "bsonType": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "commander": {
+          "bsonType": "objectId"
+        },
+        "command_post": {
+          "bsonType": "object",
+          "required": [
+            "address",
+            "postal_code",
+            "phone",
+            "open_24h",
+            "services"
+          ],
+          "properties": {
+            "address": {
+              "bsonType": "string"
+            },
+            "postal_code": {
+              "bsonType": "string"
+            },
+            "phone": {
+              "bsonType": "string"
+            },
+            "open_24h": {
+              "bsonType": "bool"
+            },
+            "services": {
+              "bsonType": "array",
+              "items": {
+                "bsonType": "string"
+              }
+            }
+          }
+        },
+        "latest_incidents": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "_id",
+              "sector_id",
+              "reported_at",
+              "category",
+              "priority",
+              "street_address",
+              "status",
+              "units_sent"
+            ],
+            "properties": {
+              "_id": {
+                "bsonType": "objectId"
+              },
+              "sector_id": {
+                "bsonType": "string"
+              },
+              "reported_at": {
+                "bsonType": "date"
+              },
+              "category": {
+                "bsonType": "string",
+                "enum": [
+                  "vehicle_break_in",
+                  "shoplifting",
+                  "street_fight",
+                  "burglary",
+                  "pickpocketing",
+                  "noise_complaint",
+                  "vandalism",
+                  "domestic_disturbance",
+                  "traffic_collision",
+                  "suspicious_person"
+                ]
+              },
+              "priority": {
+                "bsonType": "int",
+                "enum": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              "street_address": {
+                "bsonType": "string"
+              },
+              "status": {
+                "bsonType": "string",
+                "enum": [
+                  "open",
+                  "under_investigation",
+                  "closed"
+                ]
+              },
+              "units_sent": {
+                "bsonType": "int"
+              },
+              "closed_at": {
+                "bsonType": "date"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "incidents": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "sector_id",
+        "reported_at",
+        "category",
+        "priority",
+        "street_address",
+        "status",
+        "units_sent"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "sector_id": {
+          "bsonType": "string"
+        },
+        "reported_at": {
+          "bsonType": "date"
+        },
+        "category": {
+          "bsonType": "string",
+          "enum": [
+            "vehicle_break_in",
+            "shoplifting",
+            "street_fight",
+            "burglary",
+            "pickpocketing",
+            "noise_complaint",
+            "vandalism",
+            "domestic_disturbance",
+            "traffic_collision",
+            "suspicious_person"
+          ]
+        },
+        "priority": {
+          "bsonType": "int",
+          "enum": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "street_address": {
+          "bsonType": "string"
+        },
+        "status": {
+          "bsonType": "string",
+          "enum": [
+            "open",
+            "under_investigation",
+            "closed"
+          ]
+        },
+        "units_sent": {
+          "bsonType": "int"
+        },
+        "closed_at": {
+          "bsonType": "date"
+        }
+      }
+    }
+  },
+  "patrol_shifts": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "sector",
+        "crew",
+        "assigned_vehicle",
+        "shift_type",
+        "scheduled_start",
+        "scheduled_end",
+        "status",
+        "objectives"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "sector": {
+          "bsonType": "object",
+          "required": [
+            "sector_id",
+            "name",
+            "district"
+          ],
+          "properties": {
+            "sector_id": {
+              "bsonType": "string"
+            },
+            "name": {
+              "bsonType": "string"
+            },
+            "district": {
+              "bsonType": "string"
+            }
+          }
+        },
+        "crew": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "objectId"
+          }
+        },
+        "assigned_vehicle": {
+          "bsonType": "objectId"
+        },
+        "shift_type": {
+          "bsonType": "string",
+          "enum": [
+            "morning",
+            "afternoon",
+            "night"
+          ]
+        },
+        "scheduled_start": {
+          "bsonType": "date"
+        },
+        "scheduled_end": {
+          "bsonType": "date"
+        },
+        "status": {
+          "bsonType": "string",
+          "enum": [
+            "scheduled",
+            "in_progress",
+            "completed",
+            "cancelled"
+          ]
+        },
+        "objectives": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "string"
+          }
+        },
+        "equipment_issued": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "item",
+              "serial_number",
+              "quantity"
+            ],
+            "properties": {
+              "item": {
+                "bsonType": "string"
+              },
+              "serial_number": {
+                "bsonType": "string"
+              },
+              "quantity": {
+                "bsonType": "int"
+              }
+            }
+          }
+        },
+        "debrief": {
+          "bsonType": "object",
+          "required": [
+            "kilometers_driven",
+            "fuel_used_l",
+            "persons_checked",
+            "vehicles_stopped",
+            "reviewed_by"
+          ],
+          "properties": {
+            "kilometers_driven": {
+              "bsonType": "int"
+            },
+            "fuel_used_l": {
+              "bsonType": "double"
+            },
+            "persons_checked": {
+              "bsonType": "int"
+            },
+            "vehicles_stopped": {
+              "bsonType": "int"
+            },
+            "notes": {
+              "bsonType": "string"
+            },
+            "reviewed_by": {
+              "bsonType": "objectId"
+            }
+          }
+        }
+      }
+    }
+  },
+  "vehicles": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "call_sign",
+        "plate_number",
+        "make",
+        "model",
+        "model_year",
+        "vehicle_type",
+        "odometer_km",
+        "status",
+        "equipment"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "call_sign": {
+          "bsonType": "string"
+        },
+        "plate_number": {
+          "bsonType": "string"
+        },
+        "make": {
+          "bsonType": "string"
+        },
+        "model": {
+          "bsonType": "string"
+        },
+        "model_year": {
+          "bsonType": "int"
+        },
+        "vehicle_type": {
+          "bsonType": "string",
+          "enum": [
+            "sedan",
+            "suv",
+            "van",
+            "motorcycle"
+          ]
+        },
+        "odometer_km": {
+          "bsonType": "int"
+        },
+        "status": {
+          "bsonType": "string",
+          "enum": [
+            "in_service",
+            "maintenance",
+            "decommissioned"
+          ]
+        },
+        "equipment": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "string"
+          }
+        },
+        "last_service": {
+          "bsonType": "object",
+          "required": [
+            "service_date",
+            "odometer_km",
+            "workshop"
+          ],
+          "properties": {
+            "service_date": {
+              "bsonType": "date"
+            },
+            "odometer_km": {
+              "bsonType": "int"
+            },
+            "workshop": {
+              "bsonType": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "vehicle_tracks": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "vehicle_id",
+        "shift_id",
+        "period_start",
+        "period_end",
+        "point_count",
+        "points"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "vehicle_id": {
+          "bsonType": "objectId"
+        },
+        "shift_id": {
+          "bsonType": "objectId"
+        },
+        "period_start": {
+          "bsonType": "date"
+        },
+        "period_end": {
+          "bsonType": "date"
+        },
+        "point_count": {
+          "bsonType": "int"
+        },
+        "points": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "recorded_at",
+              "lat",
+              "lon",
+              "speed_kmh"
+            ],
+            "properties": {
+              "recorded_at": {
+                "bsonType": "date"
+              },
+              "lat": {
+                "bsonType": "double"
+              },
+              "lon": {
+                "bsonType": "double"
+              },
+              "speed_kmh": {
+                "bsonType": "int"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

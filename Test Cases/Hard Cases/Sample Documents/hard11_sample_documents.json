@@ -1,0 +1,1417 @@
+{
+  "aircraft": [
+    {
+      "_id": "AC-4101",
+      "registration": "EI-ZQA",
+      "type_code": "A320-214",
+      "manufacturer": "Airbus",
+      "msn": 7342,
+      "engine_type": "CFM56-5B4/3",
+      "delivery_date": {
+        "$date": "2017-03-14T00:00:00Z"
+      },
+      "home_base": "FCO",
+      "status": "active",
+      "mtow_kg": 78000,
+      "flight_hours": 31842,
+      "cycles": 18260,
+      "lessor": "Halvard Aviation Capital",
+      "seat_config": {
+        "business": 12,
+        "economy": 162
+      },
+      "cabin_features": [
+        "wifi",
+        "usb_power",
+        "mood_lighting"
+      ],
+      "recent_work_orders": [
+        {
+          "_id": {
+            "$oid": "6a1f0c2b8d4e7a93c51f0a04"
+          },
+          "wo_number": "WO-26-01893",
+          "airframe": "AC-4101",
+          "check_type": "Component change",
+          "ata_chapter": "34",
+          "station": "FCO",
+          "performed_at": {
+            "$date": "2026-10-30T23:05:00Z"
+          },
+          "labor_hours": 3.5,
+          "work_performed": "ADIRU 2 replaced after repeated NAV ADR 2 FAULT, alignment test passed",
+          "certifying_licence": "IT.66.B2.09517",
+          "reported_by": {
+            "$oid": "6731c0a4e2f1b84d9a0c1101"
+          },
+          "mel_item": "34-10-02",
+          "status": "closed"
+        },
+        {
+          "_id": {
+            "$oid": "6a1f0c2b8d4e7a93c51f0a03"
+          },
+          "wo_number": "WO-26-01544",
+          "airframe": "AC-4101",
+          "check_type": "Defect rectification",
+          "ata_chapter": "25",
+          "station": "FCO",
+          "performed_at": {
+            "$date": "2026-09-28T19:15:00Z"
+          },
+          "labor_hours": 0.8,
+          "work_performed": "Galley G2 oven 3 door latch adjusted and functionally tested",
+          "certifying_licence": "IT.66.B1.20431",
+          "reported_by": {
+            "$oid": "6731c0a4e2f1b84d9a0c1104"
+          },
+          "mel_item": "25-30-01",
+          "status": "closed"
+        },
+        {
+          "_id": {
+            "$oid": "6a1f0c2b8d4e7a93c51f0a02"
+          },
+          "wo_number": "WO-26-01107",
+          "airframe": "AC-4101",
+          "check_type": "Defect rectification",
+          "ata_chapter": "32",
+          "station": "FCO",
+          "performed_at": {
+            "$date": "2026-08-03T11:40:00Z"
+          },
+          "labor_hours": 1.5,
+          "work_performed": "No.2 main wheel assembly replaced, tread worn to limit",
+          "certifying_licence": "IT.66.B1.18802",
+          "reported_by": {
+            "$oid": "6731c0a4e2f1b84d9a0c1101"
+          },
+          "status": "closed"
+        }
+      ]
+    },
+    {
+      "_id": "AC-4102",
+      "registration": "EI-ZQB",
+      "type_code": "A321-251NX",
+      "manufacturer": "Airbus",
+      "msn": 9876,
+      "engine_type": "LEAP-1A33",
+      "delivery_date": {
+        "$date": "2021-06-02T00:00:00Z"
+      },
+      "home_base": "MXP",
+      "status": "active",
+      "mtow_kg": 97000,
+      "flight_hours": 14215,
+      "cycles": 6930,
+      "lessor": "Orvane Leasing Ltd",
+      "seat_config": {
+        "business": 20,
+        "premium_economy": 24,
+        "economy": 156
+      },
+      "cabin_features": [
+        "wifi",
+        "usb_power",
+        "ac_power",
+        "seatback_screens",
+        "mood_lighting"
+      ],
+      "recent_work_orders": [
+        {
+          "_id": {
+            "$oid": "6a1f0c2b8d4e7a93c51f0a06"
+          },
+          "wo_number": "WO-26-01689",
+          "airframe": "AC-4102",
+          "check_type": "Defect rectification",
+          "ata_chapter": "21",
+          "station": "MXP",
+          "performed_at": {
+            "$date": "2026-10-12T14:20:00Z"
+          },
+          "labor_hours": 2.5,
+          "work_performed": "Pack 1 outlet temperature sensor replaced, ground run satisfactory",
+          "certifying_licence": "IT.66.B1.21876",
+          "reported_by": {
+            "$oid": "6731c0a4e2f1b84d9a0c1102"
+          },
+          "status": "closed"
+        },
+        {
+          "_id": {
+            "$oid": "6a1f0c2b8d4e7a93c51f0a05"
+          },
+          "wo_number": "WO-26-00961",
+          "airframe": "AC-4102",
+          "check_type": "A-check",
+          "station": "MXP",
+          "performed_at": {
+            "$date": "2026-07-15T21:00:00Z"
+          },
+          "labor_hours": 52.5,
+          "work_performed": "A2 check package completed, cabin carpet section replaced row 14",
+          "certifying_licence": "IT.66.B1.21876",
+          "status": "closed"
+        }
+      ]
+    },
+    {
+      "_id": "AC-4103",
+      "registration": "EI-ZQC",
+      "type_code": "A320-251N",
+      "manufacturer": "Airbus",
+      "msn": 10215,
+      "engine_type": "LEAP-1A26",
+      "delivery_date": {
+        "$date": "2022-02-17T00:00:00Z"
+      },
+      "home_base": "FCO",
+      "status": "active",
+      "mtow_kg": 79000,
+      "flight_hours": 11376,
+      "cycles": 6018,
+      "seat_config": {
+        "business": 12,
+        "economy": 168
+      },
+      "cabin_features": [
+        "usb_power",
+        "mood_lighting"
+      ],
+      "recent_work_orders": [
+        {
+          "_id": {
+            "$oid": "6a1f0c2b8d4e7a93c51f0a08"
+          },
+          "wo_number": "WO-26-01975",
+          "airframe": "AC-4103",
+          "check_type": "Defect rectification",
+          "ata_chapter": "36",
+          "station": "FCO",
+          "performed_at": {
+            "$date": "2026-11-02T17:35:00Z"
+          },
+          "labor_hours": 4.5,
+          "work_performed": "Engine 2 bleed pressure regulating valve replaced after BLEED 2 OVERPRESS",
+          "certifying_licence": "IT.66.B1.20431",
+          "reported_by": {
+            "$oid": "6731c0a4e2f1b84d9a0c1105"
+          },
+          "mel_item": "36-11-01",
+          "status": "closed"
+        },
+        {
+          "_id": {
+            "$oid": "6a1f0c2b8d4e7a93c51f0a07"
+          },
+          "wo_number": "WO-26-00838",
+          "airframe": "AC-4103",
+          "check_type": "Defect rectification",
+          "ata_chapter": "33",
+          "station": "FCO",
+          "performed_at": {
+            "$date": "2026-06-19T08:50:00Z"
+          },
+          "labor_hours": 1.2,
+          "work_performed": "LH wing landing light lamp replaced, ops check good",
+          "certifying_licence": "IT.66.B1.18802",
+          "reported_by": {
+            "$oid": "6731c0a4e2f1b84d9a0c1103"
+          },
+          "status": "closed"
+        }
+      ]
+    },
+    {
+      "_id": "AC-4104",
+      "registration": "EI-ZQD",
+      "type_code": "ERJ 190-400",
+      "manufacturer": "Embraer",
+      "msn": 19020041,
+      "engine_type": "PW1919G",
+      "delivery_date": {
+        "$date": "2023-05-09T00:00:00Z"
+      },
+      "home_base": "NAP",
+      "status": "maintenance",
+      "mtow_kg": 61500,
+      "flight_hours": 7104,
+      "cycles": 4862,
+      "seat_config": {
+        "economy": 136
+      },
+      "cabin_features": [
+        "usb_power",
+        "wifi"
+      ],
+      "recent_work_orders": [
+        {
+          "_id": {
+            "$oid": "6a1f0c2b8d4e7a93c51f0a10"
+          },
+          "wo_number": "WO-26-01362",
+          "airframe": "AC-4104",
+          "check_type": "Component change",
+          "ata_chapter": "49",
+          "station": "NAP",
+          "performed_at": {
+            "$date": "2026-09-05T22:10:00Z"
+          },
+          "labor_hours": 7.5,
+          "work_performed": "APU starter-generator replaced at hard time limit",
+          "certifying_licence": "IT.66.B1.23140",
+          "status": "closed"
+        },
+        {
+          "_id": {
+            "$oid": "6a1f0c2b8d4e7a93c51f0a09"
+          },
+          "wo_number": "WO-26-00297",
+          "airframe": "AC-4104",
+          "check_type": "Weekly check",
+          "station": "NAP",
+          "performed_at": {
+            "$date": "2026-04-11T23:40:00Z"
+          },
+          "labor_hours": 6.5,
+          "work_performed": "Weekly check completed, tyre pressures and oil levels serviced",
+          "certifying_licence": "IT.66.B1.23140",
+          "status": "closed"
+        }
+      ]
+    }
+  ],
+  "work_orders": [
+    {
+      "_id": {
+        "$oid": "6a1f0c2b8d4e7a93c51f0a01"
+      },
+      "wo_number": "WO-26-00412",
+      "airframe": "AC-4101",
+      "check_type": "A-check",
+      "station": "FCO",
+      "performed_at": {
+        "$date": "2026-05-22T22:30:00Z"
+      },
+      "labor_hours": 46.5,
+      "work_performed": "A4 check package completed, 3 non-routine cards raised and closed",
+      "certifying_licence": "IT.66.B1.20431",
+      "status": "closed"
+    },
+    {
+      "_id": {
+        "$oid": "6a1f0c2b8d4e7a93c51f0a02"
+      },
+      "wo_number": "WO-26-01107",
+      "airframe": "AC-4101",
+      "check_type": "Defect rectification",
+      "ata_chapter": "32",
+      "station": "FCO",
+      "performed_at": {
+        "$date": "2026-08-03T11:40:00Z"
+      },
+      "labor_hours": 1.5,
+      "work_performed": "No.2 main wheel assembly replaced, tread worn to limit",
+      "certifying_licence": "IT.66.B1.18802",
+      "reported_by": {
+        "$oid": "6731c0a4e2f1b84d9a0c1101"
+      },
+      "status": "closed"
+    },
+    {
+      "_id": {
+        "$oid": "6a1f0c2b8d4e7a93c51f0a03"
+      },
+      "wo_number": "WO-26-01544",
+      "airframe": "AC-4101",
+      "check_type": "Defect rectification",
+      "ata_chapter": "25",
+      "station": "FCO",
+      "performed_at": {
+        "$date": "2026-09-28T19:15:00Z"
+      },
+      "labor_hours": 0.8,
+      "work_performed": "Galley G2 oven 3 door latch adjusted and functionally tested",
+      "certifying_licence": "IT.66.B1.20431",
+      "reported_by": {
+        "$oid": "6731c0a4e2f1b84d9a0c1104"
+      },
+      "mel_item": "25-30-01",
+      "status": "closed"
+    },
+    {
+      "_id": {
+        "$oid": "6a1f0c2b8d4e7a93c51f0a04"
+      },
+      "wo_number": "WO-26-01893",
+      "airframe": "AC-4101",
+      "check_type": "Component change",
+      "ata_chapter": "34",
+      "station": "FCO",
+      "performed_at": {
+        "$date": "2026-10-30T23:05:00Z"
+      },
+      "labor_hours": 3.5,
+      "work_performed": "ADIRU 2 replaced after repeated NAV ADR 2 FAULT, alignment test passed",
+      "certifying_licence": "IT.66.B2.09517",
+      "reported_by": {
+        "$oid": "6731c0a4e2f1b84d9a0c1101"
+      },
+      "mel_item": "34-10-02",
+      "status": "closed"
+    },
+    {
+      "_id": {
+        "$oid": "6a1f0c2b8d4e7a93c51f0a05"
+      },
+      "wo_number": "WO-26-00961",
+      "airframe": "AC-4102",
+      "check_type": "A-check",
+      "station": "MXP",
+      "performed_at": {
+        "$date": "2026-07-15T21:00:00Z"
+      },
+      "labor_hours": 52.5,
+      "work_performed": "A2 check package completed, cabin carpet section replaced row 14",
+      "certifying_licence": "IT.66.B1.21876",
+      "status": "closed"
+    },
+    {
+      "_id": {
+        "$oid": "6a1f0c2b8d4e7a93c51f0a06"
+      },
+      "wo_number": "WO-26-01689",
+      "airframe": "AC-4102",
+      "check_type": "Defect rectification",
+      "ata_chapter": "21",
+      "station": "MXP",
+      "performed_at": {
+        "$date": "2026-10-12T14:20:00Z"
+      },
+      "labor_hours": 2.5,
+      "work_performed": "Pack 1 outlet temperature sensor replaced, ground run satisfactory",
+      "certifying_licence": "IT.66.B1.21876",
+      "reported_by": {
+        "$oid": "6731c0a4e2f1b84d9a0c1102"
+      },
+      "status": "closed"
+    },
+    {
+      "_id": {
+        "$oid": "6a1f0c2b8d4e7a93c51f0a07"
+      },
+      "wo_number": "WO-26-00838",
+      "airframe": "AC-4103",
+      "check_type": "Defect rectification",
+      "ata_chapter": "33",
+      "station": "FCO",
+      "performed_at": {
+        "$date": "2026-06-19T08:50:00Z"
+      },
+      "labor_hours": 1.2,
+      "work_performed": "LH wing landing light lamp replaced, ops check good",
+      "certifying_licence": "IT.66.B1.18802",
+      "reported_by": {
+        "$oid": "6731c0a4e2f1b84d9a0c1103"
+      },
+      "status": "closed"
+    },
+    {
+      "_id": {
+        "$oid": "6a1f0c2b8d4e7a93c51f0a08"
+      },
+      "wo_number": "WO-26-01975",
+      "airframe": "AC-4103",
+      "check_type": "Defect rectification",
+      "ata_chapter": "36",
+      "station": "FCO",
+      "performed_at": {
+        "$date": "2026-11-02T17:35:00Z"
+      },
+      "labor_hours": 4.5,
+      "work_performed": "Engine 2 bleed pressure regulating valve replaced after BLEED 2 OVERPRESS",
+      "certifying_licence": "IT.66.B1.20431",
+      "reported_by": {
+        "$oid": "6731c0a4e2f1b84d9a0c1105"
+      },
+      "mel_item": "36-11-01",
+      "status": "closed"
+    },
+    {
+      "_id": {
+        "$oid": "6a1f0c2b8d4e7a93c51f0a09"
+      },
+      "wo_number": "WO-26-00297",
+      "airframe": "AC-4104",
+      "check_type": "Weekly check",
+      "station": "NAP",
+      "performed_at": {
+        "$date": "2026-04-11T23:40:00Z"
+      },
+      "labor_hours": 6.5,
+      "work_performed": "Weekly check completed, tyre pressures and oil levels serviced",
+      "certifying_licence": "IT.66.B1.23140",
+      "status": "closed"
+    },
+    {
+      "_id": {
+        "$oid": "6a1f0c2b8d4e7a93c51f0a10"
+      },
+      "wo_number": "WO-26-01362",
+      "airframe": "AC-4104",
+      "check_type": "Component change",
+      "ata_chapter": "49",
+      "station": "NAP",
+      "performed_at": {
+        "$date": "2026-09-05T22:10:00Z"
+      },
+      "labor_hours": 7.5,
+      "work_performed": "APU starter-generator replaced at hard time limit",
+      "certifying_licence": "IT.66.B1.23140",
+      "status": "closed"
+    }
+  ],
+  "crew_members": [
+    {
+      "_id": {
+        "$oid": "6731c0a4e2f1b84d9a0c1101"
+      },
+      "staff_no": "P04127",
+      "first_name": "Davide",
+      "last_name": "Lorenzetti",
+      "rank": "Captain",
+      "base": "FCO",
+      "seniority_no": 112,
+      "hire_date": {
+        "$date": "2011-04-01T00:00:00Z"
+      },
+      "email": "d.lorenzetti@example.com",
+      "phone": "+39 333 418 2290",
+      "type_rating": "A320 family",
+      "flight_hours_total": 14650,
+      "home_address": {
+        "street": "Via Appia Nuova 812",
+        "city": "Roma",
+        "postal_code": "00178",
+        "country": "IT"
+      },
+      "languages": [
+        "it",
+        "en"
+      ],
+      "licences": [
+        {
+          "kind": "ATPL(A)",
+          "number": "IT.FCL.ATPL.04127",
+          "authority": "ENAC",
+          "issued_on": {
+            "$date": "2014-09-12T00:00:00Z"
+          }
+        },
+        {
+          "kind": "Medical Class 1",
+          "number": "MED-IT-552310",
+          "authority": "ENAC AeMC Roma",
+          "issued_on": {
+            "$date": "2026-03-02T00:00:00Z"
+          },
+          "expires_on": {
+            "$date": "2027-03-31T00:00:00Z"
+          }
+        },
+        {
+          "kind": "Language proficiency",
+          "number": "LP-EN-6-04127",
+          "authority": "ENAC",
+          "issued_on": {
+            "$date": "2019-05-14T00:00:00Z"
+          }
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "6731c0a4e2f1b84d9a0c1102"
+      },
+      "staff_no": "P03381",
+      "first_name": "Chiara",
+      "last_name": "Montalbano",
+      "rank": "Captain",
+      "base": "MXP",
+      "seniority_no": 87,
+      "hire_date": {
+        "$date": "2008-10-15T00:00:00Z"
+      },
+      "email": "c.montalbano@example.com",
+      "phone": "+39 347 902 1175",
+      "type_rating": "A320 family",
+      "training_role": "TRI",
+      "flight_hours_total": 16920,
+      "home_address": {
+        "street": "Via Ludovico il Moro 41",
+        "city": "Milano",
+        "postal_code": "20143",
+        "country": "IT"
+      },
+      "languages": [
+        "it",
+        "en",
+        "es"
+      ],
+      "licences": [
+        {
+          "kind": "ATPL(A)",
+          "number": "IT.FCL.ATPL.03381",
+          "authority": "ENAC",
+          "issued_on": {
+            "$date": "2012-02-27T00:00:00Z"
+          }
+        },
+        {
+          "kind": "Medical Class 1",
+          "number": "MED-IT-498822",
+          "authority": "ENAC AeMC Milano",
+          "issued_on": {
+            "$date": "2026-06-18T00:00:00Z"
+          },
+          "expires_on": {
+            "$date": "2027-06-30T00:00:00Z"
+          }
+        },
+        {
+          "kind": "Instructor certificate TRI(A)",
+          "number": "IT.FCL.TRI.00918",
+          "authority": "ENAC",
+          "issued_on": {
+            "$date": "2023-11-06T00:00:00Z"
+          },
+          "expires_on": {
+            "$date": "2026-11-30T00:00:00Z"
+          }
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "6731c0a4e2f1b84d9a0c1103"
+      },
+      "staff_no": "P05902",
+      "first_name": "Lukas",
+      "last_name": "Brenner",
+      "rank": "Captain",
+      "base": "MXP",
+      "seniority_no": 164,
+      "hire_date": {
+        "$date": "2015-03-09T00:00:00Z"
+      },
+      "email": "l.brenner@example.com",
+      "type_rating": "A320 family",
+      "flight_hours_total": 10480,
+      "home_address": {
+        "street": "Via Carlo Noè 7",
+        "city": "Gallarate",
+        "postal_code": "21013",
+        "country": "IT"
+      },
+      "languages": [
+        "de",
+        "it",
+        "en"
+      ],
+      "licences": [
+        {
+          "kind": "ATPL(A)",
+          "number": "DE.FCL.ATPL.71406",
+          "authority": "LBA",
+          "issued_on": {
+            "$date": "2016-08-22T00:00:00Z"
+          }
+        },
+        {
+          "kind": "Medical Class 1",
+          "number": "MED-DE-203317",
+          "authority": "AeMC Frankfurt",
+          "issued_on": {
+            "$date": "2026-01-12T00:00:00Z"
+          },
+          "expires_on": {
+            "$date": "2027-01-31T00:00:00Z"
+          }
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "6731c0a4e2f1b84d9a0c1104"
+      },
+      "staff_no": "P07714",
+      "first_name": "Giulia",
+      "last_name": "Santangelo",
+      "rank": "First Officer",
+      "base": "FCO",
+      "seniority_no": 241,
+      "hire_date": {
+        "$date": "2021-09-20T00:00:00Z"
+      },
+      "email": "g.santangelo@example.com",
+      "phone": "+39 320 655 0481",
+      "type_rating": "A320 family",
+      "flight_hours_total": 2870,
+      "home_address": {
+        "street": "Via Portuense 1290",
+        "city": "Fiumicino",
+        "postal_code": "00054",
+        "country": "IT"
+      },
+      "languages": [
+        "it",
+        "en"
+      ],
+      "licences": [
+        {
+          "kind": "CPL(A)",
+          "number": "IT.FCL.CPL.17714",
+          "authority": "ENAC",
+          "issued_on": {
+            "$date": "2020-12-03T00:00:00Z"
+          }
+        },
+        {
+          "kind": "Medical Class 1",
+          "number": "MED-IT-610457",
+          "authority": "ENAC AeMC Roma",
+          "issued_on": {
+            "$date": "2026-09-08T00:00:00Z"
+          },
+          "expires_on": {
+            "$date": "2027-09-30T00:00:00Z"
+          }
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "6731c0a4e2f1b84d9a0c1105"
+      },
+      "staff_no": "P06630",
+      "first_name": "Andrea",
+      "last_name": "Pellizzari",
+      "rank": "Senior First Officer",
+      "base": "MXP",
+      "seniority_no": 198,
+      "hire_date": {
+        "$date": "2018-05-07T00:00:00Z"
+      },
+      "email": "a.pellizzari@example.com",
+      "type_rating": "A320 family",
+      "flight_hours_total": 6215,
+      "home_address": {
+        "street": "Corso Matteotti 22",
+        "city": "Busto Arsizio",
+        "postal_code": "21052",
+        "country": "IT"
+      },
+      "languages": [
+        "it",
+        "en",
+        "pt"
+      ],
+      "licences": [
+        {
+          "kind": "ATPL(A)",
+          "number": "IT.FCL.ATPL.06630",
+          "authority": "ENAC",
+          "issued_on": {
+            "$date": "2018-02-19T00:00:00Z"
+          }
+        },
+        {
+          "kind": "Medical Class 1",
+          "number": "MED-IT-587019",
+          "authority": "ENAC AeMC Milano",
+          "issued_on": {
+            "$date": "2026-04-27T00:00:00Z"
+          },
+          "expires_on": {
+            "$date": "2027-04-30T00:00:00Z"
+          }
+        },
+        {
+          "kind": "Language proficiency",
+          "number": "LP-EN-5-06630",
+          "authority": "ENAC",
+          "issued_on": {
+            "$date": "2022-10-11T00:00:00Z"
+          },
+          "expires_on": {
+            "$date": "2028-10-31T00:00:00Z"
+          }
+        }
+      ]
+    }
+  ],
+  "flights": [
+    {
+      "_id": {
+        "$oid": "6b0f7c21a9e34d58b2c6d401"
+      },
+      "flight_number": "ZQ1201",
+      "flight_date": {
+        "$date": "2026-11-16T00:00:00Z"
+      },
+      "origin": "FCO",
+      "destination": "LHR",
+      "gate": "E24",
+      "scheduled_departure": {
+        "$date": "2026-11-16T06:25:00Z"
+      },
+      "scheduled_arrival": {
+        "$date": "2026-11-16T08:50:00Z"
+      },
+      "aircraft": {
+        "aircraft_id": "AC-4101",
+        "registration": "EI-ZQA",
+        "type_code": "A320-214"
+      },
+      "pilots": [
+        {
+          "$oid": "6731c0a4e2f1b84d9a0c1101"
+        },
+        {
+          "$oid": "6731c0a4e2f1b84d9a0c1104"
+        }
+      ],
+      "dispatch_release": {
+        "released_at": {
+          "$date": "2026-11-16T05:35:00Z"
+        },
+        "block_fuel_kg": 9800,
+        "trip_fuel_kg": 6800,
+        "accepted_by": {
+          "$oid": "6731c0a4e2f1b84d9a0c1101"
+        }
+      },
+      "block_times": {
+        "off_block": {
+          "$date": "2026-11-16T06:31:00Z"
+        },
+        "takeoff": {
+          "$date": "2026-11-16T06:45:00Z"
+        },
+        "landing": {
+          "$date": "2026-11-16T08:41:00Z"
+        },
+        "on_block": {
+          "$date": "2026-11-16T08:49:00Z"
+        }
+      },
+      "load_figures": [
+        {
+          "cabin": "J",
+          "booked": 10,
+          "boarded": 9
+        },
+        {
+          "cabin": "Y",
+          "booked": 158,
+          "boarded": 151
+        }
+      ],
+      "status": "arrived"
+    },
+    {
+      "_id": {
+        "$oid": "6b0f7c21a9e34d58b2c6d402"
+      },
+      "flight_number": "ZQ1202",
+      "flight_date": {
+        "$date": "2026-11-16T00:00:00Z"
+      },
+      "origin": "LHR",
+      "destination": "FCO",
+      "scheduled_departure": {
+        "$date": "2026-11-16T09:45:00Z"
+      },
+      "scheduled_arrival": {
+        "$date": "2026-11-16T12:00:00Z"
+      },
+      "aircraft": {
+        "aircraft_id": "AC-4101",
+        "registration": "EI-ZQA",
+        "type_code": "A320-214"
+      },
+      "pilots": [
+        {
+          "$oid": "6731c0a4e2f1b84d9a0c1101"
+        },
+        {
+          "$oid": "6731c0a4e2f1b84d9a0c1104"
+        }
+      ],
+      "dispatch_release": {
+        "released_at": {
+          "$date": "2026-11-16T09:05:00Z"
+        },
+        "block_fuel_kg": 9400,
+        "trip_fuel_kg": 6500,
+        "accepted_by": {
+          "$oid": "6731c0a4e2f1b84d9a0c1101"
+        }
+      },
+      "block_times": {
+        "off_block": {
+          "$date": "2026-11-16T10:08:00Z"
+        },
+        "takeoff": {
+          "$date": "2026-11-16T10:24:00Z"
+        },
+        "landing": {
+          "$date": "2026-11-16T12:11:00Z"
+        },
+        "on_block": {
+          "$date": "2026-11-16T12:19:00Z"
+        }
+      },
+      "load_figures": [
+        {
+          "cabin": "J",
+          "booked": 12,
+          "boarded": 12
+        },
+        {
+          "cabin": "Y",
+          "booked": 149,
+          "boarded": 144
+        }
+      ],
+      "delay_minutes": 23,
+      "delay_code": "81",
+      "status": "arrived"
+    },
+    {
+      "_id": {
+        "$oid": "6b0f7c21a9e34d58b2c6d403"
+      },
+      "flight_number": "ZQ871",
+      "flight_date": {
+        "$date": "2026-11-17T00:00:00Z"
+      },
+      "origin": "MXP",
+      "destination": "MAD",
+      "gate": "A11",
+      "scheduled_departure": {
+        "$date": "2026-11-17T07:10:00Z"
+      },
+      "scheduled_arrival": {
+        "$date": "2026-11-17T09:20:00Z"
+      },
+      "aircraft": {
+        "aircraft_id": "AC-4102",
+        "registration": "EI-ZQB",
+        "type_code": "A321-251NX"
+      },
+      "pilots": [
+        {
+          "$oid": "6731c0a4e2f1b84d9a0c1102"
+        },
+        {
+          "$oid": "6731c0a4e2f1b84d9a0c1105"
+        },
+        {
+          "$oid": "6731c0a4e2f1b84d9a0c1103"
+        }
+      ],
+      "dispatch_release": {
+        "released_at": {
+          "$date": "2026-11-17T06:20:00Z"
+        },
+        "block_fuel_kg": 8700,
+        "trip_fuel_kg": 5600,
+        "accepted_by": {
+          "$oid": "6731c0a4e2f1b84d9a0c1102"
+        }
+      },
+      "block_times": {
+        "off_block": {
+          "$date": "2026-11-17T07:12:00Z"
+        },
+        "takeoff": {
+          "$date": "2026-11-17T07:27:00Z"
+        },
+        "landing": {
+          "$date": "2026-11-17T09:12:00Z"
+        },
+        "on_block": {
+          "$date": "2026-11-17T09:19:00Z"
+        }
+      },
+      "load_figures": [
+        {
+          "cabin": "J",
+          "booked": 18,
+          "boarded": 17
+        },
+        {
+          "cabin": "W",
+          "booked": 22,
+          "boarded": 21
+        },
+        {
+          "cabin": "Y",
+          "booked": 150,
+          "boarded": 146
+        }
+      ],
+      "status": "arrived"
+    },
+    {
+      "_id": {
+        "$oid": "6b0f7c21a9e34d58b2c6d404"
+      },
+      "flight_number": "ZQ872",
+      "flight_date": {
+        "$date": "2026-11-17T00:00:00Z"
+      },
+      "origin": "MAD",
+      "destination": "MXP",
+      "gate": "K82",
+      "scheduled_departure": {
+        "$date": "2026-11-17T10:05:00Z"
+      },
+      "scheduled_arrival": {
+        "$date": "2026-11-17T12:05:00Z"
+      },
+      "aircraft": {
+        "aircraft_id": "AC-4102",
+        "registration": "EI-ZQB",
+        "type_code": "A321-251NX"
+      },
+      "pilots": [
+        {
+          "$oid": "6731c0a4e2f1b84d9a0c1102"
+        },
+        {
+          "$oid": "6731c0a4e2f1b84d9a0c1105"
+        },
+        {
+          "$oid": "6731c0a4e2f1b84d9a0c1103"
+        }
+      ],
+      "dispatch_release": {
+        "released_at": {
+          "$date": "2026-11-17T09:20:00Z"
+        },
+        "block_fuel_kg": 8300,
+        "trip_fuel_kg": 5400,
+        "accepted_by": {
+          "$oid": "6731c0a4e2f1b84d9a0c1102"
+        }
+      },
+      "block_times": {
+        "off_block": {
+          "$date": "2026-11-17T10:04:00Z"
+        },
+        "takeoff": {
+          "$date": "2026-11-17T10:19:00Z"
+        },
+        "landing": {
+          "$date": "2026-11-17T11:58:00Z"
+        },
+        "on_block": {
+          "$date": "2026-11-17T12:04:00Z"
+        }
+      },
+      "load_figures": [
+        {
+          "cabin": "J",
+          "booked": 14,
+          "boarded": 14
+        },
+        {
+          "cabin": "W",
+          "booked": 19,
+          "boarded": 18
+        },
+        {
+          "cabin": "Y",
+          "booked": 141,
+          "boarded": 139
+        }
+      ],
+      "status": "arrived"
+    },
+    {
+      "_id": {
+        "$oid": "6b0f7c21a9e34d58b2c6d405"
+      },
+      "flight_number": "ZQ734",
+      "flight_date": {
+        "$date": "2026-11-18T00:00:00Z"
+      },
+      "origin": "FCO",
+      "destination": "ATH",
+      "gate": "E31",
+      "scheduled_departure": {
+        "$date": "2026-11-18T13:40:00Z"
+      },
+      "scheduled_arrival": {
+        "$date": "2026-11-18T15:50:00Z"
+      },
+      "aircraft": {
+        "aircraft_id": "AC-4103",
+        "registration": "EI-ZQC",
+        "type_code": "A320-251N"
+      },
+      "pilots": [
+        {
+          "$oid": "6731c0a4e2f1b84d9a0c1101"
+        },
+        {
+          "$oid": "6731c0a4e2f1b84d9a0c1104"
+        }
+      ],
+      "dispatch_release": {
+        "released_at": {
+          "$date": "2026-11-18T12:55:00Z"
+        },
+        "block_fuel_kg": 7100,
+        "trip_fuel_kg": 4600,
+        "accepted_by": {
+          "$oid": "6731c0a4e2f1b84d9a0c1101"
+        }
+      },
+      "block_times": {
+        "off_block": {
+          "$date": "2026-11-18T13:52:00Z"
+        },
+        "takeoff": {
+          "$date": "2026-11-18T14:06:00Z"
+        },
+        "landing": {
+          "$date": "2026-11-18T15:47:00Z"
+        },
+        "on_block": {
+          "$date": "2026-11-18T15:55:00Z"
+        }
+      },
+      "load_figures": [
+        {
+          "cabin": "J",
+          "booked": 8,
+          "boarded": 8
+        },
+        {
+          "cabin": "Y",
+          "booked": 160,
+          "boarded": 157
+        }
+      ],
+      "delay_minutes": 12,
+      "delay_code": "41",
+      "status": "arrived"
+    }
+  ],
+  "engine_trend_logs": [
+    {
+      "_id": {
+        "$oid": "6b10a3e57f2c4b91d08e5701"
+      },
+      "flight_id": {
+        "$oid": "6b0f7c21a9e34d58b2c6d401"
+      },
+      "engine_position": 1,
+      "engine_serial": "779412",
+      "window_start": {
+        "$date": "2026-11-16T06:45:00Z"
+      },
+      "window_end": {
+        "$date": "2026-11-16T08:41:00Z"
+      },
+      "sample_count": 4,
+      "samples": [
+        {
+          "recorded_at": {
+            "$date": "2026-11-16T06:45:40Z"
+          },
+          "flight_phase": "takeoff",
+          "altitude_ft": 400,
+          "n1_pct": 93.8,
+          "egt_c": 872,
+          "fuel_flow_kgh": 4920
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-16T06:58:10Z"
+          },
+          "flight_phase": "climb",
+          "altitude_ft": 18500,
+          "n1_pct": 91.2,
+          "egt_c": 801,
+          "fuel_flow_kgh": 2950
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-16T07:31:00Z"
+          },
+          "flight_phase": "cruise",
+          "altitude_ft": 37000,
+          "n1_pct": 86.4,
+          "egt_c": 668,
+          "fuel_flow_kgh": 1240
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-16T08:12:20Z"
+          },
+          "flight_phase": "cruise",
+          "altitude_ft": 37000,
+          "n1_pct": 86.1,
+          "egt_c": 664,
+          "fuel_flow_kgh": 1225
+        }
+      ],
+      "data_source": "ACMS"
+    },
+    {
+      "_id": {
+        "$oid": "6b10a3e57f2c4b91d08e5702"
+      },
+      "flight_id": {
+        "$oid": "6b0f7c21a9e34d58b2c6d401"
+      },
+      "engine_position": 2,
+      "engine_serial": "779538",
+      "window_start": {
+        "$date": "2026-11-16T06:45:00Z"
+      },
+      "window_end": {
+        "$date": "2026-11-16T08:41:00Z"
+      },
+      "sample_count": 3,
+      "samples": [
+        {
+          "recorded_at": {
+            "$date": "2026-11-16T06:45:42Z"
+          },
+          "flight_phase": "takeoff",
+          "altitude_ft": 410,
+          "n1_pct": 94.0,
+          "egt_c": 879,
+          "fuel_flow_kgh": 4960
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-16T07:31:02Z"
+          },
+          "flight_phase": "cruise",
+          "altitude_ft": 37000,
+          "n1_pct": 86.5,
+          "egt_c": 675,
+          "fuel_flow_kgh": 1251
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-16T08:12:22Z"
+          },
+          "flight_phase": "cruise",
+          "altitude_ft": 37000,
+          "n1_pct": 86.2,
+          "egt_c": 671,
+          "fuel_flow_kgh": 1236
+        }
+      ],
+      "data_source": "ACMS"
+    },
+    {
+      "_id": {
+        "$oid": "6b10a3e57f2c4b91d08e5703"
+      },
+      "flight_id": {
+        "$oid": "6b0f7c21a9e34d58b2c6d403"
+      },
+      "engine_position": 1,
+      "engine_serial": "598871",
+      "window_start": {
+        "$date": "2026-11-17T07:27:00Z"
+      },
+      "window_end": {
+        "$date": "2026-11-17T09:12:00Z"
+      },
+      "sample_count": 6,
+      "samples": [
+        {
+          "recorded_at": {
+            "$date": "2026-11-17T07:27:50Z"
+          },
+          "flight_phase": "takeoff",
+          "altitude_ft": 350,
+          "n1_pct": 92.1,
+          "egt_c": 905,
+          "fuel_flow_kgh": 5480
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-17T07:36:15Z"
+          },
+          "flight_phase": "climb",
+          "altitude_ft": 12000,
+          "n1_pct": 89.7,
+          "egt_c": 842,
+          "fuel_flow_kgh": 3310
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-17T07:49:40Z"
+          },
+          "flight_phase": "climb",
+          "altitude_ft": 29000,
+          "n1_pct": 88.9,
+          "egt_c": 790,
+          "fuel_flow_kgh": 2240
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-17T08:05:00Z"
+          },
+          "flight_phase": "cruise",
+          "altitude_ft": 36000,
+          "n1_pct": 84.2,
+          "egt_c": 642,
+          "fuel_flow_kgh": 1105
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-17T08:38:30Z"
+          },
+          "flight_phase": "cruise",
+          "altitude_ft": 36000,
+          "n1_pct": 83.9,
+          "egt_c": 638,
+          "fuel_flow_kgh": 1092
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-17T08:58:10Z"
+          },
+          "flight_phase": "descent",
+          "altitude_ft": 15000,
+          "n1_pct": 41.5,
+          "egt_c": 470,
+          "fuel_flow_kgh": 380
+        }
+      ],
+      "data_source": "QAR"
+    },
+    {
+      "_id": {
+        "$oid": "6b10a3e57f2c4b91d08e5704"
+      },
+      "flight_id": {
+        "$oid": "6b0f7c21a9e34d58b2c6d404"
+      },
+      "engine_position": 1,
+      "engine_serial": "598871",
+      "window_start": {
+        "$date": "2026-11-17T10:19:00Z"
+      },
+      "window_end": {
+        "$date": "2026-11-17T11:58:00Z"
+      },
+      "sample_count": 2,
+      "samples": [
+        {
+          "recorded_at": {
+            "$date": "2026-11-17T10:20:05Z"
+          },
+          "flight_phase": "takeoff",
+          "altitude_ft": 380,
+          "n1_pct": 92.4,
+          "egt_c": 911,
+          "fuel_flow_kgh": 5510
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-17T10:55:30Z"
+          },
+          "flight_phase": "cruise",
+          "altitude_ft": 38000,
+          "n1_pct": 84.0,
+          "egt_c": 640,
+          "fuel_flow_kgh": 1088
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "6b10a3e57f2c4b91d08e5705"
+      },
+      "flight_id": {
+        "$oid": "6b0f7c21a9e34d58b2c6d405"
+      },
+      "engine_position": 2,
+      "engine_serial": "602215",
+      "window_start": {
+        "$date": "2026-11-18T14:06:00Z"
+      },
+      "window_end": {
+        "$date": "2026-11-18T15:47:00Z"
+      },
+      "sample_count": 5,
+      "samples": [
+        {
+          "recorded_at": {
+            "$date": "2026-11-18T14:06:40Z"
+          },
+          "flight_phase": "takeoff",
+          "altitude_ft": 420,
+          "n1_pct": 90.8,
+          "egt_c": 860,
+          "fuel_flow_kgh": 4710
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-18T14:18:55Z"
+          },
+          "flight_phase": "climb",
+          "altitude_ft": 21000,
+          "n1_pct": 88.1,
+          "egt_c": 780,
+          "fuel_flow_kgh": 2480
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-18T14:41:10Z"
+          },
+          "flight_phase": "cruise",
+          "altitude_ft": 37000,
+          "n1_pct": 82.9,
+          "egt_c": 615,
+          "fuel_flow_kgh": 980
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-18T15:12:35Z"
+          },
+          "flight_phase": "cruise",
+          "altitude_ft": 37000,
+          "n1_pct": 82.6,
+          "egt_c": 611,
+          "fuel_flow_kgh": 968
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-18T15:31:20Z"
+          },
+          "flight_phase": "descent",
+          "altitude_ft": 19000,
+          "n1_pct": 39.8,
+          "egt_c": 455,
+          "fuel_flow_kgh": 340
+        }
+      ],
+      "data_source": "QAR"
+    }
+  ]
+}

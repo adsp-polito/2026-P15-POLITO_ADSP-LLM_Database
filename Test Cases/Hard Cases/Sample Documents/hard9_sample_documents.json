@@ -1,0 +1,1225 @@
+{
+  "studios": [
+    {
+      "_id": {
+        "$oid": "e226efe98f37a46bf3164d1b"
+      },
+      "name": "Lumen Ridge Studios",
+      "country": "United Kingdom",
+      "founded_year": 2009,
+      "headquarters": {
+        "street": "14 Garnet Wharf",
+        "city": "Manchester",
+        "postal_code": "M3 4JR"
+      },
+      "contact_email": "partners@lumenridge.example.com",
+      "website": "https://lumenridge.example.com"
+    },
+    {
+      "_id": {
+        "$oid": "fda44c86a91b9d79565a3abb"
+      },
+      "name": "Solenne Films",
+      "country": "France",
+      "founded_year": 1998,
+      "headquarters": {
+        "street": "27 Rue des Tanneurs",
+        "city": "Lyon",
+        "postal_code": "69002"
+      },
+      "contact_email": "distribution@solenne.example.com"
+    },
+    {
+      "_id": {
+        "$oid": "35eec78826f138a06608f92b"
+      },
+      "name": "Atlas Harbor Entertainment",
+      "country": "United States",
+      "founded_year": 2013,
+      "headquarters": {
+        "street": "880 Mercer Ave, Suite 400",
+        "city": "Burbank",
+        "postal_code": "91502"
+      },
+      "contact_email": "licensing@atlasharbor.example.com",
+      "website": "https://atlasharbor.example.com"
+    },
+    {
+      "_id": {
+        "$oid": "35214f7b14a047360d87bd01"
+      },
+      "name": "Northvale Pictures",
+      "country": "Canada",
+      "founded_year": 2016,
+      "headquarters": {
+        "street": "212 Spadina Crescent",
+        "city": "Toronto",
+        "postal_code": "M5S 2J5"
+      },
+      "contact_email": "hello@northvale.example.com"
+    },
+    {
+      "_id": {
+        "$oid": "915b1b4365117aeb42668962"
+      },
+      "name": "Kestrel & Finch Media",
+      "country": "Ireland",
+      "founded_year": 2019,
+      "headquarters": {
+        "street": "5 Hanover Quay",
+        "city": "Dublin",
+        "postal_code": "D02 VY79"
+      },
+      "contact_email": "office@kestrelfinch.example.com",
+      "website": "https://kestrelfinch.example.com"
+    }
+  ],
+  "titles": [
+    {
+      "_id": "TT-20481",
+      "display_name": "The Salt Archive",
+      "kind": "series",
+      "release_year": 2024,
+      "season_count": 2,
+      "maturity_rating": "TV-14",
+      "genres": [
+        "drama",
+        "mystery",
+        "thriller"
+      ],
+      "audio_languages": [
+        "en",
+        "fr",
+        "de",
+        "es"
+      ],
+      "available_from": {
+        "$date": "2024-10-04T00:00:00Z"
+      },
+      "studio": {
+        "studio_id": {
+          "$oid": "e226efe98f37a46bf3164d1b"
+        },
+        "name": "Lumen Ridge Studios",
+        "country": "United Kingdom"
+      },
+      "cast": [
+        {
+          "performer": "Imogen Hartwell",
+          "character": "Dr. Clara Voss",
+          "billing_order": 1
+        },
+        {
+          "performer": "Rafael Okonjo",
+          "character": "Inspector Abel Marsh",
+          "billing_order": 2
+        },
+        {
+          "performer": "Sienna Draycott",
+          "character": "Wren Halloway",
+          "billing_order": 3
+        }
+      ],
+      "recent_reviews": [
+        {
+          "_id": {
+            "$oid": "623fc8f4ad0dee852c3dc07c"
+          },
+          "rated_title": "TT-20481",
+          "author": {
+            "$oid": "908f81bfc67c3d5f5d3da0f1"
+          },
+          "rating": 4,
+          "headline": "Worth the rewatch",
+          "body": "Watched it again with the French audio track and caught details I missed the first time.",
+          "posted_at": {
+            "$date": "2026-06-27T20:15:02Z"
+          },
+          "helpful_votes": 9,
+          "contains_spoilers": false
+        },
+        {
+          "_id": {
+            "$oid": "c1861388314c5c4ec2d0394d"
+          },
+          "rated_title": "TT-20481",
+          "author": {
+            "$oid": "84f3095557d50dca08e73d92"
+          },
+          "rating": 3,
+          "headline": "Season two loses focus",
+          "body": "Still watchable, though the new subplot with the harbour police never really lands.",
+          "posted_at": {
+            "$date": "2026-01-11T11:26:40Z"
+          },
+          "helpful_votes": 17,
+          "contains_spoilers": true
+        },
+        {
+          "_id": {
+            "$oid": "6caed6c4225a277d134a7c48"
+          },
+          "rated_title": "TT-20481",
+          "author": {
+            "$oid": "b4166e55631297035b9ea763"
+          },
+          "rating": 5,
+          "headline": "Best mystery of the year",
+          "body": "Tight writing, great cast and a soundtrack that stays with you for days.",
+          "posted_at": {
+            "$date": "2025-08-19T22:03:57Z"
+          },
+          "helpful_votes": 61
+        }
+      ]
+    },
+    {
+      "_id": "TT-20517",
+      "display_name": "Paper Lanterns",
+      "kind": "movie",
+      "release_year": 2023,
+      "runtime_minutes": 112,
+      "maturity_rating": "PG-13",
+      "genres": [
+        "romance",
+        "drama"
+      ],
+      "audio_languages": [
+        "fr",
+        "en",
+        "ja"
+      ],
+      "available_from": {
+        "$date": "2023-12-15T00:00:00Z"
+      },
+      "studio": {
+        "studio_id": {
+          "$oid": "fda44c86a91b9d79565a3abb"
+        },
+        "name": "Solenne Films",
+        "country": "France"
+      },
+      "cast": [
+        {
+          "performer": "Juliette Marchand",
+          "character": "Aiko",
+          "billing_order": 1
+        },
+        {
+          "performer": "Thibault Renaud",
+          "character": "Etienne",
+          "billing_order": 2
+        }
+      ],
+      "recent_reviews": [
+        {
+          "_id": {
+            "$oid": "8c52c02ba2f0abcd14effadf"
+          },
+          "rated_title": "TT-20517",
+          "author": {
+            "$oid": "c075b4b865f1391860403f09"
+          },
+          "rating": 3,
+          "headline": "Pretty but thin",
+          "body": "Gorgeous to look at, but the story barely has enough material for its runtime.",
+          "posted_at": {
+            "$date": "2025-11-03T17:52:45Z"
+          },
+          "helpful_votes": 12,
+          "contains_spoilers": false
+        },
+        {
+          "_id": {
+            "$oid": "1ef7b88a3937cdeb24221896"
+          },
+          "rated_title": "TT-20517",
+          "author": {
+            "$oid": "43f6d77b6a51b7efc27b444e"
+          },
+          "rating": 4,
+          "headline": "Quiet and lovely",
+          "body": "A gentle film with beautiful cinematography, perfect for a rainy evening.",
+          "posted_at": {
+            "$date": "2024-02-14T21:30:18Z"
+          },
+          "helpful_votes": 24
+        }
+      ]
+    },
+    {
+      "_id": "TT-20533",
+      "display_name": "Ironwood Station",
+      "kind": "movie",
+      "release_year": 2025,
+      "runtime_minutes": 128,
+      "maturity_rating": "R",
+      "genres": [
+        "sci-fi",
+        "action",
+        "thriller",
+        "adventure"
+      ],
+      "audio_languages": [
+        "en",
+        "es",
+        "de",
+        "it",
+        "pt"
+      ],
+      "available_from": {
+        "$date": "2026-03-20T00:00:00Z"
+      },
+      "studio": {
+        "studio_id": {
+          "$oid": "35eec78826f138a06608f92b"
+        },
+        "name": "Atlas Harbor Entertainment",
+        "country": "United States"
+      },
+      "cast": [
+        {
+          "performer": "Marcus Delacroix-Hayes",
+          "character": "Commander Ruth Ellery",
+          "billing_order": 1
+        },
+        {
+          "performer": "Tova Brennan",
+          "character": "Lt. Jun Sato",
+          "billing_order": 2
+        },
+        {
+          "performer": "Owen Castellan",
+          "character": "Ferris",
+          "billing_order": 3
+        },
+        {
+          "performer": "Adaeze Moreland",
+          "character": "Station AI (voice)",
+          "billing_order": 4
+        }
+      ],
+      "recent_reviews": [
+        {
+          "_id": {
+            "$oid": "eb4a09726474dc87d8c29c59"
+          },
+          "rated_title": "TT-20533",
+          "author": {
+            "$oid": "43f6d77b6a51b7efc27b444e"
+          },
+          "rating": 2,
+          "headline": "Loud and forgettable",
+          "body": "Plenty of action, very little reason to care about anyone on board.",
+          "posted_at": {
+            "$date": "2026-09-21T13:08:51Z"
+          },
+          "helpful_votes": 6,
+          "contains_spoilers": true
+        },
+        {
+          "_id": {
+            "$oid": "02acb4812af397920471b3a5"
+          },
+          "rated_title": "TT-20533",
+          "author": {
+            "$oid": "b4166e55631297035b9ea763"
+          },
+          "rating": 5,
+          "headline": "Looks incredible in 4K",
+          "body": "The station sequences are stunning and the sound mix is excellent with a good headset.",
+          "posted_at": {
+            "$date": "2026-04-09T23:11:29Z"
+          },
+          "helpful_votes": 44,
+          "contains_spoilers": false
+        }
+      ]
+    },
+    {
+      "_id": "TT-20562",
+      "display_name": "Little Comet Club",
+      "kind": "series",
+      "release_year": 2022,
+      "season_count": 3,
+      "maturity_rating": "TV-Y7",
+      "genres": [
+        "animation",
+        "family"
+      ],
+      "audio_languages": [
+        "en",
+        "it",
+        "cs"
+      ],
+      "available_from": {
+        "$date": "2022-05-27T00:00:00Z"
+      },
+      "studio": {
+        "studio_id": {
+          "$oid": "35214f7b14a047360d87bd01"
+        },
+        "name": "Northvale Pictures",
+        "country": "Canada"
+      },
+      "cast": [
+        {
+          "performer": "Bea Fairweather",
+          "character": "Pip (voice)",
+          "billing_order": 1
+        },
+        {
+          "performer": "Kofi Asante-Lyle",
+          "character": "Captain Nimbus (voice)",
+          "billing_order": 2
+        }
+      ],
+      "recent_reviews": [
+        {
+          "_id": {
+            "$oid": "897bdf2cc56e07b4d5f0eb43"
+          },
+          "rated_title": "TT-20562",
+          "author": {
+            "$oid": "84f3095557d50dca08e73d92"
+          },
+          "rating": 4,
+          "headline": "Great for younger kids",
+          "body": "The Czech dub is surprisingly good and episodes are short enough for bedtime.",
+          "posted_at": {
+            "$date": "2026-02-17T18:20:33Z"
+          },
+          "helpful_votes": 15,
+          "contains_spoilers": false
+        },
+        {
+          "_id": {
+            "$oid": "7d337670af0d97a2581d162a"
+          },
+          "rated_title": "TT-20562",
+          "author": {
+            "$oid": "908f81bfc67c3d5f5d3da0f1"
+          },
+          "rating": 5,
+          "headline": "My son loves it",
+          "body": "Funny, kind and never annoying for the parents watching along.",
+          "posted_at": {
+            "$date": "2023-07-30T08:47:12Z"
+          },
+          "helpful_votes": 29
+        }
+      ]
+    },
+    {
+      "_id": "TT-20590",
+      "display_name": "Low Tide",
+      "kind": "movie",
+      "release_year": 2026,
+      "runtime_minutes": 97,
+      "maturity_rating": "TV-MA",
+      "genres": [
+        "crime",
+        "drama",
+        "thriller"
+      ],
+      "audio_languages": [
+        "en",
+        "es"
+      ],
+      "available_from": {
+        "$date": "2026-11-06T00:00:00Z"
+      },
+      "studio": {
+        "studio_id": {
+          "$oid": "915b1b4365117aeb42668962"
+        },
+        "name": "Kestrel & Finch Media",
+        "country": "Ireland"
+      },
+      "cast": [
+        {
+          "performer": "Niamh Calloway",
+          "character": "Orla Brady",
+          "billing_order": 1
+        },
+        {
+          "performer": "Declan Fitzmaurice",
+          "character": "Ray Donnan",
+          "billing_order": 2
+        },
+        {
+          "performer": "Saoirse Lennox",
+          "character": "Kit",
+          "billing_order": 3
+        }
+      ]
+    }
+  ],
+  "reviews": [
+    {
+      "_id": {
+        "$oid": "fba69d30e85b06f1f97929ac"
+      },
+      "rated_title": "TT-20481",
+      "author": {
+        "$oid": "c075b4b865f1391860403f09"
+      },
+      "rating": 4,
+      "headline": "Slow start, huge payoff",
+      "body": "The first two episodes drag, but the archive storyline pulls everything together by the finale.",
+      "posted_at": {
+        "$date": "2025-03-02T19:44:10Z"
+      },
+      "helpful_votes": 38,
+      "contains_spoilers": false
+    },
+    {
+      "_id": {
+        "$oid": "6caed6c4225a277d134a7c48"
+      },
+      "rated_title": "TT-20481",
+      "author": {
+        "$oid": "b4166e55631297035b9ea763"
+      },
+      "rating": 5,
+      "headline": "Best mystery of the year",
+      "body": "Tight writing, great cast and a soundtrack that stays with you for days.",
+      "posted_at": {
+        "$date": "2025-08-19T22:03:57Z"
+      },
+      "helpful_votes": 61
+    },
+    {
+      "_id": {
+        "$oid": "c1861388314c5c4ec2d0394d"
+      },
+      "rated_title": "TT-20481",
+      "author": {
+        "$oid": "84f3095557d50dca08e73d92"
+      },
+      "rating": 3,
+      "headline": "Season two loses focus",
+      "body": "Still watchable, though the new subplot with the harbour police never really lands.",
+      "posted_at": {
+        "$date": "2026-01-11T11:26:40Z"
+      },
+      "helpful_votes": 17,
+      "contains_spoilers": true
+    },
+    {
+      "_id": {
+        "$oid": "623fc8f4ad0dee852c3dc07c"
+      },
+      "rated_title": "TT-20481",
+      "author": {
+        "$oid": "908f81bfc67c3d5f5d3da0f1"
+      },
+      "rating": 4,
+      "headline": "Worth the rewatch",
+      "body": "Watched it again with the French audio track and caught details I missed the first time.",
+      "posted_at": {
+        "$date": "2026-06-27T20:15:02Z"
+      },
+      "helpful_votes": 9,
+      "contains_spoilers": false
+    },
+    {
+      "_id": {
+        "$oid": "1ef7b88a3937cdeb24221896"
+      },
+      "rated_title": "TT-20517",
+      "author": {
+        "$oid": "43f6d77b6a51b7efc27b444e"
+      },
+      "rating": 4,
+      "headline": "Quiet and lovely",
+      "body": "A gentle film with beautiful cinematography, perfect for a rainy evening.",
+      "posted_at": {
+        "$date": "2024-02-14T21:30:18Z"
+      },
+      "helpful_votes": 24
+    },
+    {
+      "_id": {
+        "$oid": "8c52c02ba2f0abcd14effadf"
+      },
+      "rated_title": "TT-20517",
+      "author": {
+        "$oid": "c075b4b865f1391860403f09"
+      },
+      "rating": 3,
+      "headline": "Pretty but thin",
+      "body": "Gorgeous to look at, but the story barely has enough material for its runtime.",
+      "posted_at": {
+        "$date": "2025-11-03T17:52:45Z"
+      },
+      "helpful_votes": 12,
+      "contains_spoilers": false
+    },
+    {
+      "_id": {
+        "$oid": "02acb4812af397920471b3a5"
+      },
+      "rated_title": "TT-20533",
+      "author": {
+        "$oid": "b4166e55631297035b9ea763"
+      },
+      "rating": 5,
+      "headline": "Looks incredible in 4K",
+      "body": "The station sequences are stunning and the sound mix is excellent with a good headset.",
+      "posted_at": {
+        "$date": "2026-04-09T23:11:29Z"
+      },
+      "helpful_votes": 44,
+      "contains_spoilers": false
+    },
+    {
+      "_id": {
+        "$oid": "eb4a09726474dc87d8c29c59"
+      },
+      "rated_title": "TT-20533",
+      "author": {
+        "$oid": "43f6d77b6a51b7efc27b444e"
+      },
+      "rating": 2,
+      "headline": "Loud and forgettable",
+      "body": "Plenty of action, very little reason to care about anyone on board.",
+      "posted_at": {
+        "$date": "2026-09-21T13:08:51Z"
+      },
+      "helpful_votes": 6,
+      "contains_spoilers": true
+    },
+    {
+      "_id": {
+        "$oid": "7d337670af0d97a2581d162a"
+      },
+      "rated_title": "TT-20562",
+      "author": {
+        "$oid": "908f81bfc67c3d5f5d3da0f1"
+      },
+      "rating": 5,
+      "headline": "My son loves it",
+      "body": "Funny, kind and never annoying for the parents watching along.",
+      "posted_at": {
+        "$date": "2023-07-30T08:47:12Z"
+      },
+      "helpful_votes": 29
+    },
+    {
+      "_id": {
+        "$oid": "897bdf2cc56e07b4d5f0eb43"
+      },
+      "rated_title": "TT-20562",
+      "author": {
+        "$oid": "84f3095557d50dca08e73d92"
+      },
+      "rating": 4,
+      "headline": "Great for younger kids",
+      "body": "The Czech dub is surprisingly good and episodes are short enough for bedtime.",
+      "posted_at": {
+        "$date": "2026-02-17T18:20:33Z"
+      },
+      "helpful_votes": 15,
+      "contains_spoilers": false
+    }
+  ],
+  "subscribers": [
+    {
+      "_id": {
+        "$oid": "908f81bfc67c3d5f5d3da0f1"
+      },
+      "email": "marta.villeneuve@example.com",
+      "account_holder": "Marta Villeneuve",
+      "signup_date": {
+        "$date": "2021-04-18T09:12:44Z"
+      },
+      "status": "active",
+      "billing_address": {
+        "street": "Via Nizza 112",
+        "city": "Torino",
+        "postal_code": "10126",
+        "country": "IT"
+      },
+      "plan": {
+        "plan_id": {
+          "$oid": "6728fc2073df53273dce81b9"
+        },
+        "name": "Family",
+        "monthly_price": 19.99
+      },
+      "profiles": [
+        {
+          "profile_name": "Marta",
+          "is_kids": false,
+          "maturity_limit": "TV-MA",
+          "preferred_languages": [
+            "it",
+            "en",
+            "fr"
+          ]
+        },
+        {
+          "profile_name": "Leo",
+          "is_kids": true,
+          "maturity_limit": "TV-Y7",
+          "preferred_languages": [
+            "it",
+            "en"
+          ]
+        },
+        {
+          "profile_name": "Nonna",
+          "is_kids": false,
+          "maturity_limit": "TV-14",
+          "preferred_languages": [
+            "it"
+          ]
+        }
+      ],
+      "watchlist": [
+        "TT-20590",
+        "TT-20533",
+        "TT-20562"
+      ],
+      "marketing_opt_in": true
+    },
+    {
+      "_id": {
+        "$oid": "b4166e55631297035b9ea763"
+      },
+      "email": "o.lindqvist@example.com",
+      "account_holder": "Oskar Lindqvist",
+      "signup_date": {
+        "$date": "2023-01-07T21:40:03Z"
+      },
+      "status": "active",
+      "billing_address": {
+        "street": "Hornsgatan 58",
+        "city": "Stockholm",
+        "postal_code": "118 21",
+        "country": "SE"
+      },
+      "plan": {
+        "plan_id": {
+          "$oid": "70ef5187e87c56f524473b20"
+        },
+        "name": "Premium",
+        "monthly_price": 16.99
+      },
+      "profiles": [
+        {
+          "profile_name": "Oskar",
+          "is_kids": false,
+          "maturity_limit": "TV-MA",
+          "preferred_languages": [
+            "sv",
+            "en"
+          ]
+        },
+        {
+          "profile_name": "Ingrid",
+          "is_kids": false,
+          "maturity_limit": "TV-MA",
+          "preferred_languages": [
+            "sv",
+            "en",
+            "de",
+            "no"
+          ]
+        }
+      ],
+      "watchlist": [
+        "TT-20481",
+        "TT-20517"
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "c075b4b865f1391860403f09"
+      },
+      "email": "priya.raghunathan@example.com",
+      "account_holder": "Priya Raghunathan",
+      "signup_date": {
+        "$date": "2020-09-29T14:05:51Z"
+      },
+      "status": "active",
+      "billing_address": {
+        "street": "41 Alder Road",
+        "city": "Leeds",
+        "postal_code": "LS6 2BX",
+        "country": "GB"
+      },
+      "plan": {
+        "plan_id": {
+          "$oid": "c2f8f81f1b09151b1eb9c8cf"
+        },
+        "name": "Standard",
+        "monthly_price": 10.99
+      },
+      "profiles": [
+        {
+          "profile_name": "Priya",
+          "is_kids": false,
+          "maturity_limit": "TV-MA",
+          "preferred_languages": [
+            "en",
+            "ta"
+          ]
+        },
+        {
+          "profile_name": "Dev",
+          "is_kids": false,
+          "maturity_limit": "TV-14",
+          "preferred_languages": [
+            "en",
+            "hi",
+            "ta"
+          ]
+        }
+      ],
+      "watchlist": [
+        "TT-20533",
+        "TT-20481",
+        "TT-20590",
+        "TT-20517"
+      ],
+      "marketing_opt_in": false
+    },
+    {
+      "_id": {
+        "$oid": "43f6d77b6a51b7efc27b444e"
+      },
+      "email": "lucien.ardant@example.com",
+      "account_holder": "Lucien Ardant",
+      "signup_date": {
+        "$date": "2024-12-02T18:22:10Z"
+      },
+      "status": "past_due",
+      "billing_address": {
+        "street": "9 Rue Saint-Jean",
+        "city": "Bordeaux",
+        "postal_code": "33000",
+        "country": "FR"
+      },
+      "plan": {
+        "plan_id": {
+          "$oid": "6b58194211d7d3cfda67bf03"
+        },
+        "name": "Basic with Ads",
+        "monthly_price": 5.99
+      },
+      "profiles": [
+        {
+          "profile_name": "Lucien",
+          "is_kids": false,
+          "maturity_limit": "TV-MA",
+          "preferred_languages": [
+            "fr",
+            "en"
+          ]
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "84f3095557d50dca08e73d92"
+      },
+      "email": "hana.kovar@example.com",
+      "account_holder": "Hana Kovar",
+      "signup_date": {
+        "$date": "2022-06-14T07:58:36Z"
+      },
+      "status": "active",
+      "billing_address": {
+        "street": "Vinohradska 77",
+        "city": "Praha",
+        "postal_code": "130 00",
+        "country": "CZ"
+      },
+      "plan": {
+        "plan_id": {
+          "$oid": "70ef5187e87c56f524473b20"
+        },
+        "name": "Premium",
+        "monthly_price": 16.99
+      },
+      "profiles": [
+        {
+          "profile_name": "Hana",
+          "is_kids": false,
+          "maturity_limit": "TV-MA",
+          "preferred_languages": [
+            "cs",
+            "en",
+            "de"
+          ]
+        },
+        {
+          "profile_name": "Tomas",
+          "is_kids": false,
+          "maturity_limit": "TV-MA",
+          "preferred_languages": [
+            "cs",
+            "sk"
+          ]
+        },
+        {
+          "profile_name": "Ema",
+          "is_kids": true,
+          "maturity_limit": "TV-Y7",
+          "preferred_languages": [
+            "cs",
+            "en"
+          ]
+        }
+      ],
+      "watchlist": [
+        "TT-20562",
+        "TT-20590"
+      ],
+      "marketing_opt_in": true
+    }
+  ],
+  "plans": [
+    {
+      "_id": {
+        "$oid": "6b58194211d7d3cfda67bf03"
+      },
+      "name": "Basic with Ads",
+      "monthly_price": 5.99,
+      "currency": "EUR",
+      "max_streams": 1,
+      "max_resolution": "720p",
+      "ad_supported": true,
+      "features": [
+        "mobile_app",
+        "web_player"
+      ],
+      "available_since": {
+        "$date": "2022-11-01T00:00:00Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "c2f8f81f1b09151b1eb9c8cf"
+      },
+      "name": "Standard",
+      "monthly_price": 10.99,
+      "currency": "EUR",
+      "max_streams": 2,
+      "max_resolution": "1080p",
+      "ad_supported": false,
+      "features": [
+        "mobile_app",
+        "web_player",
+        "offline_downloads"
+      ],
+      "available_since": {
+        "$date": "2019-03-15T00:00:00Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "70ef5187e87c56f524473b20"
+      },
+      "name": "Premium",
+      "monthly_price": 16.99,
+      "currency": "EUR",
+      "max_streams": 4,
+      "max_resolution": "2160p",
+      "ad_supported": false,
+      "features": [
+        "mobile_app",
+        "web_player",
+        "offline_downloads",
+        "spatial_audio",
+        "hdr10"
+      ],
+      "available_since": {
+        "$date": "2019-03-15T00:00:00Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6728fc2073df53273dce81b9"
+      },
+      "name": "Family",
+      "monthly_price": 19.99,
+      "currency": "EUR",
+      "max_streams": 5,
+      "max_resolution": "2160p",
+      "ad_supported": false,
+      "features": [
+        "mobile_app",
+        "web_player",
+        "offline_downloads",
+        "kids_profiles"
+      ],
+      "available_since": {
+        "$date": "2024-06-01T00:00:00Z"
+      }
+    }
+  ],
+  "playback_telemetry": [
+    {
+      "_id": {
+        "$oid": "d12912dc10168d6d12e4210f"
+      },
+      "account": {
+        "$oid": "908f81bfc67c3d5f5d3da0f1"
+      },
+      "content": "TT-20590",
+      "device_type": "smart_tv",
+      "window_start": {
+        "$date": "2026-11-14T20:00:00Z"
+      },
+      "window_end": {
+        "$date": "2026-11-14T20:59:59Z"
+      },
+      "event_count": 4,
+      "heartbeats": [
+        {
+          "recorded_at": {
+            "$date": "2026-11-14T20:12:00Z"
+          },
+          "position_sec": 0,
+          "bitrate_kbps": 8200,
+          "buffer_ms": 1200
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-14T20:17:00Z"
+          },
+          "position_sec": 300,
+          "bitrate_kbps": 15600,
+          "buffer_ms": 4100
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-14T20:22:00Z"
+          },
+          "position_sec": 600,
+          "bitrate_kbps": 15800,
+          "buffer_ms": 4300
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-14T20:27:00Z"
+          },
+          "position_sec": 900,
+          "bitrate_kbps": 15800,
+          "buffer_ms": 4200
+        }
+      ],
+      "cdn_region": "eu-south-1"
+    },
+    {
+      "_id": {
+        "$oid": "c8d40ad88ed22098c2489b7f"
+      },
+      "account": {
+        "$oid": "b4166e55631297035b9ea763"
+      },
+      "content": "TT-20481",
+      "device_type": "web",
+      "window_start": {
+        "$date": "2026-11-15T21:00:00Z"
+      },
+      "window_end": {
+        "$date": "2026-11-15T21:59:59Z"
+      },
+      "event_count": 2,
+      "heartbeats": [
+        {
+          "recorded_at": {
+            "$date": "2026-11-15T21:40:00Z"
+          },
+          "position_sec": 1820,
+          "bitrate_kbps": 6100,
+          "buffer_ms": 2300
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-15T21:45:00Z"
+          },
+          "position_sec": 2120,
+          "bitrate_kbps": 6400,
+          "buffer_ms": 2600
+        }
+      ],
+      "cdn_region": "eu-north-1"
+    },
+    {
+      "_id": {
+        "$oid": "6b418557ee1ba4c0942a60c2"
+      },
+      "account": {
+        "$oid": "84f3095557d50dca08e73d92"
+      },
+      "content": "TT-20562",
+      "device_type": "tablet",
+      "window_start": {
+        "$date": "2026-11-16T17:00:00Z"
+      },
+      "window_end": {
+        "$date": "2026-11-16T17:59:59Z"
+      },
+      "event_count": 6,
+      "heartbeats": [
+        {
+          "recorded_at": {
+            "$date": "2026-11-16T17:03:00Z"
+          },
+          "position_sec": 0,
+          "bitrate_kbps": 3500,
+          "buffer_ms": 900
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-16T17:08:00Z"
+          },
+          "position_sec": 300,
+          "bitrate_kbps": 4800,
+          "buffer_ms": 1900
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-16T17:13:00Z"
+          },
+          "position_sec": 600,
+          "bitrate_kbps": 4800,
+          "buffer_ms": 2000
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-16T17:18:00Z"
+          },
+          "position_sec": 900,
+          "bitrate_kbps": 4700,
+          "buffer_ms": 1800
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-16T17:23:00Z"
+          },
+          "position_sec": 1200,
+          "bitrate_kbps": 4900,
+          "buffer_ms": 2100
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-16T17:28:00Z"
+          },
+          "position_sec": 1500,
+          "bitrate_kbps": 4900,
+          "buffer_ms": 2200
+        }
+      ],
+      "cdn_region": "eu-central-1"
+    },
+    {
+      "_id": {
+        "$oid": "ca75c4e2bb7697fb2c2af976"
+      },
+      "account": {
+        "$oid": "c075b4b865f1391860403f09"
+      },
+      "content": "TT-20533",
+      "device_type": "mobile",
+      "window_start": {
+        "$date": "2026-11-18T07:00:00Z"
+      },
+      "window_end": {
+        "$date": "2026-11-18T07:59:59Z"
+      },
+      "event_count": 3,
+      "heartbeats": [
+        {
+          "recorded_at": {
+            "$date": "2026-11-18T07:31:00Z"
+          },
+          "position_sec": 2410,
+          "bitrate_kbps": 2200,
+          "buffer_ms": 700
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-18T07:36:00Z"
+          },
+          "position_sec": 2710,
+          "bitrate_kbps": 1800,
+          "buffer_ms": 350
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-18T07:41:00Z"
+          },
+          "position_sec": 3010,
+          "bitrate_kbps": 2400,
+          "buffer_ms": 800
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "22133af7b190cea9c3a04ce8"
+      },
+      "account": {
+        "$oid": "43f6d77b6a51b7efc27b444e"
+      },
+      "content": "TT-20517",
+      "device_type": "smart_tv",
+      "window_start": {
+        "$date": "2026-11-19T22:00:00Z"
+      },
+      "window_end": {
+        "$date": "2026-11-19T22:59:59Z"
+      },
+      "event_count": 5,
+      "heartbeats": [
+        {
+          "recorded_at": {
+            "$date": "2026-11-19T22:05:00Z"
+          },
+          "position_sec": 0,
+          "bitrate_kbps": 2900,
+          "buffer_ms": 1000
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-19T22:10:00Z"
+          },
+          "position_sec": 300,
+          "bitrate_kbps": 3000,
+          "buffer_ms": 1500
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-19T22:15:00Z"
+          },
+          "position_sec": 600,
+          "bitrate_kbps": 3000,
+          "buffer_ms": 1600
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-19T22:20:00Z"
+          },
+          "position_sec": 900,
+          "bitrate_kbps": 2950,
+          "buffer_ms": 1500
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-19T22:25:00Z"
+          },
+          "position_sec": 1200,
+          "bitrate_kbps": 3000,
+          "buffer_ms": 1600
+        }
+      ],
+      "cdn_region": "eu-west-3"
+    }
+  ]
+}

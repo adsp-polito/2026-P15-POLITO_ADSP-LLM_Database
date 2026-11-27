@@ -1,0 +1,28 @@
+db_09 - Multimedia streaming platform (difficulty: Hard)
+
+DOMAIN
+Backend database of a subscription video-on-demand service (movies and series, household accounts with viewer profiles, user reviews and player telemetry). Prices are monthly, in EUR.
+
+COLLECTIONS
+- studios (5 docs): production companies that license content. headquarters is an embedded address.
+- titles (5 docs): the catalog. Uses prefixed string _id values ("TT-20481" ... "TT-20590"); every reference to a title uses the same strings. Carries copied studio data, embedded cast, genre and audio-language lists, and the three newest reviews.
+- reviews (10 docs): full set of user reviews. Each points to the reviewed title (rated_title) and to the writing subscriber (author). Flat documents, no nested data.
+- subscribers (5 docs): household accounts with billing address, copied plan data, embedded viewer profiles and a watchlist of title ids.
+- plans (4 docs): subscription tiers with price, stream limits, resolution and a list of feature flags.
+- playback_telemetry (5 docs): one-hour windows of player heartbeats for one account playing one title.
+
+PATTERNS AND HOW THEY FIT TOGETHER
+- Referencing: reviews.rated_title, reviews.author, subscribers.watchlist[] (list of ids), playback_telemetry.account, playback_telemetry.content.
+- ExtendedReference: titles.studio {studio_id, name, country} copied from studios; subscribers.plan {plan_id, name, monthly_price} copied from plans.
+- Embedding: studios.headquarters, subscribers.billing_address (single objects); titles.cast[], subscribers.profiles[] (arrays of objects).
+- Array: titles.genres[], titles.audio_languages[], plans.features[], subscribers.profiles[].preferred_languages[].
+- Subset: titles.recent_reviews[] keeps the newest 3 reviews by posted_at (copies identical to reviews documents). TT-20481 has 4 reviews, so its oldest (2025-03-02) stays only in reviews. The other reviewed titles have 2 reviews each, all kept. TT-20590 is a new release (available 2026-11-06) with no reviews, so the field is absent.
+- Bucket: playback_telemetry.heartbeats[], bounded by window_start / window_end with event_count; 2 to 6 heartbeats per window, sorted by recorded_at, every 5 minutes.
+
+HARD REQUIREMENTS APPLIED
+- Role-named identifiers: rated_title, author, watchlist, account, content (5 of 7 identifier fields); studio_id and plan_id are entity-named.
+- Mixed forms: single ids (reviews.author, playback_telemetry.content) and an id list (subscribers.watchlist[]); single embedded objects (headquarters, billing_address) and arrays of objects (cast[], profiles[]); prefixed string _id in titles.
+- Collections with 2+ non-Referencing patterns: titles (ExtendedReference, Embedding, Array x2, Subset), subscribers (Embedding x2, ExtendedReference, Array), studios has only Embedding.
+- Pattern nested inside an Embedding: subscribers.profiles[].preferred_languages[] (Array).
+- Variable array lengths: genres 2 to 4, audio_languages 2 to 5, features 2 to 5, profiles 1 to 3, preferred_languages 1 to 4, watchlist 2 to 4 (absent for one subscriber), heartbeats 2 to 6.
+- Optional fields missing in some documents: studios.website, titles.season_count / runtime_minutes (series vs movie), titles.recent_reviews, reviews.contains_spoilers, subscribers.watchlist, subscribers.marketing_opt_in, playback_telemetry.cdn_region.
