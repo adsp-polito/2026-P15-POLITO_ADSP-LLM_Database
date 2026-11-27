@@ -1,0 +1,832 @@
+{
+  "journalists": [
+    {
+      "_id": {
+        "$oid": "642322ffbce9687c7d8282b9"
+      },
+      "full_name": "Clara Bertolini",
+      "email": "c.bertolini@example.com",
+      "desk": "politics",
+      "hired_at": {
+        "$date": "2014-09-01T00:00:00Z"
+      },
+      "contact": {
+        "phone": "+39 011 555 0142",
+        "x_handle": "@cbertolini",
+        "office": "Torino, 3rd floor"
+      },
+      "beats": [
+        "parliament",
+        "regional elections",
+        "EU affairs"
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "7fdcf5a3086d0ff41d54bf36"
+      },
+      "full_name": "Tobias Wrenfield",
+      "email": "t.wrenfield@example.com",
+      "desk": "business",
+      "hired_at": {
+        "$date": "2018-02-12T00:00:00Z"
+      },
+      "contact": {
+        "phone": "+39 02 555 0177",
+        "office": "Milano bureau"
+      },
+      "beats": [
+        "energy",
+        "banking"
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "bf56caa7cdd65b943ff7f35c"
+      },
+      "full_name": "Nadia El-Sayed",
+      "email": "n.elsayed@example.com",
+      "desk": "world",
+      "hired_at": {
+        "$date": "2020-06-15T00:00:00Z"
+      },
+      "contact": {
+        "phone": "+39 06 555 0119",
+        "x_handle": "@nadia_reports",
+        "office": "Roma bureau"
+      },
+      "beats": [
+        "Middle East",
+        "migration",
+        "humanitarian aid",
+        "diplomacy"
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "0f51fb87e785c1da88dc2e7e"
+      },
+      "full_name": "Rocco Fantini",
+      "email": "r.fantini@example.com",
+      "desk": "sport",
+      "hired_at": {
+        "$date": "2011-08-22T00:00:00Z"
+      },
+      "contact": {
+        "phone": "+39 011 555 0164",
+        "x_handle": "@roccofantini",
+        "office": "Torino, sports desk"
+      },
+      "beats": [
+        "Serie A",
+        "cycling"
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "b5d999f8bedb0eea4043acaa"
+      },
+      "full_name": "Eleni Markou",
+      "email": "e.markou@example.com",
+      "desk": "science",
+      "hired_at": {
+        "$date": "2022-01-10T00:00:00Z"
+      },
+      "contact": {
+        "phone": "+39 011 555 0190",
+        "office": "Torino, 2nd floor"
+      },
+      "beats": [
+        "climate",
+        "space",
+        "public health"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "_id": {
+        "$oid": "f2d0d654e6e881ab3eb06321"
+      },
+      "name": "Politics",
+      "slug": "politics",
+      "editor": {
+        "$oid": "642322ffbce9687c7d8282b9"
+      },
+      "display_order": 1,
+      "is_paywalled": false
+    },
+    {
+      "_id": {
+        "$oid": "e9fa30058c5468818d9b598a"
+      },
+      "name": "Business",
+      "slug": "business",
+      "editor": {
+        "$oid": "7fdcf5a3086d0ff41d54bf36"
+      },
+      "display_order": 3,
+      "is_paywalled": true
+    },
+    {
+      "_id": {
+        "$oid": "42fbaa3da94a1bfdec6bb725"
+      },
+      "name": "World",
+      "slug": "world",
+      "editor": {
+        "$oid": "bf56caa7cdd65b943ff7f35c"
+      },
+      "display_order": 2,
+      "is_paywalled": false
+    },
+    {
+      "_id": {
+        "$oid": "219e4731e894d08ddf441391"
+      },
+      "name": "Sport",
+      "slug": "sport",
+      "editor": {
+        "$oid": "0f51fb87e785c1da88dc2e7e"
+      },
+      "display_order": 4,
+      "is_paywalled": false,
+      "sponsor_label": "Presented by Velatto Energy"
+    }
+  ],
+  "articles": [
+    {
+      "_id": {
+        "$oid": "70bdd458cf515e89450cff6c"
+      },
+      "headline": "Budget 2027: where the government plans to cut and where it will spend",
+      "slug": "budget-2027-cuts-and-spending",
+      "section": {
+        "$oid": "f2d0d654e6e881ab3eb06321"
+      },
+      "contributors": [
+        {
+          "$oid": "642322ffbce9687c7d8282b9"
+        },
+        {
+          "$oid": "7fdcf5a3086d0ff41d54bf36"
+        }
+      ],
+      "status": "published",
+      "published_at": {
+        "$date": "2026-10-13T21:00:00Z"
+      },
+      "updated_at": {
+        "$date": "2026-10-14T10:30:00Z"
+      },
+      "word_count": 1840,
+      "is_premium": false,
+      "keywords": [
+        "budget",
+        "deficit",
+        "regions",
+        "tax"
+      ],
+      "media": [
+        {
+          "kind": "image",
+          "url": "https://cdn.example.com/img/2026/10/budget-parliament.jpg",
+          "caption": "The finance minister presents the draft in the Chamber",
+          "credit": "Paolo Grimaldi"
+        },
+        {
+          "kind": "chart",
+          "url": "https://cdn.example.com/charts/2026/10/budget-breakdown.svg",
+          "caption": "Spending changes by ministry, in billions of euros",
+          "credit": "Newsroom graphics"
+        }
+      ],
+      "recent_comments": [
+        {
+          "_id": {
+            "$oid": "0a307edb2215e23fb06a0212"
+          },
+          "article": {
+            "$oid": "70bdd458cf515e89450cff6c"
+          },
+          "commenter": {
+            "$oid": "e01a39ed2a4a532d28b29d66"
+          },
+          "body": "Same promises every autumn.",
+          "posted_at": {
+            "$date": "2026-10-15T08:27:00Z"
+          },
+          "upvotes": 5,
+          "flagged": true
+        },
+        {
+          "_id": {
+            "$oid": "824f7cea56a75e562766efb0"
+          },
+          "article": {
+            "$oid": "70bdd458cf515e89450cff6c"
+          },
+          "commenter": {
+            "$oid": "3c06fdccd5be7e02656b9638"
+          },
+          "body": "Interesting, but the deficit forecast seems optimistic compared to the central bank.",
+          "posted_at": {
+            "$date": "2026-10-14T12:03:00Z"
+          },
+          "upvotes": 17,
+          "flagged": false
+        },
+        {
+          "_id": {
+            "$oid": "3cc5edbd807cb663dd13b68e"
+          },
+          "article": {
+            "$oid": "70bdd458cf515e89450cff6c"
+          },
+          "commenter": {
+            "$oid": "e83fbc1417da48448d6b3be4"
+          },
+          "body": "The regional transfer cuts will hit small towns hardest, worth a follow-up.",
+          "posted_at": {
+            "$date": "2026-10-14T09:15:00Z"
+          },
+          "upvotes": 21
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "ea4ac50382b9db32c5e226f8"
+      },
+      "headline": "Why your gas bill is rising again this winter",
+      "slug": "gas-bill-rising-winter",
+      "section": {
+        "$oid": "e9fa30058c5468818d9b598a"
+      },
+      "contributors": [
+        {
+          "$oid": "7fdcf5a3086d0ff41d54bf36"
+        }
+      ],
+      "status": "published",
+      "published_at": {
+        "$date": "2026-11-03T06:00:00Z"
+      },
+      "word_count": 1220,
+      "is_premium": true,
+      "keywords": [
+        "energy",
+        "gas prices",
+        "inflation"
+      ],
+      "media": [
+        {
+          "kind": "chart",
+          "url": "https://cdn.example.com/charts/2026/11/ttf-prices.svg",
+          "caption": "TTF wholesale price, euro per MWh",
+          "credit": "Newsroom graphics"
+        },
+        {
+          "kind": "image",
+          "url": "https://cdn.example.com/img/2026/11/gas-meter.jpg",
+          "caption": "A residential gas meter in Milano",
+          "credit": "Giulia Sarti"
+        },
+        {
+          "kind": "video",
+          "url": "https://cdn.example.com/video/2026/11/bill-explainer.mp4",
+          "caption": "Explainer: how the bill is calculated",
+          "credit": "Video desk"
+        }
+      ],
+      "recent_comments": [
+        {
+          "_id": {
+            "$oid": "042eaf6107d20c8c4585e830"
+          },
+          "article": {
+            "$oid": "ea4ac50382b9db32c5e226f8"
+          },
+          "commenter": {
+            "$oid": "e3af75be7f50b98e777121fe"
+          },
+          "body": "Bills already went up 18% here in Torino.",
+          "posted_at": {
+            "$date": "2026-11-04T07:11:00Z"
+          },
+          "upvotes": 9
+        },
+        {
+          "_id": {
+            "$oid": "5dfc10d675c8ef8a6ea16112"
+          },
+          "article": {
+            "$oid": "ea4ac50382b9db32c5e226f8"
+          },
+          "commenter": {
+            "$oid": "3c06fdccd5be7e02656b9638"
+          },
+          "body": "Great breakdown of the hedging positions, the chart helped a lot.",
+          "posted_at": {
+            "$date": "2026-11-03T16:50:00Z"
+          },
+          "upvotes": 12,
+          "flagged": false
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "f172eb9c888e4d70b46c62c8"
+      },
+      "headline": "At the border crossing, aid convoys wait for days",
+      "slug": "border-crossing-aid-convoys",
+      "section": {
+        "$oid": "42fbaa3da94a1bfdec6bb725"
+      },
+      "contributors": [
+        {
+          "$oid": "bf56caa7cdd65b943ff7f35c"
+        },
+        {
+          "$oid": "b5d999f8bedb0eea4043acaa"
+        },
+        {
+          "$oid": "642322ffbce9687c7d8282b9"
+        }
+      ],
+      "status": "published",
+      "published_at": {
+        "$date": "2026-11-10T05:30:00Z"
+      },
+      "updated_at": {
+        "$date": "2026-11-10T14:00:00Z"
+      },
+      "word_count": 2460,
+      "is_premium": false,
+      "keywords": [
+        "humanitarian aid",
+        "border",
+        "refugees"
+      ],
+      "media": [
+        {
+          "kind": "image",
+          "url": "https://cdn.example.com/img/2026/11/convoy-queue.jpg",
+          "caption": "Trucks queue at the crossing at dawn",
+          "credit": "Nadia El-Sayed"
+        },
+        {
+          "kind": "image",
+          "url": "https://cdn.example.com/img/2026/11/field-hospital.jpg",
+          "caption": "A field hospital run by volunteers",
+          "credit": "Nadia El-Sayed"
+        }
+      ],
+      "recent_comments": [
+        {
+          "_id": {
+            "$oid": "98869d3650bfa95752f08f24"
+          },
+          "article": {
+            "$oid": "f172eb9c888e4d70b46c62c8"
+          },
+          "commenter": {
+            "$oid": "e01a39ed2a4a532d28b29d66"
+          },
+          "body": "Which NGOs are running the field hospitals mentioned?",
+          "posted_at": {
+            "$date": "2026-11-11T06:58:00Z"
+          },
+          "upvotes": 6
+        },
+        {
+          "_id": {
+            "$oid": "aadb8326a83513a19f9c4c9e"
+          },
+          "article": {
+            "$oid": "f172eb9c888e4d70b46c62c8"
+          },
+          "commenter": {
+            "$oid": "e83fbc1417da48448d6b3be4"
+          },
+          "body": "Thank you for reporting from the border crossing, rare to read this level of detail.",
+          "posted_at": {
+            "$date": "2026-11-10T19:34:00Z"
+          },
+          "upvotes": 28,
+          "flagged": false
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "fa8a895c0850d21d58110595"
+      },
+      "headline": "Torino win the derby with a late header",
+      "slug": "torino-derby-late-header",
+      "section": {
+        "$oid": "219e4731e894d08ddf441391"
+      },
+      "contributors": [
+        {
+          "$oid": "0f51fb87e785c1da88dc2e7e"
+        }
+      ],
+      "status": "published",
+      "published_at": {
+        "$date": "2026-11-16T21:15:00Z"
+      },
+      "word_count": 860,
+      "keywords": [
+        "Serie A",
+        "derby",
+        "football",
+        "match report",
+        "Torino"
+      ],
+      "media": [
+        {
+          "kind": "image",
+          "url": "https://cdn.example.com/img/2026/11/derby-goal.jpg",
+          "caption": "The winning header in the 88th minute",
+          "credit": "Stefano Rinaldi"
+        },
+        {
+          "kind": "video",
+          "url": "https://cdn.example.com/video/2026/11/derby-highlights.mp4",
+          "caption": "Match highlights",
+          "credit": "Video desk"
+        }
+      ],
+      "recent_comments": [
+        {
+          "_id": {
+            "$oid": "93bc0b7a91b1a35f9e99a7db"
+          },
+          "article": {
+            "$oid": "fa8a895c0850d21d58110595"
+          },
+          "commenter": {
+            "$oid": "e3af75be7f50b98e777121fe"
+          },
+          "body": "Defence still looked shaky in the last 20 minutes.",
+          "posted_at": {
+            "$date": "2026-11-17T08:05:00Z"
+          },
+          "upvotes": 11
+        },
+        {
+          "_id": {
+            "$oid": "4e8879fe83db9f73cdde6786"
+          },
+          "article": {
+            "$oid": "fa8a895c0850d21d58110595"
+          },
+          "commenter": {
+            "$oid": "63e92a9fb8ad8b734baf6673"
+          },
+          "body": "Third win in a row, the new pressing system is working.",
+          "posted_at": {
+            "$date": "2026-11-16T22:40:00Z"
+          },
+          "upvotes": 15,
+          "flagged": false
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "0c9fcbc34fb01829c73c7a9d"
+      },
+      "headline": "New data shows glacier retreat accelerating in the Western Alps",
+      "slug": "glacier-retreat-western-alps",
+      "section": {
+        "$oid": "42fbaa3da94a1bfdec6bb725"
+      },
+      "contributors": [
+        {
+          "$oid": "b5d999f8bedb0eea4043acaa"
+        },
+        {
+          "$oid": "bf56caa7cdd65b943ff7f35c"
+        }
+      ],
+      "status": "published",
+      "published_at": {
+        "$date": "2026-11-20T06:00:00Z"
+      },
+      "word_count": 1530,
+      "is_premium": true,
+      "keywords": [
+        "climate",
+        "glaciers",
+        "Alps"
+      ],
+      "media": [
+        {
+          "kind": "image",
+          "url": "https://cdn.example.com/img/2026/11/glacier-aerial.jpg",
+          "caption": "Aerial view of the glacier tongue in September",
+          "credit": "Marta Odasso"
+        },
+        {
+          "kind": "chart",
+          "url": "https://cdn.example.com/charts/2026/11/glacier-length.svg",
+          "caption": "Glacier length since 1990, in metres",
+          "credit": "Newsroom graphics"
+        }
+      ]
+    }
+  ],
+  "comments": [
+    {
+      "_id": {
+        "$oid": "74163bd82d5a98aee9e8d7f7"
+      },
+      "article": {
+        "$oid": "70bdd458cf515e89450cff6c"
+      },
+      "commenter": {
+        "$oid": "e3af75be7f50b98e777121fe"
+      },
+      "body": "Finally someone explains the budget numbers without spin.",
+      "posted_at": {
+        "$date": "2026-10-14T07:42:00Z"
+      },
+      "upvotes": 34,
+      "flagged": false
+    },
+    {
+      "_id": {
+        "$oid": "3cc5edbd807cb663dd13b68e"
+      },
+      "article": {
+        "$oid": "70bdd458cf515e89450cff6c"
+      },
+      "commenter": {
+        "$oid": "e83fbc1417da48448d6b3be4"
+      },
+      "body": "The regional transfer cuts will hit small towns hardest, worth a follow-up.",
+      "posted_at": {
+        "$date": "2026-10-14T09:15:00Z"
+      },
+      "upvotes": 21
+    },
+    {
+      "_id": {
+        "$oid": "824f7cea56a75e562766efb0"
+      },
+      "article": {
+        "$oid": "70bdd458cf515e89450cff6c"
+      },
+      "commenter": {
+        "$oid": "3c06fdccd5be7e02656b9638"
+      },
+      "body": "Interesting, but the deficit forecast seems optimistic compared to the central bank.",
+      "posted_at": {
+        "$date": "2026-10-14T12:03:00Z"
+      },
+      "upvotes": 17,
+      "flagged": false
+    },
+    {
+      "_id": {
+        "$oid": "0a307edb2215e23fb06a0212"
+      },
+      "article": {
+        "$oid": "70bdd458cf515e89450cff6c"
+      },
+      "commenter": {
+        "$oid": "e01a39ed2a4a532d28b29d66"
+      },
+      "body": "Same promises every autumn.",
+      "posted_at": {
+        "$date": "2026-10-15T08:27:00Z"
+      },
+      "upvotes": 5,
+      "flagged": true
+    },
+    {
+      "_id": {
+        "$oid": "5dfc10d675c8ef8a6ea16112"
+      },
+      "article": {
+        "$oid": "ea4ac50382b9db32c5e226f8"
+      },
+      "commenter": {
+        "$oid": "3c06fdccd5be7e02656b9638"
+      },
+      "body": "Great breakdown of the hedging positions, the chart helped a lot.",
+      "posted_at": {
+        "$date": "2026-11-03T16:50:00Z"
+      },
+      "upvotes": 12,
+      "flagged": false
+    },
+    {
+      "_id": {
+        "$oid": "042eaf6107d20c8c4585e830"
+      },
+      "article": {
+        "$oid": "ea4ac50382b9db32c5e226f8"
+      },
+      "commenter": {
+        "$oid": "e3af75be7f50b98e777121fe"
+      },
+      "body": "Bills already went up 18% here in Torino.",
+      "posted_at": {
+        "$date": "2026-11-04T07:11:00Z"
+      },
+      "upvotes": 9
+    },
+    {
+      "_id": {
+        "$oid": "aadb8326a83513a19f9c4c9e"
+      },
+      "article": {
+        "$oid": "f172eb9c888e4d70b46c62c8"
+      },
+      "commenter": {
+        "$oid": "e83fbc1417da48448d6b3be4"
+      },
+      "body": "Thank you for reporting from the border crossing, rare to read this level of detail.",
+      "posted_at": {
+        "$date": "2026-11-10T19:34:00Z"
+      },
+      "upvotes": 28,
+      "flagged": false
+    },
+    {
+      "_id": {
+        "$oid": "98869d3650bfa95752f08f24"
+      },
+      "article": {
+        "$oid": "f172eb9c888e4d70b46c62c8"
+      },
+      "commenter": {
+        "$oid": "e01a39ed2a4a532d28b29d66"
+      },
+      "body": "Which NGOs are running the field hospitals mentioned?",
+      "posted_at": {
+        "$date": "2026-11-11T06:58:00Z"
+      },
+      "upvotes": 6
+    },
+    {
+      "_id": {
+        "$oid": "4e8879fe83db9f73cdde6786"
+      },
+      "article": {
+        "$oid": "fa8a895c0850d21d58110595"
+      },
+      "commenter": {
+        "$oid": "63e92a9fb8ad8b734baf6673"
+      },
+      "body": "Third win in a row, the new pressing system is working.",
+      "posted_at": {
+        "$date": "2026-11-16T22:40:00Z"
+      },
+      "upvotes": 15,
+      "flagged": false
+    },
+    {
+      "_id": {
+        "$oid": "93bc0b7a91b1a35f9e99a7db"
+      },
+      "article": {
+        "$oid": "fa8a895c0850d21d58110595"
+      },
+      "commenter": {
+        "$oid": "e3af75be7f50b98e777121fe"
+      },
+      "body": "Defence still looked shaky in the last 20 minutes.",
+      "posted_at": {
+        "$date": "2026-11-17T08:05:00Z"
+      },
+      "upvotes": 11
+    }
+  ],
+  "readers": [
+    {
+      "_id": {
+        "$oid": "e3af75be7f50b98e777121fe"
+      },
+      "username": "gianni_to",
+      "email": "gianni.rosetti@example.com",
+      "subscription_tier": "digital_plus",
+      "registered_at": {
+        "$date": "2019-11-03T18:22:00Z"
+      },
+      "followed_sections": [
+        {
+          "$oid": "f2d0d654e6e881ab3eb06321"
+        },
+        {
+          "$oid": "219e4731e894d08ddf441391"
+        }
+      ],
+      "newsletter_topics": [
+        "morning briefing",
+        "football"
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "3c06fdccd5be7e02656b9638"
+      },
+      "username": "sofiav",
+      "email": "sofia.verani@example.com",
+      "subscription_tier": "premium",
+      "registered_at": {
+        "$date": "2021-02-14T09:05:00Z"
+      },
+      "followed_sections": [
+        {
+          "$oid": "e9fa30058c5468818d9b598a"
+        },
+        {
+          "$oid": "42fbaa3da94a1bfdec6bb725"
+        },
+        {
+          "$oid": "f2d0d654e6e881ab3eb06321"
+        }
+      ],
+      "newsletter_topics": [
+        "markets close",
+        "weekend long reads",
+        "climate"
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "e01a39ed2a4a532d28b29d66"
+      },
+      "username": "marek.n",
+      "email": "marek.nowicki@example.com",
+      "subscription_tier": "free",
+      "registered_at": {
+        "$date": "2024-05-30T21:47:00Z"
+      },
+      "followed_sections": [
+        {
+          "$oid": "42fbaa3da94a1bfdec6bb725"
+        },
+        {
+          "$oid": "219e4731e894d08ddf441391"
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "e83fbc1417da48448d6b3be4"
+      },
+      "username": "lucia_reads",
+      "email": "lucia.ferrante@example.com",
+      "subscription_tier": "digital_plus",
+      "registered_at": {
+        "$date": "2022-09-08T07:30:00Z"
+      },
+      "followed_sections": [
+        {
+          "$oid": "f2d0d654e6e881ab3eb06321"
+        },
+        {
+          "$oid": "42fbaa3da94a1bfdec6bb725"
+        },
+        {
+          "$oid": "e9fa30058c5468818d9b598a"
+        },
+        {
+          "$oid": "219e4731e894d08ddf441391"
+        }
+      ],
+      "newsletter_topics": [
+        "morning briefing",
+        "science weekly"
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "63e92a9fb8ad8b734baf6673"
+      },
+      "username": "dario1987",
+      "email": "dario.colombo@example.com",
+      "subscription_tier": "free",
+      "registered_at": {
+        "$date": "2025-12-01T12:10:00Z"
+      },
+      "followed_sections": [
+        {
+          "$oid": "219e4731e894d08ddf441391"
+        }
+      ],
+      "newsletter_topics": [
+        "football",
+        "cycling",
+        "morning briefing",
+        "formula one"
+      ]
+    }
+  ]
+}

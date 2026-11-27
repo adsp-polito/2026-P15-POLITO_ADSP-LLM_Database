@@ -1,0 +1,104 @@
+{
+  "collections": [
+    "artworks",
+    "conservators",
+    "restoration_projects"
+  ],
+  "fields": [
+    {
+      "collection": "artworks",
+      "fields": [
+        "_id",
+        "accession_number",
+        "name",
+        "artist",
+        "year_created",
+        "medium",
+        "materials",
+        "height_cm",
+        "width_cm",
+        "depth_cm",
+        "gallery",
+        "acquired_on",
+        "on_display"
+      ]
+    },
+    {
+      "collection": "conservators",
+      "fields": [
+        "_id",
+        "full_name",
+        "email",
+        "phone",
+        "studio",
+        "specialties",
+        "hired_on",
+        "is_active"
+      ]
+    },
+    {
+      "collection": "restoration_projects",
+      "fields": [
+        "_id",
+        "project_code",
+        "artwork_id",
+        "conservator_id",
+        "status",
+        "start_date",
+        "completion_date",
+        "estimated_hours",
+        "budget_eur",
+        "condition_issues"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from_field": "restoration_projects.artwork_id",
+      "to_collection": "artworks"
+    },
+    {
+      "from_field": "restoration_projects.conservator_id",
+      "to_collection": "conservators"
+    }
+  ],
+  "patterns": [
+    {
+      "field": "artworks.materials",
+      "evidence": "Array of strings representing physical materials used in the artwork.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "conservators.specialties",
+      "evidence": "Array of strings listing the specific areas of expertise for a conservator.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "restoration_projects.condition_issues",
+      "evidence": "Array of objects containing detailed information about specific issues found during restoration.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    }
+  ],
+  "truncated": false
+}

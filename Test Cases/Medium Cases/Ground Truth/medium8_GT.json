@@ -1,0 +1,177 @@
+{
+  "database": "db_08",
+  "collections": [
+    "patients",
+    "exams",
+    "scanners",
+    "radiologists",
+    "reports"
+  ],
+  "fields": {
+    "patients": [
+      "_id",
+      "mrn",
+      "first_name",
+      "last_name",
+      "birth_date",
+      "sex",
+      "phone",
+      "email",
+      "address",
+      "address.line1",
+      "address.line2",
+      "address.city",
+      "address.state",
+      "address.postal_code",
+      "recent_exams[]",
+      "recent_exams[]._id",
+      "recent_exams[].accession_number",
+      "recent_exams[].patient_id",
+      "recent_exams[].scanner_id",
+      "recent_exams[].protocoled_by",
+      "recent_exams[].modality",
+      "recent_exams[].procedure_code",
+      "recent_exams[].procedure_name",
+      "recent_exams[].body_part",
+      "recent_exams[].laterality",
+      "recent_exams[].priority",
+      "recent_exams[].status",
+      "recent_exams[].performed_at",
+      "recent_exams[].contrast_used",
+      "recent_exams[].radiation_dose_mgy",
+      "registered_at"
+    ],
+    "exams": [
+      "_id",
+      "accession_number",
+      "patient_id",
+      "scanner_id",
+      "protocoled_by",
+      "modality",
+      "procedure_code",
+      "procedure_name",
+      "body_part",
+      "laterality",
+      "priority",
+      "status",
+      "performed_at",
+      "contrast_used",
+      "radiation_dose_mgy"
+    ],
+    "scanners": [
+      "_id",
+      "station_aet",
+      "modality",
+      "manufacturer",
+      "model",
+      "serial_number",
+      "installed_on",
+      "slice_count",
+      "field_strength_t",
+      "last_service_date",
+      "location",
+      "location.site_name",
+      "location.building",
+      "location.floor",
+      "location.room",
+      "active"
+    ],
+    "radiologists": [
+      "_id",
+      "npi",
+      "first_name",
+      "last_name",
+      "credentials",
+      "subspecialty",
+      "email",
+      "phone",
+      "hire_date",
+      "active"
+    ],
+    "reports": [
+      "_id",
+      "exam_ids[]",
+      "signed_by",
+      "report_status",
+      "signed_at",
+      "amended_at",
+      "turnaround_minutes",
+      "impression",
+      "critical_result",
+      "findings[]",
+      "findings[].anatomic_site",
+      "findings[].observation",
+      "findings[].laterality",
+      "findings[].size_mm"
+    ]
+  },
+  "relationships": [
+    {
+      "from_field": "exams.patient_id",
+      "to_collection": "patients"
+    },
+    {
+      "from_field": "exams.scanner_id",
+      "to_collection": "scanners"
+    },
+    {
+      "from_field": "exams.protocoled_by",
+      "to_collection": "radiologists"
+    },
+    {
+      "from_field": "reports.exam_ids[]",
+      "to_collection": "exams"
+    },
+    {
+      "from_field": "reports.signed_by",
+      "to_collection": "radiologists"
+    }
+  ],
+  "patterns": [
+    {
+      "path": "patients.address",
+      "pattern": "Embedding",
+      "evidence": "The postal address is a nested object (line1, city, state, postal_code) that exists only inside each patient; no collection stores addresses on their own."
+    },
+    {
+      "path": "patients.recent_exams[]",
+      "pattern": "Subset",
+      "evidence": "Each patient carries copies of at most 3 of their exams, the latest by performed_at, identical to documents of the exams collection, which holds the full history linked back by patient_id; one patient has 4 exams and the oldest one (a 2025 chest X-ray) is not in recent_exams."
+    },
+    {
+      "path": "exams.patient_id",
+      "pattern": "Referencing",
+      "evidence": "Holds only the ObjectId of the patient who had the exam, with no patient attributes copied."
+    },
+    {
+      "path": "exams.scanner_id",
+      "pattern": "Referencing",
+      "evidence": "Holds only the ObjectId of the scanner used for acquisition; scanner details such as station_aet stay in the scanners collection."
+    },
+    {
+      "path": "exams.protocoled_by",
+      "pattern": "Referencing",
+      "evidence": "Role-named field holding only the ObjectId of the radiologist who protocoled the exam; it is absent on exams without protocoling, such as plain chest X-rays."
+    },
+    {
+      "path": "reports.exam_ids[]",
+      "pattern": "Referencing",
+      "evidence": "List of exam ObjectIds covered by one report (for example a CT chest and a CT abdomen read together), with no exam fields copied."
+    },
+    {
+      "path": "reports.signed_by",
+      "pattern": "Referencing",
+      "evidence": "Role-named field holding only the ObjectId of the signing radiologist in the radiologists collection."
+    },
+    {
+      "path": "reports.findings[]",
+      "pattern": "Embedding",
+      "evidence": "Array of finding sub-documents (anatomic_site, observation, optional laterality and size_mm) that exist only inside their report."
+    },
+    {
+      "path": "scanners.location",
+      "pattern": "Embedding",
+      "evidence": "Nested object with site_name, building, floor and room describing where the scanner is installed; it is not stored anywhere else as documents."
+    }
+  ]
+}

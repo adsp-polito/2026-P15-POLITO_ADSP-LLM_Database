@@ -1,0 +1,33 @@
+You are given a MongoDB database, described by its JSON schema and its sample documents.
+
+Analyze it and return 4 separate and independent elements:
+
+1. The list of collections.
+
+2. For each collection, the list of ALL its fields, including plain ones such
+   as _id, names, dates and numbers. Use dot notation without the collection
+   name. For a nested object or array, list the field itself AND every field
+   inside it, as separate entries: an object gives <object> plus
+   <object>.<subfield> for each subfield, an array of objects gives <array>[]
+   plus <array>[].<subfield> for each subfield. An array of plain values has
+   no subfields: write it as <array>[] with nothing after the brackets.
+
+3. The relationships between collections: one entry for every field that
+   holds the identifier of a document in another collection. Write the field
+   as <collection>.<path> and give the name of the target collection.
+
+4. A separate list with only the fields that follow one of these data
+   modeling patterns: Embedding, Referencing, ExtendedReference, Subset,
+   Array, Bucket. This list is independent from point 3: a field reported as
+   a relationship can also appear here. Most fields follow no pattern, so this
+   list is much shorter than the list of point 2: plain fields such as
+   strings, numbers, dates or booleans stay in point 2 but are not reported
+   here.
+   Write each field as <collection>.<path>, with the same notation as in
+   point 2. When a pattern involves a whole object or array, report only that
+   object or array, not the fields inside it.
+   For each reported field, return a probability for each of the six
+   patterns; the six probabilities must sum to 1.0. Give probability to more
+   than one pattern only if you are genuinely unsure between them.
+   Add a short explanation in plain natural language of why this field
+   follows the pattern and what in the data shows it.

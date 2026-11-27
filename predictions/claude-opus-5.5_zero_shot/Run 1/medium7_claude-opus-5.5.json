@@ -1,0 +1,217 @@
+{
+  "collections": [
+    "riders",
+    "service_zones",
+    "scooters",
+    "trips",
+    "scooter_telemetry"
+  ],
+  "fields": [
+    {
+      "collection": "riders",
+      "fields": [
+        "_id",
+        "email",
+        "full_name",
+        "phone",
+        "country",
+        "date_of_birth",
+        "signup_at",
+        "account_status",
+        "license_verified",
+        "rider_tier",
+        "wallet_balance_eur",
+        "notification_zones[]"
+      ]
+    },
+    {
+      "collection": "service_zones",
+      "fields": [
+        "_id",
+        "name",
+        "city",
+        "country",
+        "max_speed_kmh",
+        "parking_mode",
+        "area_km2",
+        "launched_at",
+        "active",
+        "surge_multiplier"
+      ]
+    },
+    {
+      "collection": "scooters",
+      "fields": [
+        "_id",
+        "serial_number",
+        "model",
+        "firmware_version",
+        "status",
+        "battery_pct",
+        "last_lat",
+        "last_lng",
+        "odometer_km",
+        "commissioned_at",
+        "last_serviced_at",
+        "home_zone",
+        "accessories[]"
+      ]
+    },
+    {
+      "collection": "trips",
+      "fields": [
+        "_id",
+        "rider",
+        "rider.rider_id",
+        "rider.full_name",
+        "rider.email",
+        "scooter_id",
+        "started_at",
+        "ended_at",
+        "start_lat",
+        "start_lng",
+        "end_lat",
+        "end_lng",
+        "distance_km",
+        "duration_min",
+        "unlock_fee_eur",
+        "per_minute_rate_eur",
+        "promo_code",
+        "discount_eur",
+        "fare_eur",
+        "payment_method",
+        "payment_status",
+        "rating"
+      ]
+    },
+    {
+      "collection": "scooter_telemetry",
+      "fields": [
+        "_id",
+        "vehicle",
+        "vehicle.scooter_id",
+        "vehicle.serial_number",
+        "vehicle.model",
+        "window_start",
+        "window_end",
+        "sample_count",
+        "samples[]",
+        "samples[].recorded_at",
+        "samples[].battery_pct",
+        "samples[].speed_kmh",
+        "samples[].lat",
+        "samples[].lng",
+        "network"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from_field": "riders.notification_zones[]",
+      "to_collection": "service_zones"
+    },
+    {
+      "from_field": "scooters.home_zone",
+      "to_collection": "service_zones"
+    },
+    {
+      "from_field": "trips.rider.rider_id",
+      "to_collection": "riders"
+    },
+    {
+      "from_field": "trips.scooter_id",
+      "to_collection": "scooters"
+    },
+    {
+      "from_field": "scooter_telemetry.vehicle.scooter_id",
+      "to_collection": "scooters"
+    }
+  ],
+  "patterns": [
+    {
+      "field": "riders.notification_zones[]",
+      "evidence": "Array of service_zone ObjectIds referencing zones.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.8,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.2,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "scooters.home_zone",
+      "evidence": "ObjectId pointing to a service zone.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "scooters.accessories[]",
+      "evidence": "Array of plain accessory strings stored in scooter.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "trips.rider",
+      "evidence": "Rider id plus copied name and email from riders.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 1.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "trips.scooter_id",
+      "evidence": "ObjectId referencing scooter.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "scooter_telemetry.vehicle",
+      "evidence": "Scooter id with duplicated serial_number and model.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 1.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "scooter_telemetry.samples[]",
+      "evidence": "Time-window documents grouping readings with window_start/end and sample_count.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 1.0
+      }
+    }
+  ],
+  "truncated": false
+}

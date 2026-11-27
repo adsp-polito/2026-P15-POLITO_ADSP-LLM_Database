@@ -1,0 +1,260 @@
+{
+  "database": "db_12",
+  "collections": [
+    "officers",
+    "sectors",
+    "incidents",
+    "patrol_shifts",
+    "vehicles",
+    "vehicle_tracks"
+  ],
+  "fields": {
+    "officers": [
+      "_id",
+      "badge_number",
+      "first_name",
+      "last_name",
+      "rank",
+      "email",
+      "phone",
+      "hire_date",
+      "status",
+      "assigned_sector",
+      "languages[]",
+      "emergency_contact",
+      "emergency_contact.full_name",
+      "emergency_contact.relationship",
+      "emergency_contact.phone"
+    ],
+    "sectors": [
+      "_id",
+      "name",
+      "district",
+      "area_km2",
+      "resident_population",
+      "risk_level",
+      "commander",
+      "command_post",
+      "command_post.address",
+      "command_post.postal_code",
+      "command_post.phone",
+      "command_post.open_24h",
+      "command_post.services[]",
+      "latest_incidents[]",
+      "latest_incidents[]._id",
+      "latest_incidents[].sector_id",
+      "latest_incidents[].reported_at",
+      "latest_incidents[].category",
+      "latest_incidents[].priority",
+      "latest_incidents[].street_address",
+      "latest_incidents[].status",
+      "latest_incidents[].units_sent",
+      "latest_incidents[].closed_at"
+    ],
+    "incidents": [
+      "_id",
+      "sector_id",
+      "reported_at",
+      "category",
+      "priority",
+      "street_address",
+      "status",
+      "units_sent",
+      "closed_at"
+    ],
+    "patrol_shifts": [
+      "_id",
+      "sector",
+      "sector.sector_id",
+      "sector.name",
+      "sector.district",
+      "crew[]",
+      "assigned_vehicle",
+      "shift_type",
+      "scheduled_start",
+      "scheduled_end",
+      "status",
+      "objectives[]",
+      "equipment_issued[]",
+      "equipment_issued[].item",
+      "equipment_issued[].serial_number",
+      "equipment_issued[].quantity",
+      "debrief",
+      "debrief.kilometers_driven",
+      "debrief.fuel_used_l",
+      "debrief.persons_checked",
+      "debrief.vehicles_stopped",
+      "debrief.notes",
+      "debrief.reviewed_by"
+    ],
+    "vehicles": [
+      "_id",
+      "call_sign",
+      "plate_number",
+      "make",
+      "model",
+      "model_year",
+      "vehicle_type",
+      "odometer_km",
+      "status",
+      "equipment[]",
+      "last_service",
+      "last_service.service_date",
+      "last_service.odometer_km",
+      "last_service.workshop"
+    ],
+    "vehicle_tracks": [
+      "_id",
+      "vehicle_id",
+      "shift_id",
+      "period_start",
+      "period_end",
+      "point_count",
+      "points[]",
+      "points[].recorded_at",
+      "points[].lat",
+      "points[].lon",
+      "points[].speed_kmh"
+    ]
+  },
+  "relationships": [
+    {
+      "from_field": "officers.assigned_sector",
+      "to_collection": "sectors"
+    },
+    {
+      "from_field": "sectors.commander",
+      "to_collection": "officers"
+    },
+    {
+      "from_field": "incidents.sector_id",
+      "to_collection": "sectors"
+    },
+    {
+      "from_field": "patrol_shifts.sector.sector_id",
+      "to_collection": "sectors"
+    },
+    {
+      "from_field": "patrol_shifts.crew[]",
+      "to_collection": "officers"
+    },
+    {
+      "from_field": "patrol_shifts.assigned_vehicle",
+      "to_collection": "vehicles"
+    },
+    {
+      "from_field": "patrol_shifts.debrief.reviewed_by",
+      "to_collection": "officers"
+    },
+    {
+      "from_field": "vehicle_tracks.vehicle_id",
+      "to_collection": "vehicles"
+    },
+    {
+      "from_field": "vehicle_tracks.shift_id",
+      "to_collection": "patrol_shifts"
+    }
+  ],
+  "patterns": [
+    {
+      "path": "officers.assigned_sector",
+      "pattern": "Referencing",
+      "evidence": "Holds only the string _id of the sector the officer is posted to (e.g. \"SEC-101\"); no sector attribute is copied."
+    },
+    {
+      "path": "officers.languages[]",
+      "pattern": "Array",
+      "evidence": "Bounded list of plain strings naming the languages the officer speaks; lengths vary from 2 to 4."
+    },
+    {
+      "path": "officers.emergency_contact",
+      "pattern": "Embedding",
+      "evidence": "Nested object with name, relationship and phone of the contact person, which exists only inside the officer document."
+    },
+    {
+      "path": "sectors.commander",
+      "pattern": "Referencing",
+      "evidence": "Holds only the ObjectId of the officer who commands the sector; no officer fields are copied."
+    },
+    {
+      "path": "sectors.command_post",
+      "pattern": "Embedding",
+      "evidence": "Nested object with the address, postal code, phone and opening regime of the sector's post, stored only inside the sector."
+    },
+    {
+      "path": "sectors.command_post.services[]",
+      "pattern": "Array",
+      "evidence": "List of plain strings (e.g. \"lost property\") describing the desks offered at the post, nested inside the embedded command_post."
+    },
+    {
+      "path": "sectors.latest_incidents[]",
+      "pattern": "Subset",
+      "evidence": "Holds up to the 3 most recent incidents of the sector by reported_at, identical to documents of the incidents collection; a sector with four incidents keeps only its three newest here."
+    },
+    {
+      "path": "incidents.sector_id",
+      "pattern": "Referencing",
+      "evidence": "Holds only the string _id of the sector where the incident was reported, matching the SEC- _id format of sectors."
+    },
+    {
+      "path": "patrol_shifts.sector",
+      "pattern": "ExtendedReference",
+      "evidence": "Sub-object with sector_id plus the sector's name and district copied from the sectors collection, so a shift list can show the area without a lookup."
+    },
+    {
+      "path": "patrol_shifts.crew[]",
+      "pattern": "Referencing",
+      "evidence": "List of officer ObjectIds forming the patrol crew; only identifiers are stored."
+    },
+    {
+      "path": "patrol_shifts.assigned_vehicle",
+      "pattern": "Referencing",
+      "evidence": "Holds only the ObjectId of the vehicle used for the shift; call sign and plate stay in vehicles."
+    },
+    {
+      "path": "patrol_shifts.objectives[]",
+      "pattern": "Array",
+      "evidence": "Bounded list of plain strings giving the goals of the shift (e.g. \"traffic control\"), varying in length."
+    },
+    {
+      "path": "patrol_shifts.equipment_issued[]",
+      "pattern": "Embedding",
+      "evidence": "Array of objects (item, serial_number, quantity) for gear handed out for this shift; no collection stores them separately."
+    },
+    {
+      "path": "patrol_shifts.debrief",
+      "pattern": "Embedding",
+      "evidence": "Nested object with the end-of-shift figures (kilometers, fuel, persons checked) that exists only inside the shift."
+    },
+    {
+      "path": "patrol_shifts.debrief.reviewed_by",
+      "pattern": "Referencing",
+      "evidence": "Identifier inside the embedded debrief holding only the ObjectId of the officer who reviewed the report."
+    },
+    {
+      "path": "vehicles.equipment[]",
+      "pattern": "Array",
+      "evidence": "List of plain strings naming the fixed equipment fitted in the vehicle (e.g. \"ANPR camera\")."
+    },
+    {
+      "path": "vehicles.last_service",
+      "pattern": "Embedding",
+      "evidence": "Nested object with date, odometer reading and workshop of the last maintenance, stored only in the vehicle."
+    },
+    {
+      "path": "vehicle_tracks.vehicle_id",
+      "pattern": "Referencing",
+      "evidence": "Holds only the ObjectId of the tracked vehicle."
+    },
+    {
+      "path": "vehicle_tracks.shift_id",
+      "pattern": "Referencing",
+      "evidence": "Holds only the ObjectId of the patrol shift during which the positions were recorded."
+    },
+    {
+      "path": "vehicle_tracks.points[]",
+      "pattern": "Bucket",
+      "evidence": "Groups the GPS fixes of one vehicle for one hour, sorted by recorded_at, with period_start, period_end and point_count equal to the number of points."
+    }
+  ]
+}

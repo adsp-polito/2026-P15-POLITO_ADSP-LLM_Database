@@ -1,0 +1,13 @@
+mode,level,db,n_runs,fields_tp,fields_fp,fields_fn,fields_f1,relationships_tp,relationships_fp,relationships_fn,relationships_f1,detection_tp,detection_fp,detection_fn,detection_f1,e2e_tp,e2e_fp,e2e_fn,e2e_f1,classification_acc
+normalized,easy,easy1,3,105,0,0,1.0,6,0,0,1.0,8,0,4,0.8,8,0,4,0.8,1.0
+normalized,easy,easy2,3,135,0,9,0.968,6,0,0,1.0,11,0,4,0.846,11,0,4,0.846,1.0
+normalized,easy,easy3,3,98,0,10,0.951,6,0,0,1.0,10,0,5,0.8,10,0,5,0.8,1.0
+normalized,easy,easy4,3,88,0,2,0.989,6,0,0,1.0,9,0,0,1.0,6,3,3,0.667,0.667
+normalized,hard,hard10,3,236,2,22,0.952,15,3,3,0.833,20,1,28,0.58,11,10,37,0.319,0.55
+normalized,hard,hard11,3,324,0,21,0.969,14,4,4,0.778,34,0,14,0.829,25,9,23,0.61,0.735
+normalized,hard,hard12,3,261,0,24,0.956,18,5,9,0.72,29,0,31,0.652,22,7,38,0.494,0.759
+normalized,hard,hard9,3,246,0,24,0.953,12,3,9,0.667,26,0,25,0.675,11,15,40,0.286,0.423
+normalized,medium,medium5,3,160,0,5,0.985,18,7,0,0.837,21,0,15,0.737,17,4,19,0.596,0.81
+normalized,medium,medium6,3,253,0,20,0.962,19,8,2,0.792,28,0,8,0.875,20,8,16,0.625,0.714
+normalized,medium,medium7,3,205,1,11,0.972,9,6,6,0.6,18,0,3,0.923,9,9,12,0.462,0.5
+normalized,medium,medium8,3,237,19,21,0.922,15,9,0,0.769,21,1,6,0.857,18,4,9,0.735,0.857

@@ -1,0 +1,196 @@
+{
+  "artworks": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "accession_number",
+        "name",
+        "artist",
+        "year_created",
+        "medium",
+        "materials",
+        "height_cm",
+        "width_cm",
+        "acquired_on",
+        "on_display"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "accession_number": {
+          "bsonType": "string"
+        },
+        "name": {
+          "bsonType": "string"
+        },
+        "artist": {
+          "bsonType": "string"
+        },
+        "year_created": {
+          "bsonType": "int"
+        },
+        "medium": {
+          "bsonType": "string"
+        },
+        "materials": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "string"
+          }
+        },
+        "height_cm": {
+          "bsonType": "double"
+        },
+        "width_cm": {
+          "bsonType": "double"
+        },
+        "depth_cm": {
+          "bsonType": "double"
+        },
+        "gallery": {
+          "bsonType": "string"
+        },
+        "acquired_on": {
+          "bsonType": "date"
+        },
+        "on_display": {
+          "bsonType": "bool"
+        }
+      }
+    }
+  },
+  "conservators": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "full_name",
+        "email",
+        "studio",
+        "specialties",
+        "hired_on",
+        "is_active"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "full_name": {
+          "bsonType": "string"
+        },
+        "email": {
+          "bsonType": "string"
+        },
+        "phone": {
+          "bsonType": "string"
+        },
+        "studio": {
+          "bsonType": "string",
+          "enum": [
+            "Paintings Conservation",
+            "Paper Conservation",
+            "Objects Conservation"
+          ]
+        },
+        "specialties": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "string"
+          }
+        },
+        "hired_on": {
+          "bsonType": "date"
+        },
+        "is_active": {
+          "bsonType": "bool"
+        }
+      }
+    }
+  },
+  "restoration_projects": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "project_code",
+        "artwork_id",
+        "conservator_id",
+        "status",
+        "start_date",
+        "estimated_hours",
+        "condition_issues"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "project_code": {
+          "bsonType": "string"
+        },
+        "artwork_id": {
+          "bsonType": "objectId"
+        },
+        "conservator_id": {
+          "bsonType": "objectId"
+        },
+        "status": {
+          "bsonType": "string",
+          "enum": [
+            "planned",
+            "in_progress",
+            "on_hold",
+            "completed"
+          ]
+        },
+        "start_date": {
+          "bsonType": "date"
+        },
+        "completion_date": {
+          "bsonType": "date"
+        },
+        "estimated_hours": {
+          "bsonType": "int"
+        },
+        "budget_eur": {
+          "bsonType": "double"
+        },
+        "condition_issues": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "location",
+              "issue_type",
+              "severity",
+              "treatment"
+            ],
+            "properties": {
+              "location": {
+                "bsonType": "string"
+              },
+              "issue_type": {
+                "bsonType": "string"
+              },
+              "severity": {
+                "bsonType": "string",
+                "enum": [
+                  "minor",
+                  "moderate",
+                  "severe"
+                ]
+              },
+              "treatment": {
+                "bsonType": "string"
+              },
+              "notes": {
+                "bsonType": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

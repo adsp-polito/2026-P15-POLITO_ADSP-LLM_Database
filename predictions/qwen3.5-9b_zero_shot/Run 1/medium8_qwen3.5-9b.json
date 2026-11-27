@@ -1,0 +1,259 @@
+{
+  "collections": [
+    "patients",
+    "exams",
+    "scanners",
+    "radiologists",
+    "reports"
+  ],
+  "fields": [
+    {
+      "collection": "patients",
+      "fields": [
+        "_id",
+        "mrn",
+        "first_name",
+        "last_name",
+        "birth_date",
+        "sex",
+        "phone",
+        "email",
+        "address.line1",
+        "address.line2",
+        "address.city",
+        "address.state",
+        "address.postal_code",
+        "recent_exams[]",
+        "registered_at"
+      ]
+    },
+    {
+      "collection": "exams",
+      "fields": [
+        "_id",
+        "accession_number",
+        "patient_id",
+        "scanner_id",
+        "protocoled_by",
+        "modality",
+        "procedure_code",
+        "procedure_name",
+        "body_part",
+        "laterality",
+        "priority",
+        "status",
+        "performed_at",
+        "contrast_used",
+        "radiation_dose_mgy"
+      ]
+    },
+    {
+      "collection": "scanners",
+      "fields": [
+        "_id",
+        "station_aet",
+        "modality",
+        "manufacturer",
+        "model",
+        "serial_number",
+        "installed_on",
+        "slice_count",
+        "field_strength_t",
+        "last_service_date",
+        "location.site_name",
+        "location.building",
+        "location.floor",
+        "location.room",
+        "active"
+      ]
+    },
+    {
+      "collection": "radiologists",
+      "fields": [
+        "_id",
+        "npi",
+        "first_name",
+        "last_name",
+        "credentials",
+        "subspecialty",
+        "email",
+        "phone",
+        "hire_date",
+        "active"
+      ]
+    },
+    {
+      "collection": "reports",
+      "fields": [
+        "_id",
+        "exam_ids[]",
+        "signed_by",
+        "report_status",
+        "signed_at",
+        "amended_at",
+        "turnaround_minutes",
+        "impression",
+        "critical_result",
+        "findings[]"
+      ]
+    },
+    {
+      "collection": "patients.recent_exams[]",
+      "fields": [
+        "_id",
+        "accession_number",
+        "patient_id",
+        "scanner_id",
+        "protocoled_by",
+        "modality",
+        "procedure_code",
+        "procedure_name",
+        "body_part",
+        "laterality",
+        "priority",
+        "status",
+        "performed_at",
+        "contrast_used",
+        "radiation_dose_mgy"
+      ]
+    },
+    {
+      "collection": "reports.findings[]",
+      "fields": [
+        "anatomic_site",
+        "observation",
+        "laterality",
+        "size_mm"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from_field": "patients.recent_exams[]",
+      "to_collection": "exams"
+    },
+    {
+      "from_field": "exams.patient_id",
+      "to_collection": "patients"
+    },
+    {
+      "from_field": "exams.scanner_id",
+      "to_collection": "scanners"
+    },
+    {
+      "from_field": "exams.protocoled_by",
+      "to_collection": "radiologists"
+    },
+    {
+      "from_field": "scanners.location",
+      "to_collection": "scanners"
+    },
+    {
+      "from_field": "reports.exam_ids[]",
+      "to_collection": "exams"
+    },
+    {
+      "from_field": "reports.signed_by",
+      "to_collection": "radiologists"
+    }
+  ],
+  "patterns": [
+    {
+      "field": "patients.recent_exams[]",
+      "evidence": "This field is an array of objects containing exam details (accession_number, scanner_id, etc.) that are also stored as separate documents in the 'exams' collection. The objects inside the array are essentially subsets of the full exam documents, but the schema indicates they are embedded within the patient document for convenience.",
+      "scores": {
+        "Embedding": 0.6,
+        "Referencing": 0.3,
+        "ExtendedReference": 0.05,
+        "Subset": 0.05,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "exams.patient_id",
+      "evidence": "This field holds an ObjectId that references a document in the 'patients' collection, allowing the system to link exam records to specific patients.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "exams.scanner_id",
+      "evidence": "This field holds an ObjectId that references a document in the 'scanners' collection, linking the exam to the specific imaging equipment used.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "exams.protocoled_by",
+      "evidence": "This field holds an ObjectId that references a document in the 'radiologists' collection, identifying the radiologist who performed the exam.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "scanners.location",
+      "evidence": "This field is an embedded object containing site_name, building, floor, and room. While it contains multiple pieces of data, it is not a separate collection, making it an embedding of location details.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "reports.exam_ids[]",
+      "evidence": "This field is an array of ObjectIds referencing documents in the 'exams' collection. A single report can cover multiple exams, creating a many-to-many relationship.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.8,
+        "ExtendedReference": 0.2,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "reports.signed_by",
+      "evidence": "This field holds an ObjectId that references a document in the 'radiologists' collection, identifying the radiologist who signed the report.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "reports.findings[]",
+      "evidence": "This field is an array of objects describing specific findings. These objects are embedded directly within the report document rather than being stored in a separate collection.",
+      "scores": {
+        "Embedding": 0.9,
+        "Referencing": 0.1,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    }
+  ],
+  "truncated": false
+}

@@ -1,0 +1,73 @@
+{
+  "database": "db_04",
+  "collections": [
+    "teams",
+    "hosts",
+    "host_metrics"
+  ],
+  "fields": {
+    "teams": [
+      "_id",
+      "name",
+      "oncall_email",
+      "slack_channel",
+      "timezone",
+      "created_at"
+    ],
+    "hosts": [
+      "_id",
+      "hostname",
+      "ip_address",
+      "datacenter",
+      "environment",
+      "os",
+      "cpu_cores",
+      "memory_gb",
+      "agent_version",
+      "status",
+      "team_id",
+      "registered_at",
+      "last_seen_at"
+    ],
+    "host_metrics": [
+      "_id",
+      "host_id",
+      "metric",
+      "unit",
+      "interval_sec",
+      "start",
+      "end",
+      "count",
+      "samples[]",
+      "samples[].ts",
+      "samples[].value"
+    ]
+  },
+  "relationships": [
+    {
+      "from_field": "hosts.team_id",
+      "to_collection": "teams"
+    },
+    {
+      "from_field": "host_metrics.host_id",
+      "to_collection": "hosts"
+    }
+  ],
+  "patterns": [
+    {
+      "path": "hosts.team_id",
+      "pattern": "Referencing",
+      "evidence": "team_id holds only the ObjectId of the owning team in the teams collection; no team attribute such as its name or on-call email is copied into the host."
+    },
+    {
+      "path": "host_metrics.host_id",
+      "pattern": "Referencing",
+      "evidence": "host_id holds only the ObjectId of a document in hosts; hostname, datacenter and other host attributes are not copied into the metric document."
+    },
+    {
+      "path": "host_metrics.samples[]",
+      "pattern": "Bucket",
+      "evidence": "Each document groups up to six time-ordered readings (ts, value) of one metric for one host over a one-hour window, bounded by start and end, with count equal to the number of samples (for example a window starting at 14:00 with 6 samples taken every 10 minutes)."
+    }
+  ]
+}

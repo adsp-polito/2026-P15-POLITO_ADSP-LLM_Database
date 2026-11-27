@@ -1,0 +1,369 @@
+{
+  "collections": [
+    "studios",
+    "titles",
+    "reviews",
+    "subscribers",
+    "plans",
+    "playback_telemetry"
+  ],
+  "fields": [
+    {
+      "collection": "studios",
+      "fields": [
+        "_id",
+        "name",
+        "country",
+        "founded_year",
+        "headquarters",
+        "headquarters.street",
+        "headquarters.city",
+        "headquarters.postal_code",
+        "contact_email",
+        "website"
+      ]
+    },
+    {
+      "collection": "titles",
+      "fields": [
+        "_id",
+        "display_name",
+        "kind",
+        "release_year",
+        "season_count",
+        "runtime_minutes",
+        "maturity_rating",
+        "genres[]",
+        "audio_languages[]",
+        "available_from",
+        "studio",
+        "studio.studio_id",
+        "studio.name",
+        "studio.country",
+        "cast[]",
+        "cast[].performer",
+        "cast[].character",
+        "cast[].billing_order",
+        "recent_reviews[]",
+        "recent_reviews[]._id",
+        "recent_reviews[].rated_title",
+        "recent_reviews[].author",
+        "recent_reviews[].rating",
+        "recent_reviews[].headline",
+        "recent_reviews[].body",
+        "recent_reviews[].posted_at",
+        "recent_reviews[].helpful_votes",
+        "recent_reviews[].contains_spoilers"
+      ]
+    },
+    {
+      "collection": "reviews",
+      "fields": [
+        "_id",
+        "rated_title",
+        "author",
+        "rating",
+        "headline",
+        "body",
+        "posted_at",
+        "helpful_votes",
+        "contains_spoilers"
+      ]
+    },
+    {
+      "collection": "subscribers",
+      "fields": [
+        "_id",
+        "email",
+        "account_holder",
+        "signup_date",
+        "status",
+        "billing_address",
+        "billing_address.street",
+        "billing_address.city",
+        "billing_address.postal_code",
+        "billing_address.country",
+        "plan",
+        "plan.plan_id",
+        "plan.name",
+        "plan.monthly_price",
+        "profiles[]",
+        "profiles[].profile_name",
+        "profiles[].is_kids",
+        "profiles[].maturity_limit",
+        "profiles[].preferred_languages[]",
+        "watchlist[]",
+        "marketing_opt_in"
+      ]
+    },
+    {
+      "collection": "plans",
+      "fields": [
+        "_id",
+        "name",
+        "monthly_price",
+        "currency",
+        "max_streams",
+        "max_resolution",
+        "ad_supported",
+        "features[]",
+        "available_since"
+      ]
+    },
+    {
+      "collection": "playback_telemetry",
+      "fields": [
+        "_id",
+        "account",
+        "content",
+        "device_type",
+        "window_start",
+        "window_end",
+        "event_count",
+        "heartbeats[]",
+        "heartbeats[].recorded_at",
+        "heartbeats[].position_sec",
+        "heartbeats[].bitrate_kbps",
+        "heartbeats[].buffer_ms",
+        "cdn_region"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from_field": "titles.studio.studio_id",
+      "to_collection": "studios"
+    },
+    {
+      "from_field": "titles.recent_reviews[]._id",
+      "to_collection": "reviews"
+    },
+    {
+      "from_field": "titles.recent_reviews[].rated_title",
+      "to_collection": "titles"
+    },
+    {
+      "from_field": "titles.recent_reviews[].author",
+      "to_collection": "subscribers"
+    },
+    {
+      "from_field": "reviews.rated_title",
+      "to_collection": "titles"
+    },
+    {
+      "from_field": "reviews.author",
+      "to_collection": "subscribers"
+    },
+    {
+      "from_field": "subscribers.plan.plan_id",
+      "to_collection": "plans"
+    },
+    {
+      "from_field": "subscribers.watchlist[]",
+      "to_collection": "titles"
+    },
+    {
+      "from_field": "playback_telemetry.account",
+      "to_collection": "subscribers"
+    },
+    {
+      "from_field": "playback_telemetry.content",
+      "to_collection": "titles"
+    }
+  ],
+  "patterns": [
+    {
+      "field": "studios.headquarters",
+      "evidence": "Address object embedded in studio document.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "titles.studio",
+      "evidence": "Holds studio_id plus copied name and country from studios.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 1.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "titles.genres[]",
+      "evidence": "Array of genre strings.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "titles.audio_languages[]",
+      "evidence": "Array of language codes.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "titles.cast[]",
+      "evidence": "Cast members embedded as objects, no separate collection.",
+      "scores": {
+        "Embedding": 0.8,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.2,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "titles.recent_reviews[]",
+      "evidence": "A few recent reviews duplicated from the reviews collection (same _ids).",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 1.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "reviews.rated_title",
+      "evidence": "Stores title id string.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "reviews.author",
+      "evidence": "ObjectId of subscriber.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "subscribers.billing_address",
+      "evidence": "Embedded address object.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "subscribers.plan",
+      "evidence": "plan_id plus copied name and price from plans.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 1.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "subscribers.profiles[]",
+      "evidence": "Profiles embedded as objects in subscriber.",
+      "scores": {
+        "Embedding": 0.8,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.2,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "subscribers.watchlist[]",
+      "evidence": "Array of title ids referencing titles.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.8,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.2,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "plans.features[]",
+      "evidence": "Array of feature strings.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "playback_telemetry.account",
+      "evidence": "ObjectId of subscriber.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "playback_telemetry.content",
+      "evidence": "Title id string.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "playback_telemetry.heartbeats[]",
+      "evidence": "Heartbeats grouped per hourly window with window_start/end and event_count.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 1.0
+      }
+    }
+  ],
+  "truncated": false
+}

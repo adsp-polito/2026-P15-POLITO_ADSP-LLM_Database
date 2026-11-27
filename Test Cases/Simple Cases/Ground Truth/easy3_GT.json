@@ -1,0 +1,89 @@
+{
+  "database": "db_03",
+  "collections": [
+    "artworks",
+    "conservators",
+    "restoration_projects"
+  ],
+  "fields": {
+    "artworks": [
+      "_id",
+      "accession_number",
+      "name",
+      "artist",
+      "year_created",
+      "medium",
+      "materials[]",
+      "height_cm",
+      "width_cm",
+      "depth_cm",
+      "gallery",
+      "acquired_on",
+      "on_display"
+    ],
+    "conservators": [
+      "_id",
+      "full_name",
+      "email",
+      "phone",
+      "studio",
+      "specialties[]",
+      "hired_on",
+      "is_active"
+    ],
+    "restoration_projects": [
+      "_id",
+      "project_code",
+      "artwork_id",
+      "conservator_id",
+      "status",
+      "start_date",
+      "completion_date",
+      "estimated_hours",
+      "budget_eur",
+      "condition_issues[]",
+      "condition_issues[].location",
+      "condition_issues[].issue_type",
+      "condition_issues[].severity",
+      "condition_issues[].treatment",
+      "condition_issues[].notes"
+    ]
+  },
+  "relationships": [
+    {
+      "from_field": "restoration_projects.artwork_id",
+      "to_collection": "artworks"
+    },
+    {
+      "from_field": "restoration_projects.conservator_id",
+      "to_collection": "conservators"
+    }
+  ],
+  "patterns": [
+    {
+      "path": "restoration_projects.artwork_id",
+      "pattern": "Referencing",
+      "evidence": "artwork_id holds only the ObjectId of an artworks document; no artwork attribute such as its name or artist is copied into the project."
+    },
+    {
+      "path": "restoration_projects.conservator_id",
+      "pattern": "Referencing",
+      "evidence": "conservator_id holds only the ObjectId of the lead conservator in the conservators collection, with no copied fields like full_name or email."
+    },
+    {
+      "path": "restoration_projects.condition_issues[]",
+      "pattern": "Embedding",
+      "evidence": "condition_issues is an array of sub-documents (location, issue_type, severity, treatment, optional notes) describing the damage found on the artwork for this project; these issues exist only inside the project and no collection stores them separately."
+    },
+    {
+      "path": "artworks.materials[]",
+      "pattern": "Array",
+      "evidence": "materials is a short list of plain strings describing what the work is made of, for example \"poplar panel\"; it is a multi-valued attribute, not identifiers or sub-documents."
+    },
+    {
+      "path": "conservators.specialties[]",
+      "pattern": "Array",
+      "evidence": "specialties is a bounded list of plain strings naming the conservator's areas of expertise, for example \"varnish removal\"; a simple multi-valued attribute."
+    }
+  ]
+}

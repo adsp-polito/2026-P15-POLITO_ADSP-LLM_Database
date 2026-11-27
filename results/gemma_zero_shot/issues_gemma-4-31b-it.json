@@ -1,0 +1,26 @@
+{
+  "easy3/Run 1": [
+    "fields: 2 identical entries counted once"
+  ],
+  "easy3/Run 2": [
+    "fields: 2 identical entries counted once"
+  ],
+  "easy3/Run 3": [
+    "fields: 3 identical entries counted once"
+  ],
+  "medium6/Run 1": [
+    "fields: 1 identical entries counted once"
+  ],
+  "medium6/Run 2": [
+    "fields: 1 identical entries counted once"
+  ],
+  "medium7/Run 1": [
+    "fields: 2 identical entries counted once"
+  ],
+  "medium8/Run 1": [
+    "fields: 1 identical entries counted once"
+  ],
+  "medium8/Run 2": [
+    "fields: 1 identical entries counted once"
+  ]
+}

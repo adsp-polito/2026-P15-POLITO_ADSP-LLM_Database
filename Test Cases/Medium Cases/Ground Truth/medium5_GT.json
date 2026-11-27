@@ -1,0 +1,165 @@
+{
+  "database": "db_05",
+  "collections": [
+    "journalists",
+    "sections",
+    "articles",
+    "comments",
+    "readers"
+  ],
+  "fields": {
+    "journalists": [
+      "_id",
+      "full_name",
+      "email",
+      "desk",
+      "hired_at",
+      "contact",
+      "contact.phone",
+      "contact.x_handle",
+      "contact.office",
+      "beats[]"
+    ],
+    "sections": [
+      "_id",
+      "name",
+      "slug",
+      "editor",
+      "display_order",
+      "is_paywalled",
+      "sponsor_label"
+    ],
+    "articles": [
+      "_id",
+      "headline",
+      "slug",
+      "section",
+      "contributors[]",
+      "status",
+      "published_at",
+      "updated_at",
+      "word_count",
+      "is_premium",
+      "keywords[]",
+      "media[]",
+      "media[].kind",
+      "media[].url",
+      "media[].caption",
+      "media[].credit",
+      "recent_comments[]",
+      "recent_comments[]._id",
+      "recent_comments[].article",
+      "recent_comments[].commenter",
+      "recent_comments[].body",
+      "recent_comments[].posted_at",
+      "recent_comments[].upvotes",
+      "recent_comments[].flagged"
+    ],
+    "comments": [
+      "_id",
+      "article",
+      "commenter",
+      "body",
+      "posted_at",
+      "upvotes",
+      "flagged"
+    ],
+    "readers": [
+      "_id",
+      "username",
+      "email",
+      "subscription_tier",
+      "registered_at",
+      "followed_sections[]",
+      "newsletter_topics[]"
+    ]
+  },
+  "relationships": [
+    {
+      "from_field": "sections.editor",
+      "to_collection": "journalists"
+    },
+    {
+      "from_field": "articles.section",
+      "to_collection": "sections"
+    },
+    {
+      "from_field": "articles.contributors[]",
+      "to_collection": "journalists"
+    },
+    {
+      "from_field": "comments.article",
+      "to_collection": "articles"
+    },
+    {
+      "from_field": "comments.commenter",
+      "to_collection": "readers"
+    },
+    {
+      "from_field": "readers.followed_sections[]",
+      "to_collection": "sections"
+    }
+  ],
+  "patterns": [
+    {
+      "path": "journalists.contact",
+      "pattern": "Embedding",
+      "evidence": "Contact details (phone, x_handle, office) are a nested object that exists only inside the journalist document."
+    },
+    {
+      "path": "journalists.beats[]",
+      "pattern": "Array",
+      "evidence": "A list of plain topic strings such as \"energy\" covered by the journalist, with a different length per person."
+    },
+    {
+      "path": "sections.editor",
+      "pattern": "Referencing",
+      "evidence": "Holds only the ObjectId of the journalist who edits the section; no journalist fields are copied."
+    },
+    {
+      "path": "articles.section",
+      "pattern": "Referencing",
+      "evidence": "Holds only the ObjectId of the sections document the article is filed under."
+    },
+    {
+      "path": "articles.contributors[]",
+      "pattern": "Referencing",
+      "evidence": "A list of ObjectIds, each equal to a journalists _id, forming the byline without copied author data."
+    },
+    {
+      "path": "articles.keywords[]",
+      "pattern": "Array",
+      "evidence": "Plain keyword strings such as \"budget\" used for tagging and search, varying in length."
+    },
+    {
+      "path": "articles.media[]",
+      "pattern": "Embedding",
+      "evidence": "Media items (kind, url, caption, credit) are stored only inside the article; no collection holds them on their own."
+    },
+    {
+      "path": "articles.recent_comments[]",
+      "pattern": "Subset",
+      "evidence": "Keeps at most the three newest comments by posted_at, identical to documents of the comments collection, which holds the full set; one article has an older fourth comment kept only there."
+    },
+    {
+      "path": "comments.article",
+      "pattern": "Referencing",
+      "evidence": "ObjectId of the article the comment belongs to, equal to an articles _id."
+    },
+    {
+      "path": "comments.commenter",
+      "pattern": "Referencing",
+      "evidence": "ObjectId of the reader who wrote the comment, with no reader attributes copied."
+    },
+    {
+      "path": "readers.followed_sections[]",
+      "pattern": "Referencing",
+      "evidence": "A list of ObjectIds of sections the reader follows, each matching a sections _id."
+    },
+    {
+      "path": "readers.newsletter_topics[]",
+      "pattern": "Array",
+      "evidence": "Plain newsletter names such as \"morning briefing\" the reader subscribed to, a multi-valued attribute of varying length."
+    }
+  ]
+}

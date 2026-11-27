@@ -1,0 +1,311 @@
+{
+  "journalists": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "full_name",
+        "email",
+        "desk",
+        "contact"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "full_name": {
+          "bsonType": "string"
+        },
+        "email": {
+          "bsonType": "string"
+        },
+        "desk": {
+          "bsonType": "string",
+          "enum": [
+            "politics",
+            "business",
+            "world",
+            "sport",
+            "science"
+          ]
+        },
+        "hired_at": {
+          "bsonType": "date"
+        },
+        "contact": {
+          "bsonType": "object",
+          "required": [
+            "phone",
+            "office"
+          ],
+          "properties": {
+            "phone": {
+              "bsonType": "string"
+            },
+            "x_handle": {
+              "bsonType": "string"
+            },
+            "office": {
+              "bsonType": "string"
+            }
+          }
+        },
+        "beats": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "string"
+          }
+        }
+      }
+    }
+  },
+  "sections": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "name",
+        "slug",
+        "editor",
+        "display_order",
+        "is_paywalled"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "name": {
+          "bsonType": "string"
+        },
+        "slug": {
+          "bsonType": "string"
+        },
+        "editor": {
+          "bsonType": "objectId"
+        },
+        "display_order": {
+          "bsonType": "int"
+        },
+        "is_paywalled": {
+          "bsonType": "bool"
+        },
+        "sponsor_label": {
+          "bsonType": "string"
+        }
+      }
+    }
+  },
+  "articles": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "headline",
+        "slug",
+        "section",
+        "contributors",
+        "status",
+        "published_at",
+        "word_count"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "headline": {
+          "bsonType": "string"
+        },
+        "slug": {
+          "bsonType": "string"
+        },
+        "section": {
+          "bsonType": "objectId"
+        },
+        "contributors": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "objectId"
+          }
+        },
+        "status": {
+          "bsonType": "string",
+          "enum": [
+            "draft",
+            "scheduled",
+            "published",
+            "retracted"
+          ]
+        },
+        "published_at": {
+          "bsonType": "date"
+        },
+        "updated_at": {
+          "bsonType": "date"
+        },
+        "word_count": {
+          "bsonType": "int"
+        },
+        "is_premium": {
+          "bsonType": "bool"
+        },
+        "keywords": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "string"
+          }
+        },
+        "media": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "kind",
+              "url",
+              "caption",
+              "credit"
+            ],
+            "properties": {
+              "kind": {
+                "bsonType": "string",
+                "enum": [
+                  "image",
+                  "video",
+                  "chart",
+                  "audio"
+                ]
+              },
+              "url": {
+                "bsonType": "string"
+              },
+              "caption": {
+                "bsonType": "string"
+              },
+              "credit": {
+                "bsonType": "string"
+              }
+            }
+          }
+        },
+        "recent_comments": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "_id",
+              "article",
+              "commenter",
+              "body",
+              "posted_at",
+              "upvotes"
+            ],
+            "properties": {
+              "_id": {
+                "bsonType": "objectId"
+              },
+              "article": {
+                "bsonType": "objectId"
+              },
+              "commenter": {
+                "bsonType": "objectId"
+              },
+              "body": {
+                "bsonType": "string"
+              },
+              "posted_at": {
+                "bsonType": "date"
+              },
+              "upvotes": {
+                "bsonType": "int"
+              },
+              "flagged": {
+                "bsonType": "bool"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "comments": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "article",
+        "commenter",
+        "body",
+        "posted_at",
+        "upvotes"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "article": {
+          "bsonType": "objectId"
+        },
+        "commenter": {
+          "bsonType": "objectId"
+        },
+        "body": {
+          "bsonType": "string"
+        },
+        "posted_at": {
+          "bsonType": "date"
+        },
+        "upvotes": {
+          "bsonType": "int"
+        },
+        "flagged": {
+          "bsonType": "bool"
+        }
+      }
+    }
+  },
+  "readers": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "username",
+        "email",
+        "subscription_tier",
+        "registered_at"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "username": {
+          "bsonType": "string"
+        },
+        "email": {
+          "bsonType": "string"
+        },
+        "subscription_tier": {
+          "bsonType": "string",
+          "enum": [
+            "free",
+            "digital_plus",
+            "premium"
+          ]
+        },
+        "registered_at": {
+          "bsonType": "date"
+        },
+        "followed_sections": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "objectId"
+          }
+        },
+        "newsletter_topics": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "string"
+          }
+        }
+      }
+    }
+  }
+}

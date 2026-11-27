@@ -1,0 +1,261 @@
+{
+  "boats": [
+    {
+      "_id": { "$oid": "6650a1f2c3d4e5f6a7b80101" },
+      "name": "Libeccio",
+      "boat_type": "sailboat",
+      "manufacturer": "Brennholt Yachts",
+      "model": "Brennholt 34",
+      "year_built": 2019,
+      "length_m": 10.4,
+      "max_passengers": 8,
+      "cabins": 3,
+      "engine_hp": 29,
+      "daily_rate_eur": 320,
+      "license_required": true,
+      "status": "available",
+      "home_berth": {
+        "marina_name": "Marina di Cala Serena",
+        "pontoon": "C",
+        "berth_number": 14,
+        "city": "Cala Serena"
+      }
+    },
+    {
+      "_id": { "$oid": "6650a1f2c3d4e5f6a7b80102" },
+      "name": "Gabbiano II",
+      "boat_type": "rib",
+      "manufacturer": "Nautica Ferrante",
+      "model": "Ferrante 650 Open",
+      "year_built": 2022,
+      "length_m": 6.5,
+      "max_passengers": 10,
+      "engine_hp": 150,
+      "daily_rate_eur": 280,
+      "license_required": true,
+      "status": "available",
+      "home_berth": {
+        "marina_name": "Marina di Cala Serena",
+        "pontoon": "A",
+        "berth_number": 3,
+        "city": "Cala Serena"
+      }
+    },
+    {
+      "_id": { "$oid": "6650a1f2c3d4e5f6a7b80103" },
+      "name": "Pinnetta",
+      "boat_type": "motorboat",
+      "manufacturer": "Lido Craft",
+      "model": "Lido 4.5",
+      "year_built": 2021,
+      "length_m": 4.5,
+      "max_passengers": 5,
+      "engine_hp": 40,
+      "daily_rate_eur": 140,
+      "license_required": false,
+      "status": "available",
+      "home_berth": {
+        "marina_name": "Porto Turistico Punta Lena",
+        "pontoon": "B",
+        "berth_number": 21,
+        "city": "Punta Lena"
+      }
+    },
+    {
+      "_id": { "$oid": "6650a1f2c3d4e5f6a7b80104" },
+      "name": "Maestrale",
+      "boat_type": "catamaran",
+      "manufacturer": "Oltremare Cats",
+      "model": "Oltremare 40",
+      "year_built": 2020,
+      "length_m": 11.9,
+      "max_passengers": 10,
+      "cabins": 4,
+      "engine_hp": 80,
+      "daily_rate_eur": 690,
+      "license_required": true,
+      "status": "available",
+      "home_berth": {
+        "marina_name": "Marina di Cala Serena",
+        "pontoon": "E",
+        "berth_number": 2,
+        "city": "Cala Serena"
+      }
+    },
+    {
+      "_id": { "$oid": "6650a1f2c3d4e5f6a7b80105" },
+      "name": "Sirocco",
+      "boat_type": "sailboat",
+      "manufacturer": "Brennholt Yachts",
+      "model": "Brennholt 41",
+      "year_built": 2017,
+      "length_m": 12.3,
+      "max_passengers": 10,
+      "cabins": 4,
+      "engine_hp": 40,
+      "daily_rate_eur": 450,
+      "license_required": true,
+      "status": "maintenance"
+    }
+  ],
+  "customers": [
+    {
+      "_id": { "$oid": "6650b2e4c3d4e5f6a7b80201" },
+      "first_name": "Marco",
+      "last_name": "Albertelli",
+      "email": "marco.albertelli@example.com",
+      "phone": "+39 347 512 8834",
+      "nationality": "IT",
+      "date_of_birth": { "$date": "1984-03-17T00:00:00Z" },
+      "registered_at": { "$date": "2025-11-04T16:22:10Z" },
+      "boating_license": {
+        "license_number": "GE-2011-04587",
+        "license_type": "coastal_12nm",
+        "issuing_country": "IT",
+        "expiry_date": { "$date": "2031-05-30T00:00:00Z" }
+      }
+    },
+    {
+      "_id": { "$oid": "6650b2e4c3d4e5f6a7b80202" },
+      "first_name": "Claire",
+      "last_name": "Vautrin",
+      "email": "claire.vautrin@example.com",
+      "phone": "+33 6 72 18 45 09",
+      "nationality": "FR",
+      "date_of_birth": { "$date": "1979-09-02T00:00:00Z" },
+      "registered_at": { "$date": "2026-02-11T09:47:35Z" },
+      "boating_license": {
+        "license_number": "FR-HAU-778134",
+        "license_type": "unlimited",
+        "issuing_country": "FR",
+        "expiry_date": { "$date": "2034-01-15T00:00:00Z" }
+      }
+    },
+    {
+      "_id": { "$oid": "6650b2e4c3d4e5f6a7b80203" },
+      "first_name": "Jonas",
+      "last_name": "Kellermann",
+      "email": "j.kellermann@example.com",
+      "phone": "+49 151 2384 7720",
+      "nationality": "DE",
+      "registered_at": { "$date": "2026-08-27T19:05:51Z" },
+      "boating_license": {
+        "license_number": "ICC-D-0419226",
+        "license_type": "icc",
+        "issuing_country": "DE",
+        "expiry_date": { "$date": "2029-06-30T00:00:00Z" }
+      }
+    },
+    {
+      "_id": { "$oid": "6650b2e4c3d4e5f6a7b80204" },
+      "first_name": "Giulia",
+      "last_name": "Morandotti",
+      "email": "giulia.morandotti@example.com",
+      "phone": "+39 333 904 1167",
+      "nationality": "IT",
+      "date_of_birth": { "$date": "1991-12-08T00:00:00Z" },
+      "registered_at": { "$date": "2026-10-30T11:13:02Z" },
+      "boating_license": {
+        "license_number": "NA-2019-11260",
+        "license_type": "coastal_12nm",
+        "issuing_country": "IT",
+        "expiry_date": { "$date": "2029-04-12T00:00:00Z" }
+      }
+    },
+    {
+      "_id": { "$oid": "6650b2e4c3d4e5f6a7b80205" },
+      "first_name": "Pieter",
+      "last_name": "van Roekel",
+      "email": "pieter.vanroekel@example.com",
+      "phone": "+31 6 4417 2295",
+      "nationality": "NL",
+      "date_of_birth": { "$date": "1988-06-21T00:00:00Z" },
+      "registered_at": { "$date": "2026-07-01T20:31:44Z" }
+    }
+  ],
+  "rentals": [
+    {
+      "_id": { "$oid": "6650c3a8c3d4e5f6a7b80301" },
+      "boat_id": { "$oid": "6650a1f2c3d4e5f6a7b80101" },
+      "customer_id": { "$oid": "6650b2e4c3d4e5f6a7b80201" },
+      "pickup_at": { "$date": "2026-06-13T09:00:00Z" },
+      "return_at": { "$date": "2026-06-19T18:00:00Z" },
+      "status": "completed",
+      "passengers": 6,
+      "skipper_included": false,
+      "total_amount_eur": 2240,
+      "security_deposit_eur": 1500,
+      "payment": {
+        "method": "card",
+        "amount_paid_eur": 2240,
+        "paid_at": { "$date": "2026-05-02T14:08:19Z" },
+        "card_last4": "4417"
+      }
+    },
+    {
+      "_id": { "$oid": "6650c3a8c3d4e5f6a7b80302" },
+      "boat_id": { "$oid": "6650a1f2c3d4e5f6a7b80103" },
+      "customer_id": { "$oid": "6650b2e4c3d4e5f6a7b80205" },
+      "pickup_at": { "$date": "2026-07-04T09:00:00Z" },
+      "return_at": { "$date": "2026-07-04T18:00:00Z" },
+      "status": "completed",
+      "passengers": 4,
+      "total_amount_eur": 140,
+      "security_deposit_eur": 200,
+      "payment": {
+        "method": "cash",
+        "amount_paid_eur": 140,
+        "paid_at": { "$date": "2026-07-04T08:45:00Z" }
+      }
+    },
+    {
+      "_id": { "$oid": "6650c3a8c3d4e5f6a7b80303" },
+      "boat_id": { "$oid": "6650a1f2c3d4e5f6a7b80104" },
+      "customer_id": { "$oid": "6650b2e4c3d4e5f6a7b80202" },
+      "pickup_at": { "$date": "2026-08-08T10:00:00Z" },
+      "return_at": { "$date": "2026-08-14T17:00:00Z" },
+      "status": "completed",
+      "passengers": 9,
+      "skipper_included": true,
+      "skipper_fee_eur": 1260,
+      "total_amount_eur": 6090,
+      "security_deposit_eur": 3000,
+      "notes": "Two child life jackets requested; arrival by late ferry on pickup day.",
+      "payment": {
+        "method": "bank_transfer",
+        "amount_paid_eur": 6090,
+        "paid_at": { "$date": "2026-07-10T10:31:57Z" }
+      }
+    },
+    {
+      "_id": { "$oid": "6650c3a8c3d4e5f6a7b80304" },
+      "boat_id": { "$oid": "6650a1f2c3d4e5f6a7b80102" },
+      "customer_id": { "$oid": "6650b2e4c3d4e5f6a7b80203" },
+      "pickup_at": { "$date": "2026-09-19T09:00:00Z" },
+      "return_at": { "$date": "2026-09-20T18:00:00Z" },
+      "status": "completed",
+      "passengers": 7,
+      "skipper_included": false,
+      "total_amount_eur": 560,
+      "security_deposit_eur": 800,
+      "payment": {
+        "method": "card",
+        "amount_paid_eur": 560,
+        "paid_at": { "$date": "2026-09-15T21:12:40Z" },
+        "card_last4": "0932"
+      }
+    },
+    {
+      "_id": { "$oid": "6650c3a8c3d4e5f6a7b80305" },
+      "boat_id": { "$oid": "6650a1f2c3d4e5f6a7b80101" },
+      "customer_id": { "$oid": "6650b2e4c3d4e5f6a7b80204" },
+      "pickup_at": { "$date": "2027-05-01T09:00:00Z" },
+      "return_at": { "$date": "2027-05-03T18:00:00Z" },
+      "status": "pending",
+      "passengers": 5,
+      "skipper_included": false,
+      "total_amount_eur": 960,
+      "security_deposit_eur": 1500
+    }
+  ]
+}

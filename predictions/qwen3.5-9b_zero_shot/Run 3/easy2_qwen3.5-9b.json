@@ -1,0 +1,118 @@
+{
+  "collections": [
+    "boats",
+    "customers",
+    "rentals"
+  ],
+  "fields": [
+    {
+      "collection": "boats",
+      "fields": [
+        "_id",
+        "name",
+        "boat_type",
+        "manufacturer",
+        "model",
+        "year_built",
+        "length_m",
+        "max_passengers",
+        "cabins",
+        "engine_hp",
+        "daily_rate_eur",
+        "license_required",
+        "status",
+        "home_berth.marina_name",
+        "home_berth.pontoon",
+        "home_berth.berth_number",
+        "home_berth.city"
+      ]
+    },
+    {
+      "collection": "customers",
+      "fields": [
+        "_id",
+        "first_name",
+        "last_name",
+        "email",
+        "phone",
+        "nationality",
+        "date_of_birth",
+        "registered_at",
+        "boating_license.license_number",
+        "boating_license.license_type",
+        "boating_license.issuing_country",
+        "boating_license.expiry_date"
+      ]
+    },
+    {
+      "collection": "rentals",
+      "fields": [
+        "_id",
+        "boat_id",
+        "customer_id",
+        "pickup_at",
+        "return_at",
+        "status",
+        "passengers",
+        "skipper_included",
+        "skipper_fee_eur",
+        "total_amount_eur",
+        "security_deposit_eur",
+        "notes",
+        "payment.method",
+        "payment.amount_paid_eur",
+        "payment.paid_at",
+        "payment.card_last4"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from_field": "rentals.boat_id",
+      "to_collection": "boats"
+    },
+    {
+      "from_field": "rentals.customer_id",
+      "to_collection": "customers"
+    }
+  ],
+  "patterns": [
+    {
+      "field": "boats.home_berth",
+      "evidence": "The field is an object containing marina details (marina_name, pontoon, berth_number, city). These details are tightly coupled to the specific boat and rarely change independently, making them a natural fit for embedding directly within the boat document rather than referencing a separate marina collection.",
+      "scores": {
+        "Embedding": 0.9,
+        "Referencing": 0.1,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "customers.boating_license",
+      "evidence": "This field is an object containing license details (license_number, license_type, issuing_country, expiry_date). While a customer might have multiple licenses, the schema defines a single object, and the data shows one license per customer. The details are specific to the customer's identity and status, suggesting they are embedded to avoid denormalization issues or frequent updates to a separate license collection.",
+      "scores": {
+        "Embedding": 0.85,
+        "Referencing": 0.15,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "rentals.payment",
+      "evidence": "This field is an object containing transaction details (method, amount_paid_eur, paid_at, card_last4). This data is specific to a single rental transaction. While payment information could be stored in a separate transaction log, embedding it here keeps the rental record self-contained for reporting purposes without requiring a join for basic status checks.",
+      "scores": {
+        "Embedding": 0.8,
+        "Referencing": 0.2,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    }
+  ],
+  "truncated": false
+}

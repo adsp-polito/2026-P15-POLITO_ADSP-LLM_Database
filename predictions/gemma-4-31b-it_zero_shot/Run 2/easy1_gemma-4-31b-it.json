@@ -1,0 +1,120 @@
+{
+  "collections": [
+    "members",
+    "books",
+    "loans"
+  ],
+  "fields": [
+    {
+      "collection": "members",
+      "fields": [
+        "_id",
+        "card_number",
+        "first_name",
+        "last_name",
+        "email",
+        "phone",
+        "membership_type",
+        "registered_at",
+        "card_expires_on",
+        "notification_channels[]",
+        "account_status"
+      ]
+    },
+    {
+      "collection": "books",
+      "fields": [
+        "_id",
+        "isbn",
+        "book_title",
+        "author",
+        "publisher",
+        "publication_year",
+        "language",
+        "format",
+        "subjects[]",
+        "page_count",
+        "shelf_location",
+        "copies_total",
+        "copies_available",
+        "added_on"
+      ]
+    },
+    {
+      "collection": "loans",
+      "fields": [
+        "_id",
+        "member_id",
+        "book_id",
+        "branch",
+        "checked_out_at",
+        "due_at",
+        "returned_at",
+        "renewal_count",
+        "status",
+        "late_fee"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from_field": "loans.member_id",
+      "to_collection": "members"
+    },
+    {
+      "from_field": "loans.book_id",
+      "to_collection": "books"
+    }
+  ],
+  "patterns": [
+    {
+      "field": "members.notification_channels",
+      "evidence": "An array of strings containing communication preferences.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "books.subjects",
+      "evidence": "An array of strings listing the categories/topics of the book.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "loans.member_id",
+      "evidence": "Stores the ObjectId of a document in the members collection to link a loan to a person.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "loans.book_id",
+      "evidence": "Stores the ObjectId of a document in the books collection to link a loan to a specific title.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    }
+  ],
+  "truncated": false
+}

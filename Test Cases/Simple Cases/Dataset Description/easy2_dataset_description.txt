@@ -1,0 +1,80 @@
+db_02 - Boat rental (Easy)
+==========================
+
+Domain
+------
+A small Mediterranean boat charter company that rents sailboats, motorboats,
+RIBs and catamarans by the day from a few marinas. The back office keeps its
+fleet, its customers and the bookings in three MongoDB collections.
+
+Collections
+-----------
+boats (5 documents)
+  The rental fleet. Each boat has its commercial data (name, boat_type,
+  manufacturer, model, year_built, length_m, max_passengers, cabins,
+  engine_hp, daily_rate_eur, license_required, status) and its mooring
+  location in the nested object home_berth. Sailboats and catamarans have
+  cabins; the small motorboat and the RIB do not. "Sirocco" is in maintenance
+  and has no berth assigned, so home_berth is missing in that document.
+
+customers (5 documents)
+  People who book boats: contact data, nationality, date_of_birth (missing for
+  one customer) and registered_at. A customer who holds a boating licence has
+  it stored in the nested object boating_license. Pieter van Roekel has no
+  licence and only rents the licence-free motorboat "Pinnetta".
+
+rentals (5 documents)
+  One booking of one boat by one customer. It points to the boat (boat_id) and
+  to the customer (customer_id) by ObjectId only, and stores the dates,
+  passengers, optional skipper, totals, deposit and optional notes. A paid
+  booking holds its payment in the nested object payment; the pending booking
+  for May 2027 has no payment yet.
+
+How the data and the patterns work together
+-------------------------------------------
+- Embedding (single nested object, the only form used in the database):
+    boats.home_berth          - berth data belongs to the boat only
+    customers.boating_license - licence data belongs to the customer only
+    rentals.payment           - payment data belongs to the rental only
+  None of these nested objects carries an identifier, and no collection stores
+  berths, licences or payments as documents of their own.
+- Referencing (single ObjectId):
+    rentals.boat_id     -> boats._id
+    rentals.customer_id -> customers._id
+  The rental copies no attribute of the boat or of the customer. Totals are
+  consistent with the boat's daily rate: total_amount_eur = daily_rate_eur x
+  number of rental days (pickup day to return day inclusive), plus
+  skipper_fee_eur when a skipper is included (rental on "Maestrale":
+  7 x 690 + 7 x 180 = 6090). Passengers never exceed the boat's
+  max_passengers, and licence-requiring boats are rented only by customers
+  with a boating_license.
+
+  Reference map:
+    rental ...0301 -> boat ...0101 (Libeccio),    customer ...0201
+    rental ...0302 -> boat ...0103 (Pinnetta),    customer ...0205
+    rental ...0303 -> boat ...0104 (Maestrale),   customer ...0202
+    rental ...0304 -> boat ...0102 (Gabbiano II), customer ...0203
+    rental ...0305 -> boat ...0101 (Libeccio),    customer ...0204
+  Boat ...0105 (Sirocco) is in maintenance and has no rental.
+
+- No other pattern is present: there are no arrays at all in the database
+  (so no Array, Subset or Bucket), and no object combines an identifier with
+  copied fields (so no ExtendedReference).
+
+Difficulty requirements applied (Easy)
+--------------------------------------
+- Every identifier field is named <entity>_id and holds ObjectIds:
+  rentals.boat_id, rentals.customer_id.
+- One form per pattern: references are single ObjectIds (never arrays);
+  Embedding always uses a single nested object (home_berth, boating_license,
+  payment), never an array of objects.
+- At most one pattern other than Referencing per collection: boats has only
+  Embedding (home_berth), customers only Embedding (boating_license), rentals
+  only Embedding (payment) besides its two references.
+- No pattern nested inside another: the three embedded objects contain only
+  plain scalar fields and dates, one level deep.
+- Optional fields missing in some documents: boats.cabins,
+  boats.home_berth, customers.date_of_birth, customers.boating_license,
+  rentals.skipper_included, rentals.skipper_fee_eur, rentals.notes,
+  rentals.payment, payment.card_last4. Each pattern-carrying field is present
+  in at least 4 of 5 documents.

@@ -1,0 +1,118 @@
+{
+  "collections": [
+    "boats",
+    "customers",
+    "rentals"
+  ],
+  "fields": [
+    {
+      "collection": "boats",
+      "fields": [
+        "_id",
+        "name",
+        "boat_type",
+        "manufacturer",
+        "model",
+        "year_built",
+        "length_m",
+        "max_passengers",
+        "cabins",
+        "engine_hp",
+        "daily_rate_eur",
+        "license_required",
+        "status",
+        "home_berth.marina_name",
+        "home_berth.pontoon",
+        "home_berth.berth_number",
+        "home_berth.city"
+      ]
+    },
+    {
+      "collection": "customers",
+      "fields": [
+        "_id",
+        "first_name",
+        "last_name",
+        "email",
+        "phone",
+        "nationality",
+        "date_of_birth",
+        "registered_at",
+        "boating_license.license_number",
+        "boating_license.license_type",
+        "boating_license.issuing_country",
+        "boating_license.expiry_date"
+      ]
+    },
+    {
+      "collection": "rentals",
+      "fields": [
+        "_id",
+        "boat_id",
+        "customer_id",
+        "pickup_at",
+        "return_at",
+        "status",
+        "passengers",
+        "skipper_included",
+        "skipper_fee_eur",
+        "total_amount_eur",
+        "security_deposit_eur",
+        "notes",
+        "payment.method",
+        "payment.amount_paid_eur",
+        "payment.paid_at",
+        "payment.card_last4"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from_field": "rentals.boat_id",
+      "to_collection": "boats"
+    },
+    {
+      "from_field": "rentals.customer_id",
+      "to_collection": "customers"
+    }
+  ],
+  "patterns": [
+    {
+      "field": "boats.home_berth",
+      "evidence": "The schema defines 'home_berth' as an object containing marina details (marina_name, pontoon, berth_number, city). In the sample data, this object is embedded directly within the boat document rather than being a reference to a separate 'berths' collection. This is a classic example of embedding related data that is frequently accessed together.",
+      "scores": {
+        "Embedding": 0.95,
+        "Referencing": 0.05,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "customers.boating_license",
+      "evidence": "The field 'boating_license' is an object containing license details (license_number, license_type, issuing_country, expiry_date). It is embedded within the customer document. While a license could theoretically be a separate entity, the schema treats it as a single attribute of the customer, making it an embedded document.",
+      "scores": {
+        "Embedding": 0.95,
+        "Referencing": 0.05,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "rentals.payment",
+      "evidence": "The 'payment' field is an object containing transaction details (method, amount_paid_eur, paid_at, card_last4). It is embedded directly inside the rental document. This allows all payment information to be retrieved in a single query without joining a separate payments collection.",
+      "scores": {
+        "Embedding": 0.95,
+        "Referencing": 0.05,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    }
+  ],
+  "truncated": false
+}

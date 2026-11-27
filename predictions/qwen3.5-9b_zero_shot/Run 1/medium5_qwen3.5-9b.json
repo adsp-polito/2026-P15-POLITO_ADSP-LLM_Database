@@ -1,0 +1,256 @@
+{
+  "collections": [
+    "journalists",
+    "sections",
+    "articles",
+    "comments",
+    "readers"
+  ],
+  "fields": [
+    {
+      "collection": "journalists",
+      "fields": [
+        "_id",
+        "full_name",
+        "email",
+        "desk",
+        "hired_at",
+        "contact.phone",
+        "contact.x_handle",
+        "contact.office",
+        "beats[]"
+      ]
+    },
+    {
+      "collection": "sections",
+      "fields": [
+        "_id",
+        "name",
+        "slug",
+        "editor",
+        "display_order",
+        "is_paywalled",
+        "sponsor_label"
+      ]
+    },
+    {
+      "collection": "articles",
+      "fields": [
+        "_id",
+        "headline",
+        "slug",
+        "section",
+        "contributors[]",
+        "status",
+        "published_at",
+        "updated_at",
+        "word_count",
+        "is_premium",
+        "keywords[]",
+        "media[].kind",
+        "media[].url",
+        "media[].caption",
+        "media[].credit",
+        "recent_comments[].article",
+        "recent_comments[].commenter",
+        "recent_comments[].body",
+        "recent_comments[].posted_at",
+        "recent_comments[].upvotes",
+        "recent_comments[].flagged"
+      ]
+    },
+    {
+      "collection": "comments",
+      "fields": [
+        "_id",
+        "article",
+        "commenter",
+        "body",
+        "posted_at",
+        "upvotes",
+        "flagged"
+      ]
+    },
+    {
+      "collection": "readers",
+      "fields": [
+        "_id",
+        "username",
+        "email",
+        "subscription_tier",
+        "registered_at",
+        "followed_sections[]",
+        "newsletter_topics[]"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from_field": "sections.editor",
+      "to_collection": "journalists"
+    },
+    {
+      "from_field": "articles.section",
+      "to_collection": "sections"
+    },
+    {
+      "from_field": "articles.contributors[]",
+      "to_collection": "journalists"
+    },
+    {
+      "from_field": "articles.recent_comments[].article",
+      "to_collection": "articles"
+    },
+    {
+      "from_field": "articles.recent_comments[].commenter",
+      "to_collection": "readers"
+    },
+    {
+      "from_field": "comments.article",
+      "to_collection": "articles"
+    },
+    {
+      "from_field": "comments.commenter",
+      "to_collection": "readers"
+    },
+    {
+      "from_field": "readers.followed_sections[]",
+      "to_collection": "sections"
+    }
+  ],
+  "patterns": [
+    {
+      "field": "journalists.contact",
+      "evidence": "This field is an object containing specific contact details (phone, office, x_handle). It is embedded directly within the journalist document rather than being a reference to a separate 'contacts' collection, which is a classic example of embedding related data to reduce joins.",
+      "scores": {
+        "Embedding": 0.95,
+        "Referencing": 0.05,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "articles.recent_comments[]",
+      "evidence": "This is an array of objects containing full comment data (body, upvotes, commenter info). Instead of storing just an ID to a 'comments' collection, the entire comment object is stored inside the article. This is an embedding pattern used to keep frequently accessed related data together.",
+      "scores": {
+        "Embedding": 0.95,
+        "Referencing": 0.05,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "articles.media[]",
+      "evidence": "This is an array of objects describing media assets (kind, url, caption, credit). The full asset metadata is embedded directly in the article document rather than referencing a separate 'media' collection, allowing the article to be read with its visual context in a single query.",
+      "scores": {
+        "Embedding": 0.95,
+        "Referencing": 0.05,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "readers.followed_sections[]",
+      "evidence": "This is an array of ObjectIds referencing the 'sections' collection. It represents a many-to-many relationship where a reader can follow multiple sections. This is a standard referencing pattern for linking user preferences to content categories.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.95,
+        "ExtendedReference": 0.05,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "articles.contributors[]",
+      "evidence": "This is an array of ObjectIds referencing the 'journalists' collection. It links an article to multiple authors. This is a standard referencing pattern for many-to-many relationships between articles and people.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.95,
+        "ExtendedReference": 0.05,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "comments.commenter",
+      "evidence": "This field holds an ObjectId referencing a document in the 'readers' collection. It identifies the user who wrote the comment. This is a direct referencing pattern.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.95,
+        "ExtendedReference": 0.05,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "comments.article",
+      "evidence": "This field holds an ObjectId referencing a document in the 'articles' collection. It identifies which article the comment belongs to. This is a direct referencing pattern.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.95,
+        "ExtendedReference": 0.05,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "articles.section",
+      "evidence": "This field holds an ObjectId referencing a document in the 'sections' collection. It categorizes the article. This is a direct referencing pattern.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.95,
+        "ExtendedReference": 0.05,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "sections.editor",
+      "evidence": "This field holds an ObjectId referencing a document in the 'journalists' collection. It identifies the person responsible for the section. This is a direct referencing pattern.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.95,
+        "ExtendedReference": 0.05,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "articles.recent_comments[].commenter",
+      "evidence": "This is a field inside an embedded array. It holds an ObjectId referencing a 'readers' document. While the array itself is embedded, this specific field inside it acts as a reference to another collection.",
+      "scores": {
+        "Embedding": 0.45,
+        "Referencing": 0.45,
+        "ExtendedReference": 0.1,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "articles.recent_comments[].article",
+      "evidence": "This is a field inside an embedded array. It holds an ObjectId referencing the parent 'articles' document (self-reference). This is a reference pattern within an embedded structure.",
+      "scores": {
+        "Embedding": 0.45,
+        "Referencing": 0.45,
+        "ExtendedReference": 0.1,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    }
+  ],
+  "truncated": false
+}

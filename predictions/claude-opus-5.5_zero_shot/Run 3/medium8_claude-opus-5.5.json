@@ -1,0 +1,271 @@
+{
+  "collections": [
+    "patients",
+    "exams",
+    "scanners",
+    "radiologists",
+    "reports"
+  ],
+  "fields": [
+    {
+      "collection": "patients",
+      "fields": [
+        "_id",
+        "mrn",
+        "first_name",
+        "last_name",
+        "birth_date",
+        "sex",
+        "phone",
+        "email",
+        "address",
+        "address.line1",
+        "address.line2",
+        "address.city",
+        "address.state",
+        "address.postal_code",
+        "recent_exams[]",
+        "recent_exams[]._id",
+        "recent_exams[].accession_number",
+        "recent_exams[].patient_id",
+        "recent_exams[].scanner_id",
+        "recent_exams[].protocoled_by",
+        "recent_exams[].modality",
+        "recent_exams[].procedure_code",
+        "recent_exams[].procedure_name",
+        "recent_exams[].body_part",
+        "recent_exams[].laterality",
+        "recent_exams[].priority",
+        "recent_exams[].status",
+        "recent_exams[].performed_at",
+        "recent_exams[].contrast_used",
+        "recent_exams[].radiation_dose_mgy",
+        "registered_at"
+      ]
+    },
+    {
+      "collection": "exams",
+      "fields": [
+        "_id",
+        "accession_number",
+        "patient_id",
+        "scanner_id",
+        "protocoled_by",
+        "modality",
+        "procedure_code",
+        "procedure_name",
+        "body_part",
+        "laterality",
+        "priority",
+        "status",
+        "performed_at",
+        "contrast_used",
+        "radiation_dose_mgy"
+      ]
+    },
+    {
+      "collection": "scanners",
+      "fields": [
+        "_id",
+        "station_aet",
+        "modality",
+        "manufacturer",
+        "model",
+        "serial_number",
+        "installed_on",
+        "slice_count",
+        "field_strength_t",
+        "last_service_date",
+        "location",
+        "location.site_name",
+        "location.building",
+        "location.floor",
+        "location.room",
+        "active"
+      ]
+    },
+    {
+      "collection": "radiologists",
+      "fields": [
+        "_id",
+        "npi",
+        "first_name",
+        "last_name",
+        "credentials",
+        "subspecialty",
+        "email",
+        "phone",
+        "hire_date",
+        "active"
+      ]
+    },
+    {
+      "collection": "reports",
+      "fields": [
+        "_id",
+        "exam_ids[]",
+        "signed_by",
+        "report_status",
+        "signed_at",
+        "amended_at",
+        "turnaround_minutes",
+        "impression",
+        "critical_result",
+        "findings[]",
+        "findings[].anatomic_site",
+        "findings[].observation",
+        "findings[].laterality",
+        "findings[].size_mm"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from_field": "patients.recent_exams[]._id",
+      "to_collection": "exams"
+    },
+    {
+      "from_field": "patients.recent_exams[].patient_id",
+      "to_collection": "patients"
+    },
+    {
+      "from_field": "patients.recent_exams[].scanner_id",
+      "to_collection": "scanners"
+    },
+    {
+      "from_field": "patients.recent_exams[].protocoled_by",
+      "to_collection": "radiologists"
+    },
+    {
+      "from_field": "exams.patient_id",
+      "to_collection": "patients"
+    },
+    {
+      "from_field": "exams.scanner_id",
+      "to_collection": "scanners"
+    },
+    {
+      "from_field": "exams.protocoled_by",
+      "to_collection": "radiologists"
+    },
+    {
+      "from_field": "reports.exam_ids[]",
+      "to_collection": "exams"
+    },
+    {
+      "from_field": "reports.signed_by",
+      "to_collection": "radiologists"
+    }
+  ],
+  "patterns": [
+    {
+      "field": "patients.address",
+      "evidence": "Address object embedded directly in patient document.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "patients.recent_exams[]",
+      "evidence": "Holds copies of only the most recent exams from exams collection (patient has more exams than embedded).",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 1.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "exams.patient_id",
+      "evidence": "ObjectId reference to patients.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "exams.scanner_id",
+      "evidence": "ObjectId reference to scanners.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "exams.protocoled_by",
+      "evidence": "ObjectId reference to radiologists.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "scanners.location",
+      "evidence": "Location object embedded in scanner.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "reports.exam_ids[]",
+      "evidence": "Array of ObjectIds referencing exams covered by the report.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "reports.signed_by",
+      "evidence": "ObjectId reference to radiologist.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "reports.findings[]",
+      "evidence": "Array of finding subdocuments embedded in report, owned by it.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    }
+  ],
+  "truncated": false
+}

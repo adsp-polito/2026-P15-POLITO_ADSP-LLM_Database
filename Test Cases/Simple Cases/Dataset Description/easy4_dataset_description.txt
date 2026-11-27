@@ -1,0 +1,25 @@
+DATASET db_04 - SERVER MONITORING (Difficulty: Easy)
+
+DOMAIN
+The database belongs to an infrastructure monitoring service run by a fictional company (hostnames under korvanet.io). A monitoring agent on each server reports metrics every 10 minutes (interval_sec = 600). The service stores which team owns each server, the servers themselves, and the metric readings, grouped into one document per host, per metric and per hour.
+
+COLLECTIONS
+- teams (4 documents): the engineering teams that own servers and receive alerts. Fields: name, oncall_email (example.com), timezone, created_at, and an optional slack_channel (missing for "Data Pipeline").
+- hosts (5 documents): the monitored servers. Fields: hostname, ip_address, datacenter (fra1/ams2/dub1), environment, os, cpu_cores, memory_gb, agent_version, status, registered_at, and an optional last_seen_at. The staging host web-04 has status "provisioning" and was registered the day before, so it has never reported and has no last_seen_at. Each host points to its owning team via team_id.
+- host_metrics (5 documents): hourly groups of metric readings. Each document has host_id, metric (cpu.utilization, memory.used_pct, load.avg_1m), unit, interval_sec, start, end, count and samples[] (ts, value).
+
+HOW THE DATA AND THE PATTERNS WORK TOGETHER
+- Referencing (hosts.team_id -> teams): many hosts belong to one team. Each host stores only the team's ObjectId. All 4 teams are referenced, and Edge Networking owns two hosts (web-01 and web-04).
+- Referencing (host_metrics.host_id -> hosts): each metric document stores only the host's ObjectId. web-01 has two documents (CPU and memory for the same hour). db-01, cache-02 and worker-03 have one each. web-04 has none because it is still being provisioned.
+- Bucket (host_metrics.samples[]): every document covers one hour, with start = HH:00:00 and end = HH:59:59, and holds at most 6 readings taken every 10 minutes, sorted by ts. count always equals the number of samples. Three documents hold a full hour (6 samples). The cache-02 document holds 3 samples (09:00 to 09:20, ending in a 96.3% CPU spike), which matches the host going offline: its last_seen_at is 09:21:07 and its status is "offline". The worker-03 document holds 5 samples because it is the current, still-open hour (07:00 to 07:40 on 2026-11-20), which matches the active hosts' last_seen_at of about 07:44.
+No other pattern is present. There are no nested objects, no arrays of scalar values and no copied fields of other documents, so there is no Embedding, Array, ExtendedReference or Subset.
+
+DIFFICULTY REQUIREMENTS APPLIED (Easy)
+- Every identifier field is named <entity>_id and holds an ObjectId: hosts.team_id and host_metrics.host_id.
+- One form per pattern: both references are single identifiers (no arrays of ids). Embedding is not used.
+- At most one pattern other than Referencing per collection: teams has none, hosts has none (only Referencing), and host_metrics has only Bucket (samples[]).
+- No pattern is nested inside another. The bucket items (ts, value) are plain fields, and the bucket array is only one level deep.
+
+GROUND TRUTH SUMMARY
+Relationships: hosts.team_id -> teams; host_metrics.host_id -> hosts.
+Patterns: hosts.team_id = Referencing; host_metrics.host_id = Referencing; host_metrics.samples[] = Bucket.

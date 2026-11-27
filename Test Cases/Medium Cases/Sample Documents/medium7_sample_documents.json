@@ -1,0 +1,800 @@
+{
+  "riders": [
+    {
+      "_id": {
+        "$oid": "6630f1b8211220e344c0a909"
+      },
+      "email": "giulia.ferrandi@example.com",
+      "full_name": "Giulia Ferrandi",
+      "phone": "+39 347 218 9054",
+      "country": "IT",
+      "date_of_birth": {
+        "$date": "1995-08-14T00:00:00Z"
+      },
+      "signup_at": {
+        "$date": "2024-05-11T18:22:04Z"
+      },
+      "account_status": "active",
+      "license_verified": true,
+      "rider_tier": "pass_monthly",
+      "wallet_balance_eur": 12.4,
+      "notification_zones": [
+        {
+          "$oid": "6512a4c30ae093fe128d38e8"
+        },
+        {
+          "$oid": "6512a4c376b5bbaf6619ab2a"
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "6630f1b8219a73ad9991d697"
+      },
+      "email": "tomasz.wierzbicki@example.com",
+      "full_name": "Tomasz Wierzbicki",
+      "country": "PL",
+      "signup_at": {
+        "$date": "2025-09-03T09:47:31Z"
+      },
+      "account_status": "active",
+      "license_verified": true,
+      "rider_tier": "standard",
+      "wallet_balance_eur": 3.75,
+      "notification_zones": [
+        {
+          "$oid": "6512a4c3ee7cb8fe3de2efc5"
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "6630f1b8bacd50049d06090d"
+      },
+      "email": "chiara.bellandi@example.com",
+      "full_name": "Chiara Bellandi",
+      "phone": "+39 333 640 1187",
+      "country": "IT",
+      "date_of_birth": {
+        "$date": "1989-02-27T00:00:00Z"
+      },
+      "signup_at": {
+        "$date": "2023-07-21T12:05:59Z"
+      },
+      "account_status": "active",
+      "license_verified": true,
+      "rider_tier": "plus",
+      "wallet_balance_eur": 27.1,
+      "notification_zones": [
+        {
+          "$oid": "6512a4c30ae093fe128d38e8"
+        },
+        {
+          "$oid": "6512a4c3ee7cb8fe3de2efc5"
+        },
+        {
+          "$oid": "6512a4c376b5bbaf6619ab2a"
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "6630f1b8f96ebdb725be1b0a"
+      },
+      "email": "l.pasquinelli@example.com",
+      "full_name": "Lorenzo Pasquinelli",
+      "phone": "+39 349 902 3316",
+      "country": "IT",
+      "signup_at": {
+        "$date": "2024-10-08T20:31:12Z"
+      },
+      "account_status": "active",
+      "license_verified": true,
+      "rider_tier": "standard",
+      "wallet_balance_eur": 0.85,
+      "notification_zones": [
+        {
+          "$oid": "6512a4c30ea990b9ec1d945a"
+        },
+        {
+          "$oid": "6512a4c366de301f9171a39a"
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "6630f1b821f8443df2ed6de3"
+      },
+      "email": "ines.marchal@example.com",
+      "full_name": "Inès Marchal",
+      "phone": "+33 6 41 27 88 03",
+      "country": "FR",
+      "signup_at": {
+        "$date": "2026-11-15T14:10:45Z"
+      },
+      "account_status": "pending_verification",
+      "license_verified": false,
+      "rider_tier": "standard",
+      "wallet_balance_eur": 5.0,
+      "notification_zones": [
+        {
+          "$oid": "6512a4c366de301f9171a39a"
+        },
+        {
+          "$oid": "6512a4c30ea990b9ec1d945a"
+        },
+        {
+          "$oid": "6512a4c30ae093fe128d38e8"
+        },
+        {
+          "$oid": "6512a4c3ee7cb8fe3de2efc5"
+        }
+      ]
+    }
+  ],
+  "service_zones": [
+    {
+      "_id": {
+        "$oid": "6512a4c30ae093fe128d38e8"
+      },
+      "name": "Milano Centro",
+      "city": "Milano",
+      "country": "IT",
+      "max_speed_kmh": 20,
+      "parking_mode": "designated_spots",
+      "area_km2": 9.8,
+      "launched_at": {
+        "$date": "2023-04-03T06:00:00Z"
+      },
+      "active": true,
+      "surge_multiplier": 1.2
+    },
+    {
+      "_id": {
+        "$oid": "6512a4c3ee7cb8fe3de2efc5"
+      },
+      "name": "Milano Navigli",
+      "city": "Milano",
+      "country": "IT",
+      "max_speed_kmh": 20,
+      "parking_mode": "mixed",
+      "area_km2": 4.6,
+      "launched_at": {
+        "$date": "2023-06-12T06:00:00Z"
+      },
+      "active": true
+    },
+    {
+      "_id": {
+        "$oid": "6512a4c30ea990b9ec1d945a"
+      },
+      "name": "Torino Centro",
+      "city": "Torino",
+      "country": "IT",
+      "max_speed_kmh": 20,
+      "parking_mode": "free_floating",
+      "area_km2": 12.3,
+      "launched_at": {
+        "$date": "2024-03-18T06:00:00Z"
+      },
+      "active": true,
+      "surge_multiplier": 1.1
+    },
+    {
+      "_id": {
+        "$oid": "6512a4c366de301f9171a39a"
+      },
+      "name": "Bologna Università",
+      "city": "Bologna",
+      "country": "IT",
+      "max_speed_kmh": 15,
+      "parking_mode": "designated_spots",
+      "area_km2": 3.9,
+      "launched_at": {
+        "$date": "2024-09-02T06:00:00Z"
+      },
+      "active": true
+    },
+    {
+      "_id": {
+        "$oid": "6512a4c376b5bbaf6619ab2a"
+      },
+      "name": "Milano Città Studi",
+      "city": "Milano",
+      "country": "IT",
+      "max_speed_kmh": 20,
+      "parking_mode": "free_floating",
+      "area_km2": 6.2,
+      "launched_at": {
+        "$date": "2025-02-24T06:00:00Z"
+      },
+      "active": true
+    }
+  ],
+  "scooters": [
+    {
+      "_id": {
+        "$oid": "65c9e27d0e1653cdba05fec3"
+      },
+      "serial_number": "VLT-S3-0418827",
+      "model": "Voltra S3 Pro",
+      "firmware_version": "4.2.7",
+      "status": "available",
+      "battery_pct": 78,
+      "last_lat": 45.47912,
+      "last_lng": 9.20644,
+      "odometer_km": 2841.6,
+      "commissioned_at": {
+        "$date": "2024-02-19T08:00:00Z"
+      },
+      "last_serviced_at": {
+        "$date": "2026-10-28T10:15:00Z"
+      },
+      "home_zone": {
+        "$oid": "6512a4c30ae093fe128d38e8"
+      },
+      "accessories": [
+        "phone_holder",
+        "basket",
+        "bell"
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "65c9e27de1aad40c96ae1d31"
+      },
+      "serial_number": "VLT-S2-0391154",
+      "model": "Voltra S2",
+      "firmware_version": "3.9.1",
+      "status": "charging",
+      "battery_pct": 34,
+      "last_lat": 45.44861,
+      "last_lng": 9.16927,
+      "odometer_km": 4412.3,
+      "commissioned_at": {
+        "$date": "2023-06-05T08:00:00Z"
+      },
+      "home_zone": {
+        "$oid": "6512a4c3ee7cb8fe3de2efc5"
+      },
+      "accessories": [
+        "phone_holder",
+        "bell"
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "65c9e27dfe5931a5e28cc42f"
+      },
+      "serial_number": "KST-K1-0077302",
+      "model": "Kestrel K1",
+      "firmware_version": "1.8.0",
+      "status": "available",
+      "battery_pct": 91,
+      "last_lat": 45.06274,
+      "last_lng": 7.67893,
+      "odometer_km": 1268.9,
+      "commissioned_at": {
+        "$date": "2025-03-10T08:00:00Z"
+      },
+      "last_serviced_at": {
+        "$date": "2026-09-30T13:40:00Z"
+      },
+      "home_zone": {
+        "$oid": "6512a4c30ea990b9ec1d945a"
+      },
+      "accessories": [
+        "phone_holder",
+        "helmet_lock",
+        "basket",
+        "turn_signals"
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "65c9e27dfefbbd217e9ab725"
+      },
+      "serial_number": "VLT-S3-0420051",
+      "model": "Voltra S3 Pro",
+      "firmware_version": "4.2.7",
+      "status": "maintenance",
+      "battery_pct": 12,
+      "last_lat": 44.49352,
+      "last_lng": 11.34218,
+      "odometer_km": 3307.2,
+      "commissioned_at": {
+        "$date": "2024-08-27T08:00:00Z"
+      },
+      "last_serviced_at": {
+        "$date": "2026-11-19T15:20:00Z"
+      },
+      "home_zone": {
+        "$oid": "6512a4c366de301f9171a39a"
+      },
+      "accessories": [
+        "bell"
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "65c9e27db381f39d99ddfe4e"
+      },
+      "serial_number": "KST-K1-0081945",
+      "model": "Kestrel K1",
+      "firmware_version": "1.8.0",
+      "status": "available",
+      "battery_pct": 66,
+      "last_lat": 45.47063,
+      "last_lng": 9.21581,
+      "odometer_km": 942.5,
+      "commissioned_at": {
+        "$date": "2025-04-02T08:00:00Z"
+      },
+      "home_zone": {
+        "$oid": "6512a4c376b5bbaf6619ab2a"
+      },
+      "accessories": [
+        "phone_holder",
+        "helmet_lock"
+      ]
+    }
+  ],
+  "trips": [
+    {
+      "_id": {
+        "$oid": "6738b05ea7f57663d2605812"
+      },
+      "rider": {
+        "rider_id": {
+          "$oid": "6630f1b8211220e344c0a909"
+        },
+        "full_name": "Giulia Ferrandi",
+        "email": "giulia.ferrandi@example.com"
+      },
+      "scooter_id": {
+        "$oid": "65c9e27d0e1653cdba05fec3"
+      },
+      "started_at": {
+        "$date": "2026-11-16T07:52:10Z"
+      },
+      "ended_at": {
+        "$date": "2026-11-16T08:06:40Z"
+      },
+      "start_lat": 45.46412,
+      "start_lng": 9.19005,
+      "end_lat": 45.47912,
+      "end_lng": 9.20644,
+      "distance_km": 3.42,
+      "duration_min": 15,
+      "unlock_fee_eur": 0.0,
+      "per_minute_rate_eur": 0.25,
+      "fare_eur": 3.75,
+      "payment_method": "wallet",
+      "payment_status": "captured",
+      "rating": 5
+    },
+    {
+      "_id": {
+        "$oid": "6738b05eb7d58fd1a6b22868"
+      },
+      "rider": {
+        "rider_id": {
+          "$oid": "6630f1b8219a73ad9991d697"
+        },
+        "full_name": "Tomasz Wierzbicki",
+        "email": "tomasz.wierzbicki@example.com"
+      },
+      "scooter_id": {
+        "$oid": "65c9e27de1aad40c96ae1d31"
+      },
+      "started_at": {
+        "$date": "2026-11-17T18:14:03Z"
+      },
+      "ended_at": {
+        "$date": "2026-11-17T18:35:51Z"
+      },
+      "start_lat": 45.46581,
+      "start_lng": 9.18342,
+      "end_lat": 45.44861,
+      "end_lng": 9.16927,
+      "distance_km": 4.87,
+      "duration_min": 22,
+      "unlock_fee_eur": 1.0,
+      "per_minute_rate_eur": 0.25,
+      "promo_code": "NAVIGLI15",
+      "discount_eur": 1.5,
+      "fare_eur": 5.0,
+      "payment_method": "card",
+      "payment_status": "captured"
+    },
+    {
+      "_id": {
+        "$oid": "6738b05e2ce3cfdffea7935a"
+      },
+      "rider": {
+        "rider_id": {
+          "$oid": "6630f1b8bacd50049d06090d"
+        },
+        "full_name": "Chiara Bellandi",
+        "email": "chiara.bellandi@example.com"
+      },
+      "scooter_id": {
+        "$oid": "65c9e27db381f39d99ddfe4e"
+      },
+      "started_at": {
+        "$date": "2026-11-18T12:03:27Z"
+      },
+      "ended_at": {
+        "$date": "2026-11-18T12:12:58Z"
+      },
+      "start_lat": 45.47811,
+      "start_lng": 9.22733,
+      "end_lat": 45.47063,
+      "end_lng": 9.21581,
+      "distance_km": 2.11,
+      "duration_min": 10,
+      "unlock_fee_eur": 1.0,
+      "per_minute_rate_eur": 0.22,
+      "fare_eur": 3.2,
+      "payment_method": "apple_pay",
+      "payment_status": "captured",
+      "rating": 4
+    },
+    {
+      "_id": {
+        "$oid": "6738b05e77dc5e948da0c91f"
+      },
+      "rider": {
+        "rider_id": {
+          "$oid": "6630f1b8f96ebdb725be1b0a"
+        },
+        "full_name": "Lorenzo Pasquinelli",
+        "email": "l.pasquinelli@example.com"
+      },
+      "scooter_id": {
+        "$oid": "65c9e27dfe5931a5e28cc42f"
+      },
+      "started_at": {
+        "$date": "2026-11-18T16:40:12Z"
+      },
+      "ended_at": {
+        "$date": "2026-11-18T17:08:44Z"
+      },
+      "start_lat": 45.07031,
+      "start_lng": 7.68566,
+      "end_lat": 45.06274,
+      "end_lng": 7.67893,
+      "distance_km": 6.35,
+      "duration_min": 29,
+      "unlock_fee_eur": 1.0,
+      "per_minute_rate_eur": 0.25,
+      "fare_eur": 8.25,
+      "payment_method": "card",
+      "payment_status": "captured",
+      "rating": 3
+    },
+    {
+      "_id": {
+        "$oid": "6738b05e0eba2d1cbd4bb216"
+      },
+      "rider": {
+        "rider_id": {
+          "$oid": "6630f1b8f96ebdb725be1b0a"
+        },
+        "full_name": "Lorenzo Pasquinelli",
+        "email": "l.pasquinelli@example.com"
+      },
+      "scooter_id": {
+        "$oid": "65c9e27dfefbbd217e9ab725"
+      },
+      "started_at": {
+        "$date": "2026-11-19T07:21:15Z"
+      },
+      "ended_at": {
+        "$date": "2026-11-19T07:33:09Z"
+      },
+      "start_lat": 44.4969,
+      "start_lng": 11.35251,
+      "end_lat": 44.49352,
+      "end_lng": 11.34218,
+      "distance_km": 2.64,
+      "duration_min": 12,
+      "unlock_fee_eur": 1.0,
+      "per_minute_rate_eur": 0.25,
+      "fare_eur": 4.0,
+      "payment_method": "google_pay",
+      "payment_status": "pending"
+    }
+  ],
+  "scooter_telemetry": [
+    {
+      "_id": {
+        "$oid": "6738c1a4ae4b57738d2ed6ec"
+      },
+      "vehicle": {
+        "scooter_id": {
+          "$oid": "65c9e27d0e1653cdba05fec3"
+        },
+        "serial_number": "VLT-S3-0418827",
+        "model": "Voltra S3 Pro"
+      },
+      "window_start": {
+        "$date": "2026-11-16T07:30:00Z"
+      },
+      "window_end": {
+        "$date": "2026-11-16T08:00:00Z"
+      },
+      "sample_count": 3,
+      "samples": [
+        {
+          "recorded_at": {
+            "$date": "2026-11-16T07:52:30Z"
+          },
+          "battery_pct": 84,
+          "speed_kmh": 11.6,
+          "lat": 45.46455,
+          "lng": 9.19072
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-16T07:55:30Z"
+          },
+          "battery_pct": 83,
+          "speed_kmh": 19.4,
+          "lat": 45.46903,
+          "lng": 9.19518
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-16T07:58:30Z"
+          },
+          "battery_pct": 82,
+          "speed_kmh": 17.8,
+          "lat": 45.47288,
+          "lng": 9.19961
+        }
+      ],
+      "network": "lte"
+    },
+    {
+      "_id": {
+        "$oid": "6738c1a4e6eb7d3ca203b529"
+      },
+      "vehicle": {
+        "scooter_id": {
+          "$oid": "65c9e27d0e1653cdba05fec3"
+        },
+        "serial_number": "VLT-S3-0418827",
+        "model": "Voltra S3 Pro"
+      },
+      "window_start": {
+        "$date": "2026-11-16T08:00:00Z"
+      },
+      "window_end": {
+        "$date": "2026-11-16T08:30:00Z"
+      },
+      "sample_count": 5,
+      "samples": [
+        {
+          "recorded_at": {
+            "$date": "2026-11-16T08:00:30Z"
+          },
+          "battery_pct": 81,
+          "speed_kmh": 18.9,
+          "lat": 45.47506,
+          "lng": 9.20187
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-16T08:02:30Z"
+          },
+          "battery_pct": 80,
+          "speed_kmh": 15.2,
+          "lat": 45.47689,
+          "lng": 9.20402
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-16T08:04:30Z"
+          },
+          "battery_pct": 79,
+          "speed_kmh": 9.7,
+          "lat": 45.47851,
+          "lng": 9.20573
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-16T08:06:30Z"
+          },
+          "battery_pct": 78,
+          "speed_kmh": 0.0,
+          "lat": 45.47912,
+          "lng": 9.20644
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-16T08:10:00Z"
+          },
+          "battery_pct": 78,
+          "speed_kmh": 0.0,
+          "lat": 45.47912,
+          "lng": 9.20644
+        }
+      ],
+      "network": "lte"
+    },
+    {
+      "_id": {
+        "$oid": "6738c1a4bde0da89076719a2"
+      },
+      "vehicle": {
+        "scooter_id": {
+          "$oid": "65c9e27de1aad40c96ae1d31"
+        },
+        "serial_number": "VLT-S2-0391154",
+        "model": "Voltra S2"
+      },
+      "window_start": {
+        "$date": "2026-11-17T18:00:00Z"
+      },
+      "window_end": {
+        "$date": "2026-11-17T18:30:00Z"
+      },
+      "sample_count": 2,
+      "samples": [
+        {
+          "recorded_at": {
+            "$date": "2026-11-17T18:15:00Z"
+          },
+          "battery_pct": 47,
+          "speed_kmh": 16.3,
+          "lat": 45.46392,
+          "lng": 9.18107
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-17T18:22:00Z"
+          },
+          "battery_pct": 43,
+          "speed_kmh": 19.1,
+          "lat": 45.45718,
+          "lng": 9.17544
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "6738c1a43a0fcefde670cc71"
+      },
+      "vehicle": {
+        "scooter_id": {
+          "$oid": "65c9e27dfe5931a5e28cc42f"
+        },
+        "serial_number": "KST-K1-0077302",
+        "model": "Kestrel K1"
+      },
+      "window_start": {
+        "$date": "2026-11-18T16:30:00Z"
+      },
+      "window_end": {
+        "$date": "2026-11-18T17:00:00Z"
+      },
+      "sample_count": 4,
+      "samples": [
+        {
+          "recorded_at": {
+            "$date": "2026-11-18T16:41:00Z"
+          },
+          "battery_pct": 98,
+          "speed_kmh": 14.8,
+          "lat": 45.06962,
+          "lng": 7.68491
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-18T16:47:00Z"
+          },
+          "battery_pct": 96,
+          "speed_kmh": 20.0,
+          "lat": 45.06713,
+          "lng": 7.6824
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-18T16:53:00Z"
+          },
+          "battery_pct": 94,
+          "speed_kmh": 18.6,
+          "lat": 45.06548,
+          "lng": 7.68102
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-18T16:59:00Z"
+          },
+          "battery_pct": 93,
+          "speed_kmh": 12.3,
+          "lat": 45.06397,
+          "lng": 7.67986
+        }
+      ],
+      "network": "nb_iot"
+    },
+    {
+      "_id": {
+        "$oid": "6738c1a48e9b65322ae2c1c4"
+      },
+      "vehicle": {
+        "scooter_id": {
+          "$oid": "65c9e27dfefbbd217e9ab725"
+        },
+        "serial_number": "VLT-S3-0420051",
+        "model": "Voltra S3 Pro"
+      },
+      "window_start": {
+        "$date": "2026-11-19T07:00:00Z"
+      },
+      "window_end": {
+        "$date": "2026-11-19T07:30:00Z"
+      },
+      "sample_count": 6,
+      "samples": [
+        {
+          "recorded_at": {
+            "$date": "2026-11-19T07:21:30Z"
+          },
+          "battery_pct": 19,
+          "speed_kmh": 8.4,
+          "lat": 44.49681,
+          "lng": 11.35227
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-19T07:23:30Z"
+          },
+          "battery_pct": 18,
+          "speed_kmh": 14.9,
+          "lat": 44.49603,
+          "lng": 11.34991
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-19T07:25:30Z"
+          },
+          "battery_pct": 17,
+          "speed_kmh": 15.0,
+          "lat": 44.49517,
+          "lng": 11.34732
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-19T07:27:30Z"
+          },
+          "battery_pct": 15,
+          "speed_kmh": 13.2,
+          "lat": 44.49446,
+          "lng": 11.34508
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-19T07:29:00Z"
+          },
+          "battery_pct": 14,
+          "speed_kmh": 11.5,
+          "lat": 44.49401,
+          "lng": 11.34377
+        },
+        {
+          "recorded_at": {
+            "$date": "2026-11-19T07:29:50Z"
+          },
+          "battery_pct": 14,
+          "speed_kmh": 10.8,
+          "lat": 44.49388,
+          "lng": 11.34322
+        }
+      ],
+      "network": "lte"
+    }
+  ]
+}

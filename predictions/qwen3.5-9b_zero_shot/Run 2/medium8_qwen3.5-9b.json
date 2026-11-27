@@ -1,0 +1,301 @@
+{
+  "collections": [
+    "patients",
+    "exams",
+    "scanners",
+    "radiologists",
+    "reports"
+  ],
+  "fields": [
+    {
+      "collection": "patients",
+      "fields": [
+        "_id",
+        "mrn",
+        "first_name",
+        "last_name",
+        "birth_date",
+        "sex",
+        "phone",
+        "email",
+        "address",
+        "recent_exams",
+        "registered_at",
+        "address.line1",
+        "address.line2",
+        "address.city",
+        "address.state",
+        "address.postal_code",
+        "recent_exams[]",
+        "recent_exams[]._id",
+        "recent_exams[].accession_number",
+        "recent_exams[].patient_id",
+        "recent_exams[].scanner_id",
+        "recent_exams[].protocoled_by",
+        "recent_exams[].modality",
+        "recent_exams[].procedure_code",
+        "recent_exams[].procedure_name",
+        "recent_exams[].body_part",
+        "recent_exams[].laterality",
+        "recent_exams[].priority",
+        "recent_exams[].status",
+        "recent_exams[].performed_at",
+        "recent_exams[].contrast_used",
+        "recent_exams[].radiation_dose_mgy"
+      ]
+    },
+    {
+      "collection": "exams",
+      "fields": [
+        "_id",
+        "accession_number",
+        "patient_id",
+        "scanner_id",
+        "protocoled_by",
+        "modality",
+        "procedure_code",
+        "procedure_name",
+        "body_part",
+        "laterality",
+        "priority",
+        "status",
+        "performed_at",
+        "contrast_used",
+        "radiation_dose_mgy"
+      ]
+    },
+    {
+      "collection": "scanners",
+      "fields": [
+        "_id",
+        "station_aet",
+        "modality",
+        "manufacturer",
+        "model",
+        "serial_number",
+        "installed_on",
+        "slice_count",
+        "field_strength_t",
+        "last_service_date",
+        "location",
+        "active",
+        "location.site_name",
+        "location.building",
+        "location.floor",
+        "location.room"
+      ]
+    },
+    {
+      "collection": "radiologists",
+      "fields": [
+        "_id",
+        "npi",
+        "first_name",
+        "last_name",
+        "credentials",
+        "subspecialty",
+        "email",
+        "phone",
+        "hire_date",
+        "active"
+      ]
+    },
+    {
+      "collection": "reports",
+      "fields": [
+        "_id",
+        "exam_ids",
+        "signed_by",
+        "report_status",
+        "signed_at",
+        "amended_at",
+        "turnaround_minutes",
+        "impression",
+        "critical_result",
+        "findings",
+        "findings[]",
+        "findings[].anatomic_site",
+        "findings[].observation",
+        "findings[].laterality",
+        "findings[].size_mm"
+      ]
+    },
+    {
+      "collection": "patients",
+      "fields": [
+        "recent_exams[]"
+      ]
+    },
+    {
+      "collection": "exams",
+      "fields": [
+        "patient_id",
+        "scanner_id",
+        "protocoled_by"
+      ]
+    },
+    {
+      "collection": "scanners",
+      "fields": [
+        "location"
+      ]
+    },
+    {
+      "collection": "reports",
+      "fields": [
+        "exam_ids",
+        "signed_by",
+        "findings[]"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from_field": "patients.recent_exams[].patient_id",
+      "to_collection": "patients"
+    },
+    {
+      "from_field": "patients.recent_exams[].scanner_id",
+      "to_collection": "scanners"
+    },
+    {
+      "from_field": "patients.recent_exams[].protocoled_by",
+      "to_collection": "radiologists"
+    },
+    {
+      "from_field": "exams.patient_id",
+      "to_collection": "patients"
+    },
+    {
+      "from_field": "exams.scanner_id",
+      "to_collection": "scanners"
+    },
+    {
+      "from_field": "exams.protocoled_by",
+      "to_collection": "radiologists"
+    },
+    {
+      "from_field": "scanners.location",
+      "to_collection": "scanners"
+    },
+    {
+      "from_field": "reports.exam_ids",
+      "to_collection": "exams"
+    },
+    {
+      "from_field": "reports.signed_by",
+      "to_collection": "radiologists"
+    }
+  ],
+  "patterns": [
+    {
+      "field": "patients.recent_exams",
+      "evidence": "The field is an array of objects containing detailed exam data (accession numbers, dates, procedures). This is an Embedding pattern because the exam details are stored directly within the patient document rather than as separate documents linked by ID.",
+      "scores": {
+        "Embedding": 0.95,
+        "Referencing": 0.05,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "patients.address",
+      "evidence": "The field is an object containing nested address details (line1, city, state, etc.). This is an Embedding pattern because the address data is stored directly within the patient document.",
+      "scores": {
+        "Embedding": 0.98,
+        "Referencing": 0.02,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "exams.patient_id",
+      "evidence": "This field holds an ObjectId referencing a document in the 'patients' collection. This is a Referencing pattern.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.99,
+        "ExtendedReference": 0.01,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "exams.scanner_id",
+      "evidence": "This field holds an ObjectId referencing a document in the 'scanners' collection. This is a Referencing pattern.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.99,
+        "ExtendedReference": 0.01,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "exams.protocoled_by",
+      "evidence": "This field holds an ObjectId referencing a document in the 'radiologists' collection. This is a Referencing pattern.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.99,
+        "ExtendedReference": 0.01,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "scanners.location",
+      "evidence": "The field is an object containing nested location details (site_name, building, floor, room). This is an Embedding pattern because the location data is stored directly within the scanner document.",
+      "scores": {
+        "Embedding": 0.98,
+        "Referencing": 0.02,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "reports.exam_ids",
+      "evidence": "This field is an array of ObjectIds referencing documents in the 'exams' collection. This is a Referencing pattern (specifically a Many-to-Many relationship implementation).",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.98,
+        "ExtendedReference": 0.02,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "reports.signed_by",
+      "evidence": "This field holds an ObjectId referencing a document in the 'radiologists' collection. This is a Referencing pattern.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.99,
+        "ExtendedReference": 0.01,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "reports.findings",
+      "evidence": "The field is an array of objects containing detailed finding data (anatomic site, observation, size). This is an Embedding pattern because the specific findings are stored directly within the report document.",
+      "scores": {
+        "Embedding": 0.96,
+        "Referencing": 0.04,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    }
+  ],
+  "truncated": false
+}

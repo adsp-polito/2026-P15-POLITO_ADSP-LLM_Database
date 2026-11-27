@@ -1,0 +1,70 @@
+{
+  "easy3/Run 2": [
+    "fields: 1 identical entries counted once"
+  ],
+  "easy3/Run 3": [
+    "restoration_projects.condition_issues[]: scores sum to 2.000, renormalized to 1"
+  ],
+  "hard10/Run 3": [
+    "node_metrics.samples[]: scores sum to 1.100, renormalized to 1"
+  ],
+  "hard11/Run 1": [
+    "aircraft.recent_work_orders[]: scores sum to 0.990, renormalized to 1",
+    "work_orders.reported_by: scores sum to 0.990, renormalized to 1",
+    "crew_members.home_address: scores sum to 0.990, renormalized to 1",
+    "crew_members.licences[]: scores sum to 0.990, renormalized to 1",
+    "flights.aircraft: scores sum to 0.980, renormalized to 1",
+    "flights.pilots[]: scores sum to 0.990, renormalized to 1",
+    "flights.dispatch_release: scores sum to 0.990, renormalized to 1",
+    "flights.block_times: scores sum to 0.990, renormalized to 1",
+    "flights.load_figures[]: scores sum to 0.990, renormalized to 1",
+    "engine_trend_logs.samples[]: scores sum to 0.990, renormalized to 1"
+  ],
+  "hard12/Run 3": [
+    "sectors.latest_incidents: scores sum to 2.000, renormalized to 1",
+    "patrol_shifts.crew: scores sum to 2.000, renormalized to 1",
+    "patrol_shifts.equipment_issued: scores sum to 2.000, renormalized to 1",
+    "vehicle_tracks.points: scores sum to 2.000, renormalized to 1"
+  ],
+  "medium7/Run 1": [
+    "scooters.home_zone: scores sum to 0.980, renormalized to 1",
+    "trips.scooter_id: scores sum to 0.980, renormalized to 1"
+  ],
+  "medium7/Run 2": [
+    "scooters.home_zone: scores sum to 0.980, renormalized to 1",
+    "trips.scooter_id: scores sum to 0.990, renormalized to 1"
+  ],
+  "medium7/Run 3": [
+    "fields: 1 identical entries counted once",
+    "scooters.home_zone: scores sum to 0.950, renormalized to 1",
+    "trips.scooter_id: scores sum to 0.950, renormalized to 1"
+  ],
+  "medium8/Run 1": [
+    "field '_id': 'patients.recent_exams[]' is not among the declared collections",
+    "field 'accession_number': 'patients.recent_exams[]' is not among the declared collections",
+    "field 'patient_id': 'patients.recent_exams[]' is not among the declared collections",
+    "field 'scanner_id': 'patients.recent_exams[]' is not among the declared collections",
+    "field 'protocoled_by': 'patients.recent_exams[]' is not among the declared collections",
+    "field 'modality': 'patients.recent_exams[]' is not among the declared collections",
+    "field 'procedure_code': 'patients.recent_exams[]' is not among the declared collections",
+    "field 'procedure_name': 'patients.recent_exams[]' is not among the declared collections",
+    "field 'body_part': 'patients.recent_exams[]' is not among the declared collections",
+    "field 'laterality': 'patients.recent_exams[]' is not among the declared collections",
+    "field 'priority': 'patients.recent_exams[]' is not among the declared collections",
+    "field 'status': 'patients.recent_exams[]' is not among the declared collections",
+    "field 'performed_at': 'patients.recent_exams[]' is not among the declared collections",
+    "field 'contrast_used': 'patients.recent_exams[]' is not among the declared collections",
+    "field 'radiation_dose_mgy': 'patients.recent_exams[]' is not among the declared collections",
+    "field 'anatomic_site': 'reports.findings[]' is not among the declared collections",
+    "field 'observation': 'reports.findings[]' is not among the declared collections",
+    "field 'laterality': 'reports.findings[]' is not among the declared collections",
+    "field 'size_mm': 'reports.findings[]' is not among the declared collections"
+  ],
+  "medium8/Run 2": [
+    "fields: 10 identical entries counted once"
+  ],
+  "medium8/Run 3": [
+    "pattern 'exams' has no field path (collection-level label)",
+    "exams: scores sum to 0.950, renormalized to 1"
+  ]
+}

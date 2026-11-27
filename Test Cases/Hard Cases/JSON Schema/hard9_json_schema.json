@@ -1,0 +1,514 @@
+{
+  "studios": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "name",
+        "country",
+        "headquarters",
+        "contact_email"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "name": {
+          "bsonType": "string"
+        },
+        "country": {
+          "bsonType": "string"
+        },
+        "founded_year": {
+          "bsonType": "int"
+        },
+        "headquarters": {
+          "bsonType": "object",
+          "required": [
+            "street",
+            "city",
+            "postal_code"
+          ],
+          "properties": {
+            "street": {
+              "bsonType": "string"
+            },
+            "city": {
+              "bsonType": "string"
+            },
+            "postal_code": {
+              "bsonType": "string"
+            }
+          }
+        },
+        "contact_email": {
+          "bsonType": "string"
+        },
+        "website": {
+          "bsonType": "string"
+        }
+      }
+    }
+  },
+  "titles": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "display_name",
+        "kind",
+        "release_year",
+        "maturity_rating",
+        "genres",
+        "studio",
+        "available_from"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "string"
+        },
+        "display_name": {
+          "bsonType": "string"
+        },
+        "kind": {
+          "bsonType": "string",
+          "enum": [
+            "movie",
+            "series"
+          ]
+        },
+        "release_year": {
+          "bsonType": "int"
+        },
+        "season_count": {
+          "bsonType": "int"
+        },
+        "runtime_minutes": {
+          "bsonType": "int"
+        },
+        "maturity_rating": {
+          "bsonType": "string",
+          "enum": [
+            "G",
+            "PG",
+            "PG-13",
+            "R",
+            "TV-Y7",
+            "TV-14",
+            "TV-MA"
+          ]
+        },
+        "genres": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "string"
+          }
+        },
+        "audio_languages": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "string"
+          }
+        },
+        "available_from": {
+          "bsonType": "date"
+        },
+        "studio": {
+          "bsonType": "object",
+          "required": [
+            "studio_id",
+            "name",
+            "country"
+          ],
+          "properties": {
+            "studio_id": {
+              "bsonType": "objectId"
+            },
+            "name": {
+              "bsonType": "string"
+            },
+            "country": {
+              "bsonType": "string"
+            }
+          }
+        },
+        "cast": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "performer",
+              "character",
+              "billing_order"
+            ],
+            "properties": {
+              "performer": {
+                "bsonType": "string"
+              },
+              "character": {
+                "bsonType": "string"
+              },
+              "billing_order": {
+                "bsonType": "int"
+              }
+            }
+          }
+        },
+        "recent_reviews": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "_id",
+              "rated_title",
+              "author",
+              "rating",
+              "headline",
+              "posted_at",
+              "helpful_votes"
+            ],
+            "properties": {
+              "_id": {
+                "bsonType": "objectId"
+              },
+              "rated_title": {
+                "bsonType": "string"
+              },
+              "author": {
+                "bsonType": "objectId"
+              },
+              "rating": {
+                "bsonType": "int",
+                "enum": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              },
+              "headline": {
+                "bsonType": "string"
+              },
+              "body": {
+                "bsonType": "string"
+              },
+              "posted_at": {
+                "bsonType": "date"
+              },
+              "helpful_votes": {
+                "bsonType": "int"
+              },
+              "contains_spoilers": {
+                "bsonType": "bool"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "reviews": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "rated_title",
+        "author",
+        "rating",
+        "headline",
+        "posted_at",
+        "helpful_votes"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "rated_title": {
+          "bsonType": "string"
+        },
+        "author": {
+          "bsonType": "objectId"
+        },
+        "rating": {
+          "bsonType": "int",
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "headline": {
+          "bsonType": "string"
+        },
+        "body": {
+          "bsonType": "string"
+        },
+        "posted_at": {
+          "bsonType": "date"
+        },
+        "helpful_votes": {
+          "bsonType": "int"
+        },
+        "contains_spoilers": {
+          "bsonType": "bool"
+        }
+      }
+    }
+  },
+  "subscribers": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "email",
+        "account_holder",
+        "signup_date",
+        "status",
+        "plan",
+        "profiles"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "email": {
+          "bsonType": "string"
+        },
+        "account_holder": {
+          "bsonType": "string"
+        },
+        "signup_date": {
+          "bsonType": "date"
+        },
+        "status": {
+          "bsonType": "string",
+          "enum": [
+            "active",
+            "past_due",
+            "paused",
+            "cancelled"
+          ]
+        },
+        "billing_address": {
+          "bsonType": "object",
+          "required": [
+            "street",
+            "city",
+            "postal_code",
+            "country"
+          ],
+          "properties": {
+            "street": {
+              "bsonType": "string"
+            },
+            "city": {
+              "bsonType": "string"
+            },
+            "postal_code": {
+              "bsonType": "string"
+            },
+            "country": {
+              "bsonType": "string"
+            }
+          }
+        },
+        "plan": {
+          "bsonType": "object",
+          "required": [
+            "plan_id",
+            "name",
+            "monthly_price"
+          ],
+          "properties": {
+            "plan_id": {
+              "bsonType": "objectId"
+            },
+            "name": {
+              "bsonType": "string"
+            },
+            "monthly_price": {
+              "bsonType": "double"
+            }
+          }
+        },
+        "profiles": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "profile_name",
+              "is_kids",
+              "maturity_limit"
+            ],
+            "properties": {
+              "profile_name": {
+                "bsonType": "string"
+              },
+              "is_kids": {
+                "bsonType": "bool"
+              },
+              "maturity_limit": {
+                "bsonType": "string",
+                "enum": [
+                  "G",
+                  "PG",
+                  "PG-13",
+                  "R",
+                  "TV-Y7",
+                  "TV-14",
+                  "TV-MA"
+                ]
+              },
+              "preferred_languages": {
+                "bsonType": "array",
+                "items": {
+                  "bsonType": "string"
+                }
+              }
+            }
+          }
+        },
+        "watchlist": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "string"
+          }
+        },
+        "marketing_opt_in": {
+          "bsonType": "bool"
+        }
+      }
+    }
+  },
+  "plans": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "name",
+        "monthly_price",
+        "currency",
+        "max_streams",
+        "max_resolution",
+        "ad_supported"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "name": {
+          "bsonType": "string"
+        },
+        "monthly_price": {
+          "bsonType": "double"
+        },
+        "currency": {
+          "bsonType": "string",
+          "enum": [
+            "EUR"
+          ]
+        },
+        "max_streams": {
+          "bsonType": "int"
+        },
+        "max_resolution": {
+          "bsonType": "string",
+          "enum": [
+            "720p",
+            "1080p",
+            "2160p"
+          ]
+        },
+        "ad_supported": {
+          "bsonType": "bool"
+        },
+        "features": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "string"
+          }
+        },
+        "available_since": {
+          "bsonType": "date"
+        }
+      }
+    }
+  },
+  "playback_telemetry": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "account",
+        "content",
+        "device_type",
+        "window_start",
+        "window_end",
+        "event_count",
+        "heartbeats"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "account": {
+          "bsonType": "objectId"
+        },
+        "content": {
+          "bsonType": "string"
+        },
+        "device_type": {
+          "bsonType": "string",
+          "enum": [
+            "smart_tv",
+            "web",
+            "mobile",
+            "tablet",
+            "console"
+          ]
+        },
+        "window_start": {
+          "bsonType": "date"
+        },
+        "window_end": {
+          "bsonType": "date"
+        },
+        "event_count": {
+          "bsonType": "int"
+        },
+        "heartbeats": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "recorded_at",
+              "position_sec",
+              "bitrate_kbps",
+              "buffer_ms"
+            ],
+            "properties": {
+              "recorded_at": {
+                "bsonType": "date"
+              },
+              "position_sec": {
+                "bsonType": "int"
+              },
+              "bitrate_kbps": {
+                "bsonType": "int"
+              },
+              "buffer_ms": {
+                "bsonType": "int"
+              }
+            }
+          }
+        },
+        "cdn_region": {
+          "bsonType": "string"
+        }
+      }
+    }
+  }
+}

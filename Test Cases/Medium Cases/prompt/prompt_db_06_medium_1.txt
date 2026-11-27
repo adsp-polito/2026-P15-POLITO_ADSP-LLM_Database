@@ -1,0 +1,188 @@
+You are an expert MongoDB data architect. You will build ONE synthetic MongoDB
+database, together with its ground truth, for a research benchmark.
+
+In the benchmark, other LLMs receive the JSON schema and the sample documents
+of your database (never the ground truth) and must find its collections,
+fields, relationships and data modeling patterns. Your ground truth is the
+answer key used to grade them. So:
+- the ground truth must be complete and exactly right;
+- the database must look like a real application's database and must not give
+  away the answers.
+
+Do everything in one go: plan the database yourself, then create the files.
+Do not ask me questions and do not wait for confirmation.
+
+PARAMETERS
+- Database id: db_06
+- Domain: Home appliance retail stores
+- Difficulty: Medium
+- Number of collections: 4 to 5
+- Patterns to use: Referencing, Embedding, ExtendedReference
+- Sample documents: 4 to 5 per collection.
+The patterns listed are the ones the database must contain, each at least
+once. Any other path that satisfies a definition is labelled too (rules 1-5);
+do not add unlisted patterns on purpose.
+
+PATTERN DEFINITIONS (these are the labeling criteria, use exactly these)
+- Embedding: related data stored as a nested object or array of objects inside
+  the parent document. The nested items exist only inside the parent: no
+  collection stores them as documents of their own.
+- Referencing: a field holds only the identifier, or a list of identifiers, of
+  documents in another collection. No attribute of the referenced document is
+  copied.
+- ExtendedReference: a document holds the identifier of a document in another
+  collection together with a few copied fields of that document (a piece of the
+  other collection), to avoid a lookup. Direction: many-to-one, the child keeps
+  some fields of its parent.
+- Subset: a parent document embeds a bounded number N of its related items (for
+  example the latest 3) out of a larger set. The full set lives in a separate
+  collection linked by reference. Direction: one-to-many, the parent keeps some
+  of its children.
+- Array: a field stores a bounded list of plain scalar values (strings, numbers)
+  that are ordinary attribute values, to represent a multi-valued attribute (for
+  example tags or amenities). It does not apply to lists of sub-documents, to
+  lists of identifiers of another collection, or to time-ordered measurements.
+- Bucket: one document groups multiple time-ordered measurements or events, with
+  a time range (start and end) and a count, bounded in size. The grouped items
+  belong to this pattern and are not labeled Embedding or Array.
+
+LABELLING RULES
+1. One pattern per path, written exactly as one of these labels: Embedding,
+   Referencing, ExtendedReference, Subset, Array, Bucket. The label is Array
+   only in SIMPLE cases: a bounded list of plain scalar values that are
+   ordinary attributes of the document (for example tags or amenities). A list
+   of identifiers, a list of sub-documents or a list of time-ordered
+   measurements is never Array.
+2. Label every path that follows a pattern, including ordinary nested objects
+   (an address object is Embedding) and every field that holds an identifier of
+   another collection, except inside an ExtendedReference, a Subset or a
+   Bucket (rule 4). Plain scalar fields (names, dates, prices, status) get no
+   label.
+3. Put the label on:
+   - Referencing: the identifier field, or the array of identifiers;
+   - ExtendedReference: the object that holds the identifier and the copied
+     fields;
+   - Embedding: the nested object, or the array of objects;
+   - Subset: the embedded array;
+   - Array: the array of scalar values;
+   - Bucket: the array of measurements or events.
+4. Nested paths. A path inside an Embedding is labeled on its own content,
+   independently of its parent: list both the parent and the nested path.
+   Everything inside an ExtendedReference, a Subset or a Bucket belongs to
+   that parent and is not labeled separately.
+5. Paths: collection.field, a dot for each nesting level, [] after an array
+   field (for example orders.items[].sku).
+
+DATABASE RULES
+Realistic
+- The domain is realistic and not textbook-like. Use field names, types and
+  values that a real application in this domain would use. Dates, prices, units
+  and quantities are plausible and consistent with each other.
+- Some optional fields are missing in some documents.
+- Invent all names of people and companies; emails use example.com.
+No hints
+- Names describe the domain, never the modeling choice. Do not use words such
+  as embed, ref, reference, extended, subset, bucket, pattern, snapshot,
+  denormalized in collection names, field names or values (not embedded_items,
+  customer_ref, readings_bucket, recent_subset).
+- Names stay meaningful: never meaningless names (f1, x2) and never names that
+  suggest a different pattern.
+- No "title", "description" or "$comment" in the schemas, and no explanations
+  anywhere in the schema or the documents.
+- Schemas use only these keywords: bsonType, required, properties, items,
+  enum.
+Clean patterns
+- There are no edge cases: every pattern is unambiguous and verifiable from the
+  data, so that a careful reader would be certain of the label.
+- A field that carries a pattern is present in most documents. Arrays (of
+  values or of objects) have at least 2 elements in most documents.
+- Nested data goes one level deep at most. An embedded object or array of
+  objects contains only plain fields. No arrays of objects inside arrays of
+  objects.
+- Every identifier of another collection equals the _id of a document present
+  in sample_documents.json. Never point to a document through another field,
+  such as a code or a number.
+- ExtendedReference: the identifier and the copied fields are grouped in their
+  own sub-object (for example orders.customer = {customer_id, name, city}).
+  Copied fields never appear anywhere else, their values equal those of the
+  referenced document, and nothing else is nested inside the sub-object.
+Consistent
+- Every document is valid against its collection's schema.
+- The same field always has the same type in every document.
+- ObjectIds are 24 lowercase hexadecimal characters, written as
+  {"$oid": "..."}; dates are written as {"$date": "YYYY-MM-DDTHH:MM:SSZ"}.
+
+DIFFICULTY: Medium
+Difficulty changes only how much reasoning the reader needs, never how certain
+the label is. Apply all of these:
+- At least one identifier field is named after its role (for example author,
+  owner), not <entity>_id. All identifiers hold ObjectId values.
+- Mixed forms: at least one single identifier and at least one list of
+  identifiers; at least one single embedded object and at least one array of
+  objects.
+- At least one collection contains 2 patterns other than Referencing.
+- No pattern nested inside another.
+- Arrays have different lengths across documents.
+
+WHAT TO DO
+First plan the database without showing the plan: for each collection its
+purpose, its fields, the patterns with their paths and its relationships, and
+for each pattern which documents show it and how (for example which _id values
+a reference points to). Then create the four files below and give them to me
+as downloads, without pasting their content in the chat. Write every document
+in full: do not shorten lists or use placeholders.
+
+Before delivering, check the files and fix any mismatch:
+- every listed pattern appears; every path in "patterns" exists in the
+  documents; no pattern in the data is left unlabelled;
+- "fields" lists every path of every collection, exactly once, and no path
+  that is not in the schema or the documents;
+- every identifier equals the _id of an existing document; ExtendedReference
+  copies are correct;
+- every requirement of the DIFFICULTY section is met;
+- every collection has 4 to 5 documents, each valid against its schema;
+- no forbidden word appears; every file is valid JSON (no comments, no
+  trailing commas).
+When done, reply with one line confirming the files.
+
+1. json_schema.json
+{ "<collection>": { "$jsonSchema": { "bsonType": "object",
+    "required": [...], "properties": { ... } } } }
+
+2. sample_documents.json
+{ "<collection>": [ <4 to 5 documents> ] }
+
+3. ground_truth.json
+{
+  "database": "db_06",
+  "collections": ["<collection>", ...],
+  "fields": {
+    "orders": ["_id", "customer_id", "status", "items[]", "items[].sku",
+               "items[].qty"]
+  },
+  "relationships": [
+    { "from_field": "orders.customer_id", "to_collection": "customers" }
+  ],
+  "patterns": [
+    { "path": "orders.items[]", "pattern": "Embedding",
+      "evidence": "<short plain-language explanation of why this path
+                   follows this pattern>" }
+  ]
+}
+- "fields": for each collection, every path that appears in its schema or
+  in its documents, including optional and nested fields, written as in
+  rule 5 but without the collection name: list an array or object itself
+  and every field inside it (items[], items[].sku).
+- "relationships": one entry for every field that holds an identifier of
+  another collection, including the identifier inside an
+  ExtendedReference.
+- "patterns": one entry for every labelled path (rules 1-5), nothing else.
+- "evidence": a short explanation in plain natural language of why this path
+  follows this pattern and what in the data shows it. Mention field names and
+  at most one example value; do not list documents or ids.
+
+4. dataset_description.txt
+A short, human-readable overview for the research team: the domain, the role
+of each collection, how the data and the patterns work together, and which
+difficulty requirements you applied and in which paths. It is part of the
+answer key and will not be shown to the other LLMs.

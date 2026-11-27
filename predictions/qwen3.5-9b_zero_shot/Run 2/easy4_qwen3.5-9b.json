@@ -1,0 +1,103 @@
+{
+  "collections": [
+    "teams",
+    "hosts",
+    "host_metrics"
+  ],
+  "fields": [
+    {
+      "collection": "teams",
+      "fields": [
+        "_id",
+        "name",
+        "oncall_email",
+        "slack_channel",
+        "timezone",
+        "created_at"
+      ]
+    },
+    {
+      "collection": "hosts",
+      "fields": [
+        "_id",
+        "hostname",
+        "ip_address",
+        "datacenter",
+        "environment",
+        "os",
+        "cpu_cores",
+        "memory_gb",
+        "agent_version",
+        "status",
+        "team_id",
+        "registered_at",
+        "last_seen_at"
+      ]
+    },
+    {
+      "collection": "host_metrics",
+      "fields": [
+        "_id",
+        "host_id",
+        "metric",
+        "unit",
+        "interval_sec",
+        "start",
+        "end",
+        "count",
+        "samples",
+        "samples[].ts",
+        "samples[].value"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from_field": "hosts.team_id",
+      "to_collection": "teams"
+    },
+    {
+      "from_field": "host_metrics.host_id",
+      "to_collection": "hosts"
+    }
+  ],
+  "patterns": [
+    {
+      "field": "hosts.team_id",
+      "evidence": "The field contains an ObjectId that matches the _id format of documents in the 'teams' collection, and the schema defines it as an ObjectId.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "host_metrics.host_id",
+      "evidence": "The field contains an ObjectId that matches the _id format of documents in the 'hosts' collection, and the schema defines it as an ObjectId.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "host_metrics.samples",
+      "evidence": "The field is an array of objects containing timestamp and value pairs, representing a time-series dataset embedded directly within the metric document.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    }
+  ],
+  "truncated": false
+}

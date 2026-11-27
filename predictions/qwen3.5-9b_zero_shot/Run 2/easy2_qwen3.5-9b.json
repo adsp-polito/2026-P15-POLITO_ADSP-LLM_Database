@@ -1,0 +1,142 @@
+{
+  "collections": [
+    "boats",
+    "customers",
+    "rentals"
+  ],
+  "fields": [
+    {
+      "collection": "boats",
+      "fields": [
+        "_id",
+        "name",
+        "boat_type",
+        "manufacturer",
+        "model",
+        "year_built",
+        "length_m",
+        "max_passengers",
+        "cabins",
+        "engine_hp",
+        "daily_rate_eur",
+        "license_required",
+        "status",
+        "home_berth.marina_name",
+        "home_berth.pontoon",
+        "home_berth.berth_number",
+        "home_berth.city"
+      ]
+    },
+    {
+      "collection": "customers",
+      "fields": [
+        "_id",
+        "first_name",
+        "last_name",
+        "email",
+        "phone",
+        "nationality",
+        "date_of_birth",
+        "registered_at",
+        "boating_license.license_number",
+        "boating_license.license_type",
+        "boating_license.issuing_country",
+        "boating_license.expiry_date"
+      ]
+    },
+    {
+      "collection": "rentals",
+      "fields": [
+        "_id",
+        "boat_id",
+        "customer_id",
+        "pickup_at",
+        "return_at",
+        "status",
+        "passengers",
+        "skipper_included",
+        "skipper_fee_eur",
+        "total_amount_eur",
+        "security_deposit_eur",
+        "notes",
+        "payment.method",
+        "payment.amount_paid_eur",
+        "payment.paid_at",
+        "payment.card_last4"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from_field": "rentals.boat_id",
+      "to_collection": "boats"
+    },
+    {
+      "from_field": "rentals.customer_id",
+      "to_collection": "customers"
+    }
+  ],
+  "patterns": [
+    {
+      "field": "boats.home_berth",
+      "evidence": "This field is a nested object containing location details (marina, pontoon, berth). It groups related attributes that logically belong together as a single unit rather than being scattered across the document. This is a classic example of Embedding.",
+      "scores": {
+        "Embedding": 0.95,
+        "Referencing": 0.05,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "customers.boating_license",
+      "evidence": "This field is a nested object containing specific license details (number, type, country, expiry). These attributes form a cohesive concept (the license itself) and are stored together within the customer document. This is a classic example of Embedding.",
+      "scores": {
+        "Embedding": 0.95,
+        "Referencing": 0.05,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "rentals.payment",
+      "evidence": "This field is a nested object containing transaction details (method, amount, date, card info). These details describe a single payment event and are logically grouped together. This is a classic example of Embedding.",
+      "scores": {
+        "Embedding": 0.95,
+        "Referencing": 0.05,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "rentals.boat_id",
+      "evidence": "This field holds an ObjectId that references a specific document in the 'boats' collection. It is a foreign key used to link the rental record to the boat record. This is a classic example of Referencing.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.95,
+        "ExtendedReference": 0.05,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "rentals.customer_id",
+      "evidence": "This field holds an ObjectId that references a specific document in the 'customers' collection. It is a foreign key used to link the rental record to the customer record. This is a classic example of Referencing.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.95,
+        "ExtendedReference": 0.05,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    }
+  ],
+  "truncated": false
+}

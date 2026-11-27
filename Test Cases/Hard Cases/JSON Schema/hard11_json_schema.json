@@ -1,0 +1,600 @@
+{
+  "aircraft": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "registration",
+        "type_code",
+        "manufacturer",
+        "msn",
+        "engine_type",
+        "delivery_date",
+        "home_base",
+        "status",
+        "mtow_kg",
+        "seat_config",
+        "cabin_features",
+        "recent_work_orders"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "string"
+        },
+        "registration": {
+          "bsonType": "string"
+        },
+        "type_code": {
+          "bsonType": "string"
+        },
+        "manufacturer": {
+          "bsonType": "string"
+        },
+        "msn": {
+          "bsonType": "int"
+        },
+        "engine_type": {
+          "bsonType": "string"
+        },
+        "delivery_date": {
+          "bsonType": "date"
+        },
+        "home_base": {
+          "bsonType": "string"
+        },
+        "status": {
+          "bsonType": "string",
+          "enum": [
+            "active",
+            "maintenance",
+            "stored"
+          ]
+        },
+        "mtow_kg": {
+          "bsonType": "int"
+        },
+        "flight_hours": {
+          "bsonType": "int"
+        },
+        "cycles": {
+          "bsonType": "int"
+        },
+        "lessor": {
+          "bsonType": "string"
+        },
+        "seat_config": {
+          "bsonType": "object",
+          "required": [
+            "economy"
+          ],
+          "properties": {
+            "business": {
+              "bsonType": "int"
+            },
+            "premium_economy": {
+              "bsonType": "int"
+            },
+            "economy": {
+              "bsonType": "int"
+            }
+          }
+        },
+        "cabin_features": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "string"
+          }
+        },
+        "recent_work_orders": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "_id",
+              "wo_number",
+              "airframe",
+              "check_type",
+              "station",
+              "performed_at",
+              "labor_hours",
+              "work_performed",
+              "certifying_licence",
+              "status"
+            ],
+            "properties": {
+              "_id": {
+                "bsonType": "objectId"
+              },
+              "wo_number": {
+                "bsonType": "string"
+              },
+              "airframe": {
+                "bsonType": "string"
+              },
+              "check_type": {
+                "bsonType": "string",
+                "enum": [
+                  "A-check",
+                  "Weekly check",
+                  "Defect rectification",
+                  "Component change"
+                ]
+              },
+              "ata_chapter": {
+                "bsonType": "string"
+              },
+              "station": {
+                "bsonType": "string"
+              },
+              "performed_at": {
+                "bsonType": "date"
+              },
+              "labor_hours": {
+                "bsonType": "double"
+              },
+              "work_performed": {
+                "bsonType": "string"
+              },
+              "certifying_licence": {
+                "bsonType": "string"
+              },
+              "reported_by": {
+                "bsonType": "objectId"
+              },
+              "mel_item": {
+                "bsonType": "string"
+              },
+              "status": {
+                "bsonType": "string",
+                "enum": [
+                  "open",
+                  "closed"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "work_orders": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "wo_number",
+        "airframe",
+        "check_type",
+        "station",
+        "performed_at",
+        "labor_hours",
+        "work_performed",
+        "certifying_licence",
+        "status"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "wo_number": {
+          "bsonType": "string"
+        },
+        "airframe": {
+          "bsonType": "string"
+        },
+        "check_type": {
+          "bsonType": "string",
+          "enum": [
+            "A-check",
+            "Weekly check",
+            "Defect rectification",
+            "Component change"
+          ]
+        },
+        "ata_chapter": {
+          "bsonType": "string"
+        },
+        "station": {
+          "bsonType": "string"
+        },
+        "performed_at": {
+          "bsonType": "date"
+        },
+        "labor_hours": {
+          "bsonType": "double"
+        },
+        "work_performed": {
+          "bsonType": "string"
+        },
+        "certifying_licence": {
+          "bsonType": "string"
+        },
+        "reported_by": {
+          "bsonType": "objectId"
+        },
+        "mel_item": {
+          "bsonType": "string"
+        },
+        "status": {
+          "bsonType": "string",
+          "enum": [
+            "open",
+            "closed"
+          ]
+        }
+      }
+    }
+  },
+  "crew_members": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "staff_no",
+        "first_name",
+        "last_name",
+        "rank",
+        "base",
+        "seniority_no",
+        "hire_date",
+        "email",
+        "type_rating",
+        "home_address",
+        "languages",
+        "licences"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "staff_no": {
+          "bsonType": "string"
+        },
+        "first_name": {
+          "bsonType": "string"
+        },
+        "last_name": {
+          "bsonType": "string"
+        },
+        "rank": {
+          "bsonType": "string",
+          "enum": [
+            "Captain",
+            "Senior First Officer",
+            "First Officer"
+          ]
+        },
+        "base": {
+          "bsonType": "string"
+        },
+        "seniority_no": {
+          "bsonType": "int"
+        },
+        "hire_date": {
+          "bsonType": "date"
+        },
+        "email": {
+          "bsonType": "string"
+        },
+        "phone": {
+          "bsonType": "string"
+        },
+        "type_rating": {
+          "bsonType": "string"
+        },
+        "training_role": {
+          "bsonType": "string",
+          "enum": [
+            "TRI",
+            "TRE",
+            "LTC"
+          ]
+        },
+        "flight_hours_total": {
+          "bsonType": "int"
+        },
+        "home_address": {
+          "bsonType": "object",
+          "required": [
+            "street",
+            "city",
+            "postal_code",
+            "country"
+          ],
+          "properties": {
+            "street": {
+              "bsonType": "string"
+            },
+            "city": {
+              "bsonType": "string"
+            },
+            "postal_code": {
+              "bsonType": "string"
+            },
+            "country": {
+              "bsonType": "string"
+            }
+          }
+        },
+        "languages": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "string"
+          }
+        },
+        "licences": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "kind",
+              "number",
+              "authority",
+              "issued_on"
+            ],
+            "properties": {
+              "kind": {
+                "bsonType": "string"
+              },
+              "number": {
+                "bsonType": "string"
+              },
+              "authority": {
+                "bsonType": "string"
+              },
+              "issued_on": {
+                "bsonType": "date"
+              },
+              "expires_on": {
+                "bsonType": "date"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "flights": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "flight_number",
+        "flight_date",
+        "origin",
+        "destination",
+        "scheduled_departure",
+        "scheduled_arrival",
+        "aircraft",
+        "pilots",
+        "dispatch_release",
+        "load_figures",
+        "status"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "flight_number": {
+          "bsonType": "string"
+        },
+        "flight_date": {
+          "bsonType": "date"
+        },
+        "origin": {
+          "bsonType": "string"
+        },
+        "destination": {
+          "bsonType": "string"
+        },
+        "gate": {
+          "bsonType": "string"
+        },
+        "scheduled_departure": {
+          "bsonType": "date"
+        },
+        "scheduled_arrival": {
+          "bsonType": "date"
+        },
+        "aircraft": {
+          "bsonType": "object",
+          "required": [
+            "aircraft_id",
+            "registration",
+            "type_code"
+          ],
+          "properties": {
+            "aircraft_id": {
+              "bsonType": "string"
+            },
+            "registration": {
+              "bsonType": "string"
+            },
+            "type_code": {
+              "bsonType": "string"
+            }
+          }
+        },
+        "pilots": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "objectId"
+          }
+        },
+        "dispatch_release": {
+          "bsonType": "object",
+          "required": [
+            "released_at",
+            "block_fuel_kg",
+            "trip_fuel_kg",
+            "accepted_by"
+          ],
+          "properties": {
+            "released_at": {
+              "bsonType": "date"
+            },
+            "block_fuel_kg": {
+              "bsonType": "int"
+            },
+            "trip_fuel_kg": {
+              "bsonType": "int"
+            },
+            "accepted_by": {
+              "bsonType": "objectId"
+            }
+          }
+        },
+        "block_times": {
+          "bsonType": "object",
+          "required": [
+            "off_block",
+            "takeoff",
+            "landing",
+            "on_block"
+          ],
+          "properties": {
+            "off_block": {
+              "bsonType": "date"
+            },
+            "takeoff": {
+              "bsonType": "date"
+            },
+            "landing": {
+              "bsonType": "date"
+            },
+            "on_block": {
+              "bsonType": "date"
+            }
+          }
+        },
+        "load_figures": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "cabin",
+              "booked",
+              "boarded"
+            ],
+            "properties": {
+              "cabin": {
+                "bsonType": "string",
+                "enum": [
+                  "J",
+                  "W",
+                  "Y"
+                ]
+              },
+              "booked": {
+                "bsonType": "int"
+              },
+              "boarded": {
+                "bsonType": "int"
+              }
+            }
+          }
+        },
+        "delay_minutes": {
+          "bsonType": "int"
+        },
+        "delay_code": {
+          "bsonType": "string"
+        },
+        "status": {
+          "bsonType": "string",
+          "enum": [
+            "scheduled",
+            "departed",
+            "arrived",
+            "cancelled"
+          ]
+        }
+      }
+    }
+  },
+  "engine_trend_logs": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "flight_id",
+        "engine_position",
+        "engine_serial",
+        "window_start",
+        "window_end",
+        "sample_count",
+        "samples"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "flight_id": {
+          "bsonType": "objectId"
+        },
+        "engine_position": {
+          "bsonType": "int"
+        },
+        "engine_serial": {
+          "bsonType": "string"
+        },
+        "window_start": {
+          "bsonType": "date"
+        },
+        "window_end": {
+          "bsonType": "date"
+        },
+        "sample_count": {
+          "bsonType": "int"
+        },
+        "samples": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "recorded_at",
+              "flight_phase",
+              "altitude_ft",
+              "n1_pct",
+              "egt_c",
+              "fuel_flow_kgh"
+            ],
+            "properties": {
+              "recorded_at": {
+                "bsonType": "date"
+              },
+              "flight_phase": {
+                "bsonType": "string",
+                "enum": [
+                  "takeoff",
+                  "climb",
+                  "cruise",
+                  "descent"
+                ]
+              },
+              "altitude_ft": {
+                "bsonType": "int"
+              },
+              "n1_pct": {
+                "bsonType": "double"
+              },
+              "egt_c": {
+                "bsonType": "int"
+              },
+              "fuel_flow_kgh": {
+                "bsonType": "int"
+              }
+            }
+          }
+        },
+        "data_source": {
+          "bsonType": "string",
+          "enum": [
+            "ACMS",
+            "QAR"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,269 @@
+{
+  "collections": [
+    "stores",
+    "products",
+    "customers",
+    "inventory",
+    "repair_tickets"
+  ],
+  "fields": [
+    {
+      "collection": "stores",
+      "fields": [
+        "_id",
+        "store_code",
+        "name",
+        "address",
+        "address.street",
+        "address.city",
+        "address.province",
+        "address.postal_code",
+        "address.country",
+        "phone",
+        "email",
+        "opening_hours",
+        "opening_hours[].days",
+        "opening_hours[].opens",
+        "opening_hours[].closes",
+        "floor_area_sqm",
+        "opened_on",
+        "has_click_and_collect",
+        "status"
+      ]
+    },
+    {
+      "collection": "products",
+      "fields": [
+        "_id",
+        "sku",
+        "name",
+        "brand",
+        "category",
+        "model_number",
+        "list_price",
+        "currency",
+        "energy_class",
+        "warranty_months",
+        "dimensions",
+        "dimensions.width_cm",
+        "dimensions.height_cm",
+        "dimensions.depth_cm",
+        "dimensions.weight_kg",
+        "launched_on",
+        "is_active"
+      ]
+    },
+    {
+      "collection": "customers",
+      "fields": [
+        "_id",
+        "loyalty_number",
+        "first_name",
+        "last_name",
+        "email",
+        "phone",
+        "birth_date",
+        "home_store",
+        "wishlist",
+        "wishlist[]",
+        "addresses",
+        "addresses[].label",
+        "addresses[].street",
+        "addresses[].city",
+        "addresses[].province",
+        "addresses[].postal_code",
+        "addresses[].floor",
+        "addresses[].has_elevator",
+        "loyalty_tier",
+        "marketing_opt_in",
+        "registered_at"
+      ]
+    },
+    {
+      "collection": "inventory",
+      "fields": [
+        "_id",
+        "location",
+        "product",
+        "product.product_id",
+        "product.sku",
+        "product.name",
+        "product.brand",
+        "on_hand",
+        "reserved",
+        "reorder_point",
+        "aisle",
+        "last_counted_at"
+      ]
+    },
+    {
+      "collection": "repair_tickets",
+      "fields": [
+        "_id",
+        "ticket_number",
+        "opened_at",
+        "closed_at",
+        "status",
+        "intake_store",
+        "appliance",
+        "customer",
+        "customer.customer_id",
+        "customer.first_name",
+        "customer.last_name",
+        "customer.phone",
+        "serial_number",
+        "purchase_date",
+        "under_warranty",
+        "reported_fault",
+        "parts_used",
+        "parts_used[].part_number",
+        "parts_used[].part_name",
+        "parts_used[].quantity",
+        "parts_used[].unit_cost",
+        "labor_cost",
+        "total_charged"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from_field": "customers.home_store",
+      "to_collection": "stores"
+    },
+    {
+      "from_field": "customers.wishlist[]",
+      "to_collection": "products"
+    },
+    {
+      "from_field": "inventory.location",
+      "to_collection": "stores"
+    },
+    {
+      "from_field": "inventory.product.product_id",
+      "to_collection": "products"
+    },
+    {
+      "from_field": "repair_tickets.intake_store",
+      "to_collection": "stores"
+    },
+    {
+      "from_field": "repair_tickets.appliance",
+      "to_collection": "products"
+    },
+    {
+      "from_field": "repair_tickets.customer.customer_id",
+      "to_collection": "customers"
+    }
+  ],
+  "patterns": [
+    {
+      "field": "stores.address",
+      "evidence": "Embedded object containing static address details.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "stores.opening_hours",
+      "evidence": "Array of objects describing store schedules.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "products.dimensions",
+      "evidence": "Embedded object for physical specifications.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "customers.home_store",
+      "evidence": "ObjectId referencing the stores collection.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "customers.wishlist",
+      "evidence": "Array of ObjectIds referencing products.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "customers.addresses",
+      "evidence": "Array of embedded address objects.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "inventory.product",
+      "evidence": "Contains product_id (reference) and duplicated fields like sku, name, brand for fast access.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 1.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "repair_tickets.customer",
+      "evidence": "Contains customer_id (reference) and duplicated name/phone for fast access.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 1.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "repair_tickets.parts_used",
+      "evidence": "Array of objects detailing parts used in a specific repair.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    }
+  ],
+  "truncated": false
+}

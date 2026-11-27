@@ -1,0 +1,988 @@
+{
+  "patients": [
+    {
+      "_id": {
+        "$oid": "575a8e71d4d970c2c500a4b2"
+      },
+      "mrn": "MRN-0048213",
+      "first_name": "Harriet",
+      "last_name": "Lindqvist",
+      "birth_date": {
+        "$date": "1958-06-14T00:00:00Z"
+      },
+      "sex": "F",
+      "phone": "+1-614-555-0183",
+      "email": "harriet.lindqvist@example.com",
+      "address": {
+        "line1": "2217 Alder Crest Rd",
+        "city": "Columbus",
+        "state": "OH",
+        "postal_code": "43221"
+      },
+      "recent_exams": [
+        {
+          "_id": {
+            "$oid": "fb5d177ad288e76719923d25"
+          },
+          "accession_number": "RIV26-204518",
+          "patient_id": {
+            "$oid": "575a8e71d4d970c2c500a4b2"
+          },
+          "scanner_id": {
+            "$oid": "0276dd9f2213873314716ec3"
+          },
+          "protocoled_by": {
+            "$oid": "ce04fc72d518523d75e12b39"
+          },
+          "modality": "MR",
+          "procedure_code": "70553",
+          "procedure_name": "MRI brain without and with contrast",
+          "body_part": "BRAIN",
+          "priority": "routine",
+          "status": "completed",
+          "performed_at": {
+            "$date": "2026-11-19T13:40:00Z"
+          },
+          "contrast_used": true
+        },
+        {
+          "_id": {
+            "$oid": "a48ed7affdae22f28331ae97"
+          },
+          "accession_number": "RIV25-118743",
+          "patient_id": {
+            "$oid": "575a8e71d4d970c2c500a4b2"
+          },
+          "scanner_id": {
+            "$oid": "4314db65da7bf415ef34df21"
+          },
+          "protocoled_by": {
+            "$oid": "dcff499ab07286bb733ab92c"
+          },
+          "modality": "CT",
+          "procedure_code": "74177",
+          "procedure_name": "CT abdomen and pelvis with contrast",
+          "body_part": "ABDOMEN",
+          "priority": "routine",
+          "status": "finalized",
+          "performed_at": {
+            "$date": "2025-09-02T15:09:00Z"
+          },
+          "contrast_used": true,
+          "radiation_dose_mgy": 11.4
+        },
+        {
+          "_id": {
+            "$oid": "5e72877a21aac13bd8090277"
+          },
+          "accession_number": "RIV25-118742",
+          "patient_id": {
+            "$oid": "575a8e71d4d970c2c500a4b2"
+          },
+          "scanner_id": {
+            "$oid": "4314db65da7bf415ef34df21"
+          },
+          "protocoled_by": {
+            "$oid": "dcff499ab07286bb733ab92c"
+          },
+          "modality": "CT",
+          "procedure_code": "71260",
+          "procedure_name": "CT chest with contrast",
+          "body_part": "CHEST",
+          "priority": "routine",
+          "status": "finalized",
+          "performed_at": {
+            "$date": "2025-09-02T15:05:00Z"
+          },
+          "contrast_used": true,
+          "radiation_dose_mgy": 8.6
+        }
+      ],
+      "registered_at": {
+        "$date": "2009-04-02T15:30:00Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "a5b4d1d646c300cf5d9766dc"
+      },
+      "mrn": "MRN-0061790",
+      "first_name": "Renata",
+      "last_name": "Kovalenko",
+      "birth_date": {
+        "$date": "1971-02-03T00:00:00Z"
+      },
+      "sex": "F",
+      "phone": "+1-614-555-0128",
+      "address": {
+        "line1": "48 Sycamore Ridge Dr",
+        "line2": "Apt 4B",
+        "city": "Westerville",
+        "state": "OH",
+        "postal_code": "43081"
+      },
+      "recent_exams": [
+        {
+          "_id": {
+            "$oid": "2b9dc44e8205eb0b8994decf"
+          },
+          "accession_number": "NGB26-072232",
+          "patient_id": {
+            "$oid": "a5b4d1d646c300cf5d9766dc"
+          },
+          "scanner_id": {
+            "$oid": "9f55ba9b4e46624479843f57"
+          },
+          "modality": "US",
+          "procedure_code": "76642",
+          "procedure_name": "US breast left limited",
+          "body_part": "BREAST",
+          "laterality": "L",
+          "priority": "routine",
+          "status": "finalized",
+          "performed_at": {
+            "$date": "2026-07-20T13:48:00Z"
+          },
+          "contrast_used": false
+        },
+        {
+          "_id": {
+            "$oid": "a5ae4790f99f7890b4043278"
+          },
+          "accession_number": "NGB26-072231",
+          "patient_id": {
+            "$oid": "a5b4d1d646c300cf5d9766dc"
+          },
+          "scanner_id": {
+            "$oid": "c8aba1e82b74014f1198f1dd"
+          },
+          "protocoled_by": {
+            "$oid": "b49d1a7e3c9c64c4f9b4ac04"
+          },
+          "modality": "MG",
+          "procedure_code": "77065",
+          "procedure_name": "Diagnostic mammogram left with tomosynthesis",
+          "body_part": "BREAST",
+          "laterality": "L",
+          "priority": "routine",
+          "status": "finalized",
+          "performed_at": {
+            "$date": "2026-07-20T13:15:00Z"
+          },
+          "contrast_used": false,
+          "radiation_dose_mgy": 1.7
+        }
+      ],
+      "registered_at": {
+        "$date": "2014-10-20T13:05:00Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "bc1d6ac693e34f85e2323e68"
+      },
+      "mrn": "MRN-0073352",
+      "first_name": "Marcus",
+      "last_name": "Delahaye",
+      "birth_date": {
+        "$date": "1989-11-22T00:00:00Z"
+      },
+      "sex": "M",
+      "phone": "+1-614-555-0165",
+      "email": "m.delahaye@example.com",
+      "address": {
+        "line1": "6120 Brookshire Ln",
+        "city": "Dublin",
+        "state": "OH",
+        "postal_code": "43017"
+      },
+      "recent_exams": [
+        {
+          "_id": {
+            "$oid": "e5722a19413a0005db9ab419"
+          },
+          "accession_number": "RIV26-098872",
+          "patient_id": {
+            "$oid": "bc1d6ac693e34f85e2323e68"
+          },
+          "scanner_id": {
+            "$oid": "4314db65da7bf415ef34df21"
+          },
+          "protocoled_by": {
+            "$oid": "ce04fc72d518523d75e12b39"
+          },
+          "modality": "CT",
+          "procedure_code": "72125",
+          "procedure_name": "CT cervical spine without contrast",
+          "body_part": "CSPINE",
+          "priority": "stat",
+          "status": "finalized",
+          "performed_at": {
+            "$date": "2026-05-04T02:36:00Z"
+          },
+          "contrast_used": false,
+          "radiation_dose_mgy": 14.8
+        },
+        {
+          "_id": {
+            "$oid": "2e9d6dfec471937ea3028fbc"
+          },
+          "accession_number": "RIV26-098871",
+          "patient_id": {
+            "$oid": "bc1d6ac693e34f85e2323e68"
+          },
+          "scanner_id": {
+            "$oid": "4314db65da7bf415ef34df21"
+          },
+          "protocoled_by": {
+            "$oid": "ce04fc72d518523d75e12b39"
+          },
+          "modality": "CT",
+          "procedure_code": "70450",
+          "procedure_name": "CT head without contrast",
+          "body_part": "HEAD",
+          "priority": "stat",
+          "status": "finalized",
+          "performed_at": {
+            "$date": "2026-05-04T02:31:00Z"
+          },
+          "contrast_used": false,
+          "radiation_dose_mgy": 52.3
+        }
+      ],
+      "registered_at": {
+        "$date": "2026-05-04T02:10:00Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "d0ca6dc111e4d11268a29234"
+      },
+      "mrn": "MRN-0039927",
+      "first_name": "Gideon",
+      "last_name": "Throssel",
+      "birth_date": {
+        "$date": "1966-08-09T00:00:00Z"
+      },
+      "sex": "M",
+      "phone": "+1-614-555-0191",
+      "email": "gthrossel@example.com",
+      "address": {
+        "line1": "315 Quarry Bend Ct",
+        "city": "Grove City",
+        "state": "OH",
+        "postal_code": "43123"
+      },
+      "recent_exams": [
+        {
+          "_id": {
+            "$oid": "d0fb175044bcabff435a59ab"
+          },
+          "accession_number": "RIV26-201377",
+          "patient_id": {
+            "$oid": "d0ca6dc111e4d11268a29234"
+          },
+          "scanner_id": {
+            "$oid": "0276dd9f2213873314716ec3"
+          },
+          "protocoled_by": {
+            "$oid": "805cedcc2a429d8425c5f0e3"
+          },
+          "modality": "MR",
+          "procedure_code": "73721",
+          "procedure_name": "MRI knee right without contrast",
+          "body_part": "KNEE",
+          "laterality": "R",
+          "priority": "routine",
+          "status": "finalized",
+          "performed_at": {
+            "$date": "2026-11-12T16:20:00Z"
+          },
+          "contrast_used": false
+        }
+      ],
+      "registered_at": {
+        "$date": "2017-06-12T18:44:00Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "49d9b488bd7336b328411e0f"
+      },
+      "mrn": "MRN-0080461",
+      "first_name": "Yolanda",
+      "last_name": "Ferreira-Nash",
+      "birth_date": {
+        "$date": "1994-04-30T00:00:00Z"
+      },
+      "sex": "F",
+      "phone": "+1-614-555-0107",
+      "address": {
+        "line1": "77 E Long St",
+        "line2": "Unit 1207",
+        "city": "Columbus",
+        "state": "OH",
+        "postal_code": "43215"
+      },
+      "recent_exams": [
+        {
+          "_id": {
+            "$oid": "ee2c79851b812ac34a3e07ed"
+          },
+          "accession_number": "RIV26-206090",
+          "patient_id": {
+            "$oid": "49d9b488bd7336b328411e0f"
+          },
+          "scanner_id": {
+            "$oid": "e711721a6aba4aa687ce9a85"
+          },
+          "modality": "DX",
+          "procedure_code": "71045",
+          "procedure_name": "XR chest 1 view",
+          "body_part": "CHEST",
+          "priority": "urgent",
+          "status": "completed",
+          "performed_at": {
+            "$date": "2026-11-18T19:05:00Z"
+          },
+          "contrast_used": false,
+          "radiation_dose_mgy": 0.08
+        }
+      ],
+      "registered_at": {
+        "$date": "2022-01-28T20:15:00Z"
+      }
+    }
+  ],
+  "exams": [
+    {
+      "_id": {
+        "$oid": "13097aefbaa8099bb8403541"
+      },
+      "accession_number": "RIV25-031104",
+      "patient_id": {
+        "$oid": "575a8e71d4d970c2c500a4b2"
+      },
+      "scanner_id": {
+        "$oid": "e711721a6aba4aa687ce9a85"
+      },
+      "modality": "DX",
+      "procedure_code": "71046",
+      "procedure_name": "XR chest 2 views",
+      "body_part": "CHEST",
+      "priority": "routine",
+      "status": "finalized",
+      "performed_at": {
+        "$date": "2025-03-11T14:22:00Z"
+      },
+      "contrast_used": false,
+      "radiation_dose_mgy": 0.12
+    },
+    {
+      "_id": {
+        "$oid": "5e72877a21aac13bd8090277"
+      },
+      "accession_number": "RIV25-118742",
+      "patient_id": {
+        "$oid": "575a8e71d4d970c2c500a4b2"
+      },
+      "scanner_id": {
+        "$oid": "4314db65da7bf415ef34df21"
+      },
+      "protocoled_by": {
+        "$oid": "dcff499ab07286bb733ab92c"
+      },
+      "modality": "CT",
+      "procedure_code": "71260",
+      "procedure_name": "CT chest with contrast",
+      "body_part": "CHEST",
+      "priority": "routine",
+      "status": "finalized",
+      "performed_at": {
+        "$date": "2025-09-02T15:05:00Z"
+      },
+      "contrast_used": true,
+      "radiation_dose_mgy": 8.6
+    },
+    {
+      "_id": {
+        "$oid": "a48ed7affdae22f28331ae97"
+      },
+      "accession_number": "RIV25-118743",
+      "patient_id": {
+        "$oid": "575a8e71d4d970c2c500a4b2"
+      },
+      "scanner_id": {
+        "$oid": "4314db65da7bf415ef34df21"
+      },
+      "protocoled_by": {
+        "$oid": "dcff499ab07286bb733ab92c"
+      },
+      "modality": "CT",
+      "procedure_code": "74177",
+      "procedure_name": "CT abdomen and pelvis with contrast",
+      "body_part": "ABDOMEN",
+      "priority": "routine",
+      "status": "finalized",
+      "performed_at": {
+        "$date": "2025-09-02T15:09:00Z"
+      },
+      "contrast_used": true,
+      "radiation_dose_mgy": 11.4
+    },
+    {
+      "_id": {
+        "$oid": "fb5d177ad288e76719923d25"
+      },
+      "accession_number": "RIV26-204518",
+      "patient_id": {
+        "$oid": "575a8e71d4d970c2c500a4b2"
+      },
+      "scanner_id": {
+        "$oid": "0276dd9f2213873314716ec3"
+      },
+      "protocoled_by": {
+        "$oid": "ce04fc72d518523d75e12b39"
+      },
+      "modality": "MR",
+      "procedure_code": "70553",
+      "procedure_name": "MRI brain without and with contrast",
+      "body_part": "BRAIN",
+      "priority": "routine",
+      "status": "completed",
+      "performed_at": {
+        "$date": "2026-11-19T13:40:00Z"
+      },
+      "contrast_used": true
+    },
+    {
+      "_id": {
+        "$oid": "a5ae4790f99f7890b4043278"
+      },
+      "accession_number": "NGB26-072231",
+      "patient_id": {
+        "$oid": "a5b4d1d646c300cf5d9766dc"
+      },
+      "scanner_id": {
+        "$oid": "c8aba1e82b74014f1198f1dd"
+      },
+      "protocoled_by": {
+        "$oid": "b49d1a7e3c9c64c4f9b4ac04"
+      },
+      "modality": "MG",
+      "procedure_code": "77065",
+      "procedure_name": "Diagnostic mammogram left with tomosynthesis",
+      "body_part": "BREAST",
+      "laterality": "L",
+      "priority": "routine",
+      "status": "finalized",
+      "performed_at": {
+        "$date": "2026-07-20T13:15:00Z"
+      },
+      "contrast_used": false,
+      "radiation_dose_mgy": 1.7
+    },
+    {
+      "_id": {
+        "$oid": "2b9dc44e8205eb0b8994decf"
+      },
+      "accession_number": "NGB26-072232",
+      "patient_id": {
+        "$oid": "a5b4d1d646c300cf5d9766dc"
+      },
+      "scanner_id": {
+        "$oid": "9f55ba9b4e46624479843f57"
+      },
+      "modality": "US",
+      "procedure_code": "76642",
+      "procedure_name": "US breast left limited",
+      "body_part": "BREAST",
+      "laterality": "L",
+      "priority": "routine",
+      "status": "finalized",
+      "performed_at": {
+        "$date": "2026-07-20T13:48:00Z"
+      },
+      "contrast_used": false
+    },
+    {
+      "_id": {
+        "$oid": "2e9d6dfec471937ea3028fbc"
+      },
+      "accession_number": "RIV26-098871",
+      "patient_id": {
+        "$oid": "bc1d6ac693e34f85e2323e68"
+      },
+      "scanner_id": {
+        "$oid": "4314db65da7bf415ef34df21"
+      },
+      "protocoled_by": {
+        "$oid": "ce04fc72d518523d75e12b39"
+      },
+      "modality": "CT",
+      "procedure_code": "70450",
+      "procedure_name": "CT head without contrast",
+      "body_part": "HEAD",
+      "priority": "stat",
+      "status": "finalized",
+      "performed_at": {
+        "$date": "2026-05-04T02:31:00Z"
+      },
+      "contrast_used": false,
+      "radiation_dose_mgy": 52.3
+    },
+    {
+      "_id": {
+        "$oid": "e5722a19413a0005db9ab419"
+      },
+      "accession_number": "RIV26-098872",
+      "patient_id": {
+        "$oid": "bc1d6ac693e34f85e2323e68"
+      },
+      "scanner_id": {
+        "$oid": "4314db65da7bf415ef34df21"
+      },
+      "protocoled_by": {
+        "$oid": "ce04fc72d518523d75e12b39"
+      },
+      "modality": "CT",
+      "procedure_code": "72125",
+      "procedure_name": "CT cervical spine without contrast",
+      "body_part": "CSPINE",
+      "priority": "stat",
+      "status": "finalized",
+      "performed_at": {
+        "$date": "2026-05-04T02:36:00Z"
+      },
+      "contrast_used": false,
+      "radiation_dose_mgy": 14.8
+    },
+    {
+      "_id": {
+        "$oid": "d0fb175044bcabff435a59ab"
+      },
+      "accession_number": "RIV26-201377",
+      "patient_id": {
+        "$oid": "d0ca6dc111e4d11268a29234"
+      },
+      "scanner_id": {
+        "$oid": "0276dd9f2213873314716ec3"
+      },
+      "protocoled_by": {
+        "$oid": "805cedcc2a429d8425c5f0e3"
+      },
+      "modality": "MR",
+      "procedure_code": "73721",
+      "procedure_name": "MRI knee right without contrast",
+      "body_part": "KNEE",
+      "laterality": "R",
+      "priority": "routine",
+      "status": "finalized",
+      "performed_at": {
+        "$date": "2026-11-12T16:20:00Z"
+      },
+      "contrast_used": false
+    },
+    {
+      "_id": {
+        "$oid": "ee2c79851b812ac34a3e07ed"
+      },
+      "accession_number": "RIV26-206090",
+      "patient_id": {
+        "$oid": "49d9b488bd7336b328411e0f"
+      },
+      "scanner_id": {
+        "$oid": "e711721a6aba4aa687ce9a85"
+      },
+      "modality": "DX",
+      "procedure_code": "71045",
+      "procedure_name": "XR chest 1 view",
+      "body_part": "CHEST",
+      "priority": "urgent",
+      "status": "completed",
+      "performed_at": {
+        "$date": "2026-11-18T19:05:00Z"
+      },
+      "contrast_used": false,
+      "radiation_dose_mgy": 0.08
+    }
+  ],
+  "scanners": [
+    {
+      "_id": {
+        "$oid": "4314db65da7bf415ef34df21"
+      },
+      "station_aet": "CT_MAIN1",
+      "modality": "CT",
+      "manufacturer": "Veltrona Medical",
+      "model": "Axira 128",
+      "serial_number": "VM-CT-20417",
+      "installed_on": {
+        "$date": "2019-08-01T00:00:00Z"
+      },
+      "slice_count": 128,
+      "last_service_date": {
+        "$date": "2026-10-06T00:00:00Z"
+      },
+      "location": {
+        "site_name": "Riverside Imaging Center",
+        "building": "Main Pavilion",
+        "floor": 1,
+        "room": "CT-1"
+      },
+      "active": true
+    },
+    {
+      "_id": {
+        "$oid": "0276dd9f2213873314716ec3"
+      },
+      "station_aet": "MR_3T_A",
+      "modality": "MR",
+      "manufacturer": "Halvorsen Diagnostics",
+      "model": "Nordis 3.0T",
+      "serial_number": "HD-MR-08832",
+      "installed_on": {
+        "$date": "2021-02-15T00:00:00Z"
+      },
+      "field_strength_t": 3.0,
+      "last_service_date": {
+        "$date": "2026-09-22T00:00:00Z"
+      },
+      "location": {
+        "site_name": "Riverside Imaging Center",
+        "building": "Main Pavilion",
+        "floor": 1,
+        "room": "MRI-2"
+      },
+      "active": true
+    },
+    {
+      "_id": {
+        "$oid": "e711721a6aba4aa687ce9a85"
+      },
+      "station_aet": "DX_RM4",
+      "modality": "DX",
+      "manufacturer": "Kyoritsu Imaging",
+      "model": "Lumeo DR-500",
+      "serial_number": "KI-DR-55190",
+      "installed_on": {
+        "$date": "2018-05-21T00:00:00Z"
+      },
+      "location": {
+        "site_name": "Riverside Imaging Center",
+        "building": "East Wing",
+        "floor": 2,
+        "room": "XR-4"
+      },
+      "active": true
+    },
+    {
+      "_id": {
+        "$oid": "9f55ba9b4e46624479843f57"
+      },
+      "station_aet": "US_BRST2",
+      "modality": "US",
+      "manufacturer": "Kyoritsu Imaging",
+      "model": "Sonaview E9",
+      "serial_number": "KI-US-30764",
+      "installed_on": {
+        "$date": "2022-11-03T00:00:00Z"
+      },
+      "last_service_date": {
+        "$date": "2026-06-30T00:00:00Z"
+      },
+      "location": {
+        "site_name": "Northgate Breast Center",
+        "building": "Medical Office Building B",
+        "floor": 2,
+        "room": "US-2"
+      },
+      "active": true
+    },
+    {
+      "_id": {
+        "$oid": "c8aba1e82b74014f1198f1dd"
+      },
+      "station_aet": "MG_TOMO1",
+      "modality": "MG",
+      "manufacturer": "Halvorsen Diagnostics",
+      "model": "Mammex 3D",
+      "serial_number": "HD-MG-11458",
+      "installed_on": {
+        "$date": "2020-04-27T00:00:00Z"
+      },
+      "last_service_date": {
+        "$date": "2026-08-12T00:00:00Z"
+      },
+      "location": {
+        "site_name": "Northgate Breast Center",
+        "building": "Medical Office Building B",
+        "floor": 2,
+        "room": "MAMMO-1"
+      },
+      "active": true
+    }
+  ],
+  "radiologists": [
+    {
+      "_id": {
+        "$oid": "dcff499ab07286bb733ab92c"
+      },
+      "npi": "1487302956",
+      "first_name": "Ilse",
+      "last_name": "Brandvold",
+      "credentials": "MD",
+      "subspecialty": "Body Imaging",
+      "email": "ilse.brandvold@example.com",
+      "phone": "+1-614-555-0142",
+      "hire_date": {
+        "$date": "2016-08-01T00:00:00Z"
+      },
+      "active": true
+    },
+    {
+      "_id": {
+        "$oid": "ce04fc72d518523d75e12b39"
+      },
+      "npi": "1932650481",
+      "first_name": "Tomasz",
+      "last_name": "Reinholt",
+      "credentials": "MD, PhD",
+      "subspecialty": "Neuroradiology",
+      "email": "tomasz.reinholt@example.com",
+      "hire_date": {
+        "$date": "2012-01-09T00:00:00Z"
+      },
+      "active": true
+    },
+    {
+      "_id": {
+        "$oid": "b49d1a7e3c9c64c4f9b4ac04"
+      },
+      "npi": "1265093847",
+      "first_name": "Celestine",
+      "last_name": "Abara",
+      "credentials": "MD",
+      "subspecialty": "Breast Imaging",
+      "email": "celestine.abara@example.com",
+      "phone": "+1-614-555-0177",
+      "hire_date": {
+        "$date": "2019-07-15T00:00:00Z"
+      },
+      "active": true
+    },
+    {
+      "_id": {
+        "$oid": "805cedcc2a429d8425c5f0e3"
+      },
+      "npi": "1704928365",
+      "first_name": "Daniel",
+      "last_name": "Querol",
+      "credentials": "DO",
+      "subspecialty": "Musculoskeletal",
+      "email": "daniel.querol@example.com",
+      "phone": "+1-614-555-0119",
+      "hire_date": {
+        "$date": "2021-09-01T00:00:00Z"
+      },
+      "active": true
+    },
+    {
+      "_id": {
+        "$oid": "4849b3cc76462e5bf0c0911d"
+      },
+      "npi": "1598204736",
+      "first_name": "Wen-Li",
+      "last_name": "Okafor",
+      "credentials": "MD",
+      "subspecialty": "Pediatric Radiology",
+      "email": "wenli.okafor@example.com",
+      "hire_date": {
+        "$date": "2014-03-17T00:00:00Z"
+      },
+      "active": false
+    }
+  ],
+  "reports": [
+    {
+      "_id": {
+        "$oid": "69488d537a84fd03e6a829a1"
+      },
+      "exam_ids": [
+        {
+          "$oid": "5e72877a21aac13bd8090277"
+        },
+        {
+          "$oid": "a48ed7affdae22f28331ae97"
+        }
+      ],
+      "signed_by": {
+        "$oid": "dcff499ab07286bb733ab92c"
+      },
+      "report_status": "final",
+      "signed_at": {
+        "$date": "2025-09-02T19:44:00Z"
+      },
+      "turnaround_minutes": 275,
+      "impression": "1. 6 mm solid nodule in the right lower lobe; follow-up chest CT in 6 to 12 months is recommended. 2. No acute abdominopelvic process.",
+      "critical_result": false,
+      "findings": [
+        {
+          "anatomic_site": "Right lower lobe",
+          "observation": "Solid pulmonary nodule",
+          "laterality": "R",
+          "size_mm": 6.0
+        },
+        {
+          "anatomic_site": "Liver, segment 7",
+          "observation": "Simple hepatic cyst",
+          "size_mm": 14.0
+        },
+        {
+          "anatomic_site": "Abdominal aorta",
+          "observation": "Mild atherosclerotic calcification without aneurysm"
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "407eb6555fcc11bc85d807b2"
+      },
+      "exam_ids": [
+        {
+          "$oid": "13097aefbaa8099bb8403541"
+        }
+      ],
+      "signed_by": {
+        "$oid": "dcff499ab07286bb733ab92c"
+      },
+      "report_status": "final",
+      "signed_at": {
+        "$date": "2025-03-11T17:02:00Z"
+      },
+      "turnaround_minutes": 160,
+      "impression": "No acute cardiopulmonary abnormality.",
+      "critical_result": false,
+      "findings": [
+        {
+          "anatomic_site": "Lungs",
+          "observation": "Clear lungs without consolidation or pleural effusion"
+        },
+        {
+          "anatomic_site": "Cardiac silhouette",
+          "observation": "Normal heart size"
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "6af5fad602e7209896bdb47a"
+      },
+      "exam_ids": [
+        {
+          "$oid": "2e9d6dfec471937ea3028fbc"
+        },
+        {
+          "$oid": "e5722a19413a0005db9ab419"
+        }
+      ],
+      "signed_by": {
+        "$oid": "ce04fc72d518523d75e12b39"
+      },
+      "report_status": "final",
+      "signed_at": {
+        "$date": "2026-05-04T03:18:00Z"
+      },
+      "turnaround_minutes": 42,
+      "impression": "1. No acute intracranial hemorrhage or mass effect. 2. Nondisplaced fracture of the right C6 lamina. Findings called to the emergency department physician.",
+      "critical_result": true,
+      "findings": [
+        {
+          "anatomic_site": "Brain parenchyma",
+          "observation": "No hemorrhage, mass effect or territorial infarct"
+        },
+        {
+          "anatomic_site": "C6 vertebra",
+          "observation": "Nondisplaced lamina fracture",
+          "laterality": "R"
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "d8dbd8306544251e324b2ff3"
+      },
+      "exam_ids": [
+        {
+          "$oid": "a5ae4790f99f7890b4043278"
+        },
+        {
+          "$oid": "2b9dc44e8205eb0b8994decf"
+        }
+      ],
+      "signed_by": {
+        "$oid": "b49d1a7e3c9c64c4f9b4ac04"
+      },
+      "report_status": "final",
+      "signed_at": {
+        "$date": "2026-07-20T16:30:00Z"
+      },
+      "turnaround_minutes": 162,
+      "impression": "Left breast 9 mm circumscribed oval mass at 2 o'clock, probably benign (BI-RADS 3). Short-interval follow-up ultrasound in 6 months.",
+      "critical_result": false,
+      "findings": [
+        {
+          "anatomic_site": "Left breast, 2 o'clock",
+          "observation": "Oval circumscribed hypoechoic mass",
+          "laterality": "L",
+          "size_mm": 9.0
+        },
+        {
+          "anatomic_site": "Left axilla",
+          "observation": "No suspicious lymph nodes",
+          "laterality": "L"
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "86843b5ac4815add1ba92121"
+      },
+      "exam_ids": [
+        {
+          "$oid": "d0fb175044bcabff435a59ab"
+        }
+      ],
+      "signed_by": {
+        "$oid": "805cedcc2a429d8425c5f0e3"
+      },
+      "report_status": "amended",
+      "signed_at": {
+        "$date": "2026-11-13T10:12:00Z"
+      },
+      "amended_at": {
+        "$date": "2026-11-13T15:40:00Z"
+      },
+      "turnaround_minutes": 1072,
+      "impression": "1. Complex tear of the posterior horn of the medial meniscus. 2. Moderate joint effusion. 3. Intact cruciate ligaments.",
+      "critical_result": false,
+      "findings": [
+        {
+          "anatomic_site": "Medial meniscus, posterior horn",
+          "observation": "Complex tear",
+          "laterality": "R"
+        },
+        {
+          "anatomic_site": "Knee joint",
+          "observation": "Moderate joint effusion",
+          "laterality": "R"
+        },
+        {
+          "anatomic_site": "Anterior cruciate ligament",
+          "observation": "Intact",
+          "laterality": "R"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "database": "db_02",
+  "collections": ["boats", "customers", "rentals"],
+  "fields": {
+    "boats": [
+      "_id", "name", "boat_type", "manufacturer", "model", "year_built",
+      "length_m", "max_passengers", "cabins", "engine_hp", "daily_rate_eur",
+      "license_required", "status", "home_berth", "home_berth.marina_name",
+      "home_berth.pontoon", "home_berth.berth_number", "home_berth.city"
+    ],
+    "customers": [
+      "_id", "first_name", "last_name", "email", "phone", "nationality",
+      "date_of_birth", "registered_at", "boating_license",
+      "boating_license.license_number", "boating_license.license_type",
+      "boating_license.issuing_country", "boating_license.expiry_date"
+    ],
+    "rentals": [
+      "_id", "boat_id", "customer_id", "pickup_at", "return_at", "status",
+      "passengers", "skipper_included", "skipper_fee_eur", "total_amount_eur",
+      "security_deposit_eur", "notes", "payment", "payment.method",
+      "payment.amount_paid_eur", "payment.paid_at", "payment.card_last4"
+    ]
+  },
+  "relationships": [
+    { "from_field": "rentals.boat_id", "to_collection": "boats" },
+    { "from_field": "rentals.customer_id", "to_collection": "customers" }
+  ],
+  "patterns": [
+    {
+      "path": "boats.home_berth",
+      "pattern": "Embedding",
+      "evidence": "The boat's mooring location (marina_name, pontoon, berth_number, city) is stored as a nested object inside each boat, for example pontoon \"C\"; no collection holds berths as separate documents."
+    },
+    {
+      "path": "customers.boating_license",
+      "pattern": "Embedding",
+      "evidence": "The customer's licence details (license_number, license_type, issuing_country, expiry_date) live in a nested object inside the customer document, for example license_type \"icc\"; licences have no collection of their own."
+    },
+    {
+      "path": "rentals.payment",
+      "pattern": "Embedding",
+      "evidence": "The payment of a rental (method, amount_paid_eur, paid_at, card_last4) is a nested object inside the rental, for example method \"bank_transfer\"; there is no payments collection."
+    },
+    {
+      "path": "rentals.boat_id",
+      "pattern": "Referencing",
+      "evidence": "boat_id holds only the ObjectId of a document in boats; no boat attributes such as name or daily_rate_eur are copied into the rental."
+    },
+    {
+      "path": "rentals.customer_id",
+      "pattern": "Referencing",
+      "evidence": "customer_id holds only the ObjectId of a document in customers; no customer attributes such as name or email are copied into the rental."
+    }
+  ]
+}

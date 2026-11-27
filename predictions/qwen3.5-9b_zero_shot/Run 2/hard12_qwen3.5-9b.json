@@ -1,0 +1,310 @@
+{
+  "collections": [
+    "officers",
+    "sectors",
+    "incidents",
+    "patrol_shifts",
+    "vehicles",
+    "vehicle_tracks"
+  ],
+  "fields": [
+    {
+      "collection": "officers",
+      "fields": [
+        "_id",
+        "badge_number",
+        "first_name",
+        "last_name",
+        "rank",
+        "email",
+        "phone",
+        "hire_date",
+        "status",
+        "assigned_sector",
+        "languages",
+        "emergency_contact.full_name",
+        "emergency_contact.relationship",
+        "emergency_contact.phone"
+      ]
+    },
+    {
+      "collection": "sectors",
+      "fields": [
+        "_id",
+        "name",
+        "district",
+        "area_km2",
+        "resident_population",
+        "risk_level",
+        "commander",
+        "command_post.address",
+        "command_post.postal_code",
+        "command_post.phone",
+        "command_post.open_24h",
+        "command_post.services",
+        "latest_incidents._id",
+        "latest_incidents.sector_id",
+        "latest_incidents.reported_at",
+        "latest_incidents.category",
+        "latest_incidents.priority",
+        "latest_incidents.street_address",
+        "latest_incidents.status",
+        "latest_incidents.units_sent",
+        "latest_incidents.closed_at"
+      ]
+    },
+    {
+      "collection": "incidents",
+      "fields": [
+        "_id",
+        "sector_id",
+        "reported_at",
+        "category",
+        "priority",
+        "street_address",
+        "status",
+        "units_sent",
+        "closed_at"
+      ]
+    },
+    {
+      "collection": "patrol_shifts",
+      "fields": [
+        "_id",
+        "sector.sector_id",
+        "sector.name",
+        "sector.district",
+        "crew",
+        "assigned_vehicle",
+        "shift_type",
+        "scheduled_start",
+        "scheduled_end",
+        "status",
+        "objectives",
+        "equipment_issued.item",
+        "equipment_issued.serial_number",
+        "equipment_issued.quantity",
+        "debrief.kilometers_driven",
+        "debrief.fuel_used_l",
+        "debrief.persons_checked",
+        "debrief.vehicles_stopped",
+        "debrief.notes",
+        "debrief.reviewed_by"
+      ]
+    },
+    {
+      "collection": "vehicles",
+      "fields": [
+        "_id",
+        "call_sign",
+        "plate_number",
+        "make",
+        "model",
+        "model_year",
+        "vehicle_type",
+        "odometer_km",
+        "status",
+        "equipment",
+        "last_service.service_date",
+        "last_service.odometer_km",
+        "last_service.workshop"
+      ]
+    },
+    {
+      "collection": "vehicle_tracks",
+      "fields": [
+        "_id",
+        "vehicle_id",
+        "shift_id",
+        "period_start",
+        "period_end",
+        "point_count",
+        "points.recorded_at",
+        "points.lat",
+        "points.lon",
+        "points.speed_kmh"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from_field": "sectors.commander",
+      "to_collection": "officers"
+    },
+    {
+      "from_field": "sectors.latest_incidents",
+      "to_collection": "incidents"
+    },
+    {
+      "from_field": "patrol_shifts.sector",
+      "to_collection": "sectors"
+    },
+    {
+      "from_field": "patrol_shifts.crew",
+      "to_collection": "officers"
+    },
+    {
+      "from_field": "patrol_shifts.assigned_vehicle",
+      "to_collection": "vehicles"
+    },
+    {
+      "from_field": "patrol_shifts.debrief.reviewed_by",
+      "to_collection": "officers"
+    },
+    {
+      "from_field": "vehicle_tracks.vehicle_id",
+      "to_collection": "vehicles"
+    },
+    {
+      "from_field": "vehicle_tracks.shift_id",
+      "to_collection": "patrol_shifts"
+    }
+  ],
+  "patterns": [
+    {
+      "field": "officers.languages",
+      "evidence": "Array of strings representing languages spoken by an officer.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "sectors.command_post",
+      "evidence": "Object containing address details specific to the sector's command post.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "sectors.latest_incidents",
+      "evidence": "Array of objects containing incident details relevant to the sector.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "patrol_shifts.sector",
+      "evidence": "Object embedding sector details (id, name, district) directly within the shift document.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "patrol_shifts.crew",
+      "evidence": "Array of ObjectIds referencing officer documents.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "patrol_shifts.assigned_vehicle",
+      "evidence": "ObjectId referencing a vehicle document.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 1.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "patrol_shifts.objectives",
+      "evidence": "Array of strings listing patrol goals.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "patrol_shifts.equipment_issued",
+      "evidence": "Array of objects detailing equipment issued during the shift.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "patrol_shifts.debrief",
+      "evidence": "Object containing post-shift metrics and notes specific to the shift.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "vehicles.equipment",
+      "evidence": "Array of strings listing equipment installed on the vehicle.",
+      "scores": {
+        "Embedding": 0.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 1.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "vehicles.last_service",
+      "evidence": "Object containing service history details specific to the vehicle.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    },
+    {
+      "field": "vehicle_tracks.points",
+      "evidence": "Array of objects containing GPS coordinates and speed data for the vehicle's path.",
+      "scores": {
+        "Embedding": 1.0,
+        "Referencing": 0.0,
+        "ExtendedReference": 0.0,
+        "Subset": 0.0,
+        "Array": 0.0,
+        "Bucket": 0.0
+      }
+    }
+  ],
+  "truncated": false
+}

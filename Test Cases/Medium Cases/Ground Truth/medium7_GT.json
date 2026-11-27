@@ -1,0 +1,153 @@
+{
+  "database": "db_07",
+  "collections": [
+    "riders",
+    "service_zones",
+    "scooters",
+    "trips",
+    "scooter_telemetry"
+  ],
+  "fields": {
+    "riders": [
+      "_id",
+      "email",
+      "full_name",
+      "phone",
+      "country",
+      "date_of_birth",
+      "signup_at",
+      "account_status",
+      "license_verified",
+      "rider_tier",
+      "wallet_balance_eur",
+      "notification_zones[]"
+    ],
+    "service_zones": [
+      "_id",
+      "name",
+      "city",
+      "country",
+      "max_speed_kmh",
+      "parking_mode",
+      "area_km2",
+      "launched_at",
+      "active",
+      "surge_multiplier"
+    ],
+    "scooters": [
+      "_id",
+      "serial_number",
+      "model",
+      "firmware_version",
+      "status",
+      "battery_pct",
+      "last_lat",
+      "last_lng",
+      "odometer_km",
+      "commissioned_at",
+      "last_serviced_at",
+      "home_zone",
+      "accessories[]"
+    ],
+    "trips": [
+      "_id",
+      "rider",
+      "rider.rider_id",
+      "rider.full_name",
+      "rider.email",
+      "scooter_id",
+      "started_at",
+      "ended_at",
+      "start_lat",
+      "start_lng",
+      "end_lat",
+      "end_lng",
+      "distance_km",
+      "duration_min",
+      "unlock_fee_eur",
+      "per_minute_rate_eur",
+      "promo_code",
+      "discount_eur",
+      "fare_eur",
+      "payment_method",
+      "payment_status",
+      "rating"
+    ],
+    "scooter_telemetry": [
+      "_id",
+      "vehicle",
+      "vehicle.scooter_id",
+      "vehicle.serial_number",
+      "vehicle.model",
+      "window_start",
+      "window_end",
+      "sample_count",
+      "samples[]",
+      "samples[].recorded_at",
+      "samples[].battery_pct",
+      "samples[].speed_kmh",
+      "samples[].lat",
+      "samples[].lng",
+      "network"
+    ]
+  },
+  "relationships": [
+    {
+      "from_field": "riders.notification_zones[]",
+      "to_collection": "service_zones"
+    },
+    {
+      "from_field": "scooters.home_zone",
+      "to_collection": "service_zones"
+    },
+    {
+      "from_field": "trips.rider.rider_id",
+      "to_collection": "riders"
+    },
+    {
+      "from_field": "trips.scooter_id",
+      "to_collection": "scooters"
+    },
+    {
+      "from_field": "scooter_telemetry.vehicle.scooter_id",
+      "to_collection": "scooters"
+    }
+  ],
+  "patterns": [
+    {
+      "path": "riders.notification_zones[]",
+      "pattern": "Referencing",
+      "evidence": "A list of ObjectIds that are _id values of service_zones documents (the zones a rider follows for alerts); no zone attribute such as name or city is stored with them."
+    },
+    {
+      "path": "scooters.home_zone",
+      "pattern": "Referencing",
+      "evidence": "A single ObjectId named after its role that equals the _id of a service_zones document; only the identifier is stored, no zone data is copied."
+    },
+    {
+      "path": "scooters.accessories[]",
+      "pattern": "Array",
+      "evidence": "A short list of plain strings describing equipment fitted to the scooter (e.g. \"helmet_lock\"); a multi-valued attribute of varying length, not identifiers or measurements."
+    },
+    {
+      "path": "trips.rider",
+      "pattern": "ExtendedReference",
+      "evidence": "Sub-object holding rider_id, which matches a riders _id, plus full_name and email copied unchanged from that rider so a trip receipt needs no lookup; many trips point to one rider."
+    },
+    {
+      "path": "trips.scooter_id",
+      "pattern": "Referencing",
+      "evidence": "Holds only the ObjectId of the scooters document used for the trip; no scooter attribute is copied into the trip."
+    },
+    {
+      "path": "scooter_telemetry.vehicle",
+      "pattern": "ExtendedReference",
+      "evidence": "Sub-object with scooter_id, matching a scooters _id, plus serial_number and model copied from that scooter; several telemetry documents point to the same scooter."
+    },
+    {
+      "path": "scooter_telemetry.samples[]",
+      "pattern": "Bucket",
+      "evidence": "Each document groups 2 to 6 time-ordered device readings (recorded_at, battery_pct, speed_kmh, position) for one scooter inside a window bounded by window_start and window_end, with sample_count equal to the number of readings."
+    }
+  ]
+}

@@ -1,0 +1,869 @@
+{
+  "stores": [
+    {
+      "_id": {
+        "$oid": "65a1c3e09b7d4f2a1c0e5101"
+      },
+      "store_code": "MI-014",
+      "name": "Casalux Milano Bicocca",
+      "address": {
+        "street": "Viale Sarca 214",
+        "city": "Milano",
+        "province": "MI",
+        "postal_code": "20126",
+        "country": "IT"
+      },
+      "phone": "+39 02 6612 4410",
+      "email": "milano.bicocca@example.com",
+      "opening_hours": [
+        {
+          "days": "Mon-Fri",
+          "opens": "09:30",
+          "closes": "20:00"
+        },
+        {
+          "days": "Sat",
+          "opens": "09:30",
+          "closes": "20:30"
+        },
+        {
+          "days": "Sun",
+          "opens": "10:00",
+          "closes": "19:00"
+        }
+      ],
+      "floor_area_sqm": 2350,
+      "opened_on": {
+        "$date": "2011-04-16T00:00:00Z"
+      },
+      "has_click_and_collect": true,
+      "status": "open"
+    },
+    {
+      "_id": {
+        "$oid": "65a1c3e09b7d4f2a1c0e5102"
+      },
+      "store_code": "TO-006",
+      "name": "Casalux Torino Lingotto",
+      "address": {
+        "street": "Via Nizza 262",
+        "city": "Torino",
+        "province": "TO",
+        "postal_code": "10126",
+        "country": "IT"
+      },
+      "phone": "+39 011 664 2087",
+      "email": "torino.lingotto@example.com",
+      "opening_hours": [
+        {
+          "days": "Mon-Sat",
+          "opens": "09:00",
+          "closes": "20:00"
+        },
+        {
+          "days": "Sun",
+          "opens": "10:00",
+          "closes": "13:00"
+        }
+      ],
+      "floor_area_sqm": 1820,
+      "opened_on": {
+        "$date": "2009-10-03T00:00:00Z"
+      },
+      "has_click_and_collect": true,
+      "status": "open"
+    },
+    {
+      "_id": {
+        "$oid": "65a1c3e09b7d4f2a1c0e5103"
+      },
+      "store_code": "BO-021",
+      "name": "Casalux Bologna Borgo Panigale",
+      "address": {
+        "street": "Via Marco Emilio Lepido 182",
+        "city": "Bologna",
+        "province": "BO",
+        "postal_code": "40132",
+        "country": "IT"
+      },
+      "phone": "+39 051 401 7735",
+      "opening_hours": [
+        {
+          "days": "Mon-Fri",
+          "opens": "09:30",
+          "closes": "19:30"
+        },
+        {
+          "days": "Sat",
+          "opens": "09:00",
+          "closes": "20:00"
+        }
+      ],
+      "floor_area_sqm": 1460,
+      "opened_on": {
+        "$date": "2016-03-12T00:00:00Z"
+      },
+      "status": "temporarily_closed"
+    },
+    {
+      "_id": {
+        "$oid": "65a1c3e09b7d4f2a1c0e5104"
+      },
+      "store_code": "RM-033",
+      "name": "Casalux Roma Tiburtina",
+      "address": {
+        "street": "Via Tiburtina 1072",
+        "city": "Roma",
+        "province": "RM",
+        "postal_code": "00156",
+        "country": "IT"
+      },
+      "phone": "+39 06 4120 9938",
+      "email": "roma.tiburtina@example.com",
+      "opening_hours": [
+        {
+          "days": "Mon-Thu",
+          "opens": "09:30",
+          "closes": "20:00"
+        },
+        {
+          "days": "Fri-Sat",
+          "opens": "09:30",
+          "closes": "21:00"
+        },
+        {
+          "days": "Sun",
+          "opens": "10:00",
+          "closes": "20:00"
+        }
+      ],
+      "floor_area_sqm": 2780,
+      "opened_on": {
+        "$date": "2018-11-24T00:00:00Z"
+      },
+      "has_click_and_collect": false,
+      "status": "open"
+    }
+  ],
+  "products": [
+    {
+      "_id": {
+        "$oid": "65a1c4127f3e8b9d2a6c7201"
+      },
+      "sku": "LAV-VT9014",
+      "name": "Valtero AquaPlus 9 kg Front-Load Washer",
+      "brand": "Valtero",
+      "category": "washing_machines",
+      "model_number": "VTW9014BIT",
+      "list_price": 649.0,
+      "currency": "EUR",
+      "energy_class": "A",
+      "warranty_months": 24,
+      "dimensions": {
+        "width_cm": 59.7,
+        "height_cm": 84.5,
+        "depth_cm": 58.0,
+        "weight_kg": 71.0
+      },
+      "launched_on": {
+        "$date": "2024-02-15T00:00:00Z"
+      },
+      "is_active": true
+    },
+    {
+      "_id": {
+        "$oid": "65a1c4127f3e8b9d2a6c7202"
+      },
+      "sku": "FRG-NH7020",
+      "name": "Nordhaus NoFrost 70 cm Fridge Freezer",
+      "brand": "Nordhaus",
+      "category": "fridge_freezers",
+      "model_number": "NHK7020XNF",
+      "list_price": 1099.0,
+      "currency": "EUR",
+      "energy_class": "C",
+      "warranty_months": 24,
+      "dimensions": {
+        "width_cm": 70.0,
+        "height_cm": 203.0,
+        "depth_cm": 67.5,
+        "weight_kg": 98.0
+      },
+      "launched_on": {
+        "$date": "2023-09-01T00:00:00Z"
+      },
+      "is_active": true
+    },
+    {
+      "_id": {
+        "$oid": "65a1c4127f3e8b9d2a6c7203"
+      },
+      "sku": "MWO-KB2510",
+      "name": "Kibo 25 L Microwave with Grill",
+      "brand": "Kibo",
+      "category": "microwaves",
+      "model_number": "KBM25GX",
+      "list_price": 189.9,
+      "currency": "EUR",
+      "warranty_months": 24,
+      "dimensions": {
+        "width_cm": 51.3,
+        "height_cm": 30.5,
+        "depth_cm": 41.0,
+        "weight_kg": 14.2
+      },
+      "launched_on": {
+        "$date": "2021-03-01T00:00:00Z"
+      },
+      "is_active": false
+    },
+    {
+      "_id": {
+        "$oid": "65a1c4127f3e8b9d2a6c7204"
+      },
+      "sku": "LST-FR6045",
+      "name": "Ferrantina SilentWash 60 cm Built-In Dishwasher",
+      "brand": "Ferrantina",
+      "category": "dishwashers",
+      "model_number": "FDW6045SI",
+      "list_price": 579.0,
+      "currency": "EUR",
+      "energy_class": "B",
+      "warranty_months": 36,
+      "dimensions": {
+        "width_cm": 59.8,
+        "height_cm": 81.5,
+        "depth_cm": 55.0,
+        "weight_kg": 44.0
+      },
+      "launched_on": {
+        "$date": "2023-01-10T00:00:00Z"
+      },
+      "is_active": true
+    },
+    {
+      "_id": {
+        "$oid": "65a1c4127f3e8b9d2a6c7205"
+      },
+      "sku": "ASC-LX1010",
+      "name": "Luxmore DryCare 10 kg Heat Pump Dryer",
+      "brand": "Luxmore",
+      "category": "tumble_dryers",
+      "model_number": "LXD10HPW",
+      "list_price": 799.0,
+      "currency": "EUR",
+      "energy_class": "A+++",
+      "warranty_months": 24,
+      "dimensions": {
+        "width_cm": 59.6,
+        "height_cm": 85.0,
+        "depth_cm": 65.0,
+        "weight_kg": 52.0
+      },
+      "launched_on": {
+        "$date": "2025-04-01T00:00:00Z"
+      },
+      "is_active": true
+    }
+  ],
+  "customers": [
+    {
+      "_id": {
+        "$oid": "65a1c58d4e2f1b7a9c3d8301"
+      },
+      "loyalty_number": "CL-00418273",
+      "first_name": "Giulia",
+      "last_name": "Ferraresi",
+      "email": "giulia.ferraresi@example.com",
+      "phone": "+39 347 221 9034",
+      "birth_date": {
+        "$date": "1986-07-22T00:00:00Z"
+      },
+      "home_store": {
+        "$oid": "65a1c3e09b7d4f2a1c0e5101"
+      },
+      "wishlist": [
+        {
+          "$oid": "65a1c4127f3e8b9d2a6c7202"
+        },
+        {
+          "$oid": "65a1c4127f3e8b9d2a6c7204"
+        }
+      ],
+      "addresses": [
+        {
+          "label": "home",
+          "street": "Via Padova 88",
+          "city": "Milano",
+          "province": "MI",
+          "postal_code": "20132",
+          "floor": 4,
+          "has_elevator": true
+        },
+        {
+          "label": "holiday_home",
+          "street": "Via Lungolago 15",
+          "city": "Bellagio",
+          "province": "CO",
+          "postal_code": "22021",
+          "floor": 1,
+          "has_elevator": false
+        }
+      ],
+      "loyalty_tier": "gold",
+      "marketing_opt_in": true,
+      "registered_at": {
+        "$date": "2019-05-11T10:42:00Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "65a1c58d4e2f1b7a9c3d8302"
+      },
+      "loyalty_number": "CL-00522941",
+      "first_name": "Marco",
+      "last_name": "Bellandi",
+      "email": "m.bellandi@example.com",
+      "phone": "+39 333 870 1156",
+      "home_store": {
+        "$oid": "65a1c3e09b7d4f2a1c0e5102"
+      },
+      "wishlist": [
+        {
+          "$oid": "65a1c4127f3e8b9d2a6c7205"
+        },
+        {
+          "$oid": "65a1c4127f3e8b9d2a6c7203"
+        },
+        {
+          "$oid": "65a1c4127f3e8b9d2a6c7201"
+        }
+      ],
+      "addresses": [
+        {
+          "label": "home",
+          "street": "Corso Unione Sovietica 301",
+          "city": "Torino",
+          "province": "TO",
+          "postal_code": "10135",
+          "floor": 2,
+          "has_elevator": true
+        }
+      ],
+      "loyalty_tier": "standard",
+      "marketing_opt_in": false,
+      "registered_at": {
+        "$date": "2021-02-03T16:05:00Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "65a1c58d4e2f1b7a9c3d8303"
+      },
+      "loyalty_number": "CL-00610388",
+      "first_name": "Chiara",
+      "last_name": "Monteleone",
+      "email": "chiara.monteleone@example.com",
+      "phone": "+39 320 554 7712",
+      "birth_date": {
+        "$date": "1979-12-02T00:00:00Z"
+      },
+      "home_store": {
+        "$oid": "65a1c3e09b7d4f2a1c0e5104"
+      },
+      "wishlist": [
+        {
+          "$oid": "65a1c4127f3e8b9d2a6c7201"
+        },
+        {
+          "$oid": "65a1c4127f3e8b9d2a6c7204"
+        }
+      ],
+      "addresses": [
+        {
+          "label": "home",
+          "street": "Via dei Monti Tiburtini 410",
+          "city": "Roma",
+          "province": "RM",
+          "postal_code": "00157",
+          "floor": 3,
+          "has_elevator": true
+        },
+        {
+          "label": "office",
+          "street": "Via Nomentana 251",
+          "city": "Roma",
+          "province": "RM",
+          "postal_code": "00161",
+          "floor": 0
+        },
+        {
+          "label": "parents",
+          "street": "Via Roma 27",
+          "city": "Tivoli",
+          "province": "RM",
+          "postal_code": "00019",
+          "has_elevator": false
+        }
+      ],
+      "loyalty_tier": "silver",
+      "marketing_opt_in": true,
+      "registered_at": {
+        "$date": "2020-09-28T09:17:00Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "65a1c58d4e2f1b7a9c3d8304"
+      },
+      "loyalty_number": "CL-00731562",
+      "first_name": "Davide",
+      "last_name": "Spagnoli",
+      "email": "davide.spagnoli@example.com",
+      "birth_date": {
+        "$date": "1992-03-15T00:00:00Z"
+      },
+      "home_store": {
+        "$oid": "65a1c3e09b7d4f2a1c0e5103"
+      },
+      "wishlist": [
+        {
+          "$oid": "65a1c4127f3e8b9d2a6c7203"
+        },
+        {
+          "$oid": "65a1c4127f3e8b9d2a6c7205"
+        }
+      ],
+      "addresses": [
+        {
+          "label": "home",
+          "street": "Via della Barca 9",
+          "city": "Bologna",
+          "province": "BO",
+          "postal_code": "40133",
+          "floor": 1,
+          "has_elevator": false
+        },
+        {
+          "label": "office",
+          "street": "Via Stalingrado 45",
+          "city": "Bologna",
+          "province": "BO",
+          "postal_code": "40128",
+          "floor": 5,
+          "has_elevator": true
+        }
+      ],
+      "loyalty_tier": "standard",
+      "marketing_opt_in": true,
+      "registered_at": {
+        "$date": "2023-06-19T18:44:00Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "65a1c58d4e2f1b7a9c3d8305"
+      },
+      "loyalty_number": "CL-00804417",
+      "first_name": "Elena",
+      "last_name": "Pagliarini",
+      "email": "elena.pagliarini@example.com",
+      "phone": "+39 349 016 3385",
+      "home_store": {
+        "$oid": "65a1c3e09b7d4f2a1c0e5101"
+      },
+      "wishlist": [
+        {
+          "$oid": "65a1c4127f3e8b9d2a6c7204"
+        },
+        {
+          "$oid": "65a1c4127f3e8b9d2a6c7201"
+        },
+        {
+          "$oid": "65a1c4127f3e8b9d2a6c7202"
+        },
+        {
+          "$oid": "65a1c4127f3e8b9d2a6c7203"
+        }
+      ],
+      "addresses": [
+        {
+          "label": "home",
+          "street": "Via Ornato 52",
+          "city": "Milano",
+          "province": "MI",
+          "postal_code": "20162",
+          "floor": 6,
+          "has_elevator": true
+        },
+        {
+          "label": "office",
+          "street": "Piazza della Repubblica 11",
+          "city": "Milano",
+          "province": "MI",
+          "postal_code": "20124",
+          "floor": 2,
+          "has_elevator": true
+        }
+      ],
+      "loyalty_tier": "gold",
+      "marketing_opt_in": false,
+      "registered_at": {
+        "$date": "2018-12-07T12:30:00Z"
+      }
+    }
+  ],
+  "inventory": [
+    {
+      "_id": {
+        "$oid": "65a1c6f03b9a2d4e7f1c9401"
+      },
+      "location": {
+        "$oid": "65a1c3e09b7d4f2a1c0e5101"
+      },
+      "product": {
+        "product_id": {
+          "$oid": "65a1c4127f3e8b9d2a6c7201"
+        },
+        "sku": "LAV-VT9014",
+        "name": "Valtero AquaPlus 9 kg Front-Load Washer",
+        "brand": "Valtero"
+      },
+      "on_hand": 14,
+      "reserved": 3,
+      "reorder_point": 6,
+      "aisle": "B-02",
+      "last_counted_at": {
+        "$date": "2026-11-16T07:45:00Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "65a1c6f03b9a2d4e7f1c9402"
+      },
+      "location": {
+        "$oid": "65a1c3e09b7d4f2a1c0e5101"
+      },
+      "product": {
+        "product_id": {
+          "$oid": "65a1c4127f3e8b9d2a6c7202"
+        },
+        "sku": "FRG-NH7020",
+        "name": "Nordhaus NoFrost 70 cm Fridge Freezer",
+        "brand": "Nordhaus"
+      },
+      "on_hand": 5,
+      "reserved": 2,
+      "reorder_point": 4,
+      "aisle": "A-07",
+      "last_counted_at": {
+        "$date": "2026-11-16T08:10:00Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "65a1c6f03b9a2d4e7f1c9403"
+      },
+      "location": {
+        "$oid": "65a1c3e09b7d4f2a1c0e5102"
+      },
+      "product": {
+        "product_id": {
+          "$oid": "65a1c4127f3e8b9d2a6c7204"
+        },
+        "sku": "LST-FR6045",
+        "name": "Ferrantina SilentWash 60 cm Built-In Dishwasher",
+        "brand": "Ferrantina"
+      },
+      "on_hand": 9,
+      "reserved": 0,
+      "reorder_point": 5,
+      "last_counted_at": {
+        "$date": "2026-11-09T19:20:00Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "65a1c6f03b9a2d4e7f1c9404"
+      },
+      "location": {
+        "$oid": "65a1c3e09b7d4f2a1c0e5104"
+      },
+      "product": {
+        "product_id": {
+          "$oid": "65a1c4127f3e8b9d2a6c7203"
+        },
+        "sku": "MWO-KB2510",
+        "name": "Kibo 25 L Microwave with Grill",
+        "brand": "Kibo"
+      },
+      "on_hand": 2,
+      "reserved": 0,
+      "reorder_point": 0,
+      "aisle": "D-11",
+      "last_counted_at": {
+        "$date": "2026-11-02T20:05:00Z"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "65a1c6f03b9a2d4e7f1c9405"
+      },
+      "location": {
+        "$oid": "65a1c3e09b7d4f2a1c0e5103"
+      },
+      "product": {
+        "product_id": {
+          "$oid": "65a1c4127f3e8b9d2a6c7205"
+        },
+        "sku": "ASC-LX1010",
+        "name": "Luxmore DryCare 10 kg Heat Pump Dryer",
+        "brand": "Luxmore"
+      },
+      "on_hand": 7,
+      "reserved": 1,
+      "reorder_point": 3,
+      "aisle": "C-04",
+      "last_counted_at": {
+        "$date": "2026-10-27T18:50:00Z"
+      }
+    }
+  ],
+  "repair_tickets": [
+    {
+      "_id": {
+        "$oid": "65a1c7a46d8e3f2b5a0d0501"
+      },
+      "ticket_number": "RT-2026-004812",
+      "opened_at": {
+        "$date": "2026-09-14T10:22:00Z"
+      },
+      "closed_at": {
+        "$date": "2026-09-23T15:40:00Z"
+      },
+      "status": "completed",
+      "intake_store": {
+        "$oid": "65a1c3e09b7d4f2a1c0e5101"
+      },
+      "appliance": {
+        "$oid": "65a1c4127f3e8b9d2a6c7201"
+      },
+      "customer": {
+        "customer_id": {
+          "$oid": "65a1c58d4e2f1b7a9c3d8301"
+        },
+        "first_name": "Giulia",
+        "last_name": "Ferraresi",
+        "phone": "+39 347 221 9034"
+      },
+      "serial_number": "VT24B0917733",
+      "purchase_date": {
+        "$date": "2025-03-08T00:00:00Z"
+      },
+      "under_warranty": true,
+      "reported_fault": "Drum does not drain at end of cycle, error code E21",
+      "parts_used": [
+        {
+          "part_number": "VT-DP-3341",
+          "part_name": "Drain pump",
+          "quantity": 1,
+          "unit_cost": 34.9
+        },
+        {
+          "part_number": "VT-GK-0118",
+          "part_name": "Pump filter gasket",
+          "quantity": 1,
+          "unit_cost": 3.2
+        }
+      ],
+      "labor_cost": 0.0,
+      "total_charged": 0.0
+    },
+    {
+      "_id": {
+        "$oid": "65a1c7a46d8e3f2b5a0d0502"
+      },
+      "ticket_number": "RT-2026-005377",
+      "opened_at": {
+        "$date": "2026-10-21T16:03:00Z"
+      },
+      "status": "in_repair",
+      "intake_store": {
+        "$oid": "65a1c3e09b7d4f2a1c0e5104"
+      },
+      "appliance": {
+        "$oid": "65a1c4127f3e8b9d2a6c7202"
+      },
+      "customer": {
+        "customer_id": {
+          "$oid": "65a1c58d4e2f1b7a9c3d8303"
+        },
+        "first_name": "Chiara",
+        "last_name": "Monteleone",
+        "phone": "+39 320 554 7712"
+      },
+      "serial_number": "NH23K5520418",
+      "purchase_date": {
+        "$date": "2024-06-30T00:00:00Z"
+      },
+      "under_warranty": false,
+      "reported_fault": "Fridge compartment warm, frost building up on rear panel",
+      "parts_used": [
+        {
+          "part_number": "NH-DT-7720",
+          "part_name": "Defrost thermostat",
+          "quantity": 1,
+          "unit_cost": 21.7
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "65a1c7a46d8e3f2b5a0d0503"
+      },
+      "ticket_number": "RT-2026-003961",
+      "opened_at": {
+        "$date": "2026-08-04T09:15:00Z"
+      },
+      "closed_at": {
+        "$date": "2026-08-19T11:30:00Z"
+      },
+      "status": "completed",
+      "intake_store": {
+        "$oid": "65a1c3e09b7d4f2a1c0e5102"
+      },
+      "appliance": {
+        "$oid": "65a1c4127f3e8b9d2a6c7204"
+      },
+      "customer": {
+        "customer_id": {
+          "$oid": "65a1c58d4e2f1b7a9c3d8302"
+        },
+        "first_name": "Marco",
+        "last_name": "Bellandi",
+        "phone": "+39 333 870 1156"
+      },
+      "serial_number": "FR23S6045192",
+      "purchase_date": {
+        "$date": "2023-04-02T00:00:00Z"
+      },
+      "under_warranty": false,
+      "reported_fault": "Water stays cold and dishes come out dirty",
+      "parts_used": [
+        {
+          "part_number": "FR-CP-2210",
+          "part_name": "Circulation pump",
+          "quantity": 1,
+          "unit_cost": 68.5
+        },
+        {
+          "part_number": "FR-HE-1874",
+          "part_name": "Heating element",
+          "quantity": 1,
+          "unit_cost": 42.9
+        },
+        {
+          "part_number": "FR-HC-0052",
+          "part_name": "Hose clamp kit",
+          "quantity": 2,
+          "unit_cost": 6.4
+        }
+      ],
+      "labor_cost": 85.0,
+      "total_charged": 209.2
+    },
+    {
+      "_id": {
+        "$oid": "65a1c7a46d8e3f2b5a0d0504"
+      },
+      "ticket_number": "RT-2026-005902",
+      "opened_at": {
+        "$date": "2026-11-12T14:48:00Z"
+      },
+      "status": "awaiting_parts",
+      "intake_store": {
+        "$oid": "65a1c3e09b7d4f2a1c0e5101"
+      },
+      "appliance": {
+        "$oid": "65a1c4127f3e8b9d2a6c7205"
+      },
+      "customer": {
+        "customer_id": {
+          "$oid": "65a1c58d4e2f1b7a9c3d8305"
+        },
+        "first_name": "Elena",
+        "last_name": "Pagliarini",
+        "phone": "+39 349 016 3385"
+      },
+      "serial_number": "LX25H1010846",
+      "purchase_date": {
+        "$date": "2025-10-11T00:00:00Z"
+      },
+      "under_warranty": true,
+      "reported_fault": "Dryer stops after ten minutes, laundry still damp",
+      "parts_used": [
+        {
+          "part_number": "LX-FM-4407",
+          "part_name": "Condenser fan motor",
+          "quantity": 1,
+          "unit_cost": 47.3
+        },
+        {
+          "part_number": "LX-DS-0961",
+          "part_name": "Door switch",
+          "quantity": 1,
+          "unit_cost": 12.6
+        }
+      ]
+    },
+    {
+      "_id": {
+        "$oid": "65a1c7a46d8e3f2b5a0d0505"
+      },
+      "ticket_number": "RT-2026-004455",
+      "opened_at": {
+        "$date": "2026-10-02T11:10:00Z"
+      },
+      "closed_at": {
+        "$date": "2026-10-09T17:25:00Z"
+      },
+      "status": "completed",
+      "intake_store": {
+        "$oid": "65a1c3e09b7d4f2a1c0e5101"
+      },
+      "appliance": {
+        "$oid": "65a1c4127f3e8b9d2a6c7203"
+      },
+      "customer": {
+        "customer_id": {
+          "$oid": "65a1c58d4e2f1b7a9c3d8301"
+        },
+        "first_name": "Giulia",
+        "last_name": "Ferraresi",
+        "phone": "+39 347 221 9034"
+      },
+      "serial_number": "KB22M2510371",
+      "purchase_date": {
+        "$date": "2023-05-20T00:00:00Z"
+      },
+      "under_warranty": false,
+      "reported_fault": "Turntable spins and light is on but food does not heat",
+      "parts_used": [
+        {
+          "part_number": "KB-MG-0910",
+          "part_name": "Magnetron",
+          "quantity": 1,
+          "unit_cost": 54.0
+        },
+        {
+          "part_number": "KB-HD-0233",
+          "part_name": "High voltage diode",
+          "quantity": 1,
+          "unit_cost": 9.8
+        }
+      ],
+      "labor_cost": 60.0,
+      "total_charged": 123.8
+    }
+  ]
+}

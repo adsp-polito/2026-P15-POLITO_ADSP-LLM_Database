@@ -1,0 +1,467 @@
+{
+  "stores": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "store_code",
+        "name",
+        "address",
+        "phone",
+        "opening_hours",
+        "floor_area_sqm",
+        "opened_on",
+        "status"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "store_code": {
+          "bsonType": "string"
+        },
+        "name": {
+          "bsonType": "string"
+        },
+        "address": {
+          "bsonType": "object",
+          "required": [
+            "street",
+            "city",
+            "province",
+            "postal_code",
+            "country"
+          ],
+          "properties": {
+            "street": {
+              "bsonType": "string"
+            },
+            "city": {
+              "bsonType": "string"
+            },
+            "province": {
+              "bsonType": "string"
+            },
+            "postal_code": {
+              "bsonType": "string"
+            },
+            "country": {
+              "bsonType": "string"
+            }
+          }
+        },
+        "phone": {
+          "bsonType": "string"
+        },
+        "email": {
+          "bsonType": "string"
+        },
+        "opening_hours": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "days",
+              "opens",
+              "closes"
+            ],
+            "properties": {
+              "days": {
+                "bsonType": "string"
+              },
+              "opens": {
+                "bsonType": "string"
+              },
+              "closes": {
+                "bsonType": "string"
+              }
+            }
+          }
+        },
+        "floor_area_sqm": {
+          "bsonType": "int"
+        },
+        "opened_on": {
+          "bsonType": "date"
+        },
+        "has_click_and_collect": {
+          "bsonType": "bool"
+        },
+        "status": {
+          "bsonType": "string",
+          "enum": [
+            "open",
+            "temporarily_closed",
+            "closed"
+          ]
+        }
+      }
+    }
+  },
+  "products": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "sku",
+        "name",
+        "brand",
+        "category",
+        "model_number",
+        "list_price",
+        "currency",
+        "warranty_months",
+        "dimensions",
+        "is_active"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "sku": {
+          "bsonType": "string"
+        },
+        "name": {
+          "bsonType": "string"
+        },
+        "brand": {
+          "bsonType": "string"
+        },
+        "category": {
+          "bsonType": "string",
+          "enum": [
+            "washing_machines",
+            "fridge_freezers",
+            "microwaves",
+            "dishwashers",
+            "tumble_dryers",
+            "ovens",
+            "hobs"
+          ]
+        },
+        "model_number": {
+          "bsonType": "string"
+        },
+        "list_price": {
+          "bsonType": "double"
+        },
+        "currency": {
+          "bsonType": "string",
+          "enum": [
+            "EUR"
+          ]
+        },
+        "energy_class": {
+          "bsonType": "string"
+        },
+        "warranty_months": {
+          "bsonType": "int"
+        },
+        "dimensions": {
+          "bsonType": "object",
+          "required": [
+            "width_cm",
+            "height_cm",
+            "depth_cm"
+          ],
+          "properties": {
+            "width_cm": {
+              "bsonType": "double"
+            },
+            "height_cm": {
+              "bsonType": "double"
+            },
+            "depth_cm": {
+              "bsonType": "double"
+            },
+            "weight_kg": {
+              "bsonType": "double"
+            }
+          }
+        },
+        "launched_on": {
+          "bsonType": "date"
+        },
+        "is_active": {
+          "bsonType": "bool"
+        }
+      }
+    }
+  },
+  "customers": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "loyalty_number",
+        "first_name",
+        "last_name",
+        "email",
+        "home_store",
+        "registered_at"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "loyalty_number": {
+          "bsonType": "string"
+        },
+        "first_name": {
+          "bsonType": "string"
+        },
+        "last_name": {
+          "bsonType": "string"
+        },
+        "email": {
+          "bsonType": "string"
+        },
+        "phone": {
+          "bsonType": "string"
+        },
+        "birth_date": {
+          "bsonType": "date"
+        },
+        "home_store": {
+          "bsonType": "objectId"
+        },
+        "wishlist": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "objectId"
+          }
+        },
+        "addresses": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "label",
+              "street",
+              "city",
+              "province",
+              "postal_code"
+            ],
+            "properties": {
+              "label": {
+                "bsonType": "string",
+                "enum": [
+                  "home",
+                  "office",
+                  "holiday_home",
+                  "parents",
+                  "other"
+                ]
+              },
+              "street": {
+                "bsonType": "string"
+              },
+              "city": {
+                "bsonType": "string"
+              },
+              "province": {
+                "bsonType": "string"
+              },
+              "postal_code": {
+                "bsonType": "string"
+              },
+              "floor": {
+                "bsonType": "int"
+              },
+              "has_elevator": {
+                "bsonType": "bool"
+              }
+            }
+          }
+        },
+        "loyalty_tier": {
+          "bsonType": "string",
+          "enum": [
+            "standard",
+            "silver",
+            "gold"
+          ]
+        },
+        "marketing_opt_in": {
+          "bsonType": "bool"
+        },
+        "registered_at": {
+          "bsonType": "date"
+        }
+      }
+    }
+  },
+  "inventory": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "location",
+        "product",
+        "on_hand",
+        "reserved",
+        "reorder_point",
+        "last_counted_at"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "location": {
+          "bsonType": "objectId"
+        },
+        "product": {
+          "bsonType": "object",
+          "required": [
+            "product_id",
+            "sku",
+            "name",
+            "brand"
+          ],
+          "properties": {
+            "product_id": {
+              "bsonType": "objectId"
+            },
+            "sku": {
+              "bsonType": "string"
+            },
+            "name": {
+              "bsonType": "string"
+            },
+            "brand": {
+              "bsonType": "string"
+            }
+          }
+        },
+        "on_hand": {
+          "bsonType": "int"
+        },
+        "reserved": {
+          "bsonType": "int"
+        },
+        "reorder_point": {
+          "bsonType": "int"
+        },
+        "aisle": {
+          "bsonType": "string"
+        },
+        "last_counted_at": {
+          "bsonType": "date"
+        }
+      }
+    }
+  },
+  "repair_tickets": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "ticket_number",
+        "opened_at",
+        "status",
+        "intake_store",
+        "appliance",
+        "customer",
+        "serial_number",
+        "under_warranty",
+        "reported_fault"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "ticket_number": {
+          "bsonType": "string"
+        },
+        "opened_at": {
+          "bsonType": "date"
+        },
+        "closed_at": {
+          "bsonType": "date"
+        },
+        "status": {
+          "bsonType": "string",
+          "enum": [
+            "open",
+            "awaiting_parts",
+            "in_repair",
+            "completed",
+            "cancelled"
+          ]
+        },
+        "intake_store": {
+          "bsonType": "objectId"
+        },
+        "appliance": {
+          "bsonType": "objectId"
+        },
+        "customer": {
+          "bsonType": "object",
+          "required": [
+            "customer_id",
+            "first_name",
+            "last_name"
+          ],
+          "properties": {
+            "customer_id": {
+              "bsonType": "objectId"
+            },
+            "first_name": {
+              "bsonType": "string"
+            },
+            "last_name": {
+              "bsonType": "string"
+            },
+            "phone": {
+              "bsonType": "string"
+            }
+          }
+        },
+        "serial_number": {
+          "bsonType": "string"
+        },
+        "purchase_date": {
+          "bsonType": "date"
+        },
+        "under_warranty": {
+          "bsonType": "bool"
+        },
+        "reported_fault": {
+          "bsonType": "string"
+        },
+        "parts_used": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "part_number",
+              "part_name",
+              "quantity",
+              "unit_cost"
+            ],
+            "properties": {
+              "part_number": {
+                "bsonType": "string"
+              },
+              "part_name": {
+                "bsonType": "string"
+              },
+              "quantity": {
+                "bsonType": "int"
+              },
+              "unit_cost": {
+                "bsonType": "double"
+              }
+            }
+          }
+        },
+        "labor_cost": {
+          "bsonType": "double"
+        },
+        "total_charged": {
+          "bsonType": "double"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+db_05 - Online newspaper publishing (difficulty: Medium)
+
+DOMAIN
+Content database of an Italian online newspaper: newsroom staff, site sections, published articles, reader comments and registered readers.
+
+COLLECTIONS
+- journalists (5 docs): newsroom staff with an embedded contact object and a list of covered beats.
+- sections (4 docs): site sections; each points to the journalist acting as section editor.
+- articles (5 docs): published stories. They point to their section and to the journalists in the byline (contributors), carry keywords, embedded media items and the newest comments.
+- comments (10 docs): full set of reader comments. Each points to the article (article) and to the writing reader (commenter). Flat documents.
+- readers (5 docs): registered users with followed sections (ids) and newsletter subscriptions.
+
+PATTERNS AND HOW THEY FIT TOGETHER
+- Referencing: sections.editor, articles.section, articles.contributors[] (list), comments.article, comments.commenter, readers.followed_sections[] (list). All identifiers are ObjectIds.
+- Embedding: journalists.contact (single object), articles.media[] (array of objects).
+- Array: journalists.beats[], articles.keywords[], readers.newsletter_topics[].
+- Subset: articles.recent_comments[] keeps the 3 newest comments by posted_at, identical to comments documents. The budget article has 4 comments, so its oldest (2026-10-14T07:42) stays only in comments. Three other articles have 2 comments each, all kept. The glacier article was published on 2026-11-20 and has no comments yet, so the field is absent.
+
+MEDIUM REQUIREMENTS APPLIED
+- Role-named identifiers: editor, contributors, article, commenter, followed_sections (only articles.section is named after the entity, and none use the <entity>_id form). All hold ObjectIds.
+- Mixed forms: single ids (sections.editor, comments.commenter) and id lists (articles.contributors[], readers.followed_sections[]); single embedded object (journalists.contact) and array of objects (articles.media[]).
+- Collections with 2+ non-Referencing patterns: articles (Array, Embedding, Subset), journalists (Embedding, Array), readers has only Array.
+- No pattern nested inside another: embedded objects contain only plain fields.
+- Variable array lengths: beats 2 to 4, keywords 3 to 5, media 2 to 3, contributors 1 to 3, followed_sections 1 to 4, newsletter_topics 2 to 4 (absent for one reader).
+- Optional fields missing in some documents: journalists.contact.x_handle, sections.sponsor_label, articles.updated_at, articles.is_premium, articles.recent_comments, comments.flagged, readers.newsletter_topics.

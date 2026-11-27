@@ -1,0 +1,205 @@
+{
+  "database": "db_06",
+  "collections": [
+    "stores",
+    "products",
+    "customers",
+    "inventory",
+    "repair_tickets"
+  ],
+  "fields": {
+    "stores": [
+      "_id",
+      "store_code",
+      "name",
+      "address",
+      "address.street",
+      "address.city",
+      "address.province",
+      "address.postal_code",
+      "address.country",
+      "phone",
+      "email",
+      "opening_hours[]",
+      "opening_hours[].days",
+      "opening_hours[].opens",
+      "opening_hours[].closes",
+      "floor_area_sqm",
+      "opened_on",
+      "has_click_and_collect",
+      "status"
+    ],
+    "products": [
+      "_id",
+      "sku",
+      "name",
+      "brand",
+      "category",
+      "model_number",
+      "list_price",
+      "currency",
+      "energy_class",
+      "warranty_months",
+      "dimensions",
+      "dimensions.width_cm",
+      "dimensions.height_cm",
+      "dimensions.depth_cm",
+      "dimensions.weight_kg",
+      "launched_on",
+      "is_active"
+    ],
+    "customers": [
+      "_id",
+      "loyalty_number",
+      "first_name",
+      "last_name",
+      "email",
+      "phone",
+      "birth_date",
+      "home_store",
+      "wishlist[]",
+      "addresses[]",
+      "addresses[].label",
+      "addresses[].street",
+      "addresses[].city",
+      "addresses[].province",
+      "addresses[].postal_code",
+      "addresses[].floor",
+      "addresses[].has_elevator",
+      "loyalty_tier",
+      "marketing_opt_in",
+      "registered_at"
+    ],
+    "inventory": [
+      "_id",
+      "location",
+      "product",
+      "product.product_id",
+      "product.sku",
+      "product.name",
+      "product.brand",
+      "on_hand",
+      "reserved",
+      "reorder_point",
+      "aisle",
+      "last_counted_at"
+    ],
+    "repair_tickets": [
+      "_id",
+      "ticket_number",
+      "opened_at",
+      "closed_at",
+      "status",
+      "intake_store",
+      "appliance",
+      "customer",
+      "customer.customer_id",
+      "customer.first_name",
+      "customer.last_name",
+      "customer.phone",
+      "serial_number",
+      "purchase_date",
+      "under_warranty",
+      "reported_fault",
+      "parts_used[]",
+      "parts_used[].part_number",
+      "parts_used[].part_name",
+      "parts_used[].quantity",
+      "parts_used[].unit_cost",
+      "labor_cost",
+      "total_charged"
+    ]
+  },
+  "relationships": [
+    {
+      "from_field": "customers.home_store",
+      "to_collection": "stores"
+    },
+    {
+      "from_field": "customers.wishlist[]",
+      "to_collection": "products"
+    },
+    {
+      "from_field": "inventory.location",
+      "to_collection": "stores"
+    },
+    {
+      "from_field": "inventory.product.product_id",
+      "to_collection": "products"
+    },
+    {
+      "from_field": "repair_tickets.intake_store",
+      "to_collection": "stores"
+    },
+    {
+      "from_field": "repair_tickets.appliance",
+      "to_collection": "products"
+    },
+    {
+      "from_field": "repair_tickets.customer.customer_id",
+      "to_collection": "customers"
+    }
+  ],
+  "patterns": [
+    {
+      "path": "stores.address",
+      "pattern": "Embedding",
+      "evidence": "The store's postal address (street, city, province, postal_code, country) is a nested object inside each store; no collection holds addresses on their own."
+    },
+    {
+      "path": "stores.opening_hours[]",
+      "pattern": "Embedding",
+      "evidence": "Each store carries an array of opening-hour objects (days, opens, closes), e.g. days 'Mon-Fri'; these slots exist only inside the store document."
+    },
+    {
+      "path": "products.dimensions",
+      "pattern": "Embedding",
+      "evidence": "Physical size and weight (width_cm, height_cm, depth_cm, weight_kg) are grouped in a nested object that belongs only to the product."
+    },
+    {
+      "path": "customers.home_store",
+      "pattern": "Referencing",
+      "evidence": "home_store holds only the ObjectId of a document in stores, with no store attributes copied; the field is named after its role rather than store_id."
+    },
+    {
+      "path": "customers.wishlist[]",
+      "pattern": "Referencing",
+      "evidence": "wishlist is a list of ObjectIds that each match a product _id; no product data is stored alongside them."
+    },
+    {
+      "path": "customers.addresses[]",
+      "pattern": "Embedding",
+      "evidence": "Delivery addresses (label, street, city, floor, has_elevator...) are an array of objects stored only inside the customer document."
+    },
+    {
+      "path": "inventory.location",
+      "pattern": "Referencing",
+      "evidence": "location holds only the ObjectId of the store where the stock is kept; no store fields are copied, and the name reflects its role."
+    },
+    {
+      "path": "inventory.product",
+      "pattern": "ExtendedReference",
+      "evidence": "The product sub-object holds product_id plus copies of the product's sku, name and brand (e.g. sku 'LAV-VT9014') so stock lists can be shown without looking up products."
+    },
+    {
+      "path": "repair_tickets.intake_store",
+      "pattern": "Referencing",
+      "evidence": "intake_store holds only the ObjectId of the store that accepted the repair, with no copied store data."
+    },
+    {
+      "path": "repair_tickets.appliance",
+      "pattern": "Referencing",
+      "evidence": "appliance holds only the ObjectId of the repaired product model in products; the field is named after its role."
+    },
+    {
+      "path": "repair_tickets.customer",
+      "pattern": "ExtendedReference",
+      "evidence": "The customer sub-object holds customer_id plus copies of first_name, last_name and phone from the customers collection, so technicians can contact the customer without a lookup."
+    },
+    {
+      "path": "repair_tickets.parts_used[]",
+      "pattern": "Embedding",
+      "evidence": "Spare parts consumed by the repair (part_number, part_name, quantity, unit_cost) are an array of objects that exist only inside the ticket; there is no parts collection."
+    }
+  ]
+}

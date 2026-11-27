@@ -1,0 +1,5 @@
+mode,group,n_db,n_runs,fields_tp,fields_fp,fields_fn,fields_f1,relationships_tp,relationships_fp,relationships_fn,relationships_f1,detection_tp,detection_fp,detection_fn,detection_f1,e2e_tp,e2e_fp,e2e_fn,e2e_f1,classification_acc
+normalized,easy,4,12,447,0,0,1.0,24,0,0,1.0,51,0,0,1.0,51,0,0,1.0,1.0
+normalized,medium,4,12,912,0,0,1.0,69,15,0,0.902,89,0,31,0.852,75,14,45,0.718,0.843
+normalized,hard,4,12,1158,0,0,1.0,75,18,9,0.847,127,0,80,0.76,115,12,92,0.689,0.906
+normalized,global,12,36,2517,0,0,1.0,168,33,9,0.889,267,0,111,0.828,241,26,137,0.747,0.903

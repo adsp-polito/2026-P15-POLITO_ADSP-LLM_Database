@@ -1,0 +1,174 @@
+{
+  "teams": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "name",
+        "oncall_email",
+        "timezone",
+        "created_at"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "name": {
+          "bsonType": "string"
+        },
+        "oncall_email": {
+          "bsonType": "string"
+        },
+        "slack_channel": {
+          "bsonType": "string"
+        },
+        "timezone": {
+          "bsonType": "string"
+        },
+        "created_at": {
+          "bsonType": "date"
+        }
+      }
+    }
+  },
+  "hosts": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "hostname",
+        "ip_address",
+        "datacenter",
+        "environment",
+        "os",
+        "cpu_cores",
+        "memory_gb",
+        "agent_version",
+        "status",
+        "team_id",
+        "registered_at"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "hostname": {
+          "bsonType": "string"
+        },
+        "ip_address": {
+          "bsonType": "string"
+        },
+        "datacenter": {
+          "bsonType": "string"
+        },
+        "environment": {
+          "bsonType": "string",
+          "enum": [
+            "production",
+            "staging",
+            "development"
+          ]
+        },
+        "os": {
+          "bsonType": "string"
+        },
+        "cpu_cores": {
+          "bsonType": "int"
+        },
+        "memory_gb": {
+          "bsonType": "int"
+        },
+        "agent_version": {
+          "bsonType": "string"
+        },
+        "status": {
+          "bsonType": "string",
+          "enum": [
+            "provisioning",
+            "active",
+            "maintenance",
+            "offline"
+          ]
+        },
+        "team_id": {
+          "bsonType": "objectId"
+        },
+        "registered_at": {
+          "bsonType": "date"
+        },
+        "last_seen_at": {
+          "bsonType": "date"
+        }
+      }
+    }
+  },
+  "host_metrics": {
+    "$jsonSchema": {
+      "bsonType": "object",
+      "required": [
+        "_id",
+        "host_id",
+        "metric",
+        "unit",
+        "interval_sec",
+        "start",
+        "end",
+        "count",
+        "samples"
+      ],
+      "properties": {
+        "_id": {
+          "bsonType": "objectId"
+        },
+        "host_id": {
+          "bsonType": "objectId"
+        },
+        "metric": {
+          "bsonType": "string",
+          "enum": [
+            "cpu.utilization",
+            "memory.used_pct",
+            "load.avg_1m"
+          ]
+        },
+        "unit": {
+          "bsonType": "string",
+          "enum": [
+            "percent",
+            "load"
+          ]
+        },
+        "interval_sec": {
+          "bsonType": "int"
+        },
+        "start": {
+          "bsonType": "date"
+        },
+        "end": {
+          "bsonType": "date"
+        },
+        "count": {
+          "bsonType": "int"
+        },
+        "samples": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "object",
+            "required": [
+              "ts",
+              "value"
+            ],
+            "properties": {
+              "ts": {
+                "bsonType": "date"
+              },
+              "value": {
+                "bsonType": "double"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
